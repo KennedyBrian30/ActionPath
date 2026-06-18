@@ -1,0 +1,489 @@
+---
+// programs/financial-literacy.astro
+import Layout from "../../layouts/Layout.astro";
+
+// Core pillars of the financial literacy approach
+const pillars = [
+  {
+    icon: "fas fa-piggy-bank",
+    title: "Savings and Safe Spaces",
+    desc: "We help communities form savings groups, link them to SACCOs, and open doors to microfinance. Small, consistent savings become the foundation for everything else.",
+    practices: ["Village savings and loan associations (VSLAs)", "SACCO membership facilitation", "Mobile savings groups", "Emergency fund development"],
+  },
+  {
+    icon: "fas fa-calculator",
+    title: "Budgeting and Debt Management",
+    desc: "Simple, practical tools to track income, plan expenses, and avoid debt traps. We work with households to create budgets that work for real life, not just textbooks.",
+    practices: ["Household cash flow mapping", "Debt reduction planning", "Expense prioritisation", "Seasonal budgeting for farmers"],
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Investment Basics",
+    desc: "From understanding interest to choosing between livestock, land, or small business, we break down investment options so communities can grow their money with confidence.",
+    practices: ["Risk versus return explained simply", "Asset building strategies", "Income generating activity assessment", "Reinvestment planning"],
+  },
+  {
+    icon: "fas fa-mobile-alt",
+    title: "Digital Financial Services",
+    desc: "Mobile money, digital loans, and online banking are transforming rural economies. We teach safe usage, compare costs, and help communities access formal credit.",
+    practices: ["Mobile money literacy like M Pesa and Airtel Money", "Digital loan comparison", "Fraud awareness", "Using USSD and banking apps"],
+  },
+];
+
+// Non farm enterprise pathways
+const enterprises = [
+  { icon: "fas fa-hand-sparkles", title: "Handicrafts and Artisan Work", desc: "Basketry, beadwork, tailoring, and upcycled products linked to local and tourist markets." },
+  { icon: "fas fa-tools", title: "Repair and Maintenance Services", desc: "Bicycle, phone, and small engine repair training with tool sharing cooperatives." },
+  { icon: "fas fa-seedling", title: "Value Added Farm Products", desc: "Turning raw harvest into oils, flours, dried goods, and packaged spices for higher prices." },
+  { icon: "fas fa-store", title: "Micro Retail and Kiosks", desc: "Setting up small shops, food stalls, or mobile vendors in underserved areas." },
+];
+
+// Empowerment focus areas
+const empowermentAreas = [
+  { stat: "40%", label: "of participants are women in our savings groups", icon: "fas fa-venus" },
+  { stat: "62%", label: "report improved household financial decision making", icon: "fas fa-chart-simple" },
+  { stat: "3x", label: "average savings growth within 12 months", icon: "fas fa-arrow-trend-up" },
+  { stat: "85%", label: "of youth complete our digital finance module", icon: "fas fa-laptop-code" },
+];
+
+const testimonial = {
+  quote: "Before, I never knew where my money went. After the budgeting training, I started saving 200 shillings a week. Now I own two goats and a small phone repair shop. The group also helped me take a loan when my daughter needed school fees.",
+  name: "James Mwangi",
+  role: "Savings Group Chairperson",
+  location: "Meru County, Kenya",
+  flag: "🇰🇪",
+};
+
+const relatedPrograms = [
+  { title: "Agriculture and Climate Resilient Practices", desc: "Combine financial literacy with climate smart farming for diversified, resilient income.", icon: "fas fa-tractor", href: "/programs/agriculture-climate" },
+  { title: "Entrepreneurship and Small Business Development", desc: "Go deeper into business planning, marketing, and value chain analysis.", icon: "fas fa-chart-pie", href: "/programs/entrepreneurship" },
+  { title: "Youth and Women Empowerment", desc: "Leadership, digital skills, and gender lens financial inclusion programs.", icon: "fas fa-hand-holding-heart", href: "/programs/youth-women" },
+];
+---
+
+<Layout
+  title="Financial Literacy and Livelihood Diversification | ActionPath Africa"
+  description="Practical financial training for rural communities: savings groups, budgeting, investment basics, digital finance, and non farm enterprise development. Build financial resilience from the ground up."
+>
+  <!-- HERO: black background, red/green accents -->
+  <section class="hero">
+    <div class="heroBgPattern"></div>
+    <div class="heroContent">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/programs">Training Programs</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Financial Literacy</span>
+      </div>
+      <div class="heroBadge">
+        <i class="fas fa-coins"></i> Program 04 &middot; Money Skills for Real Life
+      </div>
+      <h1>Financial Literacy and <span class="h1Accent">Livelihood Diversification</span></h1>
+      <p class="heroDesc">
+        Money flows through everything, school fees, seeds for planting, medicine when a child is sick.
+        When households understand how to save, budget, invest, and access safe credit, they do not just survive.
+        They build options. They build a buffer against shocks. They build a future they can shape.
+      </p>
+      <div class="heroActions">
+        <a href="/contact" class="btnPrimary"><i class="fas fa-hand-holding-usd"></i> Start Financial Training</a>
+        <a href="#pillars" class="btnGhost"><i class="fas fa-arrow-down"></i> How It Works</a>
+      </div>
+    </div>
+    <div class="heroStats">
+      <div class="statItem">
+        <span class="statNumber">200+</span>
+        <span class="statLabel">Active Savings Groups</span>
+      </div>
+      <div class="statItem">
+        <span class="statNumber">12,000+</span>
+        <span class="statLabel">Trained Households</span>
+      </div>
+      <div class="statItem">
+        <span class="statNumber">KES 8.2M</span>
+        <span class="statLabel">Internal Group Savings</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THIS MATTERS: narrative section -->
+  <section class="whySection">
+    <div class="whyCard">
+      <div class="whyIcon"><i class="fas fa-question-circle"></i></div>
+      <div class="whyBody">
+        <h2>Why financial literacy is the missing piece</h2>
+        <p>
+          In rural Africa, most households manage money but few manage it strategically.
+          Income is often irregular, tied to harvest seasons or casual labour. Expenses come in
+          unpredictable waves: school fees due, a relative sick, a funeral to contribute to.
+          Without savings or safe credit, families fall into debt traps, borrowing from loan sharks
+          at 50 percent interest or selling assets at a loss.
+        </p>
+        <p>
+          Financial literacy training changes the game. It gives people a <strong>mental framework</strong>
+          for money: track it, plan it, grow it. It introduces <strong>practical tools</strong> like savings
+          groups where neighbours pool small amounts and lend to each other at fair rates. And it opens
+          <strong>new pathways</strong>, turning a sewing skill into a tailoring business, or a passion
+          for cooking into a catering service.
+        </p>
+        <p>
+          This is not about getting rich. It is about building <strong>resilience</strong>, the quiet
+          confidence that comes from having 500 shillings set aside when the unexpected arrives.
+        </p>
+        <div class="whyTags">
+          <span class="wtag">Household resilience</span>
+          <span class="wtag">Debt freedom</span>
+          <span class="wtag">Asset building</span>
+          <span class="wtag">Women economic empowerment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUR PILLARS -->
+  <section id="pillars" class="pillarsSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-layer-group"></i> The Framework</div>
+      <h2>Four Pillars of <span class="accentText">Practical Finance</span></h2>
+      <div class="dividerCenter"></div>
+      <p class="sectionSub">
+        We do not use jargon. We do not hand out worksheets and walk away. These four areas form the
+        backbone of hands on, community led financial training.
+      </p>
+    </div>
+    <div class="pillarsGrid">
+      {pillars.map((p) => (
+        <div class="pillarCard" key={p.title}>
+          <div class="pillarIcon"><i class={p.icon}></i></div>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <ul class="pillarPractices">
+            {p.practices.map((practice) => (
+              <li key={practice}><i class="fas fa-circle-check"></i> {practice}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- LIVELIHOOD DIVERSIFICATION: non farm enterprises -->
+  <section class="enterpriseSection">
+    <div class="sectionHeader">
+      <div class="eyebrow light"><i class="fas fa-briefcase"></i> Beyond the Farm</div>
+      <h2 class="enterpriseH2">Non Farm <span class="greenText">Enterprise Pathways</span></h2>
+      <div class="dividerCenter greenDiv"></div>
+      <p class="sectionSubLight">
+        Farming is unpredictable. Climate change makes it more so. We help households spread risk by
+        building small businesses that generate income even when the rains fail.
+      </p>
+    </div>
+    <div class="enterpriseGrid">
+      {enterprises.map((e) => (
+        <div class="enterpriseCard" key={e.title}>
+          <div class="enterpriseIcon"><i class={e.icon}></i></div>
+          <h3>{e.title}</h3>
+          <p>{e.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="diversificationQuote">
+      <i class="fas fa-quote-left"></i>
+      <span>My farm gives me food. My tailoring shop gives me school fees. Now one disaster cannot wipe me out.</span>
+      <span class="quoteAttrib">— Grace A., Busia County</span>
+    </div>
+  </section>
+
+  <!-- DIGITAL FINANCE FOCUS -->
+  <section class="digitalSection">
+    <div class="digitalContent">
+      <div class="digitalText">
+        <div class="eyebrow dark"><i class="fas fa-mobile-screen-button"></i> Mobile Money Era</div>
+        <h2>Digital finance is here. <span class="tealText">Are communities ready?</span></h2>
+        <p>
+          From M Pesa to mobile loans, digital money moves faster than cash. But speed without literacy
+          can mean high fees, predatory lending, and fraud. Our digital module covers practical skills:
+          comparing interest rates, avoiding hidden charges, using USSD codes safely, and building a
+          digital transaction history that opens doors to formal credit.
+        </p>
+        <ul class="digitalList">
+          <li><i class="fas fa-check-circle"></i> Safe mobile money practices</li>
+          <li><i class="fas fa-check-circle"></i> Understanding digital loan terms</li>
+          <li><i class="fas fa-check-circle"></i> Building a digital savings habit</li>
+          <li><i class="fas fa-check-circle"></i> Recognising and reporting fraud</li>
+        </ul>
+        <a href="/contact" class="btnOutlineTeal">Learn about digital training <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="digitalStats">
+        <div class="statBubble">
+          <span>86%</span>
+          <small>of rural households use mobile money weekly</small>
+        </div>
+        <div class="statBubble">
+          <span>3x</span>
+          <small>lower loan costs through group versus individual borrowing</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPOWERMENT SNAPSHOT -->
+  <section class="impactSnapshot">
+    <div class="snapshotInner">
+      <div class="snapshotHeader">
+        <i class="fas fa-chart-line"></i>
+        <h2>What financial literacy actually changes</h2>
+        <p>Numbers from our last three program cycles (2024 to 2025)</p>
+      </div>
+      <div class="snapshotGrid">
+        {empowermentAreas.map((item) => (
+          <div class="snapshotCard" key={item.label}>
+            <span class="snapshotStat">{item.stat}</span>
+            <span class="snapshotLabel">{item.label}</span>
+            <i class={item.icon}></i>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testiSection">
+    <div class="testiInner">
+      <div class="testiQuoteMark"><i class="fas fa-quote-left"></i></div>
+      <p class="testiText">"{testimonial.quote}"</p>
+      <div class="testiAuthor">
+        <div class="authorAvatar"><i class="fas fa-user-circle"></i></div>
+        <div>
+          <div class="authorName">{testimonial.name}</div>
+          <div class="authorRole">{testimonial.role} &middot; {testimonial.location} {testimonial.flag}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PROGRAMS -->
+  <section class="relatedSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-project-diagram"></i> Connected Learning</div>
+      <h2>Financial literacy works <span class="accentText">better together</span></h2>
+      <div class="dividerCenter"></div>
+      <p class="sectionSub">
+        Money skills become more powerful when combined with other livelihood training.
+        These programs are designed to run alongside or inside financial literacy training.
+      </p>
+    </div>
+    <div class="relatedGrid">
+      {relatedPrograms.map((p) => (
+        <a href={p.href} class="relatedCard" key={p.title}>
+          <div class="relIcon"><i class={p.icon}></i></div>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="relLink">Learn more <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+    <div class="allProgramsRow">
+      <a href="/programs" class="btnOutlineAccent"><i class="fas fa-th-large"></i> Browse all 7 training areas</a>
+    </div>
+  </section>
+
+  <!-- CTA: warm, inviting -->
+  <section class="ctaSection">
+    <div class="ctaEyebrow"><i class="fas fa-hand-peace"></i> It starts with a conversation</div>
+    <h2 class="ctaH2">Let us talk about money and what it can do for your community</h2>
+    <p>We work with NGOs, community groups, and cooperatives to deliver practical financial training. No jargon. No judgement. Just real skills for real life.</p>
+    <div class="ctaButtons">
+      <a href="/contact" class="btnPrimary btnLg"><i class="fas fa-envelope"></i> Request a training plan</a>
+      <a href="/programs" class="btnOutlineLight btnLg"><i class="fas fa-seedling"></i> See all livelihood programs</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b;
+    --redDark: #a93226;
+    --redSoft: rgba(192,57,43,.12);
+    --green: #27ee31;
+    --greenLt: #27f731;
+    --greenSoft: rgba(39,238,49,.1);
+    --charcoal: #1e293b;
+    --black: #0f1115;
+    --grayDk: #334155;
+    --grayMd: #64748b;
+    --graySf: #f1f5f9;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --shSm: 0 4px 12px rgba(0,0,0,.05);
+    --shMd: 0 8px 24px rgba(0,0,0,.08);
+    --shLg: 0 20px 40px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* HERO: black background, red/green accents */
+  .hero {
+    background: var(--black);
+    border-radius: 32px;
+    margin: 0 0 2rem;
+    padding: 3rem 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .heroBgPattern {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 40%, rgba(39,238,49,.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .75rem; color: var(--grayMd); margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--grayMd); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green); }
+  .heroBadge { display: inline-flex; align-items: center; gap: 8px; background: rgba(39,238,49,.12); border: 1px solid rgba(39,238,49,.3); color: var(--greenLt); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1.25rem; }
+  .hero h1 { font-family: "Outfit", sans-serif; font-size: 2.75rem; font-weight: 900; line-height: 1.1; letter-spacing: -.03em; color: var(--white); margin-bottom: 1rem; max-width: 620px; }
+  .h1Accent { color: var(--greenLt); }
+  .heroDesc { font-size: 1rem; color: #cbd5e1; line-height: 1.7; max-width: 560px; margin-bottom: 2rem; }
+  .heroActions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .heroStats { display: flex; gap: 2rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.75rem; margin-top: .5rem; }
+  .statItem { display: flex; flex-direction: column; }
+  .statNumber { font-size: 1.5rem; font-weight: 800; color: var(--green); line-height: 1.2; }
+  .statLabel { font-size: .7rem; color: var(--grayMd); text-transform: uppercase; letter-spacing: .05em; }
+
+  /* WHY SECTION */
+  .whySection { padding: 2rem 0 3rem; }
+  .whyCard { display: flex; gap: 1.75rem; align-items: flex-start; background: var(--white); border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--shSm); }
+  .whyIcon { width: 52px; height: 52px; border-radius: 16px; background: var(--redSoft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .whyBody h2 { font-family: "Outfit", sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--charcoal); margin-bottom: 1rem; line-height: 1.3; }
+  .whyBody p { font-size: .92rem; color: var(--grayDk); line-height: 1.75; margin-bottom: 1rem; }
+  .whyBody strong { color: var(--red); }
+  .whyTags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  .wtag { background: var(--greenSoft); color: var(--charcoal); font-size: .7rem; font-weight: 700; padding: .25rem .85rem; border-radius: 20px; border: 1px solid rgba(39,238,49,.3); }
+
+  /* PILLARS (red accent) */
+  .pillarsSection { padding: 3rem 0; }
+  .pillarsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .pillarCard { background: var(--white); border-radius: 20px; padding: 1.75rem; border: 1px solid var(--border); transition: var(--ease); border-left: 4px solid var(--red); }
+  .pillarCard:hover { transform: translateY(-3px); box-shadow: var(--shMd); }
+  .pillarIcon { width: 48px; height: 48px; border-radius: 12px; background: var(--redSoft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+  .pillarCard h3 { font-size: 1.1rem; font-weight: 800; color: var(--charcoal); margin-bottom: .75rem; }
+  .pillarCard p { font-size: .85rem; color: var(--grayMd); line-height: 1.65; margin-bottom: 1rem; }
+  .pillarPractices { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .pillarPractices li { font-size: .78rem; color: var(--grayDk); display: flex; align-items: center; gap: 8px; }
+  .pillarPractices li i { color: var(--green); font-size: .7rem; }
+
+  /* ENTERPRISE (green/gold vibe, black headlines) */
+  .enterpriseSection { background: linear-gradient(135deg, #fefce8 0%, #fef9e6 100%); border-radius: 32px; margin: 2rem 0; padding: 3rem 2rem; }
+  .enterpriseH2 { color: var(--black) !important; }
+  .greenText { color: var(--greenLt); }
+  .sectionSubLight { font-size: .9rem; color: var(--grayDk); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .enterpriseGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem 0 2rem; }
+  .enterpriseCard { background: var(--white); border-radius: 20px; padding: 1.5rem; text-align: center; transition: var(--ease); box-shadow: var(--shSm); border: 1px solid rgba(192,57,43,.15); }
+  .enterpriseCard:hover { transform: translateY(-4px); box-shadow: var(--shMd); border-color: var(--red); }
+  .enterpriseIcon { width: 50px; height: 50px; border-radius: 30px; background: var(--redSoft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 1rem; }
+  .enterpriseCard h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; color: var(--charcoal); }
+  .enterpriseCard p { font-size: .8rem; color: var(--grayMd); line-height: 1.55; }
+  .diversificationQuote { background: rgba(39,238,49,.08); border-radius: 20px; padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; font-style: italic; color: var(--charcoal); }
+  .diversificationQuote i { font-size: 1rem; color: var(--red); opacity: 0.6; }
+  .quoteAttrib { font-size: .7rem; font-weight: 600; color: var(--grayDk); margin-left: 0.5rem; }
+
+  /* DIGITAL SECTION */
+  .digitalSection { padding: 3rem 0; }
+  .digitalContent { display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; background: var(--graySf); border-radius: 28px; padding: 2.5rem; border: 1px solid var(--border); }
+  .digitalText .eyebrow.dark { background: var(--redSoft); color: var(--red); display: inline-flex; gap: 6px; padding: .35rem 1rem; border-radius: 40px; font-size: .7rem; font-weight: 700; margin-bottom: 1rem; }
+  .digitalText h2 { font-family: "Outfit", sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; color: var(--charcoal); }
+  .tealText { color: var(--green); }
+  .digitalText p { font-size: .9rem; color: var(--grayDk); line-height: 1.7; margin-bottom: 1.25rem; }
+  .digitalList { list-style: none; margin-bottom: 1.75rem; }
+  .digitalList li { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--grayDk); margin-bottom: 8px; }
+  .digitalList li i { color: var(--green); font-size: .8rem; }
+  .digitalStats { display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+  .statBubble { background: var(--white); border-radius: 24px; padding: 1.25rem 1.75rem; text-align: center; border: 1px solid var(--border); box-shadow: var(--shSm); }
+  .statBubble span { font-size: 2rem; font-weight: 900; color: var(--red); display: block; line-height: 1.1; }
+  .statBubble small { font-size: .7rem; color: var(--grayMd); }
+
+  /* IMPACT SNAPSHOT (dark red background) */
+  .impactSnapshot { background: var(--redDark); border-radius: 32px; margin: 2rem 0; padding: 2.5rem 2rem; color: var(--white); }
+  .snapshotInner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .snapshotHeader i { font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.8; color: var(--green); }
+  .snapshotHeader h2 { font-family: "Outfit", sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--white); }
+  .snapshotHeader p { opacity: 0.8; font-size: .85rem; margin-bottom: 2rem; color: #f1f5f9; }
+  .snapshotGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .snapshotCard { background: rgba(0,0,0,.25); border-radius: 20px; padding: 1.5rem 1rem; backdrop-filter: blur(2px); transition: var(--ease); }
+  .snapshotCard:hover { background: rgba(0,0,0,.4); transform: translateY(-3px); }
+  .snapshotStat { display: block; font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; color: var(--green); }
+  .snapshotLabel { font-size: .75rem; opacity: 0.9; display: block; margin-bottom: 0.5rem; color: #f1f5f9; }
+  .snapshotCard i { font-size: 1.2rem; opacity: 0.7; color: var(--white); }
+
+  /* TESTIMONIAL (black background) */
+  .testiSection { background: var(--black); border-radius: 28px; margin: 2rem 0; padding: 3rem 2rem; }
+  .testiInner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .testiQuoteMark i { font-size: 2.5rem; color: var(--red); opacity: 0.5; margin-bottom: 1rem; }
+  .testiText { font-size: 1.15rem; color: #e2e8f0; line-height: 1.7; font-style: italic; margin-bottom: 1.75rem; }
+  .testiAuthor { display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+  .authorAvatar i { font-size: 2.2rem; color: var(--green); }
+  .authorName { font-weight: 700; color: var(--greenLt); font-size: .9rem; }
+  .authorRole { font-size: .72rem; color: var(--grayMd); }
+
+  /* RELATED & CTA */
+  .relatedSection { padding: 3rem 0; }
+  .relatedGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .relatedCard { background: var(--white); border-radius: 20px; padding: 1.5rem; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: var(--ease); border-top: 3px solid var(--red); }
+  .relatedCard:hover { transform: translateY(-4px); box-shadow: var(--shMd); }
+  .relIcon { width: 44px; height: 44px; border-radius: 12px; background: var(--redSoft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: 1rem; }
+  .relatedCard h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--charcoal); }
+  .relatedCard p { font-size: .82rem; color: var(--grayMd); line-height: 1.55; margin-bottom: 1rem; }
+  .relLink { font-size: .78rem; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 5px; }
+  .allProgramsRow { text-align: center; margin-top: 2.5rem; }
+  .btnOutlineAccent { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--red); color: var(--red); padding: .72rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btnOutlineAccent:hover { background: var(--red); color: var(--white); transform: translateY(-2px); }
+  .btnOutlineTeal { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--green); color: var(--green); padding: .6rem 1.5rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); font-size: .85rem; }
+  .btnOutlineTeal:hover { background: var(--green); color: var(--black); }
+
+  /* CTA (red/green gradient) */
+  .ctaSection { background: linear-gradient(135deg, var(--red) 0%, var(--charcoal) 100%); border-radius: 28px; margin: 2rem 0; padding: 3.5rem 3rem; text-align: center; }
+  .ctaEyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); color: var(--greenLt); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .ctaH2 { font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 900; color: var(--white); max-width: 600px; margin: 0 auto 1rem; line-height: 1.2; }
+  .ctaSection p { color: rgba(255,255,255,.85); font-size: .95rem; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+  .ctaButtons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* SHARED CLASSES */
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--redSoft); color: var(--red); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .sectionHeader { text-align: center; margin-bottom: 2.5rem; }
+  .sectionHeader h2 { font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 0.25rem; color: var(--charcoal); }
+  .sectionSub { font-size: .9rem; color: var(--grayMd); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .dividerCenter { width: 56px; height: 3px; background: linear-gradient(90deg, var(--red), var(--green)); border-radius: 3px; margin: 0.75rem auto 1rem; }
+  .greenDiv { background: linear-gradient(90deg, var(--green), var(--red)); }
+  .accentText { color: var(--green); }
+  .btnPrimary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: var(--black); padding: .7rem 1.75rem; border-radius: 40px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: var(--ease); border: none; cursor: pointer; }
+  .btnPrimary:hover { background: var(--greenLt); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(39,238,49,.3); color: var(--black); }
+  .btnGhost { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--green); color: var(--green); padding: .7rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btnGhost:hover { background: rgba(39,238,49,.1); border-color: var(--greenLt); color: var(--greenLt); }
+  .btnOutlineLight { display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.4); color: var(--white); padding: .7rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btnOutlineLight:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
+  .btnLg { padding: .85rem 2rem; font-size: .95rem; }
+
+  @media (max-width: 1024px) {
+    .heroStats { flex-wrap: wrap; gap: 1rem; }
+    .pillarsGrid { grid-template-columns: 1fr; }
+    .enterpriseGrid { grid-template-columns: repeat(2, 1fr); }
+    .digitalContent { grid-template-columns: 1fr; }
+    .snapshotGrid { grid-template-columns: repeat(2, 1fr); }
+    .relatedGrid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 2rem 1.5rem; }
+    .hero h1 { font-size: 2rem; }
+    .whyCard { flex-direction: column; }
+    .enterpriseGrid { grid-template-columns: 1fr; }
+    .snapshotGrid { grid-template-columns: 1fr; }
+    .relatedGrid { grid-template-columns: 1fr; }
+    .digitalStats { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .ctaSection { padding: 2rem 1.5rem; }
+    .ctaH2 { font-size: 1.6rem; }
+    .ctaButtons { flex-direction: column; align-items: center; }
+  }
+</style>

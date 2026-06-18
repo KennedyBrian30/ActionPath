@@ -1,0 +1,1394 @@
+---
+// programs/index.astro — Livelihood Training Hub
+import Layout from "../layouts/Layout.astro";
+
+const programs = [
+  {
+    id: "agriculture-climate",
+    number: "01",
+    title: "Agriculture & Climate-Resilient Practices",
+    tagline: "Growing food security from the ground up",
+    icon: "fas fa-seedling",
+    color: "#2d6a4f",
+    colorSoft: "rgba(45, 106, 79, 0.1)",
+    tag: "Climate Action",
+    href: "/programs/agriculture-climate",
+    image: "/agriculture-climate.webp",
+    intro:
+      "Food insecurity and climate change are two sides of the same crisis across sub-Saharan Africa. Erratic rainfall, soil degradation, and limited market access push millions of smallholder farmers deeper into poverty every season. Our Agriculture & Climate-Resilient Practices program equips communities with the knowledge and tools to grow food reliably — even as conditions change around them.",
+    activities: [
+      {
+        icon: "fas fa-tractor",
+        text: "Crop diversification, mixed farming, and livestock management",
+      },
+      {
+        icon: "fas fa-tree",
+        text: "Agroforestry and sustainable land use practices",
+      },
+      {
+        icon: "fas fa-solar-panel",
+        text: "Renewable energy adoption in rural and peri-urban settings",
+      },
+      {
+        icon: "fas fa-shield-alt",
+        text: "Disaster preparedness and community-based resource management",
+      },
+    ],
+    outcome:
+      "Improved food security, household nutrition, and resilience against seasonal shocks.",
+  },
+  {
+    id: "entrepreneurship",
+    number: "02",
+    title: "Entrepreneurship & SME Development",
+    tagline: "Turning community potential into thriving businesses",
+    icon: "fas fa-chart-line",
+    color: "#c0392b",
+    colorSoft: "rgba(192, 57, 43, 0.1)",
+    tag: "Economic Empowerment",
+    href: "/programs/entrepreneurship",
+    image: "/entrepreneurship.webp",
+    intro:
+      "Unemployment and underemployment are not failures of ambition — they are failures of access. Across conflict-affected and poverty-stricken communities, talent and entrepreneurial energy are abundant. What's missing is structure, mentorship, and market linkages. Our Entrepreneurship & SME Development program bridges that gap, transforming ideas into sustainable small enterprises.",
+    activities: [
+      {
+        icon: "fas fa-file-invoice",
+        text: "Business plan development and financial management training",
+      },
+      {
+        icon: "fas fa-handshake",
+        text: "Public-private partnership models for SME growth",
+      },
+      {
+        icon: "fas fa-link",
+        text: "Value chain analysis and market linkage facilitation",
+      },
+      {
+        icon: "fas fa-briefcase",
+        text: "Job readiness — CV writing, interview preparation, and workplace culture",
+      },
+    ],
+    outcome:
+      "Participants launch and sustain small enterprises with sound financial management practices.",
+  },
+  {
+    id: "livelihood-diversification",
+    number: "03",
+    title: "Livelihood Diversification",
+    tagline: "Multiple income streams, one resilient household",
+    icon: "fas fa-exchange-alt",
+    color: "#1a6fa3",
+    colorSoft: "rgba(26, 111, 163, 0.1)",
+    tag: "Resilience Building",
+    href: "/programs/livelihood-diversification",
+    image: "/diversification.webp",
+    intro:
+      "Dependence on a single income source — whether subsistence farming, casual labour, or informal trade — leaves households dangerously exposed to shocks. A drought, a flood, a market collapse, or a health crisis can erase a family's livelihood overnight. Our Livelihood Diversification program teaches communities to build layered, interconnected income streams that hold firm even when one fails.",
+    activities: [
+      {
+        icon: "fas fa-search-dollar",
+        text: "Identifying alternative income sources beyond primary farming or employment",
+      },
+      {
+        icon: "fas fa-store",
+        text: "Non-farm enterprises: services, crafts, and eco-friendly businesses",
+      },
+      {
+        icon: "fas fa-piggy-bank",
+        text: "Financial literacy, savings groups, and microfinance access",
+      },
+      {
+        icon: "fas fa-umbrella",
+        text: "Social protection mechanisms and risk management strategies",
+      },
+    ],
+    outcome:
+      "Households with diversified income streams demonstrate 87% greater resilience against economic and climate shocks.",
+  },
+  {
+    id: "vocational-skills",
+    number: "04",
+    title: "Vocational & Technical Skills",
+    tagline: "Market-ready trades that open doors",
+    icon: "fas fa-tools",
+    color: "#7b3fa0",
+    colorSoft: "rgba(123, 63, 160, 0.1)",
+    tag: "Skills Development",
+    href: "/programs/vocational-skills",
+    image: "/vocational-skills.webp",
+    intro:
+      "A certified, market-relevant skill is one of the most reliable pathways out of poverty. Our Vocational & Technical Skills program delivers hands-on, practical trade training in areas where local economies have genuine demand — from tailoring and carpentry to eco-friendly production and machine operation. We don't just train; we certify, connect, and support participants into employment or self-employment.",
+    activities: [
+      {
+        icon: "fas fa-cut",
+        text: "Tailoring and garment production with links to local clothing markets",
+      },
+      {
+        icon: "fas fa-hammer",
+        text: "Carpentry, machine operation, and eco-friendly production (bamboo furniture, reusable bags)",
+      },
+      {
+        icon: "fas fa-certificate",
+        text: "Linkages with vocational institutions for nationally recognized certification",
+      },
+      {
+        icon: "fas fa-tools",
+        text: "Access to shared workspaces equipped with production tools and machinery",
+      },
+    ],
+    outcome:
+      "Graduates leave with certified skills, production access, and active market connections for employment or enterprise.",
+  },
+  {
+    id: "women-youth",
+    number: "05",
+    title: "Women & Youth Empowerment",
+    tagline: "Investing in those who transform communities",
+    icon: "fas fa-female",
+    color: "#b5451b",
+    colorSoft: "rgba(181, 69, 27, 0.1)",
+    tag: "Inclusive Growth",
+    href: "/programs/women-youth",
+    image: "/women-youth.webp",
+    intro:
+      "Women and youth are disproportionately affected by poverty, conflict, and climate shocks — yet they are also Africa's most powerful catalysts for change. Our Women & Youth Empowerment program dismantles the structural, social, and economic barriers that prevent these groups from participating fully in economic life. From savings groups to digital skills, from leadership training to trauma-informed coaching, we invest in those who will transform their communities.",
+    activities: [
+      {
+        icon: "fas fa-piggy-bank",
+        text: "Women's entrepreneurship, savings groups (SACCOs), and microfinance literacy",
+      },
+      {
+        icon: "fas fa-laptop",
+        text: "Youth-focused digital literacy, e-commerce, freelancing, and tech trades",
+      },
+      {
+        icon: "fas fa-users",
+        text: "Community leadership, advocacy, and gender-sensitive programme design",
+      },
+      {
+        icon: "fas fa-heart",
+        text: "Psychosocial support: Johari Window, Wheel of Life, and resilience-building modules",
+      },
+    ],
+    outcome:
+      "Women achieve economic independence and leadership roles; youth leverage technology for income generation and global market access.",
+  },
+];
+
+const toolkit = [
+  {
+    icon: "fas fa-brain",
+    title: "Self-Awareness & Psychosocial Readiness",
+    desc: "Participants gain clarity on strengths and blind spots before engaging in economic activities through tools like the Johari Window and Wheel of Life.",
+  },
+  {
+    icon: "fas fa-tools",
+    title: "Vocational & Technical Skills",
+    desc: "Market-ready skills in tailoring, eco-crafts, carpentry, and machine operation — all with nationally recognized credentials.",
+  },
+  {
+    icon: "fas fa-chart-bar",
+    title: "Entrepreneurship & Financial Literacy",
+    desc: "Business planning, savings culture, SACCO participation, and microfinance access to start and sustain small enterprises.",
+  },
+  {
+    icon: "fas fa-leaf",
+    title: "Agriculture & Climate Livelihoods",
+    desc: "Crop diversification, agroforestry, livestock management, and renewable energy for food security and climate resilience.",
+  },
+  {
+    icon: "fas fa-mobile-alt",
+    title: "Youth Digital Empowerment",
+    desc: "Digital literacy, e-commerce, social media marketing, and freelancing platforms to unlock global market access.",
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Monitoring, Evaluation & Growth",
+    desc: "Impact tracking via Wheel of Life, peer accountability groups, and quarterly showcase events for sustainable scaling.",
+  },
+];
+
+const outcomes = [
+  {
+    term: "Short-term",
+    items: [
+      "Increased confidence and self-efficacy",
+      "Certified, marketable skills",
+      "Active savings culture",
+    ],
+    color: "var(--accent-green)",
+  },
+  {
+    term: "Medium-term",
+    items: [
+      "New enterprises launched",
+      "Improved household income",
+      "Reduced local unemployment",
+    ],
+    color: "var(--primary-red)",
+  },
+  {
+    term: "Long-term",
+    items: [
+      "Resilient, self-sustaining communities",
+      "Empowered women and youth leaders",
+      "Generational economic independence",
+    ],
+    color: "var(--dark-charcoal)",
+  },
+];
+---
+
+<Layout
+  title="Livelihood Training Programs | ActionPath Africa"
+  description="Explore ActionPath Africa's five livelihood training programs: Agriculture & Climate, Entrepreneurship, Livelihood Diversification, Vocational Skills, and Women & Youth Empowerment."
+>
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="prog-hero">
+    <div class="prog-hero-bg">
+      <img src="/programs-hero.webp" alt="Livelihood training in action" />
+      <div class="prog-hero-overlay"></div>
+      <!-- decorative diagonal stripe -->
+      <div class="prog-hero-stripe"></div>
+    </div>
+    <div class="prog-hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Livelihood Programs</span>
+      </div>
+      <div class="prog-eyebrow">
+        <i class="fas fa-seedling"></i> Livelihood Training
+      </div>
+      <h1>
+        Five pathways to<br />
+        <span class="hero-green">economic freedom</span>
+      </h1>
+      <p class="hero-desc">
+        Context-specific, evidence-driven livelihood programs built for
+        communities navigating conflict, drought, poverty, and disease across
+        Africa. Each program integrates practical skills with psychosocial
+        support and real market connections.
+      </p>
+      <div class="hero-stats">
+        <div class="hs"><span>15,000+</span> Lives Transformed</div>
+        <div class="hs-div"></div>
+        <div class="hs"><span>87%</span> Income Improvement</div>
+        <div class="hs-div"></div>
+        <div class="hs"><span>5</span> Core Program Tracks</div>
+      </div>
+    </div>
+
+    <!-- Program quick-nav pills -->
+    <div class="prog-quicknav">
+      {
+        programs.map((p) => (
+          <a href={`#${p.id}`} class="qnav-pill" key={p.id}>
+            <i class={p.icon} /> {p.title.split("&")[0].trim()}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       INTRO STATEMENT
+  ══════════════════════════════════════════ -->
+  <section class="intro-statement">
+    <div class="intro-inner">
+      <div class="intro-icon"><i class="fas fa-quote-left"></i></div>
+      <p>
+        At ActionPath Africa, we design livelihood programs that go beyond
+        skills acquisition. Every track combines <strong
+          >practical training</strong
+        >, <strong>entrepreneurial coaching</strong>,
+        <strong>psychosocial support</strong>, and <strong
+          >market linkages</strong
+        > — ensuring that participants don't just learn, but transform.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PROGRAM SECTIONS
+  ══════════════════════════════════════════ -->
+  {
+    programs.map((prog, idx) => (
+      <section
+        id={prog.id}
+        class={`prog-section ${idx % 2 === 0 ? "prog-ltr" : "prog-rtl"}`}
+        key={prog.id}
+      >
+        <div class="prog-img-col">
+          <div class="prog-img-wrap">
+            <img src={prog.image} alt={prog.title} loading="lazy" />
+            <div class="prog-num-badge" style={`background: ${prog.color}`}>
+              {prog.number}
+            </div>
+            <div class="prog-tag-badge">{prog.tag}</div>
+          </div>
+        </div>
+
+        <div class="prog-text-col">
+          <div
+            class="prog-eyebrow-inline"
+            style={`color: ${prog.color}; background: ${prog.colorSoft}`}
+          >
+            <i class={prog.icon} /> Program {prog.number}
+          </div>
+          <h2 class="prog-title">{prog.title}</h2>
+          <p class="prog-tagline" style={`color: ${prog.color}`}>
+            {prog.tagline}
+          </p>
+          <div
+            class="prog-divider"
+            style={`background: linear-gradient(90deg, ${prog.color}, var(--accent-green))`}
+          />
+
+          <p class="prog-body">{prog.intro}</p>
+
+          <div class="prog-activities">
+            <div class="pa-label">
+              <i class="fas fa-list-check" /> Key Activities
+            </div>
+            {prog.activities.map((act) => (
+              <div class="pa-item" key={act.text}>
+                <div
+                  class="pa-icon"
+                  style={`background: ${prog.colorSoft}; color: ${prog.color}`}
+                >
+                  <i class={act.icon} />
+                </div>
+                <span>{act.text}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="prog-outcome" style={`border-left-color: ${prog.color}`}>
+            <i class="fas fa-bullseye" style={`color: ${prog.color}`} />
+            <span>
+              <strong>Outcome:</strong> {prog.outcome}
+            </span>
+          </div>
+
+          <a
+            href={prog.href}
+            class="prog-cta"
+            style={`background: ${prog.color}`}
+          >
+            <i class="fas fa-arrow-right" /> Explore This Program
+          </a>
+        </div>
+      </section>
+    ))
+  }
+
+  <!-- ══════════════════════════════════════════
+       TOOLKIT SECTION
+  ══════════════════════════════════════════ -->
+  <section class="toolkit-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-toolbox"></i> Our Methodology
+      </div>
+      <h2>The ActionPath <span class="accent-red">Training Toolkit</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        Every program draws from an integrated toolkit that combines
+        psychosocial readiness, practical skills, and market-driven learning —
+        built to create change that lasts.
+      </p>
+    </div>
+    <div class="toolkit-grid">
+      {
+        toolkit.map((t, i) => (
+          <div
+            class="toolkit-card"
+            style={`animation-delay: ${i * 0.07}s`}
+            key={t.title}
+          >
+            <div class="tk-icon">
+              <i class={t.icon} />
+            </div>
+            <h3>{t.title}</h3>
+            <p>{t.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MEARL CALLOUT
+  ══════════════════════════════════════════ -->
+  <section class="mearl-section">
+    <div class="mearl-inner">
+      <div class="mearl-text">
+        <div class="section-eyebrow light">
+          <i class="fas fa-chart-bar"></i> How We Measure Impact
+        </div>
+        <h2>
+          Accountability through <span class="accent-green-text">MEARL</span>
+        </h2>
+        <p>
+          All ActionPath Africa livelihood programs operate within a rigorous
+          <strong
+            >Monitoring, Evaluation, Accountability, Research & Learning (MEARL)</strong
+          > framework. We continuously track enrolments, skills taught, and enterprises
+          started. We conduct periodic assessments against set objectives, and we
+          use research findings to adapt and improve — shifting from saturated markets
+          to emerging opportunities like eco-business and digital freelancing when
+          evidence demands it.
+        </p>
+        <a href="/services/monitoring-evaluation" class="btn-outline-light-sm">
+          <i class="fas fa-chart-bar"></i> Learn About Our M&E Services
+        </a>
+      </div>
+      <div class="mearl-pillars">
+        {
+          [
+            {
+              letter: "M",
+              word: "Monitoring",
+              desc: "Continuous activity tracking: enrolments, skills taught, enterprises started.",
+            },
+            {
+              letter: "E",
+              word: "Evaluation",
+              desc: "Periodic outcome assessment against objectives — income, resilience, empowerment.",
+            },
+            {
+              letter: "A",
+              word: "Accountability",
+              desc: "Transparency to donors, communities, and participants to build trust.",
+            },
+            {
+              letter: "R",
+              word: "Research",
+              desc: "Evidence on what works — comparing effectiveness across contexts to generate insights.",
+            },
+            {
+              letter: "L",
+              word: "Learning",
+              desc: "Adapting and improving based on findings. Innovation and sustainability.",
+            },
+          ].map((p) => (
+            <div class="mearl-pill" key={p.letter}>
+              <div class="mearl-letter">{p.letter}</div>
+              <div>
+                <div class="mearl-word">{p.word}</div>
+                <div class="mearl-desc">{p.desc}</div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       OUTCOME FRAMEWORK
+  ══════════════════════════════════════════ -->
+  <section class="outcomes-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-flag-checkered"></i> Results
+      </div>
+      <h2>Outcome <span class="accent-red">Framework</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        Our theory of change traces a clear arc — from individual confidence to
+        community transformation.
+      </p>
+    </div>
+    <div class="outcomes-grid">
+      {
+        outcomes.map((o) => (
+          <div class="outcome-card" key={o.term}>
+            <div class="oc-header" style={`background: ${o.color}`}>
+              <span class="oc-term">{o.term}</span>
+            </div>
+            <ul class="oc-list">
+              {o.items.map((item) => (
+                <li key={item}>
+                  <i class="fas fa-check" /> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════ -->
+  <section class="prog-cta-section">
+    <div class="prog-cta-inner">
+      <div class="prog-cta-text">
+        <div class="section-eyebrow light">
+          <i class="fas fa-hands-helping"></i> Work With Us
+        </div>
+        <h2>
+          Partner to deliver <span class="accent-green-text"
+            >lasting change</span
+          >
+        </h2>
+        <p>
+          Whether you're an NGO, government agency, community leader, or donor —
+          we can design, co-deliver, or scale a livelihood program that meets
+          your communities where they are.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-white-solid"
+            ><i class="fas fa-envelope"></i> Get In Touch</a
+          >
+          <a
+            href="/services/cbo-capacity-building"
+            class="btn-outline-white-solid"
+            ><i class="fas fa-hand-holding-heart"></i> CBO Support Services</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :root {
+    --primary-red: #c0392b;
+    --primary-red-soft: rgba(192, 57, 43, 0.1);
+    --accent-green: #27ee31;
+    --accent-green-light: #27f731;
+    --dark-charcoal: #1e293b;
+    --gray-mid: #64748b;
+    --gray-soft: #f1f5f9;
+    --border-light: #e2e8f0;
+    --card-white: #ffffff;
+  }
+
+  /* ── Hero ─────────────────────────────────── */
+  .prog-hero {
+    position: relative;
+    margin: -2.5rem -2rem 0;
+    overflow: hidden;
+  }
+
+  .prog-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .prog-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+  }
+
+  .prog-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.93) 0%,
+      rgba(15, 23, 42, 0.7) 60%,
+      rgba(45, 106, 79, 0.5) 100%
+    );
+  }
+
+  .prog-hero-stripe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--gray-soft);
+    clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 2;
+  }
+
+  .prog-hero-inner {
+    position: relative;
+    z-index: 3;
+    padding: 3.5rem 2rem 5rem;
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    color: var(--accent-green-light);
+  }
+  .breadcrumb i {
+    font-size: 0.58rem;
+  }
+
+  .prog-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(39, 238, 49, 0.15);
+    border: 1px solid rgba(39, 238, 49, 0.3);
+    color: var(--accent-green-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 1.25rem;
+  }
+
+  .prog-hero-inner h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.4rem;
+    font-weight: 900;
+    line-height: 1.07;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-green {
+    background: linear-gradient(135deg, var(--accent-green-light), #7cffa4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.72;
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .hs {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+
+  .hs span {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent-green-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .hs-div {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Quick nav pills */
+  .prog-quicknav {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1.25rem 2rem;
+    background: var(--dark-charcoal);
+    border-top: 2px solid rgba(39, 238, 49, 0.2);
+  }
+
+  .qnav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.07);
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+  }
+
+  .qnav-pill i {
+    color: var(--accent-green);
+    font-size: 0.7rem;
+  }
+
+  .qnav-pill:hover {
+    background: rgba(39, 238, 49, 0.12);
+    color: var(--accent-green-light);
+    border-color: rgba(39, 238, 49, 0.3);
+  }
+
+  /* ── Intro statement ─────────────────────── */
+  .intro-statement {
+    background: var(--dark-charcoal);
+    border-radius: 20px;
+    margin: 2.5rem 0;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .intro-icon {
+    font-size: 2.5rem;
+    color: var(--accent-green);
+    opacity: 0.3;
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+
+  .intro-inner p {
+    font-size: 1.08rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.75;
+  }
+
+  .intro-inner strong {
+    color: var(--accent-green-light);
+  }
+
+  /* ── Program Sections ────────────────────── */
+  .prog-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .prog-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .prog-rtl {
+    direction: rtl;
+  }
+  .prog-rtl > * {
+    direction: ltr;
+  }
+
+  .prog-img-col {
+    position: relative;
+  }
+
+  .prog-img-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .prog-img-wrap img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .prog-section:hover .prog-img-wrap img {
+    transform: scale(1.03);
+  }
+
+  .prog-num-badge {
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Outfit", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid white;
+    z-index: 2;
+  }
+
+  .prog-tag-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: white;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.25rem 0.8rem;
+    border-radius: 40px;
+    color: var(--dark-charcoal);
+    letter-spacing: 0.03em;
+  }
+
+  .prog-eyebrow-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 40px;
+    margin-bottom: 0.85rem;
+  }
+
+  .prog-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--dark-charcoal);
+    margin-bottom: 0.35rem;
+  }
+
+  .prog-tagline {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .prog-divider {
+    height: 3px;
+    width: 52px;
+    border-radius: 3px;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .prog-body {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    line-height: 1.78;
+    margin-bottom: 1.5rem;
+  }
+
+  .prog-activities {
+    background: var(--gray-soft);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pa-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gray-mid);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pa-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0.55rem;
+    font-size: 0.84rem;
+    color: var(--dark-charcoal);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .pa-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .pa-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .prog-outcome {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-left: 4px solid;
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.83rem;
+    color: var(--dark-charcoal);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .prog-outcome i {
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  a.prog-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.7rem 1.6rem;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  a.prog-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+  }
+
+  /* ── Toolkit ─────────────────────────────── */
+  .toolkit-section {
+    padding: 3.5rem 0;
+    background: var(--gray-soft);
+    border-radius: 32px;
+    margin: 2rem -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+
+  .toolkit-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-light);
+    transition: all 0.25s;
+  }
+
+  .toolkit-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-green);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  }
+
+  .tk-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-red-soft);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .toolkit-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--dark-charcoal);
+  }
+
+  .toolkit-card p {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    line-height: 1.65;
+  }
+
+  /* ── MEARL ───────────────────────────────── */
+  .mearl-section {
+    background: var(--dark-charcoal);
+    border-radius: 28px;
+    margin: 2.5rem 0;
+    overflow: hidden;
+  }
+
+  .mearl-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem;
+  }
+
+  .mearl-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .accent-green-text {
+    color: var(--accent-green-light);
+  }
+
+  .mearl-text p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .mearl-text strong {
+    color: var(--accent-green-light);
+  }
+
+  .btn-outline-light-sm {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.6rem 1.4rem;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-light-sm:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
+
+  .mearl-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mearl-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    transition: all 0.2s;
+  }
+
+  .mearl-pill:hover {
+    background: rgba(39, 238, 49, 0.08);
+    border-color: rgba(39, 238, 49, 0.25);
+  }
+
+  .mearl-letter {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--accent-green-light);
+    line-height: 1;
+    width: 32px;
+    flex-shrink: 0;
+  }
+
+  .mearl-word {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .mearl-desc {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+  }
+
+  /* ── Outcomes ────────────────────────────── */
+  .outcomes-section {
+    padding: 3.5rem 0;
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .outcome-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  .oc-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .oc-term {
+    font-family: "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+
+  .oc-list {
+    list-style: none;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .oc-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.84rem;
+    color: var(--dark-charcoal);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .oc-list li i {
+    color: var(--accent-green);
+    font-size: 0.75rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA Section ─────────────────────────── */
+  .prog-cta-section {
+    background: linear-gradient(135deg, var(--primary-red) 0%, #922b21 100%);
+    border-radius: 28px;
+    margin: 2.5rem 0;
+    overflow: hidden;
+  }
+
+  .prog-cta-inner {
+    padding: 3.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .prog-cta-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.9rem;
+    line-height: 1.15;
+  }
+
+  .prog-cta-text p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 560px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-white-solid {
+    background: white;
+    color: var(--primary-red);
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-white-solid:hover {
+    background: var(--accent-green-light);
+    color: var(--dark-charcoal);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-white-solid {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-white-solid:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  /* ── Shared ──────────────────────────────── */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 0.85rem;
+  }
+
+  .section-eyebrow.light {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent-green-light);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.75rem;
+  }
+
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--dark-charcoal);
+  }
+
+  .section-subtitle {
+    font-size: 0.93rem;
+    color: var(--gray-mid);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .accent-red {
+    color: var(--primary-red);
+  }
+
+  .divider-center {
+    width: 52px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    border-radius: 3px;
+    margin: 0.75rem auto 1.25rem;
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 1024px) {
+    .prog-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .prog-rtl {
+      direction: ltr;
+    }
+    .mearl-inner {
+      grid-template-columns: 1fr;
+    }
+    .toolkit-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .outcomes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .prog-hero-inner h1 {
+      font-size: 2.1rem;
+    }
+    .prog-hero-inner {
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    .prog-quicknav {
+      padding: 1rem 1.25rem;
+    }
+    .intro-statement {
+      padding: 1.5rem;
+    }
+    .toolkit-grid,
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+    .mearl-inner {
+      padding: 2rem 1.5rem;
+    }
+    .prog-cta-inner {
+      padding: 2.5rem 1.5rem;
+    }
+    .prog-cta-text h2 {
+      font-size: 1.75rem;
+    }
+    .cta-buttons {
+      flex-direction: column;
+    }
+    .hero-stats {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .hs-div {
+      display: none;
+    }
+  }
+</style>

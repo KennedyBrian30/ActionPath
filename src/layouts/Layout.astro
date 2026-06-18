@@ -1,0 +1,1458 @@
+---
+// Layout.astro - Main layout component for ActionPath Africa
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "ActionPath Africa | Designing change, inspiring growth",
+  description = "Designing change, inspiring growth — ActionPath Africa delivers transformative training, strategic consulting, and capacity building across the continent.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  {
+    label: "Home",
+    href: "/",
+    icon: "fas fa-home",
+  },
+  {
+    label: "About Us",
+    icon: "fas fa-info-circle",
+    children: [
+      { label: "About ActionPath Africa", href: "/about", icon: "fas fa-globe" },
+      { label: "Our Team", href: "/about/team", icon: "fas fa-user-friends" },
+      { label: "Our Clients", href: "/about/clients", icon: "fas fa-handshake" },
+      { label: "Portfolio", href: "/about/portfolio", icon: "fas fa-briefcase" },
+      { label: "Team Building", href: "/about/team-building", icon: "fas fa-chalkboard" },
+    ],
+  },
+  {
+    label: "Services",
+    icon: "fas fa-briefcase",
+    megamenu: true,
+    columns: [
+      {
+        title: "Livelihood Training",
+        icon: "fas fa-seedling",
+        links: [
+          { label: "Agriculture & Climate Resilient Practices", href: "/programs/agriculture-climate", icon: "fas fa-tractor" },
+          { label: "Entrepreneurship & SME Development", href: "/programs/entrepreneurship", icon: "fas fa-chart-line" },
+          { label: "Livelihood Diversification", href: "/programs/livelihood-diversification", icon: "fas fa-exchange-alt" },
+          { label: "Vocational & Technical Skills", href: "/programs/vocational-skills", icon: "fas fa-tools" },
+          { label: "Women & Youth Empowerment", href: "/programs/women-youth", icon: "fas fa-female" },
+        ],
+      },
+      {
+        title: "General Consultancy",
+        icon: "fas fa-chalkboard-teacher",
+        links: [
+          { label: "CBO Support & Capacity Building", href: "/services/cbo-capacity-building", icon: "fas fa-hand-holding-heart" },
+          { label: "Monitoring & Evaluation", href: "/services/monitoring-evaluation", icon: "fas fa-chart-bar" },
+          { label: "Strategic Planning & Management", href: "/services/strategic-planning", icon: "fas fa-project-diagram" },
+          { label: "Feasibility & Market Research", href: "/services/feasibility-research", icon: "fas fa-file-alt" },
+        ],
+      },
+    ],
+    bottomSection: {
+      title: "Corporate Services",
+      icon: "fas fa-building",
+      links: [
+        { label: "Project Management Training", href: "/services/project-management", icon: "fas fa-tasks" },
+        { label: "M&E for Corporates", href: "/services/corporate-me", icon: "fas fa-chart-simple" },
+        { label: "Human Resource Management", href: "/services/human-resources", icon: "fas fa-users" },
+        { label: "Customer Experience Excellence", href: "/services/customer-experience", icon: "fas fa-headset" },
+        { label: "Corporate Governance Training", href: "/services/corporate-governance", icon: "fas fa-gavel" },
+      ],
+    },
+  },
+  {
+    label: "Focus Areas",
+    icon: "fas fa-map-marker-alt",
+    children: [
+      { label: "Drought & Hunger", href: "/focus-areas/drought-hunger", icon: "fas fa-cloud-sun-rain" },
+      { label: "Conflict & Displacement", href: "/focus-areas/conflict-displacement", icon: "fas fa-people-arrows" },
+      { label: "Extreme Poverty", href: "/focus-areas/extreme-poverty", icon: "fas fa-hands-holding-child" },
+      { label: "HIV/AIDS & Health", href: "/focus-areas/hiv-aids", icon: "fas fa-ribbon" },
+    ],
+  },
+  {
+    label: "Blog",
+    href: "/blog",
+    icon: "fas fa-newspaper",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    icon: "fas fa-envelope",
+    cta: true,
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Refined font pairing: Outfit (display) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23c0392b'/%3E%3Cpath fill='%23f8fafc' d='M30,40 L45,30 L60,40 L60,60 L45,70 L30,60 Z' opacity='0.9'/%3E%3C/svg%3E"
+    />
+
+    <style is:global>
+      /* ══════════════════════════════════════════════════
+         GLOBAL VARIABLES
+      ══════════════════════════════════════════════════ */
+      :root {
+        --primary-red: #c0392b;
+        --primary-red-dark: #a93226;
+        --primary-red-soft: rgba(192, 57, 43, 0.1);
+        --accent-green: #27ee31;
+        --accent-green-light: #27f731;
+        --accent-green-soft: rgba(39, 238, 49, 0.1);
+        --dark-charcoal: #1e293b;
+        --gray-dark: #334155;
+        --gray-mid: #64748b;
+        --gray-soft: #f1f5f9;
+        --light-bg: #fefcf8;
+        --card-white: #ffffff;
+        --border-light: #e2e8f0;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.09);
+        --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+        --nav-height: 76px;
+        --transition: all 0.22s ease;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: 'DM Sans', system-ui, sans-serif;
+        background: var(--light-bg);
+        color: var(--dark-charcoal);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { text-decoration: none; color: inherit; transition: var(--transition); }
+      img { max-width: 100%; }
+
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* ══════════════════════════════════════════════════
+         ANNOUNCEMENT BAR
+      ══════════════════════════════════════════════════ */
+      .topbar {
+        background: var(--dark-charcoal);
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.78rem;
+        font-family: 'DM Sans', sans-serif;
+        padding: 0.4rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .topbar a {
+        color: var(--accent-green-light);
+        font-weight: 600;
+      }
+
+      .topbar-contacts {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .topbar-contacts span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .topbar-contacts i {
+        color: var(--accent-green);
+        font-size: 0.75rem;
+      }
+
+      .topbar-social {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .topbar-social a {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        transition: color 0.2s;
+      }
+
+      .topbar-social a:hover { color: var(--accent-green-light); }
+
+      /* ══════════════════════════════════════════════════
+         HEADER / NAVBAR
+      ══════════════════════════════════════════════════ */
+      header {
+        background: var(--card-white);
+        border-bottom: 3px solid var(--primary-red);
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 900;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: var(--nav-height);
+        gap: 1rem;
+      }
+
+      /* ── Logo ───────────────────────────────────────── */
+      .logo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+        flex-shrink: 0;
+        text-decoration: none;
+      }
+
+      .logo-main {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 900;
+        font-size: 1.6rem;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        line-height: 1;
+      }
+
+      .logo-tagline {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--accent-green);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
+
+      /* ── Desktop Nav Links ──────────────────────────── */
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        list-style: none;
+      }
+
+      .nav-item {
+        position: relative;
+        list-style: none;
+      }
+
+      .nav-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--dark-charcoal);
+        padding: 0.5rem 0.85rem;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        transition: var(--transition);
+        white-space: nowrap;
+        text-decoration: none;
+      }
+
+      .nav-trigger i.chevron {
+        font-size: 0.65rem;
+        color: var(--gray-mid);
+        transition: transform 0.22s;
+      }
+
+      .nav-item:hover > .nav-trigger,
+      .nav-item.active > .nav-trigger {
+        color: var(--primary-red);
+        background: var(--primary-red-soft);
+      }
+
+      .nav-item:hover > .nav-trigger .chevron {
+        transform: rotate(180deg);
+        color: var(--primary-red);
+      }
+
+      /* active page underline */
+      .nav-trigger.is-active {
+        color: var(--primary-red);
+      }
+
+      .nav-trigger.is-active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0.85rem;
+        right: 0.85rem;
+        height: 2px;
+        background: var(--primary-red);
+        border-radius: 2px;
+      }
+
+      /* CTA nav button */
+      .nav-trigger.nav-cta {
+        background: var(--primary-red);
+        color: white !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 40px;
+      }
+
+      .nav-trigger.nav-cta:hover {
+        background: var(--primary-red-dark) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(192, 57, 43, 0.35);
+      }
+
+      /* ── Dropdowns ──────────────────────────────────── */
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        background: var(--card-white);
+        min-width: 250px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-light);
+        padding: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+        z-index: 500;
+      }
+
+      .nav-item:hover > .dropdown,
+      .nav-item.is-open > .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.55rem 0.9rem;
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: var(--gray-dark);
+        border-radius: 10px;
+        border-left: 3px solid transparent;
+        transition: var(--transition);
+      }
+
+      .dropdown-link i {
+        width: 18px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--gray-mid);
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+
+      .dropdown-link:hover {
+        background: var(--primary-red-soft);
+        color: var(--primary-red);
+        border-left-color: var(--primary-red);
+        padding-left: 1.1rem;
+      }
+
+      .dropdown-link:hover i { color: var(--primary-red); }
+
+      /* ── Megamenu ───────────────────────────────────── */
+      .megamenu {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        background: var(--card-white);
+        width: 720px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-light);
+        padding: 1.25rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        z-index: 500;
+      }
+
+      .nav-item:hover > .megamenu,
+      .nav-item.is-open > .megamenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .megamenu-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .mega-col-title {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--primary-red);
+        padding: 0 0.5rem 0.5rem;
+        border-bottom: 2px solid var(--primary-red-soft);
+        margin-bottom: 0.25rem;
+      }
+
+      .mega-col-title i { font-size: 0.75rem; }
+
+      .megamenu-bottom {
+        padding-top: 0.25rem;
+      }
+
+      .mega-bottom-title {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--primary-red);
+        padding: 0 0.5rem 0.5rem;
+        border-bottom: 2px solid var(--primary-red-soft);
+        margin-bottom: 0.5rem;
+      }
+
+      .mega-bottom-title i { font-size: 0.75rem; }
+
+      .mega-bottom-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.25rem;
+      }
+
+      /* ══════════════════════════════════════════════════
+         HAMBURGER / MOBILE NAV
+      ══════════════════════════════════════════════════ */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 8px;
+        transition: background 0.2s;
+        flex-shrink: 0;
+      }
+
+      .hamburger:hover { background: var(--primary-red-soft); }
+
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2.5px;
+        background: var(--dark-charcoal);
+        border-radius: 3px;
+        transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+        transform-origin: center;
+      }
+
+      .hamburger.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+      .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .hamburger.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+      /* Mobile drawer */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--card-white);
+        z-index: 800;
+        flex-direction: column;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .mobile-nav.is-open {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 2px solid var(--border-light);
+        flex-shrink: 0;
+      }
+
+      .mobile-nav-close {
+        width: 38px;
+        height: 38px;
+        background: var(--gray-soft);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--dark-charcoal);
+        transition: background 0.2s;
+      }
+
+      .mobile-nav-close:hover { background: var(--primary-red-soft); color: var(--primary-red); }
+
+      .mobile-nav-body {
+        flex: 1;
+        padding: 1rem 1.5rem 2rem;
+        overflow-y: auto;
+      }
+
+      .mobile-nav-item {
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .mobile-nav-trigger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0.9rem 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--dark-charcoal);
+        text-align: left;
+        text-decoration: none;
+      }
+
+      .mobile-nav-trigger i.chevron {
+        font-size: 0.7rem;
+        color: var(--gray-mid);
+        transition: transform 0.25s;
+      }
+
+      .mobile-nav-item.is-open .mobile-nav-trigger i.chevron {
+        transform: rotate(180deg);
+        color: var(--primary-red);
+      }
+
+      .mobile-nav-trigger .trigger-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mobile-nav-trigger .trigger-left i:first-child {
+        width: 22px;
+        text-align: center;
+        color: var(--primary-red);
+        font-size: 0.85rem;
+      }
+
+      .mobile-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .mobile-nav-item.is-open .mobile-submenu {
+        max-height: 1200px;
+      }
+
+      .mobile-submenu-section {
+        padding: 0.25rem 0 0.75rem 0;
+      }
+
+      .mobile-submenu-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--primary-red);
+        padding: 0.5rem 0.5rem 0.25rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .mobile-submenu-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.55rem 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--gray-dark);
+        border-radius: 8px;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+
+      .mobile-submenu-link i {
+        width: 18px;
+        text-align: center;
+        font-size: 0.78rem;
+        color: var(--gray-mid);
+        flex-shrink: 0;
+      }
+
+      .mobile-submenu-link:hover {
+        background: var(--primary-red-soft);
+        color: var(--primary-red);
+      }
+
+      .mobile-submenu-link:hover i { color: var(--primary-red); }
+
+      .mobile-nav-cta {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .mobile-nav-cta a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0.85rem 1.5rem;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .mobile-cta-primary {
+        background: var(--primary-red);
+        color: white;
+      }
+
+      .mobile-cta-secondary {
+        border: 2px solid var(--accent-green);
+        color: var(--dark-charcoal);
+      }
+
+      /* Mobile overlay */
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 750;
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .nav-overlay.is-visible {
+        opacity: 1;
+      }
+
+      /* ══════════════════════════════════════════════════
+         MAIN CONTENT
+      ══════════════════════════════════════════════════ */
+      main {
+        min-height: 60vh;
+        padding: 2.5rem 0 4rem;
+      }
+
+      /* ══════════════════════════════════════════════════
+         FOOTER
+      ══════════════════════════════════════════════════ */
+      footer {
+        background: var(--dark-charcoal);
+        color: rgba(255, 255, 255, 0.82);
+        padding: 0;
+        border-top: 4px solid var(--primary-red);
+      }
+
+      .footer-top {
+        padding: 3.5rem 0 2.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.2fr;
+        gap: 2.5rem;
+      }
+
+      .footer-brand .footer-logo-main {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, var(--primary-red), #e74c3c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .footer-brand .footer-logo-tagline {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--accent-green);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .footer-brand p {
+        font-size: 0.85rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 280px;
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.65);
+        transition: var(--transition);
+        text-decoration: none;
+      }
+
+      .footer-social-link:hover {
+        background: var(--primary-red);
+        border-color: var(--primary-red);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .footer-col h4 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: var(--accent-green-light);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-col ul li a {
+        font-size: 0.84rem;
+        color: rgba(255, 255, 255, 0.65);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .footer-col ul li a i {
+        font-size: 0.7rem;
+        color: var(--accent-green);
+        width: 14px;
+        flex-shrink: 0;
+      }
+
+      .footer-col ul li a:hover {
+        color: white;
+        padding-left: 4px;
+      }
+
+      .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.84rem;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 0.75rem;
+        line-height: 1.5;
+      }
+
+      .footer-contact-item i {
+        color: var(--accent-green);
+        font-size: 0.85rem;
+        margin-top: 2px;
+        width: 16px;
+        flex-shrink: 0;
+      }
+
+      .footer-contact-item a {
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.2s;
+      }
+
+      .footer-contact-item a:hover { color: var(--accent-green-light); }
+
+      .footer-bottom {
+        padding: 1.25rem 0;
+      }
+
+      .footer-bottom-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .footer-bottom p {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      .footer-bottom a {
+        color: var(--accent-green-light);
+        font-weight: 600;
+      }
+
+      .footer-bottom a:hover { text-decoration: underline; }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .footer-bottom-links a {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.45);
+        transition: color 0.2s;
+      }
+
+      .footer-bottom-links a:hover { color: rgba(255, 255, 255, 0.8); }
+
+      /* ══════════════════════════════════════════════════
+         WHATSAPP FLOAT
+      ══════════════════════════════════════════════════ */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: #25D366;
+        color: white;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        transition: var(--transition);
+        z-index: 700;
+        border: 3px solid white;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.08) translateY(-2px);
+        box-shadow: 0 10px 28px rgba(37, 211, 102, 0.5);
+        background: #20b858;
+      }
+
+      /* Tooltip on hover */
+      .whatsapp-float::before {
+        content: "Chat with us";
+        position: absolute;
+        right: calc(100% + 10px);
+        background: var(--dark-charcoal);
+        color: white;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.35rem 0.75rem;
+        border-radius: 20px;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(6px);
+        transition: opacity 0.2s, transform 0.2s;
+        pointer-events: none;
+      }
+
+      .whatsapp-float:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* ══════════════════════════════════════════════════
+         BACK-TO-TOP
+      ══════════════════════════════════════════════════ */
+      #back-to-top {
+        position: fixed;
+        bottom: 28px;
+        right: 100px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--dark-charcoal);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        z-index: 700;
+      }
+
+      #back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      #back-to-top:hover {
+        background: var(--primary-red);
+        transform: translateY(-2px);
+      }
+
+      /* ══════════════════════════════════════════════════
+         RESPONSIVE
+      ══════════════════════════════════════════════════ */
+      @media (max-width: 1024px) {
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+        .mobile-nav { display: flex; }
+
+        .topbar-contacts { display: none; }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container { padding: 0 1.25rem; }
+
+        .topbar { padding: 0.35rem 1.25rem; }
+        .topbar-announce { font-size: 0.72rem; }
+
+        .footer-grid { grid-template-columns: 1fr; }
+
+        .footer-bottom-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-bottom-links { justify-content: center; }
+
+        .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; font-size: 1.5rem; }
+
+        #back-to-top { right: 84px; bottom: 20px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─── Announcement Topbar ─────────────────────── -->
+    <div class="topbar">
+      <div class="topbar-announce">
+        🌍 Empowering communities across Africa —
+        <a href="/programs">Explore our livelihood programs →</a>
+      </div>
+      <div class="topbar-contacts">
+        <span><i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/254112916920">+254 112 916 920</a>
+        </span>
+        <span><i class="fas fa-envelope"></i>
+          <a href="mailto:info@actionpathafrica.org">info@actionpathafrica.org</a>
+        </span>
+      </div>
+      <div class="topbar-social">
+        <a href="https://facebook.com/actionpathafrica" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/actionpathafrica" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://linkedin.com/company/actionpathafrica" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/actionpathafrica" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- ─── Main Header ────────────────────────────── -->
+    <header>
+      <div class="container">
+        <nav aria-label="Main navigation">
+          <!-- Logo -->
+          <a href="/" class="logo" aria-label="ActionPath Africa home">
+            <span class="logo-main">ActionPath Africa</span>
+            <span class="logo-tagline">Designing change, inspiring growth.</span>
+          </a>
+
+          <!-- Desktop Nav -->
+          <ul class="nav-links" role="list">
+
+            <li class="nav-item">
+              <a href="/" class={`nav-trigger ${currentPath === "/" ? "is-active" : ""}`}>
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                About Us <i class="fas fa-chevron-down chevron"></i>
+              </button>
+              <div class="dropdown" role="menu">
+                <a href="/about" class="dropdown-link" role="menuitem"><i class="fas fa-globe"></i> About ActionPath Africa</a>
+                <a href="/about/team" class="dropdown-link" role="menuitem"><i class="fas fa-user-friends"></i> Our Team</a>
+                <a href="/about/clients" class="dropdown-link" role="menuitem"><i class="fas fa-handshake"></i> Our Clients</a>
+                <a href="/about/portfolio" class="dropdown-link" role="menuitem"><i class="fas fa-briefcase"></i> Portfolio</a>
+                <a href="/about/team-building" class="dropdown-link" role="menuitem"><i class="fas fa-chalkboard"></i> Team Building</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                Services <i class="fas fa-chevron-down chevron"></i>
+              </button>
+              <div class="megamenu" role="menu">
+                <div class="megamenu-top">
+                  <!-- Column 1: Livelihood Training -->
+                  <div class="mega-col">
+                    <div class="mega-col-title"><i class="fas fa-seedling"></i> Livelihood Training</div>
+                    <a href="/programs/agriculture-climate" class="dropdown-link" role="menuitem"><i class="fas fa-tractor"></i> Agriculture & Climate Resilient Practices</a>
+                    <a href="/programs/entrepreneurship" class="dropdown-link" role="menuitem"><i class="fas fa-chart-line"></i> Entrepreneurship & SME Development</a>
+                    <a href="/programs/livelihood-diversification" class="dropdown-link" role="menuitem"><i class="fas fa-exchange-alt"></i> Livelihood Diversification</a>
+                    <a href="/programs/vocational-skills" class="dropdown-link" role="menuitem"><i class="fas fa-tools"></i> Vocational & Technical Skills</a>
+                    <a href="/programs/women-youth" class="dropdown-link" role="menuitem"><i class="fas fa-female"></i> Women & Youth Empowerment</a>
+                  </div>
+                  <!-- Column 2: General Consultancy -->
+                  <div class="mega-col">
+                    <div class="mega-col-title"><i class="fas fa-chalkboard-teacher"></i> General Consultancy</div>
+                    <a href="/services/cbo-capacity-building" class="dropdown-link" role="menuitem"><i class="fas fa-hand-holding-heart"></i> CBO Support & Capacity Building</a>
+                    <a href="/services/monitoring-evaluation" class="dropdown-link" role="menuitem"><i class="fas fa-chart-bar"></i> Monitoring & Evaluation</a>
+                    <a href="/services/strategic-planning" class="dropdown-link" role="menuitem"><i class="fas fa-project-diagram"></i> Strategic Planning & Management</a>
+                    <a href="/services/feasibility-research" class="dropdown-link" role="menuitem"><i class="fas fa-file-alt"></i> Feasibility & Market Research</a>
+                  </div>
+                </div>
+                <!-- Bottom: Corporate Services -->
+                <div class="megamenu-bottom">
+                  <div class="mega-bottom-title"><i class="fas fa-building"></i> Corporate Services</div>
+                  <div class="mega-bottom-grid">
+                    <a href="/services/project-management" class="dropdown-link" role="menuitem"><i class="fas fa-tasks"></i> Project Management Training</a>
+                    <a href="/services/corporate-me" class="dropdown-link" role="menuitem"><i class="fas fa-chart-simple"></i> M&E for Corporates</a>
+                    <a href="/services/human-resources" class="dropdown-link" role="menuitem"><i class="fas fa-users"></i> Human Resource Management</a>
+                    <a href="/services/customer-experience" class="dropdown-link" role="menuitem"><i class="fas fa-headset"></i> Customer Experience</a>
+                    <a href="/services/corporate-governance" class="dropdown-link" role="menuitem"><i class="fas fa-gavel"></i> Corporate Governance</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                Focus Areas <i class="fas fa-chevron-down chevron"></i>
+              </button>
+              <div class="dropdown" role="menu">
+                <a href="/focus-areas/drought-hunger" class="dropdown-link" role="menuitem"><i class="fas fa-cloud-sun-rain"></i> Drought & Hunger</a>
+                <a href="/focus-areas/conflict-displacement" class="dropdown-link" role="menuitem"><i class="fas fa-people-arrows"></i> Conflict & Displacement</a>
+                <a href="/focus-areas/extreme-poverty" class="dropdown-link" role="menuitem"><i class="fas fa-hands-holding-child"></i> Extreme Poverty</a>
+                <a href="/focus-areas/hiv-aids" class="dropdown-link" role="menuitem"><i class="fas fa-ribbon"></i> HIV/AIDS & Health</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a href="/blog" class={`nav-trigger ${currentPath.startsWith("/blog") ? "is-active" : ""}`}>
+                Blog
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/contact" class="nav-trigger nav-cta">
+                <i class="fas fa-envelope"></i> Contact Us
+              </a>
+            </li>
+
+          </ul>
+
+          <!-- Hamburger (mobile) -->
+          <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ─── Mobile Overlay ────────────────────────── -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- ─── Mobile Nav Drawer ─────────────────────── -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="mobile-nav-header">
+        <a href="/" class="logo" onclick="closeMobileNav()">
+          <span class="logo-main">ActionPath Africa</span>
+          <span class="logo-tagline">Designing change, inspiring growth.</span>
+        </a>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="mobile-nav-body">
+
+        <!-- Home -->
+        <div class="mobile-nav-item">
+          <a href="/" class="mobile-nav-trigger" style="text-decoration:none">
+            <span class="trigger-left"><i class="fas fa-home"></i> Home</span>
+          </a>
+        </div>
+
+        <!-- About Us -->
+        <div class="mobile-nav-item" data-accordion>
+          <button class="mobile-nav-trigger" aria-expanded="false">
+            <span class="trigger-left"><i class="fas fa-info-circle"></i> About Us</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="mobile-submenu">
+            <div class="mobile-submenu-section">
+              <a href="/about" class="mobile-submenu-link"><i class="fas fa-globe"></i> About ActionPath Africa</a>
+              <a href="/about/team" class="mobile-submenu-link"><i class="fas fa-user-friends"></i> Our Team</a>
+              <a href="/about/clients" class="mobile-submenu-link"><i class="fas fa-handshake"></i> Our Clients</a>
+              <a href="/about/portfolio" class="mobile-submenu-link"><i class="fas fa-briefcase"></i> Portfolio</a>
+              <a href="/about/team-building" class="mobile-submenu-link"><i class="fas fa-chalkboard"></i> Team Building</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="mobile-nav-item" data-accordion>
+          <button class="mobile-nav-trigger" aria-expanded="false">
+            <span class="trigger-left"><i class="fas fa-briefcase"></i> Services</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="mobile-submenu">
+            <div class="mobile-submenu-section">
+              <div class="mobile-submenu-title">Livelihood Training</div>
+              <a href="/programs/agriculture-climate" class="mobile-submenu-link"><i class="fas fa-tractor"></i> Agriculture & Climate Resilient Practices</a>
+              <a href="/programs/entrepreneurship" class="mobile-submenu-link"><i class="fas fa-chart-line"></i> Entrepreneurship & SME Development</a>
+              <a href="/programs/livelihood-diversification" class="mobile-submenu-link"><i class="fas fa-exchange-alt"></i> Livelihood Diversification</a>
+              <a href="/programs/vocational-skills" class="mobile-submenu-link"><i class="fas fa-tools"></i> Vocational & Technical Skills</a>
+              <a href="/programs/women-youth" class="mobile-submenu-link"><i class="fas fa-female"></i> Women & Youth Empowerment</a>
+            </div>
+            <div class="mobile-submenu-section">
+              <div class="mobile-submenu-title">General Consultancy</div>
+              <a href="/services/cbo-capacity-building" class="mobile-submenu-link"><i class="fas fa-hand-holding-heart"></i> CBO Support & Capacity Building</a>
+              <a href="/services/monitoring-evaluation" class="mobile-submenu-link"><i class="fas fa-chart-bar"></i> Monitoring & Evaluation</a>
+              <a href="/services/strategic-planning" class="mobile-submenu-link"><i class="fas fa-project-diagram"></i> Strategic Planning & Management</a>
+              <a href="/services/feasibility-research" class="mobile-submenu-link"><i class="fas fa-file-alt"></i> Feasibility & Market Research</a>
+            </div>
+            <div class="mobile-submenu-section">
+              <div class="mobile-submenu-title">Corporate Services</div>
+              <a href="/services/project-management" class="mobile-submenu-link"><i class="fas fa-tasks"></i> Project Management Training</a>
+              <a href="/services/corporate-me" class="mobile-submenu-link"><i class="fas fa-chart-simple"></i> M&E for Corporates</a>
+              <a href="/services/human-resources" class="mobile-submenu-link"><i class="fas fa-users"></i> Human Resource Management</a>
+              <a href="/services/customer-experience" class="mobile-submenu-link"><i class="fas fa-headset"></i> Customer Experience</a>
+              <a href="/services/corporate-governance" class="mobile-submenu-link"><i class="fas fa-gavel"></i> Corporate Governance Training</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus Areas -->
+        <div class="mobile-nav-item" data-accordion>
+          <button class="mobile-nav-trigger" aria-expanded="false">
+            <span class="trigger-left"><i class="fas fa-map-marker-alt"></i> Focus Areas</span>
+            <i class="fas fa-chevron-down chevron"></i>
+          </button>
+          <div class="mobile-submenu">
+            <div class="mobile-submenu-section">
+              <a href="/focus-areas/drought-hunger" class="mobile-submenu-link"><i class="fas fa-cloud-sun-rain"></i> Drought & Hunger</a>
+              <a href="/focus-areas/conflict-displacement" class="mobile-submenu-link"><i class="fas fa-people-arrows"></i> Conflict & Displacement</a>
+              <a href="/focus-areas/extreme-poverty" class="mobile-submenu-link"><i class="fas fa-hands-holding-child"></i> Extreme Poverty</a>
+              <a href="/focus-areas/hiv-aids" class="mobile-submenu-link"><i class="fas fa-ribbon"></i> HIV/AIDS & Health</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog -->
+        <div class="mobile-nav-item">
+          <a href="/blog" class="mobile-nav-trigger" style="text-decoration:none">
+            <span class="trigger-left"><i class="fas fa-newspaper"></i> Blog</span>
+          </a>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="mobile-nav-cta">
+          <a href="/contact" class="mobile-cta-primary">
+            <i class="fas fa-envelope"></i> Contact Us
+          </a>
+          <a href="https://wa.me/254112916920" class="mobile-cta-secondary" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ─── Main Content ───────────────────────────── -->
+    <main class="container">
+      <slot />
+    </main>
+
+    <!-- ─── Footer ────────────────────────────────── -->
+    <footer>
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-grid">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+              <span class="footer-logo-main">ActionPath Africa</span>
+              <span class="footer-logo-tagline">Designing change, inspiring growth.</span>
+              <p>Empowering youth, women, and marginalized communities across Africa through transformative livelihood training, strategic consultancy, and capacity building.</p>
+              <div class="footer-social">
+                <a href="https://facebook.com/actionpathafrica" class="footer-social-link" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/actionpathafrica" class="footer-social-link" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/company/actionpathafrica" class="footer-social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com/actionpathafrica" class="footer-social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/actionpathafrica" class="footer-social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+
+            <!-- Programs -->
+            <div class="footer-col">
+              <h4>Programs</h4>
+              <ul>
+                <li><a href="/programs/agriculture-climate"><i class="fas fa-chevron-right"></i> Agriculture & Climate</a></li>
+                <li><a href="/programs/entrepreneurship"><i class="fas fa-chevron-right"></i> Entrepreneurship & SME</a></li>
+                <li><a href="/programs/livelihood-diversification"><i class="fas fa-chevron-right"></i> Livelihood Diversification</a></li>
+                <li><a href="/programs/vocational-skills"><i class="fas fa-chevron-right"></i> Vocational & Technical Skills</a></li>
+                <li><a href="/programs/women-youth"><i class="fas fa-chevron-right"></i> Women & Youth</a></li>
+                <li><a href="/programs"><i class="fas fa-chevron-right"></i> All Programs →</a></li>
+              </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                <li><a href="/about/team"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+                <li><a href="/about/clients"><i class="fas fa-chevron-right"></i> Our Clients</a></li>
+                <li><a href="/about/portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                <li><a href="/impact-report"><i class="fas fa-chevron-right"></i> Impact Report</a></li>
+              </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-col">
+              <h4>Contact Us</h4>
+              <div class="footer-contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <a href="https://wa.me/254112916920">+254 112 916 920</a>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:info@actionpathafrica.org">info@actionpathafrica.org</a>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Nairobi · Accra · Kigali</span>
+              </div>
+              <div class="footer-contact-item" style="margin-top: 0.5rem;">
+                <i class="fas fa-clock"></i>
+                <span>Mon – Fri: 8:00am – 5:00pm EAT</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="footer-bottom-inner">
+            <p>© {new Date().getFullYear()} ActionPath Africa — Empowering people, transforming systems.</p>
+            <div class="footer-bottom-links">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Use</a>
+              <a href="/sitemap">Sitemap</a>
+            </div>
+            <p>Built by <a href="https://www.winkdev.com" target="_blank" rel="noopener noreferrer">WinK Dev Solutions</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ─── WhatsApp Float ─────────────────────────── -->
+    <a
+      href="https://wa.me/254112916920?text=Hello%21%20I%27m%20interested%20in%20learning%20more%20about%20ActionPath%20Africa%27s%20services."
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ─── Back to Top ────────────────────────────── -->
+    <button id="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ─── Scripts ───────────────────────────────── -->
+    <script>
+      /* ── Mobile nav ─────────────────────────────── */
+      const hamburger = document.getElementById('hamburger-btn');
+      const mobileNav = document.getElementById('mobile-nav');
+      const overlay   = document.getElementById('nav-overlay');
+      const closeBtn  = document.getElementById('mobile-nav-close');
+
+      function openMobileNav() {
+        hamburger.classList.add('is-open');
+        mobileNav.classList.add('is-open');
+        overlay.style.display = 'block';
+        requestAnimationFrame(() => overlay.classList.add('is-visible'));
+        mobileNav.setAttribute('aria-hidden', 'false');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileNav() {
+        hamburger.classList.remove('is-open');
+        mobileNav.classList.remove('is-open');
+        overlay.classList.remove('is-visible');
+        setTimeout(() => { overlay.style.display = 'none'; }, 300);
+        mobileNav.setAttribute('aria-hidden', 'true');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      hamburger?.addEventListener('click', () => {
+        mobileNav.classList.contains('is-open') ? closeMobileNav() : openMobileNav();
+      });
+      closeBtn?.addEventListener('click', closeMobileNav);
+      overlay?.addEventListener('click', closeMobileNav);
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileNav();
+      });
+
+      /* ── Mobile accordion ───────────────────────── */
+      document.querySelectorAll('[data-accordion]').forEach(item => {
+        const trigger = item.querySelector('.mobile-nav-trigger');
+        trigger?.addEventListener('click', () => {
+          const isOpen = item.classList.contains('is-open');
+          // close all others
+          document.querySelectorAll('[data-accordion].is-open').forEach(other => {
+            if (other !== item) {
+              other.classList.remove('is-open');
+              other.querySelector('.mobile-nav-trigger')?.setAttribute('aria-expanded', 'false');
+            }
+          });
+          item.classList.toggle('is-open', !isOpen);
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
+
+      /* ── Desktop dropdown hover delay ───────────── */
+      document.querySelectorAll('.nav-links .nav-item').forEach(item => {
+        let timer;
+        const dropdown = item.querySelector('.dropdown, .megamenu');
+        if (!dropdown) return;
+
+        item.addEventListener('mouseenter', () => {
+          clearTimeout(timer);
+          item.classList.add('is-open');
+        });
+        item.addEventListener('mouseleave', () => {
+          timer = setTimeout(() => item.classList.remove('is-open'), 100);
+        });
+      });
+
+      /* ── Back to top ────────────────────────────── */
+      const backToTop = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        backToTop?.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      /* ── Active nav link ────────────────────────── */
+      const path = window.location.pathname;
+      document.querySelectorAll('.nav-trigger[href]').forEach(link => {
+        if (link.getAttribute('href') === path) {
+          link.classList.add('is-active');
+        }
+      });
+    </script>
+  </body>
+</html>

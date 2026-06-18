@@ -1,0 +1,1503 @@
+---
+// services/cbo-capacity-building.astro
+import Layout from "../../layouts/Layout.astro";
+
+const capacityAreas = [
+  {
+    number: "01",
+    icon: "fas fa-chalkboard-teacher",
+    title: "Training Workshops",
+    description:
+      "Structured, interactive workshops covering proposal writing, budgeting, donor engagement, and financial reporting. We use adult learning principles and participatory methods so that skills stick long after the training ends.",
+    deliverables: [
+      "Grant proposal writing",
+      "Budget development & tracking",
+      "Donor communication strategy",
+      "Fundraising plan templates",
+    ],
+  },
+  {
+    number: "02",
+    icon: "fas fa-toolbox",
+    title: "Practical Toolkits",
+    description:
+      "Ready-to-use toolkits with templates, frameworks, and step-by-step guides for grant applications, financial management, and fundraising campaigns — customized to the East African donor landscape.",
+    deliverables: [
+      "Grant application templates",
+      "Financial tracking spreadsheets",
+      "Fundraising calendar frameworks",
+      "Donor reporting checklists",
+    ],
+  },
+  {
+    number: "03",
+    icon: "fas fa-user-tie",
+    title: "Mentorship & Coaching",
+    description:
+      "We pair CBO leaders with experienced development practitioners for one-on-one and group mentorship — providing hands-on guidance through live grant applications, board governance, and strategic planning.",
+    deliverables: [
+      "1-on-1 executive coaching",
+      "Peer mentorship circles",
+      "Board governance advisory",
+      "Strategic plan co-development",
+    ],
+  },
+  {
+    number: "04",
+    icon: "fas fa-hand-holding-usd",
+    title: "Resource Mobilisation",
+    description:
+      "Beyond training, we actively support CBOs to identify, pursue, and secure funding. We provide donor mapping, facilitate introductions, support joint proposals with NGO partners, and guide income-generating activities.",
+    deliverables: [
+      "Donor database & mapping",
+      "Joint proposal partnerships",
+      "Community crowdfunding support",
+      "Income-generating enterprise design",
+    ],
+  },
+  {
+    number: "05",
+    icon: "fas fa-search-dollar",
+    title: "Research & Donor Intelligence",
+    description:
+      "We keep CBOs ahead of funding trends. Our research team tracks active donors in Kenya and East Africa, identifies thematic funding windows (climate, youth, gender), and facilitates networking at donor roundtables and conferences.",
+    deliverables: [
+      "Active donor database access",
+      "Funding trend analysis",
+      "Networking forum facilitation",
+      "Conference & roundtable introductions",
+    ],
+  },
+  {
+    number: "06",
+    icon: "fas fa-chart-bar",
+    title: "Accountability & M&E Systems",
+    description:
+      "We help CBOs build credible monitoring, evaluation, and accountability systems that satisfy donor requirements and demonstrate real community impact — making repeat funding far more likely.",
+    deliverables: [
+      "M&E framework design",
+      "MEARL system setup",
+      "Donor reporting templates",
+      "Impact story documentation",
+    ],
+  },
+];
+
+const livelihoods = [
+  {
+    icon: "fas fa-briefcase",
+    title: "Skills Development & Entrepreneurship",
+    desc: "Training in tailoring, carpentry, and mechanics alongside business management and financial literacy to empower youth and women.",
+  },
+  {
+    icon: "fas fa-seedling",
+    title: "Agricultural Support & Food Security",
+    desc: "Access to quality seeds, farming tools, and sustainable practices like agroforestry for community food security.",
+  },
+  {
+    icon: "fas fa-piggy-bank",
+    title: "Microfinance & Savings",
+    desc: "Training CBOs on savings group formation and interloaning structures for sustainable, community-managed income generation.",
+  },
+  {
+    icon: "fas fa-heart",
+    title: "Marginalized Group Support",
+    desc: "Targeted support for PLHIV, people with disabilities, and other vulnerable populations — ensuring dignified economic inclusion.",
+  },
+];
+
+const howItWorks = [
+  {
+    step: "1",
+    icon: "fas fa-clipboard-list",
+    title: "Initial Assessment",
+    desc: "We conduct a structured capacity assessment of your CBO — governance, finance, programs, fundraising — to identify priority gaps.",
+  },
+  {
+    step: "2",
+    icon: "fas fa-map-signs",
+    title: "Tailored Capacity Plan",
+    desc: "Using assessment findings, we co-design a capacity building plan with timelines, milestones, and measurable outcomes.",
+  },
+  {
+    step: "3",
+    icon: "fas fa-chalkboard-teacher",
+    title: "Training & Mentorship",
+    desc: "We deliver workshops, toolkits, and ongoing mentorship — adapting our approach to your team's learning style and context.",
+  },
+  {
+    step: "4",
+    icon: "fas fa-handshake",
+    title: "Resource Mobilisation",
+    desc: "We support grant writing, donor introductions, and partnership development as your CBO pursues its first or next round of funding.",
+  },
+  {
+    step: "5",
+    icon: "fas fa-chart-line",
+    title: "Monitoring & Learning",
+    desc: "We track progress together, document wins, and adapt the plan based on what's working — building a culture of continuous improvement.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Before ActionPath came in, we were struggling to write a single grant. After their proposal writing workshop and one-on-one coaching, we secured two grants within six months. The donor mapping tool alone changed how we approach fundraising.",
+    name: "Mary Achieng",
+    role: "Executive Director, Siaya Youth Empowerment CBO",
+    flag: "🇰🇪",
+  },
+  {
+    quote:
+      "They didn't just train us — they stayed with us. The mentorship sessions helped our board understand financial governance in a way that actually made sense. Our donors have noticed the change.",
+    name: "Pastor Emmanuel Mugisha",
+    role: "Chairperson, Kigali Community Development CBO",
+    flag: "🇷🇼",
+  },
+];
+
+const relatedServices = [
+  {
+    title: "Monitoring & Evaluation Services",
+    href: "/services/monitoring-evaluation",
+    icon: "fas fa-chart-bar",
+  },
+  {
+    title: "Strategic Planning & Management",
+    href: "/services/strategic-planning",
+    icon: "fas fa-project-diagram",
+  },
+  {
+    title: "Feasibility & Market Research",
+    href: "/services/feasibility-research",
+    icon: "fas fa-file-alt",
+  },
+  {
+    title: "Women & Youth Empowerment Programs",
+    href: "/programs/women-youth",
+    icon: "fas fa-female",
+  },
+];
+---
+
+<Layout
+  title="CBO Support & Capacity Building | ActionPath Africa"
+  description="ActionPath Africa strengthens community-based organizations across Africa with proposal writing, fundraising strategy, M&E systems, donor mapping, and hands-on mentorship."
+>
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="cbo-hero">
+    <div class="cbo-hero-bg">
+      <img src="/cbo-hero.webp" alt="CBO capacity building workshop" />
+      <div class="cbo-hero-overlay"></div>
+    </div>
+    <div class="cbo-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/services">Services</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>CBO Support</span>
+      </div>
+      <div class="cbo-eyebrow">
+        <i class="fas fa-hand-holding-heart"></i> General Consultancy
+      </div>
+      <h1>
+        Strengthening the<br />
+        <span class="hero-red">grassroots organisations</span><br />
+        driving African development
+      </h1>
+      <p>
+        Community-Based Organizations are Africa's most trusted vehicles for
+        change — but they often lack the fundraising skills, governance systems,
+        and donor relationships needed to sustain their work. ActionPath Africa
+        changes that.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-red"
+          ><i class="fas fa-envelope"></i> Enquire Now</a
+        >
+        <a href="#approach" class="btn-outline-white-hero"
+          ><i class="fas fa-arrow-down"></i> How We Help</a
+        >
+      </div>
+    </div>
+
+    <!-- floating stat cards -->
+    <div class="hero-float-cards">
+      <div class="float-card">
+        <i class="fas fa-building"></i>
+        <div class="fc-val">120+</div>
+        <div class="fc-lbl">CBOs Supported</div>
+      </div>
+      <div class="float-card">
+        <i class="fas fa-dollar-sign"></i>
+        <div class="fc-val">$4.2M</div>
+        <div class="fc-lbl">Funds Mobilised</div>
+      </div>
+      <div class="float-card">
+        <i class="fas fa-globe-africa"></i>
+        <div class="fc-val">6</div>
+        <div class="fc-lbl">Countries Active</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       WHY CBOs MATTER
+  ══════════════════════════════════════════ -->
+  <section class="why-section">
+    <div class="why-grid">
+      <div class="why-text">
+        <div class="section-eyebrow">
+          <i class="fas fa-compass"></i> Our Rationale
+        </div>
+        <h2>Why CBO <span class="accent-red">capacity matters</span></h2>
+        <div class="divider-line"></div>
+        <p class="why-lead">
+          Community-Based Organizations are not just service providers — they
+          are the custodians of local trust, cultural knowledge, and community
+          agency. When they are strong, development sticks. When they are weak,
+          even the best-funded programs fail.
+        </p>
+        <p>
+          Across Africa, CBOs are implementing youth empowerment initiatives,
+          supporting smallholder farmers, running financial literacy groups, and
+          providing care for people living with HIV/AIDS. They tailor programs
+          to community needs in ways that no external organization ever could.
+        </p>
+        <p>
+          Yet the same CBOs that deliver this impact often struggle with
+          proposal writing, donor reporting, financial governance, and
+          fundraising strategy. ActionPath Africa exists to close that gap —
+          strengthening the organizational infrastructure that makes community
+          impact sustainable.
+        </p>
+      </div>
+      <div class="why-image">
+        <img
+          src="/cbo-community-meeting.webp"
+          alt="Community meeting facilitated by a CBO"
+          loading="lazy"
+        />
+        <div class="why-img-caption">
+          <i class="fas fa-users"></i> Grassroots organizations at the forefront
+          of change
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CBO LIVELIHOOD ACTIVITIES
+  ══════════════════════════════════════════ -->
+  <section class="livelihood-activities">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-seedling"></i> What CBOs Do
+      </div>
+      <h2>
+        Key Livelihood Activities <span class="accent-red">We Support</span>
+      </h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        ActionPath Africa supports CBOs across these four core livelihood
+        domains — the pillars of sustainable, community-owned development.
+      </p>
+    </div>
+    <div class="livelihood-grid">
+      {
+        livelihoods.map((l) => (
+          <div class="livelihood-card" key={l.title}>
+            <div class="lc-icon">
+              <i class={l.icon} />
+            </div>
+            <h3>{l.title}</h3>
+            <p>{l.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CAPACITY AREAS (Core Content)
+  ══════════════════════════════════════════ -->
+  <section id="approach" class="capacity-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-layer-group"></i> Our Support Package
+      </div>
+      <h2>Six ways we <span class="accent-red">strengthen your CBO</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        A structured, comprehensive package designed to build lasting
+        organizational capacity — from fundraising skills to accountability
+        systems.
+      </p>
+    </div>
+
+    <div class="capacity-grid">
+      {
+        capacityAreas.map((area, idx) => (
+          <div
+            class="capacity-card"
+            key={area.title}
+            style={`animation-delay: ${idx * 0.06}s`}
+          >
+            <div class="cc-header">
+              <div class="cc-num">{area.number}</div>
+              <div class="cc-icon">
+                <i class={area.icon} />
+              </div>
+            </div>
+            <h3 class="cc-title">{area.title}</h3>
+            <p class="cc-desc">{area.description}</p>
+            <div class="cc-deliverables">
+              <div class="cc-dl-label">
+                <i class="fas fa-check-double" /> Deliverables
+              </div>
+              {area.deliverables.map((d) => (
+                <div class="cc-dl-item" key={d}>
+                  <i class="fas fa-check" /> {d}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       LEARNING & SUSTAINABILITY CALLOUT
+  ══════════════════════════════════════════ -->
+  <section class="sustainability-section">
+    <div class="sus-inner">
+      <div class="sus-icon-big"><i class="fas fa-infinity"></i></div>
+      <div class="sus-text">
+        <h2>
+          Built for <span class="accent-green-text">sustainability</span>, not
+          dependency
+        </h2>
+        <p>
+          Everything we do is designed to make our support unnecessary over
+          time. Through
+          <strong>peer learning exchanges</strong> — where CBOs share fundraising
+          wins and lessons — and <strong>documented case studies</strong> that showcase
+          success to donors, we build confidence and institutional memory. We actively
+          encourage <strong>diversification of funding sources</strong> so that no
+          CBO ever relies on a single donor or partner again.
+        </p>
+        <div class="sus-pills">
+          <span><i class="fas fa-users"></i> Peer learning exchanges</span>
+          <span><i class="fas fa-book-open"></i> Case study documentation</span>
+          <span><i class="fas fa-random"></i> Funding diversification</span>
+          <span><i class="fas fa-sync-alt"></i> Adaptive strategy coaching</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       HOW IT WORKS — PROCESS
+  ══════════════════════════════════════════ -->
+  <section class="process-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-route"></i> Our Process
+      </div>
+      <h2>
+        From assessment to <span class="accent-red">fundraising success</span>
+      </h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        A clear, five-step journey that takes your CBO from where you are to
+        where you need to be.
+      </p>
+    </div>
+
+    <div class="process-steps">
+      {
+        howItWorks.map((step, idx) => (
+          <div class="process-step" key={step.step}>
+            <div class="ps-connector">
+              {idx < howItWorks.length - 1 && <div class="ps-line" />}
+            </div>
+            <div class="ps-dot">
+              <div class="ps-num">{step.step}</div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-icon">
+                <i class={step.icon} />
+              </div>
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       TESTIMONIALS
+  ══════════════════════════════════════════ -->
+  <section class="cbo-testimonials">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-quote-left"></i> CBO Voices
+      </div>
+      <h2>What our <span class="accent-red">partners say</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="testi-grid">
+      {
+        testimonials.map((t) => (
+          <div class="testi-card" key={t.name}>
+            <div class="testi-quote-wrap">
+              <i class="fas fa-quote-left testi-q-icon" />
+              <p class="testi-text">"{t.quote}"</p>
+            </div>
+            <div class="testi-author">
+              <div class="testi-flag">{t.flag}</div>
+              <div>
+                <div class="testi-name">{t.name}</div>
+                <div class="testi-role">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       RELATED SERVICES
+  ══════════════════════════════════════════ -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-th-large"></i> Explore More
+      </div>
+      <h2>Related <span class="accent-red">Services & Programs</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="related-grid">
+      {
+        relatedServices.map((s) => (
+          <a href={s.href} class="related-card" key={s.title}>
+            <div class="rc-icon">
+              <i class={s.icon} />
+            </div>
+            <span class="rc-title">{s.title}</span>
+            <i class="fas fa-arrow-right rc-arrow" />
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CTA
+  ══════════════════════════════════════════ -->
+  <section class="cbo-cta">
+    <div class="cbo-cta-inner">
+      <div class="cbo-cta-text">
+        <div class="section-eyebrow light">
+          <i class="fas fa-bolt"></i> Ready to grow?
+        </div>
+        <h2>
+          Let's build your CBO's <span class="accent-green-text"
+            >fundraising future</span>
+        </h2>
+        <p>
+          Whether you're a newly registered CBO struggling with your first grant
+          proposal, or an established organization ready to scale — ActionPath
+          Africa has a capacity building package for you.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-white-solid"
+            ><i class="fas fa-envelope"></i> Get In Touch</a
+          >
+          <a href="/programs" class="btn-outline-white-solid"
+            ><i class="fas fa-seedling"></i> Our Livelihood Programs</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :root {
+    --primary-red: #c0392b;
+    --primary-red-soft: rgba(192, 57, 43, 0.1);
+    --accent-green: #27ee31;
+    --accent-green-light: #27f731;
+    --accent-green-soft: rgba(39, 238, 49, 0.12);
+    --dark-charcoal: #1e293b;
+    --gray-dark: #334155;
+    --gray-mid: #64748b;
+    --gray-soft: #f1f5f9;
+    --border-light: #e2e8f0;
+    --card-white: #ffffff;
+  }
+
+  /* ── Hero ─────────────────────────────────── */
+  .cbo-hero {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: -2.5rem -2rem 0;
+    overflow: hidden;
+  }
+
+  .cbo-hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cbo-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .cbo-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(192, 57, 43, 0.82) 0%,
+      rgba(15, 23, 42, 0.9) 55%,
+      rgba(15, 23, 42, 0.96) 100%
+    );
+  }
+
+  .cbo-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 2rem 2rem;
+    max-width: 740px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .breadcrumb i {
+    font-size: 0.58rem;
+  }
+
+  .cbo-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(192, 57, 43, 0.25);
+    border: 1px solid rgba(192, 57, 43, 0.4);
+    color: #ff9b8e;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cbo-hero-content h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.1rem;
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-red {
+    background: linear-gradient(135deg, #ff8a78, #ffcfc9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .cbo-hero-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.72;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-red {
+    background: var(--primary-red);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-red:hover {
+    background: #a93226;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+  }
+
+  .btn-outline-white-hero {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-white-hero:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
+
+  /* Floating stat cards */
+  .hero-float-cards {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    gap: 1rem;
+    padding: 0 2rem 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .float-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    color: white;
+    text-align: center;
+    min-width: 130px;
+  }
+
+  .float-card i {
+    font-size: 1.25rem;
+    color: var(--accent-green-light);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .fc-val {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .fc-lbl {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  /* ── Why CBOs Matter ─────────────────────── */
+  .why-section {
+    padding: 3.5rem 0;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .why-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .divider-line {
+    width: 52px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    border-radius: 3px;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .why-lead {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--primary-red);
+    line-height: 1.68;
+    margin-bottom: 1rem;
+  }
+
+  .why-text p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
+  }
+
+  .why-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  .why-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .why-img-caption {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    right: 18px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 0.7rem 1rem;
+    border-radius: 40px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .why-img-caption i {
+    color: var(--accent-green-light);
+    margin-right: 6px;
+  }
+
+  /* ── Livelihood Activities ───────────────── */
+  .livelihood-activities {
+    padding: 3rem 0;
+    background: var(--dark-charcoal);
+    border-radius: 28px;
+    margin: 2rem -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .livelihood-activities .section-eyebrow {
+    background: rgba(39, 238, 49, 0.12);
+    color: var(--accent-green-light);
+    border: 1px solid rgba(39, 238, 49, 0.2);
+  }
+
+  .livelihood-activities .section-header h2 {
+    color: white;
+  }
+  .livelihood-activities .section-subtitle {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .livelihood-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .livelihood-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 1.5rem;
+    transition: all 0.25s;
+  }
+
+  .livelihood-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(39, 238, 49, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .lc-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(192, 57, 43, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff9b8e;
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .livelihood-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .livelihood-card p {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.65;
+  }
+
+  /* ── Capacity Areas ──────────────────────── */
+  .capacity-section {
+    padding: 3.5rem 0;
+  }
+
+  .capacity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .capacity-card {
+    background: white;
+    border-radius: 22px;
+    padding: 1.75rem;
+    border: 1px solid var(--border-light);
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .capacity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.09);
+    border-color: var(--accent-green);
+  }
+
+  .cc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .cc-num {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--primary-red);
+    background: var(--primary-red-soft);
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+  }
+
+  .cc-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--gray-soft);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 0.9rem;
+  }
+
+  .cc-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--dark-charcoal);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .cc-desc {
+    font-size: 0.83rem;
+    color: var(--gray-mid);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.1rem;
+  }
+
+  .cc-deliverables {
+    background: var(--gray-soft);
+    border-radius: 12px;
+    padding: 0.9rem;
+  }
+
+  .cc-dl-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-mid);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .cc-dl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 0.78rem;
+    color: var(--dark-charcoal);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+  }
+
+  .cc-dl-item i {
+    color: var(--accent-green);
+    font-size: 0.68rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── Sustainability Callout ───────────────── */
+  .sustainability-section {
+    background: linear-gradient(
+      135deg,
+      var(--accent-green-soft) 0%,
+      rgba(39, 238, 49, 0.05) 100%
+    );
+    border: 2px solid var(--accent-green);
+    border-radius: 24px;
+    margin: 2rem 0;
+    padding: 2.5rem;
+  }
+
+  .sus-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .sus-icon-big {
+    font-size: 3.5rem;
+    color: var(--accent-green);
+    opacity: 0.35;
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+
+  .sus-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--dark-charcoal);
+    margin-bottom: 0.85rem;
+    line-height: 1.2;
+  }
+
+  .accent-green-text {
+    color: #1db025;
+  }
+
+  .sus-text p {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .sus-text strong {
+    color: var(--dark-charcoal);
+  }
+
+  .sus-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .sus-pills span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid var(--accent-green);
+    color: var(--dark-charcoal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 40px;
+  }
+
+  .sus-pills span i {
+    color: var(--accent-green);
+    font-size: 0.72rem;
+  }
+
+  /* ── Process Steps ───────────────────────── */
+  .process-section {
+    padding: 3.5rem 0;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 28px 56px 1fr;
+    gap: 0 1.25rem;
+    align-items: start;
+  }
+
+  .ps-connector {
+    position: relative;
+  }
+
+  .ps-line {
+    position: absolute;
+    top: 56px;
+    left: 50%;
+    width: 2px;
+    height: calc(100% + 1.5rem);
+    background: linear-gradient(
+      to bottom,
+      var(--primary-red),
+      var(--accent-green)
+    );
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .ps-dot {
+    width: 56px;
+    height: 56px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(192, 57, 43, 0.35);
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-num {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: white;
+  }
+
+  .ps-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.4rem;
+    border: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+    transition: all 0.25s;
+  }
+
+  .ps-card:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  }
+
+  .ps-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--primary-red-soft);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 0.85rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .ps-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--dark-charcoal);
+  }
+
+  .ps-card p {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    line-height: 1.65;
+  }
+
+  /* ── Testimonials ────────────────────────── */
+  .cbo-testimonials {
+    padding: 3rem 0;
+    background: var(--gray-soft);
+    border-radius: 28px;
+    margin: 2rem -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testi-card {
+    background: white;
+    border-radius: 22px;
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    transition: all 0.25s;
+  }
+
+  .testi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-green);
+  }
+
+  .testi-q-icon {
+    font-size: 2rem;
+    color: var(--accent-green);
+    opacity: 0.3;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .testi-text {
+    font-size: 0.88rem;
+    color: var(--dark-charcoal);
+    line-height: 1.72;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+  }
+
+  .testi-flag {
+    font-size: 1.8rem;
+  }
+  .testi-name {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+  .testi-role {
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+
+  /* ── Related Services ────────────────────── */
+  .related-section {
+    padding: 3rem 0;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+  }
+
+  .related-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.22s;
+    line-height: 1.4;
+  }
+
+  .related-card:hover {
+    border-color: var(--primary-red);
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    transform: translateY(-2px);
+  }
+
+  .rc-icon {
+    width: 34px;
+    height: 34px;
+    background: var(--gray-soft);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+
+  .rc-title {
+    flex: 1;
+  }
+
+  .rc-arrow {
+    font-size: 0.7rem;
+    color: var(--gray-mid);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .related-card:hover .rc-arrow {
+    transform: translateX(3px);
+    color: var(--primary-red);
+  }
+
+  /* ── CTA ─────────────────────────────────── */
+  .cbo-cta {
+    background: linear-gradient(135deg, var(--dark-charcoal) 0%, #2d3748 100%);
+    border-radius: 28px;
+    margin: 2rem 0;
+  }
+
+  .cbo-cta-inner {
+    padding: 3.5rem;
+  }
+
+  .cbo-cta-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.9rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .cbo-cta-text p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.72;
+    margin-bottom: 2rem;
+    max-width: 540px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-white-solid {
+    background: white;
+    color: var(--primary-red);
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-white-solid:hover {
+    background: var(--accent-green-light);
+    color: var(--dark-charcoal);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-white-solid {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-white-solid:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  /* ── Shared ──────────────────────────────── */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 0.85rem;
+  }
+
+  .section-eyebrow.light {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent-green-light);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.75rem;
+  }
+
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--dark-charcoal);
+  }
+
+  .section-subtitle {
+    font-size: 0.93rem;
+    color: var(--gray-mid);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .accent-red {
+    color: var(--primary-red);
+  }
+
+  .divider-center {
+    width: 52px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    border-radius: 3px;
+    margin: 0.75rem auto 1.25rem;
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 1024px) {
+    .why-grid,
+    .sus-inner {
+      grid-template-columns: 1fr;
+    }
+    .capacity-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .livelihood-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cbo-hero {
+      margin: -2.5rem -1.25rem 0;
+      min-height: 75vh;
+    }
+    .cbo-hero-content {
+      padding: 2rem 1.25rem 1.5rem;
+    }
+    .cbo-hero-content h1 {
+      font-size: 2rem;
+    }
+    .hero-float-cards {
+      padding: 0 1.25rem 2rem;
+    }
+    .capacity-grid,
+    .livelihood-grid,
+    .testi-grid,
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+    .process-step {
+      grid-template-columns: 0 40px 1fr;
+      gap: 0 0.75rem;
+    }
+    .ps-dot {
+      width: 40px;
+      height: 40px;
+    }
+    .ps-num {
+      font-size: 1rem;
+    }
+    .sus-inner {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .cbo-cta-inner {
+      padding: 2.5rem 1.5rem;
+    }
+    .cbo-cta-text h2 {
+      font-size: 1.75rem;
+    }
+    .cta-buttons {
+      flex-direction: column;
+    }
+    .hero-actions {
+      flex-direction: column;
+    }
+  }
+</style>

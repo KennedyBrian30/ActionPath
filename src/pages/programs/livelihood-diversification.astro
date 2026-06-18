@@ -1,0 +1,498 @@
+---
+// programs/livelihood-diversification.astro
+import Layout from "../../layouts/Layout.astro";
+
+const activities = [
+  {
+    icon: "fas fa-search-dollar",
+    title: "Alternative Income Identification",
+    desc: "Structured community exercises that map untapped local resources, skills, and market gaps to identify viable income streams beyond existing livelihoods.",
+    color: "#1a6fa3",
+  },
+  {
+    icon: "fas fa-store",
+    title: "Non-Farm Enterprise Development",
+    desc: "Training in services, crafts, eco-friendly production, and informal trade sectors that can run alongside or independent of farming cycles.",
+    color: "#1d7dbf",
+  },
+  {
+    icon: "fas fa-piggy-bank",
+    title: "Financial Literacy & Savings Groups",
+    desc: "Building savings discipline through Village Savings and Loan Associations (VSLAs), SACCO membership, and personal financial management training.",
+    color: "#1a6fa3",
+  },
+  {
+    icon: "fas fa-umbrella",
+    title: "Social Protection & Risk Management",
+    desc: "Community safety nets, mutual aid groups, and contingency planning so that when one income stream fails, the household doesn't collapse.",
+    color: "#1d7dbf",
+  },
+  {
+    icon: "fas fa-recycle",
+    title: "Eco-Business & Green Livelihoods",
+    desc: "Identifying income from natural resource stewardship — beekeeping, nursery establishment, recycling enterprises, and eco-tourism facilitation.",
+    color: "#1a6fa3",
+  },
+  {
+    icon: "fas fa-handshake",
+    title: "Cooperative & Group Enterprise Models",
+    desc: "Forming producer groups, cooperatives, and buying circles to access markets, inputs, and credit at scale that individuals cannot achieve alone.",
+    color: "#1d7dbf",
+  },
+];
+
+const shockTypes = [
+  { icon: "fas fa-cloud-sun-rain", label: "Climate Shocks", desc: "Droughts, floods, and erratic rainfall that wipe out crop-dependent income." },
+  { icon: "fas fa-hospital", label: "Health Crises", desc: "A breadwinner's illness — including HIV/AIDS — can erase household income overnight." },
+  { icon: "fas fa-bomb", label: "Conflict & Displacement", desc: "Forced displacement destroys assets, supply chains, and market relationships." },
+  { icon: "fas fa-chart-line fa-flip-vertical", label: "Market Collapse", desc: "Price crashes, oversupply, or buyer withdrawal can make a single crop worthless." },
+];
+
+const outcomes = [
+  { icon: "fas fa-shield-alt", stat: "87%", label: "Resilience against shocks", desc: "Graduates maintain food security through events that devastate single-income households in the same communities." },
+  { icon: "fas fa-layer-group", stat: "3.2", label: "Average income streams", desc: "Program participants develop an average of 3.2 distinct income sources within 18 months of completion." },
+  { icon: "fas fa-piggy-bank", stat: "91%", label: "Savings group retention", desc: "Of graduates who join VSLAs during the program, 91% are still active savings group members after two years." },
+  { icon: "fas fa-seedling", stat: "250+", label: "Eco-businesses launched", desc: "Participants have launched over 250 eco-friendly enterprises including beekeeping, nurseries, and recycling." },
+];
+
+const testimonials = [
+  {
+    quote: "Living with HIV, I struggled to find dignified work. ActionPath's livelihood diversification training changed everything. I now run a successful poultry business alongside my small farm — when one is slow, the other carries us.",
+    name: "Beatrice Mwangi",
+    role: "Poultry Farmer & VSLA Member",
+    location: "Nakuru County, Kenya 🇰🇪",
+    challenge: "HIV/AIDS & Economic Vulnerability",
+  },
+  {
+    quote: "My family survived floods three times. Before this program, each flood set us back years. Now I have a small tailoring business and a beekeeping enterprise alongside my farm. The flood still hurts, but it no longer destroys us.",
+    name: "Fatuma Osman",
+    role: "Farmer & Small Business Owner",
+    location: "Kisumu County, Kenya 🇰🇪",
+    challenge: "Climate Shocks & Extreme Poverty",
+  },
+];
+
+const relatedPrograms = [
+  { title: "Agriculture & Climate Resilient Practices", desc: "The primary livelihood to diversify from — and strengthen with climate-smart methods.", icon: "fas fa-seedling", href: "/programs/agriculture-climate", color: "#2d6a4f" },
+  { title: "Entrepreneurship & SME Development", desc: "Turn your diversified income ideas into properly structured enterprises.", icon: "fas fa-chart-line", href: "/programs/entrepreneurship", color: "#c0392b" },
+  { title: "Vocational & Technical Skills", desc: "Gain a certified trade skill as a powerful second income stream.", icon: "fas fa-tools", href: "/programs/vocational-skills", color: "#7b3fa0" },
+];
+
+const focusAreas = [
+  { label: "Drought & Hunger", href: "/focus-areas/drought-hunger", icon: "fas fa-cloud-sun-rain" },
+  { label: "Extreme Poverty", href: "/focus-areas/extreme-poverty", icon: "fas fa-hands-holding-child" },
+  { label: "HIV/AIDS & Health", href: "/focus-areas/hiv-aids", icon: "fas fa-ribbon" },
+];
+
+const process = [
+  { step: "01", title: "Household Vulnerability Assessment", desc: "We map each household's current income sources, assets, skills, and exposure to shocks before recommending any diversification pathway.", icon: "fas fa-map" },
+  { step: "02", title: "Market & Opportunity Scanning", desc: "Community-level scans of local markets, value chains, and underserved needs to identify realistic, demand-driven opportunities.", icon: "fas fa-binoculars" },
+  { step: "03", title: "Skills Matching & Training", desc: "Participants choose 2–3 new income tracks aligned to their existing skills, interests, and local market demand — then receive targeted training.", icon: "fas fa-graduation-cap" },
+  { step: "04", title: "VSLA Formation & Savings", desc: "All participants are enrolled in or help establish a Village Savings and Loan Association to build capital for diversification investments.", icon: "fas fa-piggy-bank" },
+  { step: "05", title: "Launch Support", desc: "Participants receive start-up tools, initial inputs, or seed capital to launch their new enterprise tracks alongside existing livelihoods.", icon: "fas fa-rocket" },
+  { step: "06", title: "Resilience Monitoring", desc: "Quarterly shock-response check-ins track how households cope during stress events — the true test of diversification success.", icon: "fas fa-chart-bar" },
+];
+---
+
+<Layout
+  title="Livelihood Diversification | ActionPath Africa"
+  description="Helping vulnerable households build multiple income streams to achieve resilience against economic shocks, climate variability, and health crises across Africa."
+>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/diversification.webp" alt="Community members learning diversified income skills" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a><i class="fas fa-chevron-right"></i>
+        <a href="/programs">Livelihood Programs</a><i class="fas fa-chevron-right"></i>
+        <span>Livelihood Diversification</span>
+      </div>
+      <div class="hero-badge"><i class="fas fa-exchange-alt"></i> Program 03 · Resilience Building</div>
+      <h1>Livelihood<br /><span class="hero-blue">Diversification</span></h1>
+      <p class="hero-desc">Multiple income streams, one resilient household — helping vulnerable communities build layered, interconnected income pathways that hold firm even when one fails.</p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary"><i class="fas fa-handshake"></i> Partner With Us</a>
+        <a href="#program-details" class="btn-outline-hero"><i class="fas fa-arrow-down"></i> Explore the Program</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><i class="fas fa-shield-alt"></i><span class="hs-val">87%</span><span class="hs-lbl">Shock Resilience Rate</span></div>
+      <div class="hero-stat"><i class="fas fa-layer-group"></i><span class="hs-val">3.2×</span><span class="hs-lbl">Income Streams per HH</span></div>
+      <div class="hero-stat"><i class="fas fa-piggy-bank"></i><span class="hs-val">91%</span><span class="hs-lbl">Savings Group Retention</span></div>
+    </div>
+  </section>
+
+  <!-- PROBLEM STATEMENT -->
+  <section id="program-details" class="intro-section">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="eyebrow"><i class="fas fa-compass"></i> The Challenge</div>
+        <h2>One income source is a single point of <span class="blue-text">failure</span></h2>
+        <div class="divider-left"></div>
+        <p class="intro-lead">Dependence on a single income — whether subsistence farming, casual labour, or informal trade — leaves households dangerously exposed to shocks. A drought, a flood, a market collapse, or a health crisis can erase a family's livelihood overnight.</p>
+        <p>For communities already affected by <a href="/focus-areas/drought-hunger" class="inline-link">drought and hunger</a>, <a href="/focus-areas/hiv-aids" class="inline-link">HIV/AIDS</a>, or <a href="/focus-areas/conflict-displacement" class="inline-link">conflict and displacement</a>, this vulnerability is compounded. There are no savings to fall back on, no credit to access, no network to absorb the blow.</p>
+        <p>Our Livelihood Diversification program builds the layered, interconnected income architecture that makes households genuinely resilient — not just to today's shock, but to the next one, and the one after that.</p>
+
+        <!-- Shock types visual -->
+        <div class="shock-grid">
+          {shockTypes.map((s) => (
+            <div class="shock-pill" key={s.label}>
+              <i class={s.icon}></i>
+              <div><strong>{s.label}</strong><span>{s.desc}</span></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="intro-image">
+        <img src="/welcome-community.webp" alt="Household with diversified income streams" loading="lazy" />
+        <div class="img-badge"><i class="fas fa-map-marker-alt"></i> Active in Kenya, Uganda, Tanzania & South Sudan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section class="activities-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-list-check"></i> What We Do</div>
+      <h2>Core Program <span class="blue-text">Activities</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">Six evidence-based intervention areas that together build genuine multi-stream livelihood resilience.</p>
+    </div>
+    <div class="activities-grid">
+      {activities.map((act) => (
+        <div class="act-card" key={act.title}>
+          <div class="act-icon" style={`background:${act.color}18;color:${act.color}`}><i class={act.icon}></i></div>
+          <h3>{act.title}</h3>
+          <p>{act.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="section-header light-header">
+      <div class="eyebrow light"><i class="fas fa-route"></i> Our Approach</div>
+      <h2>Six Steps to a <span class="blue-text-lt">Resilient Household</span></h2>
+      <div class="divider-center blue-div"></div>
+      <p class="section-sub light-sub">A participatory, market-grounded methodology that starts from each household's unique situation.</p>
+    </div>
+    <div class="process-grid">
+      {process.map((step) => (
+        <div class="process-card" key={step.step}>
+          <div class="proc-num">{step.step}</div>
+          <div class="proc-icon"><i class={step.icon}></i></div>
+          <h3>{step.title}</h3>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- VSLA CALLOUT -->
+  <section class="vsla-section">
+    <div class="vsla-inner">
+      <div class="vsla-icon-col">
+        <div class="vsla-icon-big"><i class="fas fa-users"></i></div>
+        <div class="vsla-label">VSLA Model</div>
+      </div>
+      <div class="vsla-text">
+        <div class="eyebrow"><i class="fas fa-piggy-bank"></i> Village Savings & Loan Associations</div>
+        <h2>Community capital that <span class="blue-text">grows from within</span></h2>
+        <p class="vsla-lead">Every participant joins or helps establish a Village Savings and Loan Association — a self-managed community savings pool that provides members with low-interest loans to invest in new income streams without requiring formal banking access.</p>
+        <div class="vsla-features">
+          <div class="vf"><i class="fas fa-check-circle"></i><span>Weekly contributions as low as KES 20 (USD 0.15)</span></div>
+          <div class="vf"><i class="fas fa-check-circle"></i><span>Loans available within 2–3 cycles for new enterprise investment</span></div>
+          <div class="vf"><i class="fas fa-check-circle"></i><span>Annual share-out builds household asset base year-on-year</span></div>
+          <div class="vf"><i class="fas fa-check-circle"></i><span>No collateral required — group accountability replaces bank guarantees</span></div>
+        </div>
+        <a href="/services/cbo-capacity-building" class="btn-blue-outline">Learn About CBO & Group Support <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="outcomes-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-chart-line"></i> Proven Impact</div>
+      <h2>Outcomes That <span class="blue-text">Build Lasting Resilience</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="outcomes-grid">
+      {outcomes.map((o) => (
+        <div class="outcome-card" key={o.label}>
+          <div class="oc-icon"><i class={o.icon}></i></div>
+          <div class="oc-stat">{o.stat}</div>
+          <div class="oc-label">{o.label}</div>
+          <p class="oc-desc">{o.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mearl-callout">
+      <i class="fas fa-chart-bar"></i>
+      <div>
+        <strong>Shock-Response Monitoring via MEARL</strong>
+        <p>We track resilience through actual shock events — not just income metrics. When floods, droughts, or health crises hit program areas, we document how diversified households cope versus control groups, generating real-world evidence of impact.</p>
+      </div>
+      <a href="/services/monitoring-evaluation" class="btn-mearl">Learn About Our M&E →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-quote-left"></i> Community Voices</div>
+      <h2>Stories of <span class="blue-text">Resilience</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t) => (
+        <div class="testi-card" key={t.name}>
+          <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p class="testi-text">"{t.quote}"</p>
+          <div class="testi-badge">{t.challenge}</div>
+          <div class="testi-author">
+            <div class="testi-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="testi-name">{t.name}</div>
+              <div class="testi-role">{t.role} · {t.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FOCUS AREAS -->
+  <section class="focus-section">
+    <div class="focus-inner">
+      <div class="focus-text">
+        <div class="eyebrow light"><i class="fas fa-map-marker-alt"></i> Where We Work</div>
+        <h2>Deployed where vulnerability is <span class="blue-text-lt">most compounded</span></h2>
+        <p>Diversification is most critical in communities facing overlapping crises. Explore the specific vulnerability contexts where this program delivers the greatest impact.</p>
+        <div class="focus-links">
+          {focusAreas.map((fa) => (
+            <a href={fa.href} class="focus-link" key={fa.label}>
+              <i class={fa.icon}></i> {fa.label} <i class="fas fa-arrow-right"></i>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="focus-img">
+        <img src="/agriculture-climate.webp" alt="Diversified farming household" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PROGRAMS -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-th-large"></i> Continue Exploring</div>
+      <h2>Related <span class="blue-text">Programs</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">Diversification works best when combined with skill-building and enterprise development. Explore the full livelihood ecosystem.</p>
+    </div>
+    <div class="related-grid">
+      {relatedPrograms.map((p) => (
+        <a href={p.href} class="related-card" key={p.title} style={`--rcolor:${p.color}`}>
+          <div class="rel-icon" style={`background:${p.color}18;color:${p.color}`}><i class={p.icon}></i></div>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="rel-link" style={`color:${p.color}`}>Explore <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+    <div class="all-programs-row">
+      <a href="/programs" class="btn-outline-dark"><i class="fas fa-th-large"></i> View All Five Programs</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow"><i class="fas fa-bolt"></i> Take Action</div>
+      <h2>Help communities build resilience that lasts</h2>
+      <p>Partner with us to design and deliver livelihood diversification programs for your communities — whether you are an NGO, government agency, donor, or community leader.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn-primary btn-lg"><i class="fas fa-envelope"></i> Partner With Us</a>
+        <a href="/services/feasibility-research" class="btn-outline-light btn-lg"><i class="fas fa-file-alt"></i> Feasibility & Market Research</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --blue: #1a6fa3; --blue-dark: #155d8a; --blue-soft: rgba(26,111,163,.1);
+    --blue-lt: #5ab4e8;
+    --red: #c0392b; --red-soft: rgba(192,57,43,.1);
+    --green: #27ee31; --green-lt: #27f731;
+    --charcoal: #1e293b; --gray-md: #64748b; --gray-sf: #f1f5f9;
+    --white: #fff; --border: #e2e8f0;
+  }
+  .hero { position:relative; min-height:88vh; display:flex; flex-direction:column; justify-content:center; margin:-2.5rem -2rem 0; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; z-index:0; }
+  .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:center 40%; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(5,20,40,.93) 0%,rgba(5,20,40,.78) 55%,rgba(26,111,163,.45) 100%); }
+  .hero-inner { position:relative; z-index:2; padding:4rem 2rem 6rem; max-width:720px; }
+  .breadcrumb { display:flex; align-items:center; gap:8px; font-size:.75rem; color:rgba(255,255,255,.5); margin-bottom:1.5rem; }
+  .breadcrumb a { color:rgba(255,255,255,.55); text-decoration:none; } .breadcrumb a:hover { color:var(--blue-lt); } .breadcrumb i { font-size:.55rem; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(26,111,163,.2); border:1px solid rgba(26,111,163,.4); color:var(--blue-lt); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.4rem 1rem; border-radius:40px; margin-bottom:1.5rem; }
+  .hero h1 { font-family:"Outfit",sans-serif; font-size:3.6rem; font-weight:900; line-height:1.06; letter-spacing:-.03em; color:white; margin-bottom:1.25rem; }
+  .hero-blue { background:linear-gradient(135deg,var(--blue-lt),#9dd5f5); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero-desc { font-size:1.05rem; color:rgba(255,255,255,.82); line-height:1.72; max-width:540px; margin-bottom:2rem; }
+  .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+  .hero-stats { position:relative; z-index:2; display:flex; gap:1px; background:rgba(0,0,0,.4); backdrop-filter:blur(12px); border-top:1px solid rgba(255,255,255,.1); }
+  .hero-stat { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:1.25rem 1rem; border-right:1px solid rgba(255,255,255,.1); text-align:center; }
+  .hero-stat:last-child { border-right:none; }
+  .hero-stat i { color:var(--blue-lt); font-size:1.2rem; margin-bottom:4px; }
+  .hs-val { font-family:"Outfit",sans-serif; font-size:1.6rem; font-weight:900; color:white; line-height:1; }
+  .hs-lbl { font-size:.72rem; color:rgba(255,255,255,.6); font-weight:500; }
+
+  .btn-primary { display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:white; padding:.72rem 1.75rem; border-radius:40px; font-weight:700; font-size:.9rem; text-decoration:none; transition:all .25s; }
+  .btn-primary:hover { background:var(--blue-dark); transform:translateY(-2px); box-shadow:0 8px 20px rgba(26,111,163,.35); }
+  .btn-outline-hero { display:inline-flex; align-items:center; gap:8px; border:2px solid rgba(255,255,255,.4); color:white; padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:all .25s; background:transparent; }
+  .btn-outline-hero:hover { background:rgba(255,255,255,.1); border-color:white; }
+  .btn-outline-dark { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--charcoal); color:var(--charcoal); padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:all .25s; background:transparent; }
+  .btn-outline-dark:hover { background:var(--charcoal); color:white; transform:translateY(-2px); }
+  .btn-outline-light { display:inline-flex; align-items:center; gap:8px; border:2px solid rgba(255,255,255,.4); color:white; padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:all .25s; background:transparent; }
+  .btn-outline-light:hover { background:rgba(255,255,255,.12); border-color:white; }
+  .btn-blue-outline { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--blue); color:var(--blue); padding:.65rem 1.4rem; border-radius:40px; font-weight:700; font-size:.85rem; text-decoration:none; transition:all .25s; background:transparent; margin-top:1rem; }
+  .btn-blue-outline:hover { background:var(--blue); color:white; transform:translateY(-2px); }
+  .btn-lg { padding:.85rem 2rem; font-size:.95rem; }
+  .btn-mearl { display:inline-block; white-space:nowrap; color:var(--blue); font-weight:700; font-size:.82rem; text-decoration:none; flex-shrink:0; }
+  .btn-mearl:hover { text-decoration:underline; }
+
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--blue-soft); color:var(--blue); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.35rem 1rem; border-radius:40px; margin-bottom:1rem; }
+  .eyebrow.light { background:rgba(255,255,255,.12); color:var(--blue-lt); border:1px solid rgba(255,255,255,.15); }
+  .section-header { text-align:center; margin-bottom:3rem; }
+  .light-header { text-align:center; margin-bottom:3rem; }
+  .section-header h2, .light-header h2 { font-family:"Outfit",sans-serif; font-size:2rem; font-weight:800; letter-spacing:-.02em; margin-bottom:.5rem; color:var(--charcoal); }
+  .light-header h2 { color:white; }
+  .section-sub { font-size:.93rem; color:var(--gray-md); max-width:620px; margin:0 auto; line-height:1.65; }
+  .light-sub { color:rgba(255,255,255,.7); }
+  .divider-center { width:56px; height:3px; background:linear-gradient(90deg,var(--blue),var(--green)); border-radius:3px; margin:.75rem auto 1.25rem; }
+  .blue-div { background:linear-gradient(90deg,var(--blue),var(--blue-lt)); }
+  .divider-left { width:56px; height:3px; background:linear-gradient(90deg,var(--blue),var(--green)); border-radius:3px; margin:.75rem 0 1.25rem; }
+  .blue-text { color:var(--blue); } .blue-text-lt { color:var(--blue-lt); }
+  .inline-link { color:var(--blue); font-weight:600; text-decoration:none; } .inline-link:hover { text-decoration:underline; }
+
+  .intro-section { padding:4rem 0; }
+  .intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center; }
+  .intro-text h2 { font-family:"Outfit",sans-serif; font-size:2rem; font-weight:800; letter-spacing:-.02em; line-height:1.2; margin-bottom:.5rem; }
+  .intro-lead { font-size:1rem; font-weight:600; color:var(--blue); line-height:1.72; margin-bottom:1rem; }
+  .intro-text p { font-size:.9rem; color:var(--gray-md); line-height:1.75; margin-bottom:1rem; }
+  .intro-image { position:relative; border-radius:24px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.12); }
+  .intro-image img { width:100%; height:420px; object-fit:cover; display:block; }
+  .img-badge { position:absolute; bottom:16px; left:16px; right:16px; background:rgba(0,0,0,.72); backdrop-filter:blur(8px); color:white; font-size:.75rem; font-weight:600; padding:.6rem 1rem; border-radius:40px; text-align:center; }
+  .img-badge i { color:var(--blue-lt); margin-right:6px; }
+
+  .shock-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:1.25rem; }
+  .shock-pill { display:flex; align-items:flex-start; gap:.75rem; background:var(--blue-soft); border:1px solid rgba(26,111,163,.15); border-radius:14px; padding:.85rem; }
+  .shock-pill i { color:var(--blue); font-size:1.1rem; flex-shrink:0; margin-top:2px; }
+  .shock-pill strong { font-size:.8rem; color:var(--charcoal); display:block; margin-bottom:3px; }
+  .shock-pill span { font-size:.72rem; color:var(--gray-md); line-height:1.5; }
+
+  .activities-section { padding:3.5rem 0; background:var(--gray-sf); border-radius:32px; margin:1.5rem 0; }
+  .activities-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .act-card { background:white; border-radius:20px; padding:1.5rem; border:1px solid var(--border); transition:all .25s; }
+  .act-card:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(0,0,0,.08); border-color:var(--blue); }
+  .act-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:1rem; }
+  .act-card h3 { font-size:.95rem; font-weight:700; margin-bottom:.5rem; color:var(--charcoal); }
+  .act-card p { font-size:.82rem; color:var(--gray-md); line-height:1.6; }
+
+  .process-section { background:var(--charcoal); border-radius:32px; margin:2rem 0; padding:3.5rem 2rem; }
+  .process-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .process-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:1.5rem; transition:all .25s; }
+  .process-card:hover { background:rgba(26,111,163,.1); border-color:rgba(26,111,163,.3); transform:translateY(-3px); }
+  .proc-num { font-family:"Outfit",sans-serif; font-size:2.5rem; font-weight:900; color:rgba(26,111,163,.3); line-height:1; margin-bottom:.5rem; }
+  .proc-icon { width:40px; height:40px; background:rgba(26,111,163,.15); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--blue-lt); font-size:.95rem; margin-bottom:.85rem; }
+  .process-card h3 { font-size:.9rem; font-weight:700; color:white; margin-bottom:.4rem; }
+  .process-card p { font-size:.8rem; color:rgba(255,255,255,.6); line-height:1.6; }
+
+  .vsla-section { background:white; border:1px solid var(--border); border-radius:28px; margin:2rem 0; overflow:hidden; }
+  .vsla-inner { display:grid; grid-template-columns:180px 1fr; gap:3rem; align-items:center; padding:3rem; }
+  .vsla-icon-col { text-align:center; }
+  .vsla-icon-big { width:100px; height:100px; border-radius:50%; background:var(--blue-soft); color:var(--blue); display:flex; align-items:center; justify-content:center; font-size:2.5rem; margin:0 auto .75rem; }
+  .vsla-label { font-family:"Outfit",sans-serif; font-size:.8rem; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:.06em; }
+  .vsla-text h2 { font-family:"Outfit",sans-serif; font-size:1.85rem; font-weight:800; letter-spacing:-.02em; margin-bottom:.5rem; }
+  .vsla-lead { font-size:.92rem; color:var(--gray-md); line-height:1.72; margin-bottom:1.25rem; }
+  .vsla-features { display:flex; flex-direction:column; gap:.6rem; margin-bottom:1rem; }
+  .vf { display:flex; align-items:flex-start; gap:.75rem; font-size:.84rem; color:var(--charcoal); }
+  .vf i { color:var(--blue); flex-shrink:0; margin-top:2px; }
+
+  .outcomes-section { padding:3.5rem 0; }
+  .outcomes-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-bottom:2rem; }
+  .outcome-card { background:white; border-radius:20px; padding:1.75rem; border:1px solid var(--border); text-align:center; transition:all .25s; }
+  .outcome-card:hover { transform:translateY(-4px); border-color:var(--blue); box-shadow:0 16px 32px rgba(0,0,0,.08); }
+  .oc-icon { font-size:1.75rem; color:var(--blue); margin-bottom:.75rem; }
+  .oc-stat { font-family:"Outfit",sans-serif; font-size:2.5rem; font-weight:900; color:var(--charcoal); line-height:1; }
+  .oc-label { font-size:.8rem; font-weight:700; color:var(--blue); margin:.35rem 0 .75rem; }
+  .oc-desc { font-size:.78rem; color:var(--gray-md); line-height:1.55; }
+
+  .mearl-callout { background:var(--blue-soft); border:1px solid rgba(26,111,163,.2); border-left:4px solid var(--blue); border-radius:16px; padding:1.25rem 1.5rem; display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .mearl-callout > i { color:var(--blue); font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .mearl-callout > div { flex:1; }
+  .mearl-callout strong { font-size:.9rem; color:var(--charcoal); display:block; margin-bottom:4px; }
+  .mearl-callout p { font-size:.82rem; color:var(--gray-md); line-height:1.6; }
+
+  .testimonials-section { padding:3.5rem 0; }
+  .testi-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.75rem; }
+  .testi-card { background:white; border-radius:24px; padding:2rem; border:1px solid var(--border); transition:all .25s; }
+  .testi-card:hover { transform:translateY(-4px); border-color:var(--blue); box-shadow:0 16px 36px rgba(0,0,0,.08); }
+  .testi-quote-icon { color:var(--blue); font-size:2rem; opacity:.25; margin-bottom:.75rem; }
+  .testi-text { font-size:.92rem; color:var(--charcoal); line-height:1.7; font-style:italic; margin-bottom:1rem; }
+  .testi-badge { display:inline-block; background:var(--blue-soft); color:var(--blue); font-size:.7rem; font-weight:700; padding:.2rem .75rem; border-radius:20px; margin-bottom:1.25rem; }
+  .testi-author { display:flex; align-items:center; gap:.85rem; border-top:1px solid var(--border); padding-top:1rem; }
+  .testi-avatar { width:42px; height:42px; border-radius:50%; background:var(--blue-soft); color:var(--blue); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
+  .testi-name { font-weight:700; font-size:.87rem; color:var(--charcoal); }
+  .testi-role { font-size:.72rem; color:var(--gray-md); margin-top:2px; }
+
+  .focus-section { background:var(--charcoal); border-radius:28px; margin:2rem 0; overflow:hidden; }
+  .focus-inner { display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
+  .focus-text { padding:3rem; }
+  .focus-text h2 { font-family:"Outfit",sans-serif; font-size:1.85rem; font-weight:800; color:white; line-height:1.2; margin-bottom:1rem; }
+  .focus-text p { font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.72; margin-bottom:1.5rem; }
+  .focus-links { display:flex; flex-direction:column; gap:.6rem; }
+  .focus-link { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.85); font-size:.85rem; font-weight:600; padding:.65rem 1.1rem; border-radius:12px; text-decoration:none; transition:all .2s; }
+  .focus-link:hover { background:rgba(26,111,163,.15); border-color:rgba(26,111,163,.35); color:var(--blue-lt); }
+  .focus-link i:first-child { color:var(--blue-lt); } .focus-link i:last-child { margin-left:auto; font-size:.7rem; }
+  .focus-img { overflow:hidden; }
+  .focus-img img { width:100%; height:100%; min-height:300px; object-fit:cover; display:block; }
+
+  .related-section { padding:3.5rem 0; }
+  .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .related-card { background:white; border-radius:20px; padding:1.5rem; border:1px solid var(--border); text-decoration:none; color:inherit; transition:all .25s; display:flex; flex-direction:column; border-top:3px solid var(--rcolor); }
+  .related-card:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(0,0,0,.09); }
+  .rel-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:.85rem; }
+  .related-card h3 { font-size:.95rem; font-weight:700; margin-bottom:.4rem; color:var(--charcoal); }
+  .related-card p { font-size:.82rem; color:var(--gray-md); line-height:1.55; flex:1; margin-bottom:1rem; }
+  .rel-link { font-size:.78rem; font-weight:700; display:flex; align-items:center; gap:5px; }
+  .all-programs-row { text-align:center; margin-top:2.5rem; }
+
+  .cta-section { background:linear-gradient(135deg,var(--blue) 0%,#0c3d61 100%); border-radius:28px; margin:2rem 0; padding:4rem 3rem; text-align:center; }
+  .cta-eyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); color:var(--blue-lt); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.35rem 1rem; border-radius:40px; margin-bottom:1rem; }
+  .cta-inner h2 { font-family:"Outfit",sans-serif; font-size:2.25rem; font-weight:900; color:white; max-width:600px; margin:0 auto 1rem; line-height:1.2; }
+  .cta-inner p { color:rgba(255,255,255,.78); font-size:.95rem; max-width:520px; margin:0 auto 2rem; line-height:1.7; }
+  .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+  @media (max-width:1024px) {
+    .intro-grid, .focus-inner, .vsla-inner { grid-template-columns:1fr; }
+    .focus-img, .vsla-icon-col { display:none; }
+    .activities-grid, .process-grid { grid-template-columns:repeat(2,1fr); }
+    .outcomes-grid { grid-template-columns:repeat(2,1fr); }
+    .shock-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:640px) {
+    .hero h1 { font-size:2.2rem; } .hero-inner { padding:2.5rem 1.25rem 4rem; }
+    .hero-stats { flex-direction:column; } .hero-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); } .hero-stat:last-child { border-bottom:none; }
+    .activities-grid, .process-grid, .outcomes-grid, .testi-grid, .related-grid { grid-template-columns:1fr; }
+    .cta-section { padding:2.5rem 1.5rem; } .cta-inner h2 { font-size:1.75rem; }
+    .cta-buttons { flex-direction:column; align-items:center; }
+    .mearl-callout { flex-direction:column; }
+  }
+</style>

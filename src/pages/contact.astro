@@ -1,0 +1,1027 @@
+---
+// contact.astro — ActionPath Africa Contact Page (Refined)
+import Layout from "../layouts/Layout.astro";
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxwvpNSwGYlCVFitMrHOlibxLyVBvcD0uh36mtNbrTAvmTPdO98EQAeOGFfTLnDgFLyWg/exec";
+
+const offices = [
+  {
+    city:    "Nairobi",
+    country: "Kenya",
+    address: "1 Ebenezer Building · Off Kangundo Road",
+    address2: "Near Njiru Health Centre · Njiru",
+    address3: "Nairobi, Kenya",
+    phone:   "+254 112 916 920",
+    email:   "info@actionpathafrica.org",
+    mapLink: "https://maps.google.com/?q=Njiru+Health+Centre,Nairobi,Kenya",
+  },
+];
+
+const contactReasons = [
+  { icon: "fas fa-chalkboard-user", title: "Training Inquiry",        value: "training"    },
+  { icon: "fas fa-briefcase",       title: "Consultancy Services",    value: "consultancy" },
+  { icon: "fas fa-handshake",       title: "Partnership Opportunity", value: "partnership" },
+  { icon: "fas fa-newspaper",       title: "Media & Press",           value: "media"       },
+  { icon: "fas fa-bullhorn",        title: "Speaking Engagement",     value: "speaking"    },
+  { icon: "fas fa-question-circle", title: "General Inquiry",         value: "general"     },
+];
+
+const reasonDescriptions: Record<string, string> = {
+  training:    "Request information about our training programmes, schedules, and fees.",
+  consultancy: "Discuss your organisation's capacity building and consultancy needs.",
+  partnership: "Explore collaboration, funding, and strategic partnership possibilities.",
+  media:       "For media inquiries, interviews, and press coverage requests.",
+  speaking:    "Invite our team to speak at your event or conference.",
+  general:     "Any other questions or comments about ActionPath Africa.",
+};
+
+const socialLinks = [
+  { name: "Facebook",   icon: "fab fa-facebook-f",  url: "https://facebook.com/actionpathafrica",         color: "#1877f2" },
+  { name: "X/Twitter",  icon: "fab fa-x-twitter",   url: "https://twitter.com/actionpathafrica",          color: "#000000" },
+  { name: "LinkedIn",   icon: "fab fa-linkedin-in",  url: "https://linkedin.com/company/actionpathafrica", color: "#0077b5" },
+  { name: "Instagram",  icon: "fab fa-instagram",    url: "https://instagram.com/actionpathafrica",        color: "#e4405f" },
+  { name: "YouTube",    icon: "fab fa-youtube",      url: "https://youtube.com/@actionpathafrica",         color: "#ff0000" },
+];
+
+const faqs = [
+  {
+    q: "How can I enrol in your training programmes?",
+    a: "Fill out the contact form selecting 'Training Inquiry' as your reason. Our team responds within 24–48 hours with programme details, schedules, and enrolment steps."
+  },
+  {
+    q: "Do you offer online or virtual training?",
+    a: "Yes — most programmes offer remote and hybrid options. Our digital platforms are designed to reach communities even in areas with limited connectivity."
+  },
+  {
+    q: "How long are your training programmes?",
+    a: "Durations vary from 1-day intensives to 3-month comprehensive programmes. Custom durations can be arranged to fit organisational needs."
+  },
+  {
+    q: "Do participants receive certificates?",
+    a: "Yes. All programmes issue certificates of completion. We also partner with accredited institutions to offer recognised certifications where applicable."
+  },
+  {
+    q: "How can my organisation partner with ActionPath Africa?",
+    a: "We welcome partnerships with NGOs, government agencies, foundations, and private-sector organisations. Select 'Partnership Opportunity' and our partnerships director will reach out."
+  },
+  {
+    q: "Which countries do you operate in?",
+    a: "Currently: Kenya, Rwanda, Ethiopia, Uganda, Tanzania, and South Sudan — and we are actively expanding. Contact us to explore collaboration in your region."
+  },
+];
+---
+
+<Layout
+  title="Contact Us | ActionPath Africa"
+  description="Get in touch with ActionPath Africa for training inquiries, consultancy, partnership opportunities, or general questions."
+>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span>Contact Us</span>
+      </nav>
+      <span class="eyebrow"><i class="fas fa-envelope" aria-hidden="true"></i> Get In Touch</span>
+      <h1>Let's <em class="red">Connect</em> and <em class="green">Collaborate</em></h1>
+      <p>Questions about our programmes, want to partner, or need expert consultancy? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ MAIN GRID ═══════════════ -->
+  <section class="main-section">
+    <div class="main-grid">
+
+      <!-- ─── CONTACT FORM ─── -->
+      <div class="form-card" id="contact-form">
+        <div class="form-head">
+          <h2>Send us a <span class="red">Message</span></h2>
+          <div class="divider-bar" aria-hidden="true"></div>
+          <p>Our team responds within 24–48 hours.</p>
+        </div>
+
+        <form id="contactForm" novalidate autocomplete="on">
+          <input type="hidden" id="formTimestamp" name="timestamp">
+
+          <div class="row-2">
+            <div class="field" data-name="name">
+              <label for="name">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                Full Name <abbr title="required">*</abbr>
+              </label>
+              <input type="text" id="name" name="name" required
+                     autocomplete="name" placeholder="Your full name">
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field" data-name="email">
+              <label for="email">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                Email Address <abbr title="required">*</abbr>
+              </label>
+              <input type="email" id="email" name="email" required
+                     autocomplete="email" placeholder="you@example.com">
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field" data-name="phone">
+              <label for="phone">
+                <i class="fas fa-phone" aria-hidden="true"></i>
+                Phone Number
+                <span class="badge">Recommended</span>
+              </label>
+              <input type="tel" id="phone" name="phone"
+                     autocomplete="tel" placeholder="+254 XXX XXX XXX">
+              <span class="field-hint">Provide phone <em>or</em> organisation — at least one is required.</span>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field" data-name="organization">
+              <label for="organization">
+                <i class="fas fa-building" aria-hidden="true"></i>
+                Organisation
+                <span class="badge">Recommended</span>
+              </label>
+              <input type="text" id="organization" name="organization"
+                     autocomplete="organization" placeholder="Your organisation name">
+              <span class="field-hint">Provide phone <em>or</em> organisation — at least one is required.</span>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="field" data-name="reason">
+            <label for="reason">
+              <i class="fas fa-tag" aria-hidden="true"></i>
+              Reason for Contacting <abbr title="required">*</abbr>
+            </label>
+            <div class="select-wrap">
+              <select id="reason" name="reason" required>
+                <option value="">Select a reason…</option>
+                {contactReasons.map(r => (
+                  <option value={r.value}>{r.title}</option>
+                ))}
+              </select>
+              <i class="fas fa-chevron-down select-arrow" aria-hidden="true"></i>
+            </div>
+            <!-- reason description hint, updated via JS -->
+            <span class="reason-hint" id="reasonHint" aria-live="polite"></span>
+            <span class="field-error" role="alert"></span>
+          </div>
+
+          <div class="field" data-name="message">
+            <label for="message">
+              <i class="fas fa-comment" aria-hidden="true"></i>
+              Message <abbr title="required">*</abbr>
+            </label>
+            <textarea id="message" name="message" rows="5" required
+                      placeholder="Describe your inquiry in detail…"></textarea>
+            <div class="textarea-footer">
+              <span class="field-error" role="alert"></span>
+              <span class="char-count" id="charCount" aria-live="polite">0 / 5,000</span>
+            </div>
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="newsletter" name="newsletter" value="subscribe">
+            <span class="checkbox-box" aria-hidden="true"></span>
+            <span>Subscribe to our newsletter for impact stories and updates</span>
+          </label>
+
+          <!-- STATUS BANNER -->
+          <div id="formStatus" class="status-banner" role="alert" aria-live="polite" hidden></div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-label">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+            </span>
+            <span class="btn-loading" aria-hidden="true">
+              <i class="fas fa-circle-notch fa-spin"></i> Sending…
+            </span>
+          </button>
+        </form>
+      </div>
+
+      <!-- ─── SIDEBAR ─── -->
+      <aside class="sidebar">
+
+        <div class="info-card">
+          <h3><i class="fas fa-globe-africa" aria-hidden="true"></i> Our Office</h3>
+          {offices.map(o => (
+            <div class="office-row">
+              <div class="office-icon-wrap" aria-hidden="true">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <strong>{o.city}, {o.country}</strong>
+                <p>{o.address}<br>{o.address2}<br>{o.address3}</p>
+                <p>
+                  <a href={`tel:${o.phone}`}>
+                    <i class="fas fa-phone" aria-hidden="true"></i> {o.phone}
+                  </a><br>
+                  <a href={`mailto:${o.email}`}>
+                    <i class="fas fa-envelope" aria-hidden="true"></i> {o.email}
+                  </a>
+                </p>
+                <a href={o.mapLink} class="map-link" target="_blank" rel="noopener noreferrer">
+                  <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Open in Maps
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fas fa-clock" aria-hidden="true"></i> Business Hours</h3>
+          <ul class="hours-list">
+            <li><span>Monday – Friday</span><strong>8:00 AM – 5:00 PM EAT</strong></li>
+            <li><span>Saturday</span><strong>Closed</strong></li>
+            <li><span>Sunday</span><strong>Closed</strong></li>
+          </ul>
+          <p class="response-note">
+            <i class="fas fa-reply" aria-hidden="true"></i>
+            We typically respond within 24–48 business hours.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fas fa-share-alt" aria-hidden="true"></i> Follow Us</h3>
+          <ul class="social-list">
+            {socialLinks.map(s => (
+              <li>
+                <a href={s.url} target="_blank" rel="noopener noreferrer"
+                   style={`--clr:${s.color}`}
+                   aria-label={`${s.name} — ActionPath Africa`}>
+                  <i class={s.icon} aria-hidden="true"></i>
+                  <span>{s.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="info-card urgent-card">
+          <i class="fas fa-phone-volume" aria-hidden="true"></i>
+          <p>Urgent? Call us directly</p>
+          <a href="tel:+254112916920">+254 112 916 920</a>
+          <small>Available during business hours</small>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════ REASONS ═══════════════ -->
+  <section class="reasons-section">
+    <div class="inner">
+      <header class="section-head">
+        <span class="eyebrow sm">
+          <i class="fas fa-question-circle" aria-hidden="true"></i> Why Reach Out
+        </span>
+        <h2>Ways We Can <span class="red">Work Together</span></h2>
+        <div class="divider-bar centered" aria-hidden="true"></div>
+        <p>Whatever your need, we're here to help you create lasting impact.</p>
+      </header>
+      <ul class="reasons-grid" role="list">
+        {contactReasons.map(r => (
+          <li class="reason-card">
+            <div class="reason-icon" aria-hidden="true"><i class={r.icon}></i></div>
+            <h3>{r.title}</h3>
+            <p>{reasonDescriptions[r.value]}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FAQ ═══════════════ -->
+  <section class="faq-section">
+    <div class="inner">
+      <header class="section-head">
+        <span class="eyebrow sm">
+          <i class="fas fa-question-circle" aria-hidden="true"></i> FAQ
+        </span>
+        <h2>Got <span class="red">Questions?</span> We've Got <span class="green">Answers</span></h2>
+        <div class="divider-bar centered" aria-hidden="true"></div>
+      </header>
+      <div class="faq-list" id="faqList">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`}>
+            <summary>
+              <span>{faq.q}</span>
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="faq-body"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ MAP ═══════════════ -->
+  <section class="map-section">
+    <div class="inner">
+      <div class="map-wrap">
+        <iframe
+          title="ActionPath Africa office location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6998!2d36.9116!3d-1.2372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f14e4d7e5a5a5%3A0xb8b8f2d2d2d2d2d2!2sNjiru%20Health%20Centre!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+          width="100%" height="420" style="border:0;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="map-badge" aria-hidden="true">
+          <i class="fas fa-map-marker-alt"></i> Near Njiru Health Centre · Nairobi, Kenya
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA ═══════════════ -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="eyebrow sm light">Ready to Make an Impact?</span>
+      <h2>Let's Start a <span class="green">Conversation</span></h2>
+      <p>
+        Whether you're enrolling in our programmes, partnering with us, or
+        just curious — we'd love to hear from you.
+      </p>
+      <a href="#contact-form" class="btn-cta scroll-to-form">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i> Back to Contact Form
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<!-- ═══════════════════════════════════════════ STYLES ═══════════════════════════════════════════ -->
+<style is:global>
+  /* ── TOKENS ── */
+  :root {
+    --red:       #c0392b;
+    --red-dk:    #a93226;
+    --red-10:    rgba(192,57,43,.1);
+    --green:     #27ee31;
+    --green-dk:  #1e8f1e;
+    --ink:       #1e293b;
+    --ink-60:    #64748b;
+    --ink-40:    #94a3b8;
+    --surface:   #f5f7fa;
+    --card-bg:   #ffffff;
+    --border:    #e2e8f0;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,.12);
+    --r-sm:      10px;
+    --r-md:      18px;
+    --r-lg:      28px;
+    --transition: .22s ease;
+  }
+
+  /* ── RESET / BASE ── */
+  *, *::before, *::after { box-sizing: border-box; }
+  abbr[title] { text-decoration: none; cursor: help; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 52vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--ink) 0%, #0f172a 100%);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('/about-hero.webp');
+    background-size: cover; background-position: center;
+    opacity: .12; filter: blur(3px);
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 780px;
+    padding: 4.5rem 5%;
+    margin-left: 5%;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.55);
+    margin-bottom: 1.4rem; font-weight: 500;
+  }
+  .breadcrumb a { color: inherit; text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(39,238,49,.14); color: var(--green);
+    font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .07em;
+    padding: .35rem 1rem; border-radius: 40px;
+    border: 1px solid rgba(39,238,49,.28);
+    margin-bottom: 1.2rem;
+  }
+  .eyebrow.sm    { font-size: .68rem; padding: .3rem .9rem; }
+  .eyebrow.light { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.2); }
+  .hero-inner h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 900; line-height: 1.08;
+    letter-spacing: -.03em; color: white;
+    margin-bottom: 1.1rem;
+  }
+  .hero-inner h1 em { font-style: normal; }
+  .hero-inner p { font-size: .96rem; color: rgba(255,255,255,.82); line-height: 1.7; max-width: 560px; }
+  .red   { color: var(--red); }
+  .green { color: var(--green); }
+
+  /* ── DIVIDER BAR ── */
+  .divider-bar {
+    width: 52px; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 3px;
+    margin: .7rem 0 1rem;
+  }
+  .divider-bar.centered { margin: .7rem auto 1rem; }
+
+  /* ── MAIN SECTION ── */
+  .main-section {
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #fff 0%, var(--surface) 100%);
+  }
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── FORM CARD ── */
+  .form-card {
+    background: var(--card-bg);
+    border-radius: var(--r-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+  }
+  .form-head { margin-bottom: 1.8rem; }
+  .form-head h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.75rem; font-weight: 800; color: var(--ink);
+  }
+  .form-head p { font-size: .88rem; color: var(--ink-60); }
+
+  /* form layout */
+  #contactForm { display: flex; flex-direction: column; gap: 1.2rem; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  /* field */
+  .field { display: flex; flex-direction: column; gap: .3rem; position: relative; }
+  .field label {
+    font-size: .82rem; font-weight: 600; color: var(--ink);
+    display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+  }
+  .field label i { color: var(--red); font-size: .78rem; }
+  .badge {
+    font-size: .65rem; font-weight: 500;
+    background: var(--surface); color: var(--ink-60);
+    padding: .15rem .45rem; border-radius: 20px; margin-left: 4px;
+  }
+
+  /* inputs */
+  .field input,
+  .field textarea,
+  .select-wrap select {
+    padding: .82rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--r-sm);
+    font-size: .88rem; font-family: inherit;
+    color: var(--ink); background: var(--card-bg);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    width: 100%;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .select-wrap select:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(39,238,49,.14);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--ink-40); }
+  .field textarea { resize: vertical; min-height: 130px; }
+
+  /* valid state */
+  .field.is-valid input,
+  .field.is-valid textarea,
+  .field.is-valid .select-wrap select {
+    border-color: var(--green-dk);
+    background: #f0fdf4;
+  }
+
+  /* select */
+  .select-wrap { position: relative; }
+  .select-wrap select { padding-right: 2.5rem; appearance: none; cursor: pointer; }
+  .select-arrow {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    font-size: .75rem; color: var(--ink-60);
+    pointer-events: none;
+  }
+
+  /* error / hint */
+  .field-error {
+    font-size: .72rem; color: var(--red);
+    font-weight: 500; min-height: 1em; display: none;
+  }
+  .field-hint { font-size: .7rem; color: var(--ink-60); }
+  .reason-hint {
+    font-size: .75rem; color: var(--ink-60);
+    line-height: 1.5;
+    min-height: 1.1em;
+    transition: opacity .2s;
+  }
+  .field.has-error input,
+  .field.has-error textarea,
+  .field.has-error .select-wrap select {
+    border-color: var(--red); background: #fff8f8;
+    animation: shake .3s ease;
+  }
+  .field.has-error .field-error { display: block; }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%      { transform: translateX(-4px); }
+    75%      { transform: translateX(4px); }
+  }
+
+  /* textarea footer */
+  .textarea-footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .char-count { font-size: .7rem; color: var(--ink-40); white-space: nowrap; flex-shrink: 0; }
+  .char-count.warn { color: #e65100; }
+  .char-count.over { color: var(--red); font-weight: 700; }
+
+  /* checkbox */
+  .checkbox-row {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font-size: .84rem; color: var(--ink-60); user-select: none;
+  }
+  .checkbox-row input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .checkbox-box {
+    width: 18px; height: 18px; flex-shrink: 0;
+    border: 2px solid var(--border); border-radius: 5px;
+    background: var(--card-bg);
+    transition: all var(--transition);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .checkbox-row input[type="checkbox"]:checked + .checkbox-box {
+    background: var(--green); border-color: var(--green-dk);
+  }
+  .checkbox-row input[type="checkbox"]:checked + .checkbox-box::after {
+    content: "";
+    width: 5px; height: 9px;
+    border: 2px solid #1e293b; border-top: none; border-left: none;
+    transform: rotate(45deg) translateY(-1px); display: block;
+  }
+  .checkbox-row input[type="checkbox"]:focus-visible + .checkbox-box {
+    outline: 2px solid var(--green); outline-offset: 2px;
+  }
+
+  /* status banner */
+  .status-banner {
+    padding: .9rem 1.1rem; border-radius: var(--r-sm);
+    font-size: .86rem; line-height: 1.6;
+    animation: fadeIn .25s ease;
+  }
+  .status-banner[hidden] { display: none; }
+  .status-banner.success  { background: #f0fdf4; color: #166534; border-left: 4px solid #22c55e; }
+  .status-banner.error    { background: #fff1f2; color: var(--red); border-left: 4px solid var(--red); }
+  .status-banner.sending  { background: #f0f9ff; color: #0369a1; border-left: 4px solid #0ea5e9; }
+  .status-banner a        { color: inherit; font-weight: 700; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* submit button */
+  .btn-submit {
+    background: linear-gradient(135deg, var(--red), var(--red-dk));
+    color: white; border: none;
+    padding: 1rem 1.5rem; border-radius: 50px;
+    font-size: .96rem; font-weight: 700; font-family: inherit;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: transform var(--transition), box-shadow var(--transition), opacity .2s;
+  }
+  .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(192,57,43,.38); }
+  .btn-submit:active:not(:disabled) { transform: translateY(0); }
+  .btn-submit:disabled { opacity: .65; cursor: not-allowed; }
+  .btn-label, .btn-loading { display: flex; align-items: center; gap: 8px; }
+  .btn-submit .btn-loading { display: none; }
+  .btn-submit.loading .btn-label  { display: none; }
+  .btn-submit.loading .btn-loading { display: flex; }
+  .btn-submit:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 1.4rem; }
+  .info-card {
+    background: var(--card-bg);
+    border-radius: var(--r-md);
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  }
+  .info-card:hover {
+    transform: translateY(-3px); box-shadow: var(--shadow-md);
+    border-color: rgba(39,238,49,.35);
+  }
+  .info-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.05rem; font-weight: 800; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.1rem;
+  }
+  .info-card h3 i { color: var(--red); }
+
+  /* office */
+  .office-row { display: flex; gap: .9rem; }
+  .office-icon-wrap {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--red-10); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--red); font-size: 1rem;
+  }
+  .office-row strong { font-size: .88rem; color: var(--ink); }
+  .office-row p  { font-size: .82rem; line-height: 1.65; color: var(--ink-60); margin: .35rem 0; }
+  .office-row a  { font-size: .82rem; color: var(--red); text-decoration: none; display: flex; align-items: center; gap: 5px; }
+  .office-row a:hover { text-decoration: underline; }
+  .map-link { margin-top: .4rem; font-weight: 600 !important; font-size: .8rem !important; }
+
+  /* hours */
+  .hours-list  { list-style: none; padding: 0; margin: 0 0 .8rem; display: flex; flex-direction: column; gap: .55rem; }
+  .hours-list li { display: flex; justify-content: space-between; font-size: .83rem; }
+  .hours-list li span  { color: var(--ink-60); }
+  .hours-list li strong { color: var(--ink); }
+  .response-note {
+    font-size: .75rem; color: var(--ink-60);
+    display: flex; align-items: center; gap: 6px;
+    border-top: 1px solid var(--border); padding-top: .7rem;
+    margin: 0;
+  }
+  .response-note i { color: var(--green-dk); }
+
+  /* social */
+  .social-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
+  .social-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: .55rem .8rem; border-radius: 8px;
+    text-decoration: none; font-size: .83rem; font-weight: 600;
+    color: var(--ink); border: 1px solid var(--border);
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+  .social-list a i { color: var(--clr, var(--red)); font-size: .9rem; width: 18px; text-align: center; }
+  .social-list a:hover { background: var(--clr, var(--red)); color: white; border-color: transparent; }
+  .social-list a:hover i { color: white; }
+
+  /* urgent card */
+  .urgent-card {
+    background: linear-gradient(135deg, var(--red), var(--red-dk));
+    color: white; text-align: center; border-color: transparent;
+  }
+  .urgent-card:hover { border-color: transparent; }
+  .urgent-card i    { font-size: 1.8rem; margin-bottom: .5rem; display: block; }
+  .urgent-card p    { font-size: .85rem; opacity: .85; margin: 0 0 .3rem; }
+  .urgent-card a    { display: block; font-size: 1.3rem; font-weight: 900; color: white; text-decoration: none; }
+  .urgent-card a:hover { text-decoration: underline; }
+  .urgent-card small { font-size: .72rem; opacity: .7; margin-top: .3rem; display: block; }
+
+  /* ── SHARED SECTION STYLES ── */
+  .inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+  .section-head { text-align: center; margin-bottom: 2.5rem; }
+  .section-head h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--ink);
+    margin: .4rem 0 .2rem;
+  }
+  .section-head p { font-size: .9rem; color: var(--ink-60); max-width: 520px; margin: .5rem auto 0; }
+
+  /* reasons */
+  .reasons-section { padding: 5rem 0; background: var(--surface); }
+  .reasons-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem; list-style: none; padding: 0; margin: 0;
+  }
+  .reason-card {
+    background: var(--card-bg); border-radius: var(--r-md);
+    padding: 2rem 1.5rem; text-align: center;
+    border: 1px solid var(--border);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .reason-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .reason-icon {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--red), var(--red-dk));
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.1rem; color: white; font-size: 1.6rem;
+  }
+  .reason-card h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: .5rem; }
+  .reason-card p  { font-size: .82rem; color: var(--ink-60); line-height: 1.6; }
+
+  /* faq */
+  .faq-section { padding: 5rem 0; background: #fff; }
+  .faq-list {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem; max-width: 1000px; margin: 0 auto;
+  }
+  .faq-item {
+    background: var(--surface); border-radius: var(--r-sm);
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .faq-item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 1.1rem 1.25rem;
+    font-weight: 700; font-size: .88rem; color: var(--ink);
+    cursor: pointer; list-style: none;
+    transition: background var(--transition);
+  }
+  .faq-item summary:hover { background: rgba(192,57,43,.05); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary i { transition: transform .3s; flex-shrink: 0; color: var(--red); font-size: .75rem; }
+  .faq-item[open] summary { background: rgba(192,57,43,.06); }
+  .faq-item[open] summary i { transform: rotate(180deg); }
+  .faq-body { padding: .2rem 1.25rem 1.1rem; }
+  .faq-body p { font-size: .84rem; color: var(--ink-60); line-height: 1.7; margin: 0; }
+
+  /* map */
+  .map-section { padding: 3rem 0 5rem; background: var(--surface); }
+  .map-wrap { position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+  .map-badge {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(30,41,59,.92); backdrop-filter: blur(6px);
+    color: white; font-size: .8rem; font-weight: 600;
+    padding: .6rem 1.2rem; border-radius: 30px;
+    display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  }
+  .map-badge i { color: var(--red); }
+
+  /* cta */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--ink) 0%, #0f172a 100%);
+    text-align: center;
+  }
+  .cta-inner { max-width: 600px; margin: 0 auto; padding: 0 2rem; }
+  .cta-inner h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; color: white;
+    margin: .6rem 0 1rem;
+  }
+  .cta-inner p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 1.8rem; }
+  .btn-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--red), var(--red-dk));
+    color: white; padding: .95rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 700; font-size: .9rem;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(192,57,43,.45); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .main-grid      { grid-template-columns: 1fr; }
+    .reasons-grid   { grid-template-columns: repeat(2, 1fr); }
+    .faq-list       { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .row-2          { grid-template-columns: 1fr; }
+    .reasons-grid   { grid-template-columns: 1fr; }
+    .form-card      { padding: 1.5rem; }
+    .hero-inner     { padding: 3rem 1.25rem; }
+  }
+
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ SCRIPT ═══════════════════════════════════════════ -->
+<script define:vars={{ GOOGLE_SCRIPT_URL }}>
+(function () {
+  "use strict";
+
+  // ── CONFIG ──────────────────────────────────────────────────────────────
+  const SCRIPT_URL = GOOGLE_SCRIPT_URL;
+  const MAX_CHARS  = 5000;
+
+  const REASON_DESCRIPTIONS = {
+    training:    "Request information about our training programmes, schedules, and fees.",
+    consultancy: "Discuss your organisation's capacity building and consultancy needs.",
+    partnership: "Explore collaboration, funding, and strategic partnership possibilities.",
+    media:       "For media inquiries, interviews, and press coverage requests.",
+    speaking:    "Invite our team to speak at your event or conference.",
+    general:     "Any other questions or comments about ActionPath Africa.",
+  };
+
+  // ── DOM REFS ─────────────────────────────────────────────────────────────
+  const form        = document.getElementById("contactForm");
+  const submitBtn   = document.getElementById("submitBtn");
+  const statusEl    = document.getElementById("formStatus");
+  const charCountEl = document.getElementById("charCount");
+  const tsInput     = document.getElementById("formTimestamp");
+  const reasonHint  = document.getElementById("reasonHint");
+  const reasonSel   = form.querySelector('[name="reason"]');
+
+  tsInput.value = new Date().toISOString();
+
+  // ── VALIDATION RULES ─────────────────────────────────────────────────────
+  const EMAIL_RE = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+  const PHONE_RE = /^[\+\d\s\-()\u00a0]{7,20}$/;
+
+  const rules = {
+    name:         v => !v ? "Full name is required."
+                        : v.length < 2 ? "Name must be at least 2 characters."
+                        : v.length > 100 ? "Name is too long (max 100 characters)."
+                        : null,
+    email:        v => !v ? "Email address is required."
+                        : !EMAIL_RE.test(v) ? "Enter a valid email address."
+                        : null,
+    phone:        v => v && !PHONE_RE.test(v) ? "Enter a valid phone number." : null,
+    organization: v => v && v.length > 100 ? "Organisation name is too long (max 100 characters)." : null,
+    reason:       v => !v ? "Please select a reason for contacting." : null,
+    message:      v => !v ? "Message is required."
+                        : v.length < 20 ? "Message must be at least 20 characters."
+                        : v.length > MAX_CHARS ? `Message must be under ${MAX_CHARS.toLocaleString()} characters.`
+                        : null,
+  };
+
+  // ── FIELD HELPERS ─────────────────────────────────────────────────────────
+  const getField = name => form.querySelector(`[data-name="${name}"]`);
+  const getVal   = name => { const el = form.querySelector(`[name="${name}"]`); return el ? el.value.trim() : ""; };
+
+  function setError(name, msg) {
+    const field = getField(name);
+    if (!field) return;
+    const hasErr = !!msg;
+    field.classList.toggle("has-error", hasErr);
+    field.classList.toggle("is-valid",  !hasErr && getVal(name) !== "");
+    const errEl = field.querySelector(".field-error");
+    if (errEl) errEl.textContent = msg || "";
+  }
+
+  function validateField(name) {
+    const err = rules[name] ? rules[name](getVal(name)) : null;
+    setError(name, err);
+    return !err;
+  }
+
+  // ── REAL-TIME VALIDATION ─────────────────────────────────────────────────
+  ["name", "email", "phone", "organization", "reason", "message"].forEach(name => {
+    const input = form.querySelector(`[name="${name}"]`);
+    if (!input) return;
+    const blurEvent = input.tagName === "SELECT" ? "change" : "blur";
+    input.addEventListener(blurEvent, () => validateField(name));
+    input.addEventListener("input", () => {
+      if (getField(name)?.classList.contains("has-error")) validateField(name);
+    });
+  });
+
+  // ── REASON HINT ──────────────────────────────────────────────────────────
+  if (reasonSel && reasonHint) {
+    reasonSel.addEventListener("change", () => {
+      reasonHint.textContent = REASON_DESCRIPTIONS[reasonSel.value] || "";
+    });
+  }
+
+  // ── CHARACTER COUNTER ─────────────────────────────────────────────────────
+  const msgInput = form.querySelector('[name="message"]');
+  if (msgInput && charCountEl) {
+    const update = () => {
+      const len = msgInput.value.length;
+      charCountEl.textContent = `${len.toLocaleString()} / ${MAX_CHARS.toLocaleString()}`;
+      charCountEl.classList.toggle("warn", len > MAX_CHARS * 0.9 && len <= MAX_CHARS);
+      charCountEl.classList.toggle("over", len > MAX_CHARS);
+    };
+    msgInput.addEventListener("input", update);
+    update();
+  }
+
+  // ── STATUS BANNER ─────────────────────────────────────────────────────────
+  function showStatus(type, html) {
+    statusEl.className = `status-banner ${type}`;
+    statusEl.innerHTML = html;
+    statusEl.hidden = false;
+    statusEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // ── FULL VALIDATION ────────────────────────────────────────────────────────
+  function validateAll() {
+    const fields = ["name", "email", "phone", "organization", "reason", "message"];
+    const results = fields.map(n => validateField(n));
+
+    // Cross-field: phone OR organisation required
+    const phone = getVal("phone");
+    const org   = getVal("organization");
+    if (!phone && !org) {
+      setError("phone",        "Please provide a phone number or organisation name.");
+      setError("organization", "Please provide a phone number or organisation name.");
+      results.push(false);
+    } else {
+      // Clear cross-field error if already individually passing
+      if (!rules.phone(phone))        setError("phone",        null);
+      if (!rules.organization(org))   setError("organization", null);
+    }
+
+    return results.every(Boolean);
+  }
+
+  // ── FORM SUBMIT ────────────────────────────────────────────────────────────
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    statusEl.hidden = true;
+
+    if (!validateAll()) {
+      showStatus("error", "⚠️ Please fix the highlighted fields before sending.");
+      const firstError = form.querySelector(".has-error input, .has-error select, .has-error textarea");
+      firstError?.focus();
+      return;
+    }
+
+    // Refresh timestamp
+    tsInput.value = new Date().toISOString();
+
+    const payload = new URLSearchParams({
+      name:         getVal("name"),
+      email:        getVal("email"),
+      phone:        getVal("phone"),
+      organization: getVal("organization"),
+      reason:       getVal("reason"),
+      message:      getVal("message"),
+      newsletter:   form.querySelector('[name="newsletter"]')?.checked ? "subscribe" : "no",
+      timestamp:    tsInput.value,
+    });
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add("loading");
+    showStatus("sending", '<i class="fas fa-circle-notch fa-spin"></i> Sending your message…');
+
+    try {
+      // POST to Apps Script. Use no-cors to avoid CORS preflight issues
+      // with the redirect that Apps Script /exec performs.
+      // We won't be able to read the response body, but the request reaches the script.
+      await fetch(SCRIPT_URL, {
+        method:  "POST",
+        mode:    "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body:    payload.toString(),
+      });
+
+      // Because no-cors gives us an opaque response, we treat reaching this point as success.
+      showStatus(
+        "success",
+        "✅ <strong>Message sent!</strong> Our team will respond within 24–48 hours. Check your inbox for a confirmation email."
+      );
+      form.reset();
+      tsInput.value = new Date().toISOString();
+      form.querySelectorAll(".has-error, .is-valid").forEach(f => {
+        f.classList.remove("has-error", "is-valid");
+      });
+      if (charCountEl) charCountEl.textContent = `0 / ${MAX_CHARS.toLocaleString()}`;
+      if (reasonHint)  reasonHint.textContent = "";
+
+    } catch (err) {
+      console.error("Submit error:", err);
+      showStatus(
+        "error",
+        `❌ <strong>Could not send your message.</strong> Please email us directly at <a href="mailto:info@actionpathafrica.org">info@actionpathafrica.org</a> or call <a href="tel:+254112916920">+254 112 916 920</a>.`
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove("loading");
+    }
+  });
+
+  // ── FAQ ACCORDION ─────────────────────────────────────────────────────────
+  document.querySelectorAll(".faq-item").forEach(item => {
+    item.addEventListener("toggle", function () {
+      if (this.open) {
+        document.querySelectorAll(".faq-item").forEach(other => {
+          if (other !== this) other.open = false;
+        });
+      }
+    });
+  });
+
+  // ── SMOOTH SCROLL ─────────────────────────────────────────────────────────
+  document.querySelectorAll(".scroll-to-form").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+})();
+</script>

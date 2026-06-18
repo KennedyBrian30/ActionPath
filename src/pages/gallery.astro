@@ -1,0 +1,1222 @@
+---
+// gallery.astro - Gallery Page
+import Layout from "../layouts/Layout.astro";
+
+// Images collection (using images from previous pages)
+const images = [
+  {
+    url: "/hero-community-1.webp",
+    title: "Community Training Session",
+    category: "Training",
+    description: "ActionPath Africa team facilitating a livelihood training workshop with community members.",
+    location: "Siaya County, Kenya",
+    date: "March 2025"
+  },
+  {
+    url: "/hero-livelihood-2.webp",
+    title: "Women in Agriculture",
+    category: "Empowerment",
+    description: "Women farmers learning climate-smart agriculture techniques.",
+    location: "Kisumu, Kenya",
+    date: "February 2025"
+  },
+  {
+    url: "/hero-training-3.webp",
+    title: "Vocational Skills Training",
+    category: "Skills Development",
+    description: "Youth participants engaged in tailoring and design workshop.",
+    location: "Nairobi, Kenya",
+    date: "January 2025"
+  },
+  {
+    url: "/hero-empowerment-4.webp",
+    title: "Youth Empowerment Forum",
+    category: "Youth",
+    description: "Young entrepreneurs sharing their success stories.",
+    location: "Kigali, Rwanda",
+    date: "December 2024"
+  },
+  {
+    url: "/hero-resilience-5.webp",
+    title: "Community Resilience Building",
+    category: "Community",
+    description: "Residents participating in disaster preparedness training.",
+    location: "Turkana, Kenya",
+    date: "November 2024"
+  },
+  {
+    url: "/agriculture-climate.webp",
+    title: "Climate Smart Agriculture",
+    category: "Agriculture",
+    description: "Farmers learning drought-resistant farming methods.",
+    location: "Machakos, Kenya",
+    date: "October 2024"
+  },
+  {
+    url: "/vocational-skills.webp",
+    title: "Vocational Training Center",
+    category: "Skills Development",
+    description: "Students practicing carpentry and woodwork skills.",
+    location: "Nakuru, Kenya",
+    date: "September 2024"
+  },
+  {
+    url: "/women-youth.webp",
+    title: "Women's Savings Group",
+    category: "Empowerment",
+    description: "Women entrepreneurs participating in financial literacy training.",
+    location: "Meru, Kenya",
+    date: "August 2024"
+  },
+  {
+    url: "/hero-livelihood.webp",
+    title: "Community Development Forum",
+    category: "Community",
+    description: "Community leaders discussing local development initiatives.",
+    location: "Addis Ababa, Ethiopia",
+    date: "July 2024"
+  },
+  {
+    url: "/welcome-community.webp",
+    title: "Welcome to ActionPath Africa",
+    category: "Community",
+    description: "Opening ceremony of our community training center.",
+    location: "Nairobi, Kenya",
+    date: "June 2024"
+  },
+  {
+    url: "/healing-circle.webp",
+    title: "Training",
+    category: "Celebration",
+    description: "Graduates celebrating completion of our livelihood program.",
+    location: "Kampala, Uganda",
+    date: "May 2024"
+  },
+  {
+    url: "/mearl.webp",
+    title: "Monitoring & Evaluation Workshop",
+    category: "Training",
+    description: "Staff training on MEARL framework implementation.",
+    location: "Dar es Salaam, Tanzania",
+    date: "April 2024"
+  }
+];
+
+// Videos collection
+const videos = [
+  {
+    url: "https://www.youtube.com/",
+    title: "ActionPath Africa - Our Impact Story",
+    category: "Documentary",
+    description: "A look at how our livelihood programs are transforming communities across East Africa.",
+    duration: "5:32",
+    thumbnail: "/hero-community-1.webp"
+  },
+  {
+    url: "https://www.youtube.com/embed/",
+    title: "Women Empowerment Success Stories",
+    category: "Testimonial",
+    description: "Hear from women entrepreneurs who have transformed their lives through our programs.",
+    duration: "4:15",
+    thumbnail: "/hero-empowerment-4.webp"
+  },
+  {
+    url: "https://www.youtube.com/embed/d",
+    title: "Youth Entrepreneurship Training",
+    category: "Training",
+    description: "Highlights from our youth business development workshop in Kigali, Rwanda.",
+    duration: "6:48",
+    thumbnail: "/hero-livelihood-2.webp"
+  }
+];
+
+// Image categories for filter
+const categories = ["All", "Training", "Empowerment", "Skills Development", "Youth", "Community", "Agriculture", "Celebration"];
+const videoCategories = ["All", "Documentary", "Testimonial", "Training"];
+---
+
+<Layout
+  title="Gallery | ActionPath Africa"
+  description="Explore our gallery of images and videos showcasing ActionPath Africa's impact across communities in Kenya, Rwanda, Ethiopia, and beyond."
+>
+
+  <!-- ══════════════════════════════════════════ HERO SECTION ══════════════════════════════════════════ -->
+  <section class="gallery-hero">
+    <div class="gallery-hero-overlay"></div>
+    <div class="gallery-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Gallery</span>
+      </div>
+      <div class="hero-eyebrow">
+        <i class="fas fa-images"></i> Visual Stories
+      </div>
+      <h1>Our <span class="hero-accent-red">Impact</span> in <span class="hero-accent-green">Images</span></h1>
+      <p>Explore moments of transformation, empowerment, and community resilience captured across our programs in East Africa and beyond.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ STATS BAR ══════════════════════════════════════════ -->
+  <section class="gallery-stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <i class="fas fa-camera"></i>
+        <div class="stat-number">120+</div>
+        <div class="stat-label">Moments Captured</div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-play-circle"></i>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Success Stories</div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="stat-number">6</div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-heart"></i>
+        <div class="stat-number">15,000+</div>
+        <div class="stat-label">Lives Touched</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ IMAGES SECTION ══════════════════════════════════════════ -->
+  <section class="gallery-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-images"></i> Our Work</div>
+        <h2>Photo <span class="accent-red">Gallery</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">A visual journey through our programs and the communities we serve</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-buttons" id="filterButtons">
+        {categories.map(category => (
+          <button class="filter-btn" data-category={category} key={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Image Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        {images.map((image, idx) => (
+          <div class="gallery-item" data-category={image.category} key={idx}>
+            <div class="gallery-img-wrapper">
+              <img src={image.url} alt={image.title} loading="lazy" />
+              <div class="gallery-overlay">
+                <div class="gallery-overlay-content">
+                  <i class="fas fa-search-plus"></i>
+                  <h4>{image.title}</h4>
+                  <p>{image.description}</p>
+                  <div class="gallery-meta">
+                    <span><i class="fas fa-map-marker-alt"></i> {image.location}</span>
+                    <span><i class="fas fa-calendar"></i> {image.date}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="gallery-caption">
+              <h3>{image.title}</h3>
+              <span class="gallery-category">{image.category}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ VIDEOS SECTION ══════════════════════════════════════════ -->
+  <section class="videos-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-video"></i> Watch & Learn</div>
+        <h2>Video <span class="accent-red">Stories</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Hear directly from the communities we serve and see our programs in action</p>
+      </div>
+
+      <!-- Video Filter Buttons -->
+      <div class="filter-buttons video-filters" id="videoFilterButtons">
+        {videoCategories.map(category => (
+          <button class="filter-btn" data-video-category={category} key={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Video Grid -->
+      <div class="videos-grid" id="videosGrid">
+        {videos.map((video, idx) => (
+          <div class="video-item" data-video-category={video.category} key={idx}>
+            <div class="video-wrapper">
+              <img src={video.thumbnail} alt={video.title} class="video-thumbnail" loading="lazy" />
+              <div class="video-play-overlay">
+                <i class="fas fa-play-circle play-icon"></i>
+              </div>
+              <div class="video-duration">{video.duration}</div>
+            </div>
+            <div class="video-info">
+              <h3 class="video-title">{video.title}</h3>
+              <p class="video-description">{video.description}</p>
+              <span class="video-category">{video.category}</span>
+            </div>
+            <!-- Modal for video playback -->
+            <div class="video-modal">
+              <div class="video-modal-content">
+                <span class="video-modal-close">&times;</span>
+                <iframe class="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ CTA SECTION ══════════════════════════════════════════ -->
+  <section class="gallery-cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <div class="cta-eyebrow">Want to See More?</div>
+        <h2>Follow Our <span class="cta-highlight">Journey</span></h2>
+        <p>Stay connected with us on social media for regular updates, success stories, and behind-the-scenes moments from our programs.</p>
+        <div class="cta-buttons">
+          <a href="https://facebook.com/actionpathafrica" class="btn-social facebook" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://instagram.com/actionpathafrica" class="btn-social instagram" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://linkedin.com/company/actionpathafrica" class="btn-social linkedin" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #5a6e8a;
+    --gray-sf: #f5f7fa;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ══════════════════════════════════════════ HERO SECTION ══════════════════════════════════════════ */
+  .gallery-hero {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    overflow: hidden;
+  }
+  
+  .gallery-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/hero-gallery-bg.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    filter: blur(2px);
+  }
+  
+  .gallery-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(30,41,59,0.6) 0%, var(--charcoal) 100%);
+  }
+  
+  .gallery-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 4rem 5%;
+    margin-left: 5%;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.65);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    color: var(--green-lt);
+  }
+  
+  .breadcrumb i {
+    font-size: 0.6rem;
+  }
+  
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(39, 238, 49, 0.15);
+    backdrop-filter: blur(8px);
+    color: var(--green);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(39, 238, 49, 0.3);
+  }
+  
+  .gallery-hero-content h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-accent-red {
+    color: var(--red);
+  }
+  
+  .hero-accent-green {
+    color: var(--green);
+  }
+  
+  .gallery-hero-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+
+  /* ══════════════════════════════════════════ STATS BAR ══════════════════════════════════════════ */
+  .gallery-stats {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+    padding: 2.5rem 0;
+  }
+  
+  .stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+    color: white;
+    flex: 1;
+    min-width: 180px;
+  }
+  
+  .stat-item i {
+    font-size: 2rem;
+    color: var(--green-lt);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════════ GALLERY SECTION ══════════════════════════════════════════ */
+  .gallery-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #fff 0%, var(--gray-sf) 100%);
+  }
+  
+  .section-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 0.85rem;
+  }
+  
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  
+  .accent-red {
+    color: var(--red);
+  }
+  
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 0.75rem auto 1.25rem;
+    border-radius: 3px;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+    color: var(--gray-md);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  /* Filter Buttons */
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid var(--border);
+    background: var(--white);
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-dk);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-2px);
+  }
+  
+  .filter-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: white;
+  }
+  
+  /* Gallery Grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .gallery-item {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: zoomIn 0.5s ease forwards;
+  }
+  
+  @keyframes zoomIn {
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  .gallery-img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1 / 0.9;
+    cursor: pointer;
+  }
+  
+  .gallery-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  
+  .gallery-item:hover .gallery-img-wrapper img {
+    transform: scale(1.08);
+  }
+  
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(192,57,43,0.9) 0%, rgba(39,238,49,0.8) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+  }
+  
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+  
+  .gallery-overlay-content {
+    text-align: center;
+    color: white;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover .gallery-overlay-content {
+    transform: translateY(0);
+  }
+  
+  .gallery-overlay-content i {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+  }
+  
+  .gallery-overlay-content h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  
+  .gallery-overlay-content p {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+  }
+  
+  .gallery-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+  }
+  
+  .gallery-meta i {
+    font-size: 0.6rem;
+    margin-right: 4px;
+  }
+  
+  .gallery-caption {
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+  }
+  
+  .gallery-caption h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 0.25rem;
+  }
+  
+  .gallery-category {
+    font-size: 0.7rem;
+    color: var(--red);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════════ VIDEOS SECTION ══════════════════════════════════════════ */
+  .videos-section {
+    padding: 5rem 0;
+    background: var(--white);
+  }
+  
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .video-item {
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    cursor: pointer;
+  }
+  
+  .video-item:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--red);
+  }
+  
+  .video-wrapper {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  
+  .video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .video-item:hover .video-thumbnail {
+    transform: scale(1.05);
+  }
+  
+  .video-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .video-item:hover .video-play-overlay {
+    opacity: 1;
+  }
+  
+  .play-icon {
+    font-size: 3rem;
+    color: white;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    transition: transform 0.2s ease;
+  }
+  
+  .play-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .video-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  
+  .video-info {
+    padding: 1.25rem;
+  }
+  
+  .video-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .video-description {
+    font-size: 0.75rem;
+    color: var(--gray-md);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  
+  .video-category {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--red-soft);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+  }
+  
+  /* Video Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-modal.active {
+    display: flex;
+  }
+  
+  .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .video-modal-close:hover {
+    transform: scale(1.1);
+  }
+  
+  .video-iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+  }
+
+  /* ══════════════════════════════════════════ CTA SECTION ══════════════════════════════════════════ */
+  .gallery-cta-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .gallery-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(192,57,43,0.15), transparent);
+    pointer-events: none;
+  }
+  
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cta-eyebrow {
+    display: inline-block;
+    background: rgba(39, 238, 49, 0.15);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(39,238,49,0.3);
+  }
+  
+  .cta-container h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-highlight {
+    color: var(--green);
+  }
+  
+  .cta-container p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    color: white;
+  }
+  
+  .btn-social.facebook {
+    background: #1877f2;
+  }
+  
+  .btn-social.instagram {
+    background: #e4405f;
+  }
+  
+  .btn-social.linkedin {
+    background: #0077b5;
+  }
+  
+  .btn-social:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+  }
+
+  /* ══════════════════════════════════════════ LIGHTBOX MODAL ══════════════════════════════════════════ */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lightbox.active {
+    display: flex;
+  }
+  
+  .lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .lightbox-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .lightbox-close:hover {
+    transform: scale(1.1);
+  }
+  
+  .lightbox-caption {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  /* ══════════════════════════════════════════ RESPONSIVE ══════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .videos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-inner {
+      padding: 0 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .gallery-hero-content h1 {
+      font-size: 2.2rem;
+    }
+    
+    .gallery-hero-content {
+      padding: 3rem 1.5rem;
+      margin-left: 0;
+    }
+    
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .videos-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-buttons {
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+    }
+    
+    .stats-container {
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      min-width: calc(50% - 1rem);
+    }
+    
+    .stat-number {
+      font-size: 1.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn-social {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .section-header h2 {
+      font-size: 1.6rem;
+    }
+    
+    .section-inner {
+      padding: 0 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Image Gallery Filtering
+  (function() {
+    const filterButtons = document.querySelectorAll('#filterButtons .filter-btn');
+    const galleryItems = document.querySelectorAll('#galleryGrid .gallery-item');
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const category = btn.getAttribute('data-category');
+        
+        // Filter items
+        galleryItems.forEach(item => {
+          if (category === 'All' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 10);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+  
+  // Video Gallery Filtering
+  (function() {
+    const videoFilterButtons = document.querySelectorAll('#videoFilterButtons .filter-btn');
+    const videoItems = document.querySelectorAll('#videosGrid .video-item');
+    
+    videoFilterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        videoFilterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const category = btn.getAttribute('data-video-category');
+        
+        // Filter items
+        videoItems.forEach(item => {
+          if (category === 'All' || item.getAttribute('data-video-category') === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+  
+  // Image Lightbox
+  (function() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+      <div class="lightbox-content">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="">
+        <div class="lightbox-caption"></div>
+      </div>
+    `;
+    document.body.appendChild(lightbox);
+    
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    
+    galleryItems.forEach(item => {
+      const img = item.querySelector('.gallery-img-wrapper img');
+      const title = item.querySelector('.gallery-caption h3')?.innerText || '';
+      const category = item.querySelector('.gallery-category')?.innerText || '';
+      
+      item.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxCaption.innerHTML = `${title} - ${category}`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  })();
+  
+  // Video Modal
+  (function() {
+    const videoItems = document.querySelectorAll('.video-item');
+    
+    videoItems.forEach(item => {
+      const modal = item.querySelector('.video-modal');
+      const closeBtn = modal.querySelector('.video-modal-close');
+      const iframe = modal.querySelector('.video-iframe');
+      const videoUrl = item.querySelector('.video-wrapper')?.getAttribute('data-video-url') || 
+                       item.querySelector('.video-thumbnail')?.getAttribute('data-video-url') || 
+                       'https://www.youtube.com/embed/dQw4w9WgXcQ';
+      
+      const playBtn = item.querySelector('.video-play-overlay');
+      
+      const openModal = () => {
+        iframe.src = videoUrl + '?autoplay=1';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      const closeModal = () => {
+        iframe.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+      
+      if (playBtn) {
+        playBtn.addEventListener('click', openModal);
+      }
+      
+      item.addEventListener('click', (e) => {
+        if (!e.target.closest('.video-modal-close') && !e.target.closest('.video-modal')) {
+          openModal();
+        }
+      });
+      
+      closeBtn.addEventListener('click', closeModal);
+      
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    });
+  })();
+  
+  // Intersection Observer for scroll animations
+  (function() {
+    const animatedElements = document.querySelectorAll('.gallery-item, .video-item');
+    if (animatedElements.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      animatedElements.forEach(el => { 
+        el.style.animationPlayState = 'paused'; 
+        observer.observe(el); 
+      });
+    }
+  })();
+</script>

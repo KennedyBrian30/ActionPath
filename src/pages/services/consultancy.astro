@@ -1,0 +1,987 @@
+---
+// services/consultancy.astro - Consultancy Services Page
+import Layout from "../../layouts/Layout.astro";
+
+// Consultancy Services with focus on youth and adolescents
+const consultancyServices = [
+  {
+    title: "Monitoring & Evaluation",
+    description: "Comprehensive M&E frameworks, data collection systems, and impact assessment for development programs. We help organizations track progress, measure outcomes, and demonstrate impact to stakeholders.",
+    icon: "fas fa-chart-line",
+    features: [
+      "Baseline & Endline Surveys",
+      "Data Management Systems",
+      "Impact Evaluation",
+      "Capacity Building in M&E",
+      "Youth-Focused M&E Frameworks"
+    ],
+    image: "/mearl.webp",
+    color: "#c0392b"
+  },
+  {
+    title: "Curriculum Development",
+    description: "Design of contextualized, competency-based training curricula aligned to market needs and national standards. Our curricula are participatory, learner-centered, and tailored to specific community contexts.",
+    icon: "fas fa-book-open",
+    features: [
+      "Competency-Based Design",
+      "Training Materials Development",
+      "Trainer Guides & Manuals",
+      "Assessment Tools",
+      "Youth & Adolescent Learning Modules"
+    ],
+    image: "/vocational-skills.webp",
+    color: "#e67e22"
+  },
+  {
+    title: "Psychosocial Education and Support",
+    description: "Specialized mental health and psychosocial support services focused on youth and adolescents. We provide trauma-informed care, resilience building, and emotional wellbeing programs tailored for young people facing adversity.",
+    icon: "fas fa-heart",
+    features: [
+      "Youth Mental Health First Aid",
+      "Trauma-Informed Care for Adolescents",
+      "Resilience & Coping Skills Training",
+      "Peer Support Programs for Youth",
+      "Emotional Regulation & Self-Care",
+      "Parent & Caregiver Support Workshops",
+      "School-Based Mental Health Programs",
+      "Adolescent Stress & Anxiety Management"
+    ],
+    image: "/psychosocial.webp",
+    color: "#27ee31"
+  }
+];
+
+// Youth-focused psychosocial programs
+const youthPsychosocialPrograms = [
+  {
+    title: "Resilience Building for Adolescents",
+    description: "Empowering young people with coping strategies, emotional regulation skills, and the ability to bounce back from adversity.",
+    duration: "2-5 days",
+    audience: "Ages 13-19",
+    icon: "fas fa-shield-heart"
+  },
+  {
+    title: "Peer Support Leadership Training",
+    description: "Training youth to become effective peer supporters who can provide emotional first aid and referral guidance to their peers.",
+    duration: "3-5 days",
+    audience: "Youth ages 16-25",
+    icon: "fas fa-hand-holding-heart"
+  },
+  {
+    title: "Trauma-Informed Care for Youth Workers",
+    description: "Equipping teachers, social workers, and youth mentors with skills to support traumatized adolescents in their care.",
+    duration: "3 days",
+    audience: "Youth serving professionals",
+    icon: "fas fa-chalkboard-user"
+  },
+  {
+    title: "Adolescent Mental Health Awareness",
+    description: "Raising awareness about common mental health challenges among youth and reducing stigma in communities.",
+    duration: "1-2 days",
+    audience: "Youth, parents, community leaders",
+    icon: "fas fa-brain"
+  },
+  {
+    title: "Life Skills & Emotional Wellbeing",
+    description: "Integrating psychosocial support with practical life skills for holistic adolescent development.",
+    duration: "5-10 days",
+    audience: "In-school & out-of-school youth",
+    icon: "fas fa-seedling"
+  },
+  {
+    title: "Crisis Support & Referral Systems",
+    description: "Establishing youth-friendly referral pathways and crisis support mechanisms in schools and communities.",
+    duration: "3-5 days",
+    audience: "Institutions & organizations",
+    icon: "fas fa-phone-alt"
+  }
+];
+
+// Key challenges addressed for youth
+const youthChallenges = [
+  {
+    icon: "fas fa-frown",
+    title: "Anxiety & Depression",
+    description: "Rising rates of mental health challenges among adolescents require targeted, age-appropriate interventions."
+  },
+  {
+    icon: "fas fa-brain",
+    title: "Trauma & Adversity",
+    description: "Many youth have experienced violence, loss, or displacement requiring trauma-informed support."
+  },
+  {
+    icon: "fas fa-users-slash",
+    title: "Social Isolation",
+    description: "Post-pandemic isolation and lack of safe peer connections impact adolescent development."
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Academic & Career Pressure",
+    description: "Unmanaged stress from performance expectations affects mental wellbeing."
+  }
+];
+
+// Our approach to youth psychosocial support
+const approachSteps = [
+  {
+    step: "01",
+    title: "Assessment",
+    description: "Understanding the specific psychosocial needs of youth in their unique context through participatory assessments."
+  },
+  {
+    step: "02",
+    title: "Capacity Building",
+    description: "Training youth-serving professionals and peer supporters in evidence-based psychosocial support techniques."
+  },
+  {
+    step: "03",
+    title: "Direct Support",
+    description: "Delivering age-appropriate, engaging psychosocial education sessions for youth and adolescents."
+  },
+  {
+    step: "04",
+    title: "Systems Strengthening",
+    description: "Building sustainable referral pathways and support systems within schools and communities."
+  }
+];
+
+// Testimonials focused on youth impact
+const youthTestimonials = [
+  {
+    quote: "The psychosocial support program taught me how to handle my anxiety. I used to freeze during exams, but now I have tools to calm myself.",
+    name: "Sarah, 17",
+    location: "Nairobi, Kenya",
+    flag: "🇰🇪"
+  },
+  {
+    quote: "As a teacher, I now know how to spot when my students are struggling emotionally. The training changed how I interact with troubled youth.",
+    name: "Mr. Otieno",
+    location: "Teacher, Kisumu",
+    flag: "🇰🇪"
+  },
+  {
+    quote: "The peer support training gave me confidence to help my friends who are going through hard times. I feel like I'm making a difference.",
+    name: "James, 19",
+    location: "Mombasa, Kenya",
+    flag: "🇰🇪"
+  }
+];
+
+// Partner organizations for youth programs
+const youthPartners = [
+  { name: "Ministry of Education", logo: "/tanzania-moe.png" },
+  { name: "Ace Africa", logo: "/ace-africa.png" },
+  { name: "UNHCR", logo: "/logos/unhcr.png" },
+  { name: "VSO International", logo: "/logos/vso.png" }
+];
+---
+
+<Layout title="ActionPath Africa | Consultancy Services - M&E, Curriculum, Youth Psychosocial Support" description="Expert consultancy services in Monitoring & Evaluation, Curriculum Development, and specialized Psychosocial Education and Support focused on youth and adolescents.">
+
+  <!-- Hero Section -->
+  <section class="consultancy-hero full-width">
+    <div class="consultancy-hero-overlay"></div>
+    <div class="consultancy-hero-content">
+      <div class="consultancy-hero-badge"><i class="fas fa-briefcase"></i> Expert Consultancy</div>
+      <h1 class="consultancy-hero-title">Strategic <span class="highlight">Consultancy Services</span></h1>
+      <p class="consultancy-hero-desc">ActionPath Africa provides expert technical assistance in Monitoring & Evaluation, Curriculum Development, and specialized Psychosocial Education and Support with a focus on youth and adolescents.</p>
+      <div class="consultancy-hero-buttons">
+        <a href="#services" class="btn-primary"><i class="fas fa-arrow-down"></i> Explore Services</a>
+        <a href="/contact" class="btn-outline"><i class="fas fa-handshake"></i> Request Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="services-grid-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-cogs"></i> What We Offer</div>
+        <h2>Our <span class="accent-red">Consultancy Services</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Tailored technical assistance for development organizations, governments, and social enterprises</p>
+      </div>
+
+      <div class="services-grid">
+        {consultancyServices.map((service, idx) => (
+          <div class="service-card" key={service.title} style={`--service-color: ${service.color}`}>
+            <div class="service-card-image">
+              <img src={service.image} alt={service.title} loading="lazy" />
+              <div class="service-card-icon" style={`background: ${service.color}20; color: ${service.color}`}>
+                <i class={service.icon}></i>
+              </div>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">{service.title}</h3>
+              <p class="service-card-desc">{service.description}</p>
+              <div class="service-features-list">
+                {service.features.map(feature => (
+                  <span class="service-feature-tag" key={feature}>
+                    <i class="fas fa-check-circle" style={`color: ${service.color}`}></i> {feature}
+                  </span>
+                ))}
+              </div>
+              <a href="/contact?service={encodeURIComponent(service.title)}" class="service-inquire">Inquire about this service <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Youth Psychosocial Focus Section -->
+  <section class="youth-focus-section full-width">
+    <div class="section-inner">
+      <div class="youth-focus-header">
+        <div class="section-eyebrow"><i class="fas fa-heart"></i> Specialized Focus</div>
+        <h2>Youth & Adolescent <span class="accent-red">Psychosocial Support</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Our psychosocial programs are designed specifically to address the unique mental health and emotional wellbeing needs of young people</p>
+      </div>
+
+      <div class="youth-challenges-grid">
+        {youthChallenges.map(challenge => (
+          <div class="youth-challenge-card" key={challenge.title}>
+            <div class="challenge-icon"><i class={challenge.icon}></i></div>
+            <h3>{challenge.title}</h3>
+            <p>{challenge.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="youth-programs-section">
+        <h3 class="programs-subtitle"><i class="fas fa-seedling"></i> Our Youth Psychosocial Programs</h3>
+        <div class="youth-programs-grid">
+          {youthPsychosocialPrograms.map(program => (
+            <div class="youth-program-card" key={program.title}>
+              <div class="program-icon"><i class={program.icon}></i></div>
+              <h4>{program.title}</h4>
+              <p>{program.description}</p>
+              <div class="program-meta">
+                <span><i class="fas fa-clock"></i> {program.duration}</span>
+                <span><i class="fas fa-users"></i> {program.audience}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach Section -->
+  <section class="approach-section full-width">
+    <div class="section-inner">
+      <div class="approach-header">
+        <div class="section-eyebrow"><i class="fas fa-chalkboard"></i> Our Methodology</div>
+        <h2>How We <span class="accent-red">Deliver Impact</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">A participatory, evidence-based approach to youth psychosocial support</p>
+      </div>
+      <div class="approach-steps">
+        {approachSteps.map(step => (
+          <div class="approach-step" key={step.step}>
+            <div class="step-number">{step.step}</div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Youth Testimonials -->
+  <section class="testimonials-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-quote-left"></i> Voices of Impact</div>
+        <h2>What <span class="accent-red">Youth Are Saying</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Real stories from young people and youth workers who have benefited from our psychosocial support programs</p>
+      </div>
+      <div class="youth-testimonials-grid">
+        {youthTestimonials.map((testimonial, idx) => (
+          <div class="youth-testimonial-card" key={idx}>
+            <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+            <p class="testimonial-text">"{testimonial.quote}"</p>
+            <div class="testimonial-author">
+              <div class="author-flag">{testimonial.flag}</div>
+              <div>
+                <div class="author-name">{testimonial.name}</div>
+                <div class="author-location">{testimonial.location}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="partners-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-handshake"></i> Trusted Partners</div>
+        <h2>Organizations We've <span class="accent-red">Supported</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Collaborating with governments, NGOs, and international agencies to support youth mental health</p>
+      </div>
+      <div class="partners-grid">
+        {youthPartners.map(partner => (
+          <div class="partner-logo-card" key={partner.name}>
+            <img src={partner.logo} alt={partner.name} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-choose-section full-width">
+    <div class="section-inner">
+      <div class="why-choose-grid">
+        <div class="why-choose-text">
+          <div class="section-eyebrow"><i class="fas fa-star"></i> Why Choose Us</div>
+          <h2>Expertise in <span class="accent-red">Youth & Adolescent</span> Psychosocial Support</h2>
+          <div class="section-divider left"></div>
+          <p>Our team combines deep expertise in mental health, youth development, and community-based programming to deliver impactful psychosocial support that resonates with young people.</p>
+          <ul class="why-choose-list">
+            <li><i class="fas fa-check-circle"></i> Evidence-based, age-appropriate methodologies</li>
+            <li><i class="fas fa-check-circle"></i> Culturally contextualized approaches</li>
+            <li><i class="fas fa-check-circle"></i> Experienced youth facilitators and counselors</li>
+            <li><i class="fas fa-check-circle"></i> Participatory and engaging delivery methods</li>
+            <li><i class="fas fa-check-circle"></i> Strong referral networks for ongoing support</li>
+          </ul>
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Discuss Your Needs</a>
+        </div>
+        <div class="why-choose-image">
+          <img src="/hero-empowerment-4.webp" alt="Youth support session" loading="lazy" />
+          <div class="image-stats">
+            <div class="image-stat"><span>5,000+</span> Youth Supported</div>
+            <div class="image-stat"><span>50+</span> Schools & Communities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="consultancy-cta-section full-width">
+    <div class="cta-container">
+      <div class="cta-content">
+        <div class="cta-eyebrow">Ready to Strengthen Youth Support?</div>
+        <h2>Let's Build <span class="cta-highlight">Resilient Youth</span> Together</h2>
+        <p>Contact us to discuss how our consultancy services can support your organization's youth and adolescent psychosocial programs.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-primary btn-large"><i class="fas fa-envelope"></i> Request a Consultation</a>
+          <a href="/services/consultancy-brochure" class="btn-outline-light btn-large"><i class="fas fa-download"></i> Download Brochure</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #5a6e8a;
+    --gray-sf: #f5f7fa;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  .full-width { width: 100%; margin: 0; padding: 0; }
+  .section-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Hero Section */
+  .consultancy-hero {
+    position: relative;
+    min-height: 70vh;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .consultancy-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/hero-community-1.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    filter: blur(2px);
+  }
+  .consultancy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(30,41,59,0.4) 0%, var(--charcoal) 100%);
+  }
+  .consultancy-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .consultancy-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(39, 238, 49, 0.15);
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+  }
+  .consultancy-hero-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+  .consultancy-hero-title .highlight {
+    color: var(--green);
+  }
+  .consultancy-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 650px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  .consultancy-hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Services Grid */
+  .services-grid-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #fff 0%, var(--gray-sf) 100%);
+  }
+  .services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .service-card {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    background: var(--white);
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.6s ease forwards;
+  }
+  .service-card:nth-child(2) { animation-delay: 0.15s; }
+  .service-card:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--green);
+  }
+  .service-card-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .service-card:hover .service-card-image img {
+    transform: scale(1.05);
+  }
+  .service-card-icon {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    backdrop-filter: blur(4px);
+  }
+  .service-card-content {
+    padding: 2rem;
+  }
+  .service-card-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .service-card-desc {
+    color: var(--gray-md);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .service-features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-feature-tag {
+    background: var(--gray-sf);
+    padding: 0.35rem 0.9rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .service-inquire {
+    color: var(--red);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s ease;
+  }
+  .service-inquire:hover {
+    gap: 12px;
+    text-decoration: underline;
+  }
+
+  /* Youth Focus Section */
+  .youth-focus-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--gray-sf) 0%, #fff 100%);
+  }
+  .youth-focus-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .youth-challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .youth-challenge-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .youth-challenge-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--green);
+  }
+  .challenge-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--red-soft);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--red);
+    font-size: 1.8rem;
+  }
+  .youth-challenge-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .youth-challenge-card p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    line-height: 1.5;
+  }
+  .programs-subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--charcoal);
+  }
+  .youth-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .youth-program-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .youth-program-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--red);
+  }
+  .program-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: white;
+    font-size: 1.2rem;
+  }
+  .youth-program-card h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .youth-program-card p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .program-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: var(--gray-md);
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .program-meta i {
+    margin-right: 4px;
+  }
+
+  /* Approach Section */
+  .approach-section {
+    padding: 5rem 0;
+    background: var(--white);
+  }
+  .approach-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .approach-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .approach-step {
+    text-align: center;
+  }
+  .step-number {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  .step-content h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .step-content p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    line-height: 1.5;
+  }
+
+  /* Youth Testimonials */
+  .testimonials-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--gray-sf) 0%, #fff 100%);
+  }
+  .youth-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .youth-testimonial-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .youth-testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--green);
+  }
+  .testimonial-quote {
+    color: var(--green);
+    font-size: 2rem;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+  }
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .author-flag {
+    font-size: 2rem;
+  }
+  .author-name {
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+  .author-location {
+    font-size: 0.7rem;
+    color: var(--gray-md);
+  }
+
+  /* Partners Section */
+  .partners-section {
+    padding: 5rem 0;
+    background: var(--white);
+  }
+  .partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+  .partner-logo-card {
+    background: var(--gray-sf);
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .partner-logo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .partner-logo-card img {
+    max-width: 120px;
+    max-height: 55px;
+    object-fit: contain;
+  }
+
+  /* Why Choose Us */
+  .why-choose-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--gray-sf) 0%, #fff 100%);
+  }
+  .why-choose-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .why-choose-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .why-choose-text p {
+    color: var(--gray-md);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .why-choose-list {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+  .why-choose-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .why-choose-list li i {
+    color: var(--green);
+  }
+  .why-choose-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+  }
+  .why-choose-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .image-stats {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 1rem;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 16px;
+    justify-content: space-around;
+  }
+  .image-stat {
+    text-align: center;
+    font-size: 0.75rem;
+    color: white;
+  }
+  .image-stat span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+
+  /* CTA Section */
+  .consultancy-cta-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .cta-eyebrow {
+    display: inline-block;
+    background: rgba(39, 238, 49, 0.15);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+  }
+  .cta-content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .cta-highlight {
+    color: var(--green);
+  }
+  .cta-content p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .consultancy-hero-title { font-size: 2.8rem; }
+    .service-card { grid-template-columns: 1fr; }
+    .service-card-image { min-height: 220px; }
+    .youth-challenges-grid { grid-template-columns: repeat(2, 1fr); }
+    .youth-programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .approach-steps { grid-template-columns: repeat(2, 1fr); }
+    .youth-testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-choose-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .section-inner { padding: 0 1.5rem; }
+  }
+  @media (max-width: 768px) {
+    .consultancy-hero-title { font-size: 2rem; }
+    .consultancy-hero-desc { font-size: 0.9rem; }
+    .service-card-title { font-size: 1.3rem; }
+    .youth-challenges-grid { grid-template-columns: 1fr; }
+    .youth-programs-grid { grid-template-columns: 1fr; }
+    .approach-steps { grid-template-columns: 1fr; }
+    .youth-testimonials-grid { grid-template-columns: 1fr; }
+    .why-choose-text h2 { font-size: 1.5rem; }
+    .cta-content h2 { font-size: 1.5rem; }
+    .consultancy-hero-buttons { flex-direction: column; align-items: center; }
+    .consultancy-hero-buttons .btn-primary,
+    .consultancy-hero-buttons .btn-outline { width: 100%; justify-content: center; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .cta-buttons .btn-primary,
+    .cta-buttons .btn-outline-light { width: 100%; justify-content: center; }
+    .section-inner { padding: 0 1rem; }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  (function() {
+    const animatedElements = document.querySelectorAll('.service-card, .youth-challenge-card, .youth-program-card, .approach-step, .youth-testimonial-card, .partner-logo-card');
+    if (animatedElements.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      animatedElements.forEach(el => { 
+        el.style.animationPlayState = 'paused'; 
+        observer.observe(el); 
+      });
+    }
+  })();
+</script>

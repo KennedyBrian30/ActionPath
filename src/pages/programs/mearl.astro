@@ -1,0 +1,495 @@
+---
+// programs/mearl.astro
+import Layout from "../../layouts/Layout.astro";
+
+const pillars = [
+  {
+    letter: "M",
+    word: "Monitoring",
+    icon: "fas fa-binoculars",
+    desc: "Continuous tracking of program activities, participants, and early outcomes using community scorecards, attendance registers, and digital data tools. Monitoring tells us what is happening as it happens.",
+    tools: ["Community scorecards", "Mobile data collection", "Attendance registers", "Progress dashboards"],
+  },
+  {
+    letter: "E",
+    word: "Evaluation",
+    icon: "fas fa-magnifying-glass-chart",
+    desc: "Structured assessments at baseline, midline, and endline to measure whether programs are achieving their intended outcomes. We use both quantitative surveys and qualitative focus group discussions.",
+    tools: ["Baseline and endline surveys", "Focus group discussions", "Key informant interviews", "Most Significant Change stories"],
+  },
+  {
+    letter: "A",
+    word: "Accountability",
+    icon: "fas fa-balance-scale",
+    desc: "Mechanisms that give communities a genuine voice in how programs are designed, implemented, and improved. Accountability means communities can question, challenge, and redirect our work.",
+    tools: ["Community feedback sessions", "Grievance and feedback hotlines", "Participatory review meetings", "Duty bearer accountability forums"],
+  },
+  {
+    letter: "R",
+    word: "Research",
+    icon: "fas fa-flask",
+    desc: "Applied research that generates knowledge on what works, what does not, and why. Our research is published and shared openly so the wider development sector can learn alongside us.",
+    tools: ["Operational research studies", "Value chain analysis", "Gender and power analysis", "Context and conflict analysis"],
+  },
+  {
+    letter: "L",
+    word: "Learning",
+    icon: "fas fa-lightbulb",
+    desc: "Structured processes for turning data and evidence into action. Learning closes the loop between what we measure and how we adapt, ensuring programs stay relevant and responsive.",
+    tools: ["After-action reviews", "Learning workshops", "Pause and reflect sessions", "Knowledge management systems"],
+  },
+];
+
+const services = [
+  {
+    icon: "fas fa-clipboard-check",
+    title: "Program Design and Theory of Change",
+    desc: "Before a program launches, we help partners build a robust theory of change, identify measurable indicators, and design data collection systems that are practical in the field.",
+  },
+  {
+    icon: "fas fa-users-gear",
+    title: "Community-Based Monitoring",
+    desc: "We train community volunteers and local staff to lead their own monitoring, reducing dependency on external evaluators and building permanent local capacity for data use.",
+  },
+  {
+    icon: "fas fa-file-contract",
+    title: "Baseline, Midline and Endline Surveys",
+    desc: "Rigorous household surveys that establish a credible starting point and track change over time. Our surveys are designed to meet donor reporting requirements and community feedback needs simultaneously.",
+  },
+  {
+    icon: "fas fa-comments",
+    title: "Participatory Evaluation",
+    desc: "Evaluation that involves communities as analysts, not just respondents. Participants help interpret findings and recommend adaptations, building ownership of program outcomes.",
+  },
+  {
+    icon: "fas fa-chart-pie",
+    title: "Data Visualisation and Reporting",
+    desc: "We translate complex data into clear, accessible reports and visual dashboards for donors, management, and communities alike, ensuring evidence reaches the people who can act on it.",
+  },
+  {
+    icon: "fas fa-chalkboard-teacher",
+    title: "MEARL Capacity Building",
+    desc: "Training for NGO staff, government officials, and community leaders in monitoring fundamentals, data quality, and using evidence for adaptive management.",
+  },
+];
+
+const principles = [
+  { icon: "fas fa-people-group", title: "Community Ownership", desc: "Communities are not just subjects of evaluation. They design questions, collect data, and own findings." },
+  { icon: "fas fa-venus-mars", title: "Gender Sensitivity", desc: "All MEARL tools are designed to disaggregate data by gender, age, and vulnerability status." },
+  { icon: "fas fa-shield-halved", title: "Do No Harm", desc: "Data collection processes are designed to protect privacy, dignity, and safety of all participants." },
+  { icon: "fas fa-arrows-rotate", title: "Adaptive Management", desc: "Evidence is used in real time to improve programs, not just to report after the fact." },
+];
+
+const testimonial = {
+  quote: "For the first time, our community understood the data about our own situation. The MEARL team did not just come and go. They sat with us, explained the findings, and asked us what we wanted to change.",
+  name: "Sarah Owino",
+  role: "Community Scorecard Champion",
+  location: "Busia County, Kenya",
+  flag: "🇰🇪",
+};
+
+const relatedPrograms = [
+  { title: "Agriculture & Climate-Resilient Practices", desc: "See how MEARL tracks food security, income, and climate resilience outcomes in farming communities.", icon: "fas fa-tractor", href: "/programs/agriculture-climate" },
+  { title: "Psychosocial Support & Resilience", desc: "MEARL tools adapted for measuring wellbeing, self-efficacy, and mental health outcomes.", icon: "fas fa-heart", href: "/programs/psychosocial-support" },
+  { title: "Financial Literacy & Livelihood Diversification", desc: "Savings group performance tracking and household income change measurement.", icon: "fas fa-piggy-bank", href: "/programs/financial-literacy" },
+];
+---
+
+<Layout
+  title="Monitoring, Evaluation, Accountability, Research & Learning | ActionPath Africa"
+  description="Community-centred MEARL services that measure what matters, give communities a voice, and turn evidence into better programs. Available as a standalone service or integrated into any ActionPath livelihood program."
+>
+  <!-- HERO: text-forward, no background image, uses charcoal + green -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/programs">Training Programs</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>MEARL</span>
+      </div>
+      <div class="hero-badge">
+        <i class="fas fa-chart-bar"></i> Program 07 &middot; Accountability &amp; Learning
+      </div>
+      <h1>Monitoring, Evaluation, <span class="h1-green">Accountability,</span> Research &amp; Learning</h1>
+      <p class="hero-desc">
+        Good intentions are not enough. MEARL is the discipline that connects what we do to what
+        actually changes in people's lives. It keeps programs honest, communities informed, and
+        organisations learning.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary"><i class="fas fa-handshake"></i> Request MEARL Services</a>
+        <a href="#mearl-pillars" class="btn-ghost"><i class="fas fa-arrow-down"></i> Explore the Framework</a>
+      </div>
+    </div>
+    <div class="hero-letters" aria-hidden="true">
+      {pillars.map((p) => (
+        <div class="hero-letter" key={p.letter}>{p.letter}</div>
+      ))}
+    </div>
+  </section>
+
+  <!-- WHAT IS MEARL -->
+  <section class="intro-section">
+    <div class="intro-card">
+      <div class="intro-icon"><i class="fas fa-compass"></i></div>
+      <div class="intro-body">
+        <h2>Why MEARL matters in community development</h2>
+        <p>
+          Development programs in Africa operate in some of the world's most complex and dynamic
+          contexts. Drought, conflict, displacement, and disease do not follow project timelines.
+          Without strong monitoring and evaluation systems, programs risk delivering outputs that
+          do not translate into outcomes, spending resources on activities that no longer fit the
+          context, and losing the trust of the communities they serve.
+        </p>
+        <p>
+          MEARL is not a bureaucratic requirement. It is the engine of continuous improvement.
+          When communities understand their own data, they can hold programs accountable. When
+          organisations learn systematically, they stop repeating the same mistakes. When research
+          is applied and shared, the whole sector gets better.
+        </p>
+        <p>
+          At ActionPath Africa, MEARL is embedded in every program we run. It is also available
+          as a standalone service for partner organisations who want to strengthen their own
+          evidence and accountability systems.
+        </p>
+        <div class="intro-tags">
+          <span class="itag">SDG 17</span>
+          <span class="itag">Adaptive Management</span>
+          <span class="itag">Community Voice</span>
+          <span class="itag">Participatory Methods</span>
+          <span class="itag">Transparency</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FIVE PILLARS -->
+  <section id="mearl-pillars" class="pillars-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-layer-group"></i> The Framework</div>
+      <h2>Five Pillars of <span class="red-text">Our MEARL Approach</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Each letter represents a discipline. Together they form a learning system that is greater
+        than the sum of its parts.
+      </p>
+    </div>
+    <div class="pillars-grid">
+      {pillars.map((p) => (
+        <div class="pillar-card" key={p.letter}>
+          <div class="pillar-header">
+            <div class="pillar-letter">{p.letter}</div>
+            <div class="pillar-icon"><i class={p.icon}></i></div>
+            <h3>{p.word}</h3>
+          </div>
+          <p>{p.desc}</p>
+          <ul class="pillar-tools">
+            {p.tools.map((tool) => (
+              <li key={tool}><i class="fas fa-check-circle"></i> {tool}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- OUR PRINCIPLES -->
+  <section class="principles-section">
+    <div class="principles-inner">
+      <div class="section-header">
+        <div class="eyebrow light"><i class="fas fa-star"></i> What Guides Us</div>
+        <h2 class="principles-h2">The principles behind <span class="green-text">our practice</span></h2>
+        <div class="divider-center green-div"></div>
+      </div>
+      <div class="principles-grid">
+        {principles.map((pr) => (
+          <div class="principle-card" key={pr.title}>
+            <div class="principle-icon"><i class={pr.icon}></i></div>
+            <h3>{pr.title}</h3>
+            <p>{pr.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-briefcase"></i> What We Offer</div>
+      <h2>MEARL <span class="red-text">Services</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Available as standalone commissions or embedded within any ActionPath livelihood program.
+        We work with NGOs, government agencies, donors, and community organisations.
+      </p>
+    </div>
+    <div class="services-grid">
+      {services.map((s) => (
+        <div class="service-card" key={s.title}>
+          <div class="service-icon"><i class={s.icon}></i></div>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROCESS: timeline style -->
+  <section class="process-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-route"></i> How It Works</div>
+      <h2>A typical MEARL <span class="red-text">engagement</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-marker">01</div>
+        <div class="tl-content">
+          <h3>Scoping and Design</h3>
+          <p>We begin with a scoping conversation to understand your program, your context, and your data needs. Together we agree on a MEARL framework that is realistic, useful, and contextually appropriate.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-marker">02</div>
+        <div class="tl-content">
+          <h3>Baseline Assessment</h3>
+          <p>Before activities begin, we establish a clear picture of conditions on the ground. Baseline data becomes the benchmark against which all future progress is measured.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-marker">03</div>
+        <div class="tl-content">
+          <h3>Ongoing Monitoring</h3>
+          <p>We support your team to collect data regularly using simple, community-friendly tools. Data is reviewed monthly to flag problems early and adapt activities when needed.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-marker">04</div>
+        <div class="tl-content">
+          <h3>Community Accountability Sessions</h3>
+          <p>At regular intervals, findings are shared back with communities in plain language. Communities discuss what the data means, challenge interpretations, and identify what should change.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-marker">05</div>
+        <div class="tl-content">
+          <h3>Endline and Learning Review</h3>
+          <p>At program close, we measure outcomes against the baseline, document lessons learned, and produce a final report that is useful for both donor accountability and future program design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL: full-width quote -->
+  <section class="testi-section">
+    <div class="testi-inner">
+      <i class="fas fa-quote-left testi-bigquote"></i>
+      <p class="testi-bigtext">"{testimonial.quote}"</p>
+      <div class="testi-attr">
+        <span class="testi-flag">{testimonial.flag}</span>
+        <div>
+          <div class="testi-name">{testimonial.name}</div>
+          <div class="testi-role">{testimonial.role} &middot; {testimonial.location}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED PROGRAMS -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-th-large"></i> MEARL in Practice</div>
+      <h2>See MEARL in our <span class="red-text">other programs</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">MEARL does not sit in a separate silo. It is woven into every program we deliver.</p>
+    </div>
+    <div class="related-grid">
+      {relatedPrograms.map((p) => (
+        <a href={p.href} class="related-card" key={p.title}>
+          <div class="rel-icon"><i class={p.icon}></i></div>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="rel-link">Explore <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+    <div class="all-programs-row">
+      <a href="/programs" class="btn-outline-dark"><i class="fas fa-th-large"></i> View All Training Programs</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-eyebrow"><i class="fas fa-bolt"></i> Work With Us</div>
+    <h2 class="cta-h2">Let's build an accountability system your community can trust</h2>
+    <p>Whether you need a baseline survey, a full MEARL framework, or training for your team, we are ready to help you measure what matters.</p>
+    <div class="cta-buttons">
+      <a href="/contact" class="btn-primary btn-lg"><i class="fas fa-envelope"></i> Request MEARL Services</a>
+      <a href="/programs" class="btn-outline-light btn-lg"><i class="fas fa-seedling"></i> All Training Programs</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b; --red-dark: #a93226; --red-soft: rgba(192,57,43,.1);
+    --green: #27ee31; --green-lt: #27f731; --green-soft: rgba(39,238,49,.12);
+    --charcoal: #1e293b; --gray-dk: #334155; --gray-md: #64748b;
+    --gray-sf: #f1f5f9; --white: #ffffff; --border: #e2e8f0;
+    --sh-md: 0 8px 24px rgba(0,0,0,.08); --sh-lg: 0 20px 50px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* HERO: charcoal bg, no image */
+  .hero {
+    background: var(--charcoal);
+    border-radius: 28px;
+    margin: 0 0 2rem;
+    padding: 3.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .75rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .breadcrumb a { color: rgba(255,255,255,.5); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(39,238,49,.15); border: 1px solid rgba(39,238,49,.3); color: var(--green-lt); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .4rem 1rem; border-radius: 40px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: "Outfit", sans-serif; font-size: 2.75rem; font-weight: 900; line-height: 1.1; letter-spacing: -.03em; color: var(--red); margin-bottom: 1.25rem; max-width: 620px; }
+  .h1-green { color: var(--green-lt); }
+  .hero-desc { font-size: 1rem; color: rgba(255,255,255,.78); line-height: 1.72; max-width: 560px; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-letters { display: flex; flex-direction: column; gap: .5rem; }
+  .hero-letter {
+    font-family: "Outfit", sans-serif; font-size: 3rem; font-weight: 900;
+    color: rgba(39,238,49,.15); line-height: 1; width: 60px; text-align: center;
+    transition: color .2s;
+  }
+  .hero:hover .hero-letter { color: rgba(39,238,49,.25); }
+
+  /* INTRO CARD */
+  .intro-section { padding: 2rem 0 3rem; }
+  .intro-card { display: flex; gap: 2rem; align-items: flex-start; background: var(--white); border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--sh-md); }
+  .intro-icon { width: 56px; height: 56px; border-radius: 16px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .intro-body h2 { font-family: "Outfit", sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--charcoal); margin-bottom: 1rem; line-height: 1.3; }
+  .intro-body p { font-size: .9rem; color: var(--gray-md); line-height: 1.75; margin-bottom: .85rem; }
+  .intro-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+  .itag { background: var(--red-soft); color: var(--red); font-size: .72rem; font-weight: 700; padding: .25rem .75rem; border-radius: 20px; border: 1px solid rgba(192,57,43,.2); }
+
+  /* PILLARS */
+  .pillars-section { padding: 3.5rem 0; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .pillar-card { background: var(--white); border-radius: 20px; padding: 1.75rem; border: 1px solid var(--border); transition: var(--ease); border-top: 3px solid var(--red); }
+  .pillar-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+  .pillar-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .pillar-letter { font-family: "Outfit", sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--red); line-height: 1; }
+  .pillar-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+  .pillar-card h3 { font-size: 1rem; font-weight: 700; color: var(--charcoal); }
+  .pillar-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.6; margin-bottom: 1rem; }
+  .pillar-tools { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .pillar-tools li { font-size: .75rem; color: var(--gray-dk); display: flex; align-items: center; gap: 7px; }
+  .pillar-tools li i { color: var(--green); font-size: .68rem; flex-shrink: 0; }
+
+  /* PRINCIPLES */
+  .principles-section { background: var(--charcoal); border-radius: 32px; margin: 2rem 0; padding: 3.5rem 2rem; }
+  .principles-section .section-header h2 { color: var(--green-lt); }
+  .principles-h2 { color: var(--green-lt) !important; }
+  .principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .principle-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 1.5rem; text-align: center; transition: var(--ease); }
+  .principle-card:hover { background: rgba(39,238,49,.07); border-color: rgba(39,238,49,.25); transform: translateY(-3px); }
+  .principle-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(39,238,49,.12); color: var(--green-lt); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin: 0 auto 1rem; }
+  .principle-card h3 { font-size: .9rem; font-weight: 700; color: var(--green-lt); margin-bottom: .5rem; }
+  .principle-card p { font-size: .78rem; color: rgba(255,255,255,.6); line-height: 1.55; }
+
+  /* SERVICES */
+  .services-section { padding: 3.5rem 0; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card { background: var(--gray-sf); border-radius: 20px; padding: 1.5rem; border: 1px solid var(--border); transition: var(--ease); }
+  .service-card:hover { background: var(--white); box-shadow: var(--sh-md); transform: translateY(-3px); border-color: var(--green); }
+  .service-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: 1rem; }
+  .service-card h3 { font-size: .92rem; font-weight: 700; color: var(--charcoal); margin-bottom: .5rem; }
+  .service-card p { font-size: .8rem; color: var(--gray-md); line-height: 1.6; }
+
+  /* TIMELINE */
+  .process-section { padding: 3.5rem 0; }
+  .timeline { display: flex; flex-direction: column; gap: 0; max-width: 780px; margin: 0 auto; }
+  .timeline-item { display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding-bottom: 2rem; position: relative; }
+  .timeline-item:not(:last-child)::before { content: ""; position: absolute; left: 28px; top: 48px; bottom: 0; width: 2px; background: var(--border); }
+  .tl-marker { width: 56px; height: 56px; border-radius: 50%; background: var(--red); color: var(--white); font-family: "Outfit", sans-serif; font-size: .85rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; position: relative; }
+  .tl-content { padding-top: .5rem; }
+  .tl-content h3 { font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: .5rem; }
+  .tl-content p { font-size: .85rem; color: var(--gray-md); line-height: 1.7; }
+
+  /* TESTIMONIAL: centered big quote */
+  .testi-section { background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%); border-radius: 28px; padding: 4rem 3rem; margin: 2rem 0; }
+  .testi-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .testi-bigquote { font-size: 3rem; color: var(--green); opacity: .3; margin-bottom: 1.5rem; display: block; }
+  .testi-bigtext { font-size: 1.2rem; color: rgba(255,255,255,.9); line-height: 1.7; font-style: italic; margin-bottom: 2rem; }
+  .testi-attr { display: inline-flex; align-items: center; gap: 1rem; background: rgba(255,255,255,.08); border-radius: 40px; padding: .6rem 1.25rem; }
+  .testi-flag { font-size: 1.75rem; }
+  .testi-name { font-weight: 700; font-size: .88rem; color: var(--green-lt); }
+  .testi-role { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: 2px; }
+
+  /* RELATED + CTA: reuse from agriculture page */
+  .related-section { padding: 3.5rem 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .related-card { background: var(--white); border-radius: 20px; padding: 1.5rem; border: 1px solid var(--border); border-top: 3px solid var(--red); text-decoration: none; color: inherit; transition: var(--ease); display: flex; flex-direction: column; }
+  .related-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+  .rel-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: .85rem; background: var(--red-soft); color: var(--red); }
+  .related-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; color: var(--charcoal); }
+  .related-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+  .rel-link { font-size: .78rem; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 5px; }
+  .all-programs-row { text-align: center; margin-top: 2.5rem; }
+  .cta-section { background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%); border-radius: 28px; margin: 2rem 0; padding: 4rem 3rem; text-align: center; }
+  .cta-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); color: var(--green-lt); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .cta-h2 { font-family: "Outfit", sans-serif; font-size: 2.25rem; font-weight: 900; color: var(--green-lt); max-width: 600px; margin: 0 auto 1rem; line-height: 1.2; }
+  .cta-section p { color: rgba(255,255,255,.85); font-size: .95rem; max-width: 520px; margin: 0 auto 2rem; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* SHARED */
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--red-soft); color: var(--red); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .eyebrow.light { background: rgba(255,255,255,.12); color: var(--green-lt); border: 1px solid rgba(255,255,255,.15); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 { font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; color: var(--charcoal); }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .divider-center { width: 56px; height: 3px; background: linear-gradient(90deg, var(--red), var(--green)); border-radius: 3px; margin: .75rem auto 1.25rem; }
+  .green-div { background: linear-gradient(90deg, var(--green), #7cffa4); }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green-lt); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: var(--white); padding: .72rem 1.75rem; border-radius: 40px; font-weight: 700; font-size: .9rem; text-decoration: none; border: none; cursor: pointer; transition: var(--ease); }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,.35); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85); padding: .72rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+  .btn-outline-dark { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--charcoal); color: var(--charcoal); padding: .72rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btn-outline-dark:hover { background: var(--charcoal); color: var(--white); transform: translateY(-2px); }
+  .btn-outline-light { display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.4); color: var(--white); padding: .72rem 1.75rem; border-radius: 40px; font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease); }
+  .btn-outline-light:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
+  .btn-lg { padding: .85rem 2rem; font-size: .95rem; }
+
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-letters { display: none; }
+    .pillars-grid, .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .principles-grid { grid-template-columns: repeat(2, 1fr); }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+    .intro-card { flex-direction: column; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 2.5rem 1.5rem; }
+    .hero h1 { font-size: 1.9rem; }
+    .pillars-grid, .services-grid, .principles-grid, .related-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 44px 1fr; gap: 1rem; }
+    .tl-marker { width: 44px; height: 44px; font-size: .75rem; }
+    .testi-section { padding: 2.5rem 1.5rem; }
+    .testi-bigtext { font-size: 1rem; }
+    .cta-section { padding: 2.5rem 1.5rem; }
+    .cta-h2 { font-size: 1.75rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+// /services/training/risk-sustainability.astro
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Risk Analysis & Sustainability Training | ActionPath Africa";
+const pageDescription = "Risk analysis and sustainability separate short-lived youth initiatives from organizations and enterprises that endure. Training organizations to identify risks, plan for them, and build systems that outlast any single funding source.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="cluster-hero">
+      <div class="cluster-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <a href="/services/training">Training Areas</a> <i class="fas fa-chevron-right"></i>
+          <span>Risk Analysis & Sustainability</span>
+        </div>
+        <div class="cluster-icon-large">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h1 class="all-red">Risk Analysis & Sustainability</h1>
+        <p class="cluster-subhead">Risk analysis and sustainability are what separate short-lived youth initiatives from organizations and enterprises that endure. Many youth-led CBOs and startups fail not because they had bad ideas, but because they didn't see risks coming, or they built everything around a single grant that ended. At ActionPath Africa, we train organizations in risk analysis and sustainability to identify what could go wrong, plan for it, and build systems that outlast any single funding source, leader, or opportunity.</p>
+        <div class="cluster-ctas">
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Inquire About Training</a>
+          <a href="/services/training" class="btn-outline"><i class="fas fa-arrow-left"></i> All Training Areas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Risk Analysis Section -->
+    <section class="cluster-focus">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-shield-alt"></i> Risk Analysis</div>
+          <h2>Learning <span class="accent-red">Areas</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-item">What Is Risk?</div>
+          <div class="focus-item">The 5 Types of Risks Organizations Face</div>
+          <div class="focus-item">The Simple Risk Analysis Process (4 Steps)</div>
+          <div class="focus-item">The Risk Matrix</div>
+          <div class="focus-item">Risk Register (Simple Template)</div>
+          <div class="focus-item">Common Youth Organization Risks (And Prevention)</div>
+          <div class="focus-item">Risk Analysis for Specific ActionPath Africa Trainings</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="cluster-focus sustainability-section">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-tree"></i> Sustainability</div>
+          <h2>Building <span class="accent-red">Sustainability</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-item">What Is Sustainability? (Beyond Money)</div>
+          <div class="focus-item">Financial Sustainability</div>
+          <div class="focus-item">Income sources for groups (beyond grants)</div>
+          <div class="focus-item">Income-generating activities (IGAs): chicken project, tree nursery, hiring out chairs/tents, catering</div>
+          <div class="focus-item">Service fees (Charging a small fee for training, consultation, or services)</div>
+          <div class="focus-item">Local fundraising: Harambees, community events, donations from local businesses</div>
+          <div class="focus-item">Multiple grants/donors</div>
+          <div class="focus-item">Operational Sustainability (What Happens If You Leave?)</div>
+          <div class="focus-item">Programmatic Sustainability (Creating Lasting Change)</div>
+          <div class="focus-item">Social Sustainability (Community Ownership)</div>
+          <div class="focus-item">Sustainability Planning (The 1-Page Plan)</div>
+          <div class="focus-item">The Sustainability Continuum (Where Is Your Organization?)</div>
+          <div class="focus-item">Common Sustainability Myths</div>
+          <div class="focus-item">Risk & Sustainability Case Studies (For Training)</div>
+          <div class="focus-item">Case Studies</div>
+        </div>
+
+        <div class="focus-cta">
+          <a href="/contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Book a Training Session</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Programs -->
+    <section class="cluster-related">
+      <div class="cluster-container">
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>How to Establish a CBO</h3>
+            <p>Build a sustainable organization from day one.</p>
+            <a href="/services/training/establish-cbo">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-tasks"></i>
+            <h3>Project Planning & Management</h3>
+            <p>Plan projects with sustainability in mind.</p>
+            <a href="/services/training/project-management">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>Grants & Proposal Writing</h3>
+            <p>Write proposals that include sustainability plans.</p>
+            <a href="/services/training/proposal-writing">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .sustainability-section {
+    background: var(--gray-sf);
+  }
+  .sustainability-section .focus-item {
+    background: white;
+  }
+  @media (max-width: 768px) {
+    .sustainability-section .focus-item {
+      background: var(--gray-sf);
+    }
+  }
+</style>

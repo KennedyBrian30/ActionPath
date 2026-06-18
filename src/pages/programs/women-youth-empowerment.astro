@@ -1,0 +1,972 @@
+---
+// programs/women-youth-governance.astro - Women, Youth Empowerment & Governance
+import Layout from "../../layouts/Layout.astro";
+
+// Breaking the cycle: From marginalization to leadership
+const storyHighlights = [
+  {
+    icon: "fas fa-chalkboard-user",
+    stat: "3,200+",
+    label: "Young leaders trained",
+    desc: "Across Kenya, Ethiopia, Rwanda, and Uganda",
+    color: "#e67e22",
+  },
+  {
+    icon: "fas fa-briefcase",
+    stat: "1,850+",
+    label: "Jobs & enterprises created",
+    desc: "Sustainable income for women and youth",
+    color: "#27ee31",
+  },
+  {
+    icon: "fas fa-landmark",
+    stat: "45+",
+    label: "Policy dialogues facilitated",
+    desc: "Holding duty bearers accountable",
+    color: "#e67e22",
+  },
+  {
+    icon: "fas fa-female",
+    stat: "68%",
+    label: "Women in leadership roles",
+    desc: "Breaking barriers, shifting power",
+    color: "#27ee31",
+  },
+];
+
+// The four pillars of our approach
+const pillars = [
+  {
+    icon: "fas fa-briefcase",
+    title: "Economic Empowerment",
+    description: "We don't just talk about employment — we create pathways. From vocational training and business incubation to market linkages and access to finance, we equip young people with what they actually need to earn, save, and grow.",
+    examples: ["Youth entrepreneurship bootcamps", "Women-led cooperative development", "Digital skills & gig economy access", "Savings & loan groups"],
+    color: "#e67e22",
+  },
+  {
+    icon: "fas fa-gavel",
+    title: "Governance & Accountability",
+    description: "Democracy means nothing if young people and women can't influence decisions that shape their lives. We train communities in civic engagement, budget tracking, and holding elected officials accountable — then we create spaces where those conversations actually happen.",
+    examples: ["Citizen scorecards for public services", "Youth parliamentary forums", "Gender-responsive budgeting advocacy", "Community-led accountability audits"],
+    color: "#d35400",
+  },
+  {
+    icon: "fas fa-tint",
+    title: "Gender-Responsive Public Services",
+    description: "Water, health, education — these aren't just services. They're rights. We work with communities to identify gaps in public service delivery and advocate for systems that actually work for women, girls, and marginalized groups.",
+    examples: ["WASH access for girls in schools", "Reproductive health rights awareness", "Education retention campaigns", "Public service satisfaction tracking"],
+    color: "#27ee31",
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Resource Redistribution & Progressive Taxation",
+    description: "Real change requires real resources. We mobilize communities to understand how public money flows — and advocate for tax systems that fund the services everyone needs, not just the powerful few.",
+    examples: ["Public finance literacy training", "Community scorecards on budget allocation", "Advocacy for progressive tax policies", "Transparent resource tracking"],
+    color: "#e67e22",
+  },
+];
+
+// Stories from the ground — narrative style, not boxed
+const fieldStories = [
+  {
+    name: "Sarah Achieng",
+    age: 24,
+    location: "Kisumu, Kenya",
+    image: "/story-sarah.webp",
+    quote: "Before ActionPath, I didn't know how to speak to a government official. Now I lead a youth group that has secured two public water points for our ward. We tracked the budget, we asked the hard questions, and we won.",
+    journey: "From unemployed graduate → Youth governance leader → Elected youth representative to the county assembly",
+    icon: "fas fa-star-of-life",
+  },
+  {
+    name: "Fatuma Hassan",
+    age: 31,
+    location: "Garissa, Kenya",
+    image: "/story-fatuma.webp",
+    quote: "They told me women belong at home. Now I run a cooperative of 45 women who supply school meals across three counties. The training wasn't just about business — it was about knowing my rights and refusing to be invisible.",
+    journey: "From pastoralist wife → Women's cooperative chair → County agribusiness mentor",
+    icon: "fas fa-dove",
+  },
+  {
+    name: "Emmanuel Rukundo",
+    age: 27,
+    location: "Kigali, Rwanda",
+    image: "/story-emmanuel.webp",
+    quote: "After the genocide, my community was broken. We learned that governance isn't about big people in big buildings — it's about us. The accountability training gave us tools to rebuild trust, one public meeting at a time.",
+    journey: "From conflict-affected youth → Community organizer → District youth council advisor",
+    icon: "fas fa-hands-helping",
+  },
+];
+
+const upcomingTrainings = [
+  {
+    title: "Youth Leadership & Civic Engagement Bootcamp",
+    date: "March 15-19, 2026",
+    location: "Nairobi, Kenya",
+    format: "In-person + hybrid",
+    spots: "25 spots remaining",
+    href: "/contact",
+  },
+  {
+    title: "Gender-Responsive Budgeting Workshop",
+    date: "April 5-9, 2026",
+    location: "Kigali, Rwanda",
+    format: "In-person",
+    spots: "18 spots remaining",
+    href: "/contact",
+  },
+  {
+    title: "Community Accountability Facilitator Training",
+    date: "May 10-14, 2026",
+    location: "Addis Ababa, Ethiopia",
+    format: "Virtual",
+    spots: "40 spots remaining",
+    href: "/contact",
+  },
+];
+
+// Simple FAQ - because people have questions
+const faqs = [
+  {
+    q: "Who is this program for?",
+    a: "Young people (ages 18-35) and women from marginalized communities — whether you're in a rural village, an urban settlement, or a displacement camp. No formal education required, just a commitment to change.",
+  },
+  {
+    q: "How is this different from other empowerment programs?",
+    a: "Most programs stop at skills training. We go further — into governance, accountability, and advocacy. We don't just prepare you for the economy; we prepare you to change the rules of the economy.",
+  },
+  {
+    q: "Do you work with government?",
+    a: "Yes — and we also hold government accountable. We partner with local and national governments when they're serious about inclusion. But our first loyalty is always to the communities we serve.",
+  },
+  {
+    q: "Can my organization partner with you?",
+    a: "Absolutely. We work with NGOs, CBOs, government agencies, and private sector partners who want to deepen their impact on youth and women's empowerment. Reach out and let's talk.",
+  },
+];
+---
+
+<Layout
+  title="Women, Youth Empowerment & Governance | ActionPath Africa"
+  description="Facilitating young people's access to employment and income opportunities. Promoting just and democratic governance by holding duty bearers accountable. Advocating for gender-responsive public services and resource redistribution."
+>
+
+  <!-- ── HERO: Less structured, more story ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/women-youth-governance-hero.webp" alt="Young women and men in community leadership training" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/programs">Livelihood Programs</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Women, Youth Empowerment & Governance</span>
+      </div>
+
+      <h1>
+        <span class="hero-orange">Your voice.</span><br />
+        <span class="hero-green">Your power.</span><br />
+        Your future.
+      </h1>
+
+      <p class="hero-desc">
+        Young people and women aren't waiting for permission anymore. Neither are we. 
+        This program is about economic power, political voice, and the guts to demand 
+        what you deserve — from a living wage to clean water to a seat at the table.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary">
+          <i class="fas fa-hands-helping"></i> Join a training
+        </a>
+        <a href="#pillars" class="btn-outline-hero">
+          <i class="fas fa-arrow-down"></i> How it works
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SNAPSHOT: Numbers that tell a story ── -->
+  <div class="snapshot-strip">
+    {storyHighlights.map((item) => (
+      <div class="snapshot-item" key={item.label}>
+        <i class={item.icon} style={`color: ${item.color}`}></i>
+        <div class="snapshot-stat">{item.stat}</div>
+        <div class="snapshot-label">{item.label}</div>
+        <div class="snapshot-desc">{item.desc}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- ── OPENING NARRATIVE ── -->
+  <section class="narrative-section">
+    <div class="narrative-text">
+      <div class="eyebrow"><i class="fas fa-quote-right"></i> Why this exists</div>
+      <h2>Empowerment without power is just <span class="orange-text">performance</span>.</h2>
+      <div class="divider-left"></div>
+      <p class="narrative-lead">
+        Too many programs hand out certificates without changing who holds power. 
+        We're not interested in that.
+      </p>
+      <p>
+        ActionPath Africa started this program because we watched young people graduate from 
+        skills training — only to realize they had no say in the policies, budgets, or 
+        systems that determined whether they'd ever use those skills.
+      </p>
+      <p>
+        So we built something different. Economic training <em>plus</em> governance education. 
+        Job skills <em>plus</em> accountability tools. Income generation <em>plus</em> advocacy power.
+      </p>
+      <p>
+        Because a woman who can run a business but can't access clean water for her community? 
+        That's not empowerment. That's a trap.
+      </p>
+      <div class="signature-quote">
+        <i class="fas fa-quote-left"></i> We're building leaders who don't just navigate the system — they change it.
+      </div>
+    </div>
+    <div class="narrative-image">
+      <img src="/women-youth-meeting.webp" alt="Community meeting with women and youth leaders" loading="lazy" />
+      <div class="image-caption">Community governance training, Siaya County, Kenya</div>
+    </div>
+  </section>
+
+  <!-- ── FOUR PILLARS (Core approach) ── -->
+  <section id="pillars" class="pillars-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-building-columns"></i> Our Framework</div>
+      <h2>Four pillars. One <span class="orange-text">integrated approach</span>.</h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        You can't separate economic empowerment from political power. So we don't.
+      </p>
+    </div>
+
+    <div class="pillars-flow">
+      {pillars.map((pillar, idx) => (
+        <div class="pillar-card" key={pillar.title}>
+          <div class="pillar-icon" style={`background: ${pillar.color}18; color: ${pillar.color}`}>
+            <i class={pillar.icon}></i>
+          </div>
+          <div class="pillar-content">
+            <h3>{pillar.title}</h3>
+            <p class="pillar-desc">{pillar.description}</p>
+            <div class="pillar-examples">
+              {pillar.examples.map((ex) => (
+                <span class="pillar-tag" key={ex}>{ex}</span>
+              ))}
+            </div>
+          </div>
+          {idx < pillars.length - 1 && (
+            <div class="pillar-connector">
+              <i class="fas fa-arrow-down"></i>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── FIELD STORIES: Free-flowing testimonials ── -->
+  <section class="stories-section">
+    <div class="section-header">
+      <div class="eyebrow light"><i class="fas fa-microphone-alt"></i> Real people. Real change.</div>
+      <h2>Stories from the <span class="green-text">ground</span></h2>
+      <div class="divider-center green-div"></div>
+      <p class="section-sub light-sub">
+        Not case studies. Not impact reports. Just people building power.
+      </p>
+    </div>
+
+    <div class="stories-container">
+      {fieldStories.map((story, idx) => (
+        <div class={`story-card story-card--${idx % 2 === 0 ? 'left' : 'right'}`} key={story.name}>
+          <div class="story-image">
+            <div class="story-image-placeholder">
+              <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="story-icon"><i class={story.icon}></i></div>
+          </div>
+          <div class="story-content">
+            <div class="story-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>"{story.quote}"</p>
+            </div>
+            <div class="story-meta">
+              <strong>{story.name}</strong>, {story.age} · {story.location}
+            </div>
+            <div class="story-journey">
+              <i class="fas fa-road"></i> {story.journey}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── HOW WE DELIVER: Process flow ── -->
+  <section class="delivery-section">
+    <div class="delivery-inner">
+      <div class="delivery-text">
+        <div class="eyebrow"><i class="fas fa-route"></i> How it happens</div>
+        <h2>From participant to <span class="orange-text">power-builder</span></h2>
+        <div class="divider-left"></div>
+        <p>
+          Our methodology isn't linear — it's layered. People move through these phases 
+          at their own pace, looping back, building on what they've learned, and — crucially — 
+          teaching others along the way.
+        </p>
+      </div>
+      <div class="delivery-flow">
+        <div class="flow-node">
+          <div class="flow-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h4>1. Entry & trust-building</h4>
+          <p>Community dialogues, listening sessions, and needs mapping — no agendas, just listening.</p>
+        </div>
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="flow-node">
+          <div class="flow-icon"><i class="fas fa-chalkboard-user"></i></div>
+          <h4>2. Skills for the economy</h4>
+          <p>Vocational training, business incubation, digital literacy — real skills for real markets.</p>
+        </div>
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="flow-node">
+          <div class="flow-icon"><i class="fas fa-gavel"></i></div>
+          <h4>3. Governance & accountability</h4>
+          <p>Civic education, budget tracking, citizen scorecards — tools to demand accountability.</p>
+        </div>
+        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="flow-node">
+          <div class="flow-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>4. Advocacy & action</h4>
+          <p>Community-led campaigns, policy engagement, and resource mobilization for systemic change.</p>
+        </div>
+        <div class="flow-arrow"><i class="fas fa-arrow-left"></i></div>
+        <div class="flow-node flow-node--loop">
+          <div class="flow-icon"><i class="fas fa-users"></i></div>
+          <h4>5. Cascade & sustain</h4>
+          <p>Graduates become trainers. Trainers become organizers. The cycle continues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UPCOMING TRAININGS (Call to action block) ── -->
+  <section class="trainings-section">
+    <div class="trainings-header">
+      <i class="fas fa-calendar-alt"></i>
+      <h2>Come train with us</h2>
+      <p>Public trainings are open to individuals. Want something for your organization? <a href="/contact">Reach out →</a></p>
+    </div>
+    <div class="trainings-grid">
+      {upcomingTrainings.map((training) => (
+        <div class="training-card" key={training.title}>
+          <h3>{training.title}</h3>
+          <div class="training-meta">
+            <span><i class="fas fa-calendar-day"></i> {training.date}</span>
+            <span><i class="fas fa-map-marker-alt"></i> {training.location}</span>
+            <span><i class="fas fa-laptop"></i> {training.format}</span>
+          </div>
+          <div class="training-spots">{training.spots}</div>
+          <a href={training.href} class="btn-training">Register interest <i class="fas fa-arrow-right"></i></a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── FREQUENTLY ASKED QUESTIONS ── -->
+  <section class="faq-section">
+    <div class="section-header">
+      <div class="eyebrow"><i class="fas fa-question-circle"></i> Curious?</div>
+      <h2>Questions we <span class="orange-text">actually hear</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="faq-grid">
+      {faqs.map((faq, idx) => (
+        <details class="faq-item" key={idx} open={idx === 0}>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── FINAL INVITATION (No hard sell) ── -->
+  <section class="final-invite">
+    <div class="invite-inner">
+      <i class="fas fa-hand-peace fa-2x"></i>
+      <h2>This isn't a program you complete.<br />It's a movement you join.</h2>
+      <p>
+        Whether you're a young person ready to lead, a woman tired of being ignored, 
+        or an organization that wants to partner — we're here. The door is open.
+      </p>
+      <div class="invite-buttons">
+        <a href="/contact" class="btn-primary">
+          <i class="fas fa-envelope"></i> Let's talk
+        </a>
+        <a href="/services/cbo-capacity-building" class="btn-outline-dark">
+          <i class="fas fa-hand-holding-heart"></i> Partner with us
+        </a>
+      </div>
+      <p class="invite-note">
+        <i class="fas fa-globe-africa"></i> Active in Kenya, Rwanda, Ethiopia, and Uganda
+      </p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --orange: #e67e22;
+    --orange-dark: #d35400;
+    --orange-soft: rgba(230, 126, 34, 0.12);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --green-soft: rgba(39, 238, 49, 0.12);
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #64748b;
+    --gray-sf: #f1f5f9;
+    --white: #ffffff;
+    --border: #e2e8f0;
+  }
+
+  /* Hero - different vibe, more personal */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: -2.5rem -2rem 0;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(30,41,59,.94) 0%, rgba(30,41,59,.75) 55%, rgba(230,126,34,.4) 100%);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2rem 6rem;
+    max-width: 720px;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.5);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.55); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-orange { color: var(--orange); }
+  .hero-green { color: var(--green-lt); }
+  .hero-desc {
+    font-size: 1.05rem; color: rgba(255,255,255,.85);
+    line-height: 1.7; max-width: 580px; margin-bottom: 2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; transition: all .25s;
+  }
+  .btn-primary:hover {
+    background: var(--orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(230,126,34,.35);
+  }
+  .btn-outline-hero {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.4); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; transition: all .25s;
+    background: transparent;
+  }
+  .btn-outline-hero:hover {
+    background: rgba(255,255,255,.1); border-color: white;
+  }
+  .btn-outline-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid var(--charcoal); color: var(--charcoal);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; transition: all .25s;
+    background: transparent;
+  }
+  .btn-outline-dark:hover {
+    background: var(--charcoal); color: white; transform: translateY(-2px);
+  }
+  .btn-training {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--orange);
+    font-weight: 700; font-size: .85rem;
+    text-decoration: none; transition: all .2s;
+  }
+  .btn-training:hover { gap: 12px; color: var(--orange-dark); }
+
+  /* Snapshot strip - numbers */
+  .snapshot-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,.05);
+    border-radius: 20px;
+    margin: -2rem 0 2rem;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,.05);
+  }
+  .snapshot-item {
+    padding: 1.75rem;
+    text-align: center;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+  }
+  .snapshot-item:last-child { border-right: none; }
+  .snapshot-item i { font-size: 1.75rem; margin-bottom: .75rem; display: block; }
+  .snapshot-stat {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--charcoal); line-height: 1;
+  }
+  .snapshot-label {
+    font-size: .8rem; font-weight: 700;
+    color: var(--orange); margin: .5rem 0 .25rem;
+  }
+  .snapshot-desc { font-size: .7rem; color: var(--gray-md); }
+
+  /* Shared utilities */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange-soft); color: var(--orange);
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .35rem 1rem; border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .eyebrow.light {
+    background: rgba(255,255,255,.12);
+    color: var(--green-lt);
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: .5rem;
+    color: var(--charcoal);
+  }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .light-sub { color: rgba(255,255,255,.7); }
+  .divider-center {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--green));
+    border-radius: 3px; margin: .75rem auto 1.25rem;
+  }
+  .green-div { background: linear-gradient(90deg, var(--green), #7cffa4); }
+  .divider-left {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--green));
+    border-radius: 3px; margin: .75rem 0 1.25rem;
+  }
+  .orange-text { color: var(--orange); }
+  .green-text { color: var(--green-lt); }
+
+  /* Narrative section - more story-like */
+  .narrative-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    padding: 3rem 0;
+    align-items: center;
+  }
+  .narrative-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem; font-weight: 800;
+    letter-spacing: -.02em;
+    margin-bottom: .5rem;
+    color: var(--charcoal);
+  }
+  .narrative-lead {
+    font-size: 1rem; font-weight: 600;
+    color: var(--orange); line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .narrative-text p {
+    font-size: .9rem; color: var(--gray-md);
+    line-height: 1.75; margin-bottom: 1rem;
+  }
+  .signature-quote {
+    background: var(--orange-soft);
+    padding: 1.25rem 1.5rem;
+    border-radius: 20px;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-top: 1.5rem;
+    border-left: 3px solid var(--orange);
+  }
+  .signature-quote i { margin-right: 8px; opacity: .5; }
+  .narrative-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,.1);
+  }
+  .narrative-image img {
+    width: 100%; height: 450px;
+    object-fit: cover; display: block;
+  }
+  .image-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,.7);
+    color: white; font-size: .7rem;
+    padding: .5rem; text-align: center;
+  }
+
+  /* Pillars section - flowing vertically */
+  .pillars-section {
+    padding: 3rem 0;
+    background: var(--gray-sf);
+    border-radius: 32px;
+    margin: 2rem 0;
+  }
+  .pillars-flow {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .pillar-card {
+    display: flex;
+    gap: 1.5rem;
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    border: 1px solid var(--border);
+    transition: all .25s;
+  }
+  .pillar-card:hover {
+    transform: translateX(8px);
+    border-color: var(--green);
+    box-shadow: 0 12px 28px rgba(0,0,0,.08);
+  }
+  .pillar-icon {
+    width: 60px; height: 60px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .pillar-content { flex: 1; }
+  .pillar-content h3 {
+    font-size: 1.25rem; font-weight: 800;
+    margin-bottom: .75rem;
+    color: var(--charcoal);
+  }
+  .pillar-desc { font-size: .9rem; color: var(--gray-md); line-height: 1.65; margin-bottom: 1rem; }
+  .pillar-examples { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .pillar-tag {
+    background: var(--orange-soft);
+    color: var(--orange);
+    font-size: .7rem; font-weight: 600;
+    padding: .2rem .7rem;
+    border-radius: 20px;
+  }
+  .pillar-connector {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0 8px;
+    color: var(--orange);
+    font-size: .85rem;
+  }
+  .pillar-connector i:first-child { display: none; }
+  .pillar-card:last-child .pillar-connector { display: none; }
+
+  /* Stories section - free flowing testimonials */
+  .stories-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+    border-radius: 32px;
+    margin: 2rem 0;
+    padding: 4rem 2rem;
+  }
+  .stories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .story-card {
+    display: flex;
+    gap: 2rem;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(4px);
+    border-radius: 28px;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,.1);
+    transition: all .25s;
+  }
+  .story-card:hover { background: rgba(255,255,255,.08); transform: translateY(-4px); }
+  .story-card--right { flex-direction: row-reverse; }
+  .story-image {
+    flex-shrink: 0;
+    position: relative;
+  }
+  .story-image-placeholder {
+    width: 100px; height: 100px;
+    background: rgba(230,126,34,.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--orange);
+  }
+  .story-icon {
+    position: absolute;
+    bottom: -10px; right: -10px;
+    background: var(--green);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--charcoal);
+    font-size: .9rem;
+  }
+  .story-content { flex: 1; }
+  .story-quote i { color: var(--green-lt); opacity: .5; font-size: 1.5rem; margin-bottom: .5rem; display: block; }
+  .story-quote p {
+    font-size: 1rem; line-height: 1.65;
+    color: rgba(255,255,255,.9);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .story-meta {
+    font-size: .85rem; font-weight: 600;
+    color: var(--orange);
+    margin-bottom: .5rem;
+  }
+  .story-journey {
+    font-size: .8rem;
+    color: rgba(255,255,255,.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .story-journey i { color: var(--green-lt); font-size: .7rem; }
+
+  /* Delivery section - free flow process */
+  .delivery-section {
+    padding: 3rem 0;
+  }
+  .delivery-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .delivery-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.8rem; font-weight: 800;
+    margin-bottom: .5rem;
+    color: var(--charcoal);
+  }
+  .delivery-text p { font-size: .9rem; color: var(--gray-md); line-height: 1.7; }
+  .delivery-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+  }
+  .flow-node {
+    flex: 1;
+    min-width: 140px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1rem;
+    text-align: center;
+    transition: all .25s;
+  }
+  .flow-node:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .flow-node--loop {
+    background: var(--orange-soft);
+    border-color: var(--orange);
+  }
+  .flow-icon {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: .5rem;
+  }
+  .flow-node h4 { font-size: .8rem; font-weight: 800; margin-bottom: .25rem; color: var(--charcoal); }
+  .flow-node p { font-size: .7rem; color: var(--gray-md); }
+  .flow-arrow { color: var(--orange); font-size: 1rem; }
+
+  /* Trainings section */
+  .trainings-section {
+    background: var(--orange-soft);
+    border-radius: 28px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+  }
+  .trainings-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .trainings-header i {
+    font-size: 2rem;
+    color: var(--orange);
+    margin-bottom: .5rem;
+    display: inline-block;
+  }
+  .trainings-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.75rem; font-weight: 800;
+    color: var(--charcoal);
+  }
+  .trainings-header p { color: var(--gray-md); font-size: .9rem; }
+  .trainings-header a { color: var(--orange); text-decoration: none; font-weight: 600; }
+  .trainings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .training-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: all .25s;
+  }
+  .training-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 12px 24px rgba(0,0,0,.08); }
+  .training-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .5rem; color: var(--charcoal); }
+  .training-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; font-size: .7rem; color: var(--gray-md); }
+  .training-meta i { color: var(--orange); width: 14px; }
+  .training-spots {
+    font-size: .7rem; font-weight: 700;
+    color: var(--orange); margin-bottom: 1rem;
+  }
+
+  /* FAQ - details/summary pattern */
+  .faq-section {
+    padding: 3rem 0;
+  }
+  .faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all .25s;
+  }
+  .faq-item:hover { border-color: var(--orange); }
+  .faq-item summary {
+    padding: 1.25rem;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--charcoal);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.25rem;
+    color: var(--orange);
+  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item p {
+    padding: 0 1.25rem 1.25rem;
+    font-size: .85rem;
+    color: var(--gray-md);
+    line-height: 1.65;
+  }
+
+  /* Final invite */
+  .final-invite {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #fefcf8 0%, #fff 100%);
+    border-radius: 32px;
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .invite-inner h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem; font-weight: 800;
+    margin: 1rem 0;
+    color: var(--charcoal);
+  }
+  .invite-inner p { color: var(--gray-md); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .invite-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .invite-note { font-size: .8rem; color: var(--gray-md); }
+  .invite-note i { color: var(--green); }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .hero h1 { font-size: 2.8rem; }
+    .snapshot-strip { grid-template-columns: repeat(2, 1fr); }
+    .snapshot-item { border-bottom: 1px solid var(--border); }
+    .narrative-section,
+    .delivery-inner,
+    .story-card,
+    .story-card--right { grid-template-columns: 1fr; flex-direction: column; }
+    .pillar-card { flex-direction: column; }
+    .trainings-grid { grid-template-columns: 1fr; }
+    .pillar-connector i:first-child { display: inline-block; }
+    .pillar-connector i:last-child { display: none; }
+    .flow-arrow { display: none; }
+    .delivery-flow { flex-direction: column; }
+    .flow-node { width: 100%; }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-inner { padding: 2rem 1.25rem 4rem; }
+    .snapshot-strip { grid-template-columns: 1fr; }
+    .section-header h2 { font-size: 1.5rem; }
+    .pillar-card { padding: 1.25rem; }
+    .story-card { padding: 1.25rem; }
+    .trainings-section { padding: 1.5rem; }
+    .invite-buttons { flex-direction: column; align-items: center; }
+  }
+</style>

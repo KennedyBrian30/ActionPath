@@ -1,0 +1,309 @@
+---
+// /services/training/entrepreneurship.astro
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Design-driven Entrepreneurship Training | ActionPath Africa";
+const pageDescription = "Learn design thinking, business fundamentals, and practical skills to launch and grow sustainable enterprises.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="cluster-hero">
+      <div class="cluster-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <a href="/services/training">Training Areas</a> <i class="fas fa-chevron-right"></i>
+          <span>Design-driven Entrepreneurship</span>
+        </div>
+        <div class="cluster-icon-large">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h1><span class="accent-red">Design-driven Entrepreneurship</span></h1>
+        <p class="cluster-subhead">In our design‑focused entrepreneurship training, the goal is to equip participants with both creative design thinking skills and practical business acumen. This area is powerful because it blends innovation with livelihood creation.</p>
+        <div class="cluster-ctas">
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="/services/training" class="btn-outline"><i class="fas fa-arrow-left"></i> All Training Areas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Four Pillars Section -->
+    <section class="cluster-pillars">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-graduation-cap"></i> What You'll Learn</div>
+          <h2>Structured <span class="accent-red">Breakdown</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <!-- Pillar 1 -->
+        <div class="pillar-card">
+          <div class="pillar-number">01</div>
+          <div class="pillar-icon"><i class="fas fa-pencil-ruler"></i></div>
+          <div class="pillar-content">
+            <h3>Core Design Skills</h3>
+            <p>Master the fundamental design thinking methodologies that drive innovation and human-centered problem solving.</p>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar-card">
+          <div class="pillar-number">02</div>
+          <div class="pillar-icon"><i class="fas fa-chart-pie"></i></div>
+          <div class="pillar-content">
+            <h3>Entrepreneurship Foundations</h3>
+            <p>Build the business muscle needed to turn creative ideas into sustainable, profitable ventures.</p>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-card">
+          <div class="pillar-number">03</div>
+          <div class="pillar-icon"><i class="fas fa-hand-sparkles"></i></div>
+          <div class="pillar-content">
+            <h3>Applied Design for Livelihoods</h3>
+            <p>Connect design skills directly to income-generating opportunities in your community context.</p>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar-card">
+          <div class="pillar-number">04</div>
+          <div class="pillar-icon"><i class="fas fa-handshake"></i></div>
+          <div class="pillar-content">
+            <h3>Soft Skills & Ecosystem</h3>
+            <p>Develop the personal capabilities and professional networks that accelerate entrepreneurial success.</p>
+          </div>
+        </div>
+
+        <div class="pillar-cta">
+          <a href="/contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Join the Next Cohort</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Programs -->
+    <section class="cluster-related">
+      <div class="cluster-container">
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="fas fa-users"></i>
+            <h3>Youth Employability Skills</h3>
+            <p>Bridge the gap between education and the labour market.</p>
+            <a href="/services/training/youth-employability">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-briefcase"></i>
+            <h3>Consultancy Services</h3>
+            <p>Need custom curriculum development or business mentorship?</p>
+            <a href="/services/consultancy">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .cluster-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 4rem 0;
+    color: white;
+  }
+  .cluster-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .cluster-breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+  .cluster-breadcrumb a {
+    color: var(--green-lt);
+    text-decoration: none;
+  }
+  .cluster-breadcrumb i {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+  }
+  .cluster-icon-large {
+    font-size: 4rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .cluster-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .accent-red { color: var(--red); }
+  .cluster-subhead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 700px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .cluster-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--green);
+    background: rgba(39,238,49,0.1);
+  }
+  .cluster-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.4rem 1.3rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+  .cluster-pillars {
+    padding: 5rem 0;
+    background: white;
+  }
+  .pillar-card {
+    display: grid;
+    grid-template-columns: 60px 60px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--gray-sf);
+    border-radius: 20px;
+    align-items: center;
+  }
+  .pillar-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.5;
+  }
+  .pillar-icon {
+    font-size: 1.8rem;
+    color: var(--green);
+  }
+  .pillar-content h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    color: var(--charcoal);
+  }
+  .pillar-content p {
+    color: var(--gray-md);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .pillar-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .cluster-related {
+    padding: 3rem 0 5rem;
+    background: var(--gray-sf);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .related-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .related-card i {
+    font-size: 2rem;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+  .related-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  .related-card p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    margin-bottom: 1rem;
+  }
+  .related-card a {
+    color: var(--red);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  .related-card a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .pillar-card { grid-template-columns: 1fr; text-align: center; gap: 0.5rem; }
+    .cluster-hero h1 { font-size: 2rem; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

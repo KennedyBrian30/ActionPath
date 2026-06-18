@@ -1,0 +1,279 @@
+---
+// /services/training/facilitation-skills.astro
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Facilitation Skills Training | ActionPath Africa";
+const pageDescription = "Training people to lead meetings, workshops, and community conversations effectively, whether they are CBO coordinators, NGO trainers, project leads, or peer educators.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="cluster-hero">
+      <div class="cluster-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <a href="/services/training">Training Areas</a> <i class="fas fa-chevron-right"></i>
+          <span>Facilitation Skills</span>
+        </div>
+        <div class="cluster-icon-large">
+          <i class="fas fa-chalkboard-user"></i>
+        </div>
+        <h1 class="all-red">Facilitation Skills</h1>
+        <p class="cluster-subhead">At ActionPath Africa, we train people in facilitation to lead meetings, workshops, and community conversations effectively, whether they are CBO coordinators, NGO trainers, project leads, or peer educators.</p>
+        <div class="cluster-ctas">
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Inquire About Training</a>
+          <a href="/services/training" class="btn-outline"><i class="fas fa-arrow-left"></i> All Training Areas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training Topics Section -->
+    <section class="cluster-focus">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-graduation-cap"></i> What We Train In</div>
+          <h2>Facilitation <span class="accent-red">Skills</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-item">What Is Facilitation? (And What It Is Not)</div>
+          <div class="focus-item">The Facilitator's Mindset (Internal Skills First)</div>
+          <div class="focus-item">Core Facilitation Skills (The Big 5)</div>
+          <div class="focus-item">Handling Difficult Situations</div>
+          <div class="focus-item">Facilitation for Different Group Sizes</div>
+          <div class="focus-item">Virtual Facilitation (WhatsApp, Zoom, Telegram)</div>
+          <div class="focus-item">Co-Facilitation (Working with Another Facilitator)</div>
+          <div class="focus-item">Cultural Considerations for Facilitation in Africa</div>
+          <div class="focus-item">Preparing Yourself as a Facilitator (Before the Session)</div>
+          <div class="focus-item">Common Facilitation Mistakes (And How to Avoid)</div>
+          <div class="focus-item">Self-Care for Facilitators</div>
+          <div class="focus-item">Facilitating Sensitive Topics (GBV, Trauma, Rights)</div>
+          <div class="focus-item">Practice Activities for Training Facilitators</div>
+          <div class="focus-item">Facilitation Beyond Meetings (Community Facilitation)</div>
+        </div>
+
+        <div class="focus-cta">
+          <a href="/contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Book a Training Session</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Programs -->
+    <section class="cluster-related">
+      <div class="cluster-container">
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="fas fa-chalkboard-user"></i>
+            <h3>Training of Trainers (TOT)</h3>
+            <p>Take your facilitation to the next level and train others.</p>
+            <a href="/services/training/tot">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-users"></i>
+            <h3>Team Building</h3>
+            <p>Facilitate effective team meetings and collaboration.</p>
+            <a href="/services/training/team-building">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h3>How to Establish a CBO</h3>
+            <p>Facilitate community meetings and member gatherings.</p>
+            <a href="/services/training/establish-cbo">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .cluster-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 4rem 0;
+    color: white;
+  }
+  .cluster-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .cluster-breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+  .cluster-breadcrumb a {
+    color: var(--green-lt);
+    text-decoration: none;
+  }
+  .cluster-breadcrumb i {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+  }
+  .cluster-icon-large {
+    font-size: 4rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .cluster-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .all-red {
+    color: var(--red);
+  }
+  .accent-red { color: var(--red); }
+  .cluster-subhead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 900px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .cluster-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--green);
+    background: rgba(39,238,49,0.1);
+  }
+  .cluster-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.4rem 1.3rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+  .cluster-focus {
+    padding: 4rem 0;
+    background: white;
+  }
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .focus-item {
+    background: var(--gray-sf);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    border-left: 3px solid var(--red);
+  }
+  .focus-cta {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .cluster-related {
+    padding: 3rem 0 5rem;
+    background: var(--gray-sf);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .related-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .related-card i {
+    font-size: 2rem;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+  .related-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  .related-card p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    margin-bottom: 1rem;
+  }
+  .related-card a {
+    color: var(--red);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  .related-card a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .focus-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+    .cluster-hero h1 { font-size: 2rem; }
+    .section-header h2 { font-size: 1.5rem; }
+  }
+</style>

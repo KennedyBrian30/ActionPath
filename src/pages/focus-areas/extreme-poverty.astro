@@ -1,0 +1,611 @@
+---
+// focus-areas/extreme-poverty.astro
+import Layout from "../../layouts/Layout.astro";
+
+const stats = [
+  { val: "490M", label: "People in extreme poverty in Africa", icon: "fas fa-globe-africa" },
+  { val: "60%", label: "Are smallholder farmers or rural workers", icon: "fas fa-tractor" },
+  { val: "250+", label: "Livelihood projects run by ActionPath", icon: "fas fa-hands-helping" },
+  { val: "15,000+", label: "Lives transformed so far", icon: "fas fa-heart" },
+];
+
+const graduation = [
+  {
+    phase: "Stabilise",
+    icon: "fas fa-anchor",
+    color: "red",
+    title: "Immediate safety and support",
+    items: [
+      "Psychosocial counselling and group resilience sessions",
+      "Emergency savings group formation",
+      "Basic needs assessment and safety planning",
+    ],
+    program: { label: "Psychosocial Support", href: "/programs/psychosocial-support" },
+  },
+  {
+    phase: "Build",
+    icon: "fas fa-hammer",
+    color: "green",
+    title: "Assets, skills, and knowledge",
+    items: [
+      "Vocational and technical skills training",
+      "Agriculture and climate-resilient farming",
+      "Financial literacy and budgeting fundamentals",
+    ],
+    program: { label: "See all programs", href: "/programs" },
+  },
+  {
+    phase: "Grow",
+    icon: "fas fa-seedling",
+    color: "green",
+    title: "Income and enterprise",
+    items: [
+      "Entrepreneurship and SME development",
+      "Market linkage and value chain integration",
+      "SACCO membership and access to credit",
+    ],
+    program: { label: "Entrepreneurship Program", href: "/programs/entrepreneurship" },
+  },
+  {
+    phase: "Sustain",
+    icon: "fas fa-infinity",
+    color: "red",
+    title: "Resilience and self-sufficiency",
+    items: [
+      "Livelihood diversification across 2 to 3 income streams",
+      "Youth and women empowerment and governance",
+      "MEARL tracking for ongoing accountability",
+    ],
+    program: { label: "MEARL Program", href: "/programs/mearl" },
+  },
+];
+
+const allPrograms = [
+  {
+    title: "Agriculture and Climate-Resilient Practices",
+    desc: "For households where land is accessible, climate-smart farming is often the fastest route out of food poverty. We train in drought-resistant crops, water harvesting, and agroforestry.",
+    icon: "fas fa-tractor",
+    href: "/programs/agriculture-climate",
+  },
+  {
+    title: "Entrepreneurship and Small Business Development",
+    desc: "Non-farm enterprise is essential for households with no land or small plots. Business planning, value chain linkage, and digital marketing open market pathways that farming alone cannot provide.",
+    icon: "fas fa-chart-line",
+    href: "/programs/entrepreneurship",
+  },
+  {
+    title: "Vocational and Technical Skills",
+    desc: "Portable, certifiable trades including tailoring, carpentry, and machine operation provide income regardless of land access, season, or location.",
+    icon: "fas fa-tools",
+    href: "/programs/vocational-skills",
+  },
+  {
+    title: "Financial Literacy and Livelihood Diversification",
+    desc: "People in extreme poverty often have no savings culture and no access to credit. We build savings groups, introduce SACCOs, and teach budgeting from the ground up.",
+    icon: "fas fa-piggy-bank",
+    href: "/programs/financial-literacy",
+  },
+  {
+    title: "Youth and Women Empowerment",
+    desc: "Women and youth are disproportionately represented among the extreme poor, and disproportionately excluded from economic opportunity. Our targeted empowerment programming directly addresses these gaps.",
+    icon: "fas fa-female",
+    href: "/programs/women-youth-empowerment",
+  },
+  {
+    title: "Psychosocial Support and Resilience",
+    desc: "Chronic poverty is demoralising. Before skills training can take root, people need to believe in their own capacity to change their situation. Our resilience work builds that belief.",
+    icon: "fas fa-heart",
+    href: "/programs/psychosocial-support",
+  },
+  {
+    title: "Monitoring, Evaluation, Accountability, Research and Learning",
+    desc: "We track poverty graduation through baseline and endline surveys, community scorecards, and participatory monitoring that keeps our programs honest and adaptive.",
+    icon: "fas fa-chart-bar",
+    href: "/programs/mearl",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Living with HIV, I struggled to find dignified work. ActionPath's financial literacy and savings group changed everything. I now run a successful poultry business.",
+    name: "Beatrice Mwangi",
+    role: "Poultry Farmer",
+    location: "Nairobi, Kenya",
+    challenge: "HIV/AIDS and Extreme Poverty",
+  },
+  {
+    quote: "The youth empowerment program transformed me from street hawker to agri-preneur. I now run a vegetable farm supplying local schools.",
+    name: "Ahmed Hassan",
+    role: "Youth Agri-Entrepreneur",
+    location: "Addis Ababa, Ethiopia",
+    challenge: "Urban Poverty and Unemployment",
+  },
+];
+
+const relatedFocus = [
+  {
+    title: "Drought and Hunger",
+    desc: "Chronic food insecurity and extreme poverty are deeply intertwined. A single failed harvest can collapse a household that has spent years climbing out of poverty.",
+    icon: "fas fa-cloud-sun-rain",
+    href: "/focus-areas/drought-hunger",
+  },
+  {
+    title: "Conflict and Displacement",
+    desc: "Displacement is one of the fastest routes into extreme poverty. When conflict forces families to move, they leave behind the assets, networks, and knowledge that sustained their livelihoods.",
+    icon: "fas fa-people-arrows",
+    href: "/focus-areas/conflict-displacement",
+  },
+  {
+    title: "HIV/AIDS and Health",
+    desc: "Illness reduces productivity, generates medical debt, and can push even stable households into poverty. Supporting HIV-affected households is central to any poverty graduation strategy.",
+    icon: "fas fa-ribbon",
+    href: "/focus-areas/hiv-aids",
+  },
+];
+---
+
+<Layout
+  title="Extreme Poverty | ActionPath Africa Focus Areas"
+  description="ActionPath Africa uses a graduation approach to help households break cycles of extreme poverty through integrated livelihood training, savings, and psychosocial support across Africa."
+>
+
+  <!-- HERO: split panel -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/extreme-poverty.webp" alt="Community members in a livelihood training session" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/#programs">Focus Areas</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Extreme Poverty</span>
+      </div>
+      <div class="hero-badge">
+        <i class="fas fa-hands-holding-child"></i> Focus Area
+      </div>
+      <h1>
+        <span class="h1-main">Breaking the</span>
+        <span class="h1-accent">Poverty</span>
+        <span class="h1-main">Cycle</span>
+      </h1>
+      <p class="hero-desc">
+        Extreme poverty in Africa is not a shortage of ambition or effort among those who
+        experience it. It is a shortage of tools, opportunity, and the safety nets that
+        allow people to take productive risks. ActionPath Africa provides all three.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary">
+          <i class="fas fa-handshake"></i> Partner With Us
+        </a>
+        <a href="#graduation-approach" class="btn-ghost">
+          <i class="fas fa-arrow-down"></i> Our Approach
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      {stats.map((s) => (
+        <div class="hero-stat" key={s.label}>
+          <i class={s.icon}></i>
+          <span class="hs-val">{s.val}</span>
+          <span class="hs-lbl">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FRAMING STATEMENT -->
+  <section class="frame-section">
+    <div class="frame-inner">
+      <div class="frame-quote">
+        <i class="fas fa-quote-left frame-qi"></i>
+        <blockquote>
+          Poverty is not a character trait. It is a circumstance. Change the circumstances
+          and the capacity that was always there becomes visible.
+        </blockquote>
+        <cite>ActionPath Africa, Theory of Change</cite>
+      </div>
+      <div class="frame-facts">
+        <div class="eyebrow red-eyebrow"><i class="fas fa-info-circle"></i> The Context</div>
+        <p>
+          Nearly 490 million people in Africa live on less than USD 2.15 per day. The majority
+          are not idle. They are working in subsistence agriculture, informal trade, or domestic
+          labour for wages that cannot sustain a family. The poverty is in the structure of the
+          economy they inhabit, not in their effort.
+        </p>
+        <p>
+          What the research calls the poverty trap is real. Without savings, a sick child or
+          a failed crop wipes out whatever small gains a household made. Without skills recognised
+          by markets, hard work generates subsistence income but never surplus. Without
+          psychosocial support, the demoralisation of chronic poverty makes it very hard
+          to imagine or plan a different future.
+        </p>
+        <p>
+          ActionPath Africa addresses all three barriers simultaneously using a four-phase
+          graduation approach that has been validated in post-conflict and climate-stressed
+          contexts across East and Central Africa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADUATION APPROACH -->
+  <section class="graduation-section" id="graduation-approach">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-arrow-trend-up"></i> The Graduation Approach</div>
+      <h2>Four phases from <span class="red-text">crisis to self-sufficiency</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Our graduation methodology does not parachute skills into communities and hope for the best.
+        It follows a deliberate sequence that matches intervention to readiness.
+      </p>
+    </div>
+    <div class="graduation-grid">
+      {graduation.map((g, idx) => (
+        <div class={`grad-card grad-${g.color}`} key={g.phase}>
+          <div class="grad-phase-num">Phase {idx + 1}</div>
+          <div class="grad-phase-label">{g.phase}</div>
+          <div class="grad-icon"><i class={g.icon}></i></div>
+          <h3>{g.title}</h3>
+          <ul class="grad-items">
+            {g.items.map((item) => (
+              <li key={item}><i class="fas fa-check"></i> {item}</li>
+            ))}
+          </ul>
+          <a href={g.program.href} class="grad-link">{g.program.label} <i class="fas fa-arrow-right"></i></a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ALL PROGRAMS -->
+  <section class="programs-section">
+    <div class="section-header">
+      <div class="eyebrow green-eyebrow"><i class="fas fa-seedling"></i> Training Programs</div>
+      <h2>All seven programs address <span class="green-text">poverty in some dimension</span></h2>
+      <div class="divider-center green-div"></div>
+      <p class="section-sub">
+        Extreme poverty is multi-dimensional. Our full suite of training programs is deployed
+        in combination, not in isolation, across every community we work with.
+      </p>
+    </div>
+    <div class="programs-grid">
+      {allPrograms.map((p) => (
+        <a href={p.href} class="program-card" key={p.title}>
+          <div class="pc-icon"><i class={p.icon}></i></div>
+          <div class="pc-body">
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <span class="pc-link">Explore <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-quote-left"></i> Real Change</div>
+      <h2>Poverty graduation <span class="red-text">in their own words</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t) => (
+        <div class="testi-card" key={t.name}>
+          <div class="tq-icon"><i class="fas fa-quote-left"></i></div>
+          <p class="tq-text">"{t.quote}"</p>
+          <span class="tq-badge">{t.challenge}</span>
+          <div class="tq-author">
+            <div class="tq-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="tq-name">{t.name}</div>
+              <div class="tq-role">{t.role} · {t.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- RELATED FOCUS AREAS -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-link"></i> Interconnected Challenges</div>
+      <h2>Poverty does not exist <span class="red-text">in a vacuum</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Breaking the poverty cycle requires understanding the other crises that keep
+        people trapped. Every focus area we work in connects back to extreme poverty.
+      </p>
+    </div>
+    <div class="related-grid">
+      {relatedFocus.map((r) => (
+        <a href={r.href} class="related-card" key={r.title}>
+          <div class="rcard-icon"><i class={r.icon}></i></div>
+          <h3>{r.title}</h3>
+          <p>{r.desc}</p>
+          <span class="rcard-link">Explore focus area <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- MEARL ACCOUNTABILITY STRIP -->
+  <div class="mearl-strip">
+    <i class="fas fa-chart-bar"></i>
+    <div>
+      <strong>We measure poverty graduation, not just activities</strong>
+      <p>
+        Our MEARL framework tracks household income, food security, asset ownership, and
+        children in school across quarterly monitoring cycles. Community scorecards ensure
+        accountability runs in both directions: to donors and to communities.
+      </p>
+    </div>
+    <a href="/programs/mearl" class="mearl-link">Our MEARL approach <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow"><i class="fas fa-bolt"></i> Take Action</div>
+      <h2>Design a poverty graduation program with us</h2>
+      <p>
+        We work with development partners, government agencies, community organisations,
+        and private sector players to co-design livelihood programs that create measurable,
+        lasting exits from extreme poverty.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn-primary btn-lg">
+          <i class="fas fa-envelope"></i> Contact Us
+        </a>
+        <a href="/programs" class="btn-outline-light btn-lg">
+          <i class="fas fa-seedling"></i> See All Programs
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --green-mid: #1a8c1f;
+    --green-soft: rgba(39, 238, 49, 0.12);
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #64748b;
+    --gray-sf: #f1f5f9;
+    --border: #e2e8f0;
+    --sh-md: 0 8px 24px rgba(0,0,0,.08);
+    --sh-lg: 0 20px 50px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 86vh;
+    display: flex; flex-direction: column; justify-content: center;
+    margin: -2.5rem -2rem 0; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(155deg, rgba(30,41,59,.97) 0%, rgba(30,41,59,.80) 50%, rgba(39,238,49,.12) 100%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 4rem 2rem 5rem; max-width: 700px; }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.45); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.65); font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 40px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 4rem; font-weight: 900;
+    line-height: 1.0; letter-spacing: -.04em;
+    margin-bottom: 1.25rem;
+  }
+  .h1-main { display: block; color: rgba(255,255,255,.9); }
+  .h1-accent { display: block; color: var(--red); }
+  .hero-desc {
+    font-size: 1.02rem; color: rgba(255,255,255,.78);
+    line-height: 1.75; max-width: 560px; margin-bottom: 2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-stats {
+    position: relative; z-index: 2; display: flex;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,.07);
+  }
+  .hero-stat {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; padding: 1.2rem 1rem;
+    border-right: 1px solid rgba(255,255,255,.07); text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat i { color: var(--green-lt); font-size: 1.1rem; margin-bottom: 3px; }
+  .hs-val { font-family: "Outfit", sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--green-lt); line-height: 1; }
+  .hs-lbl { font-size: .68rem; color: rgba(255,255,255,.5); font-weight: 500; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: none; cursor: pointer; transition: var(--ease);
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,.35); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.3); color: rgba(255,255,255,.8);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.55); }
+  .btn-outline-light {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.35); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-outline-light:hover { background: rgba(255,255,255,.1); border-color: white; }
+  .btn-lg { padding: .85rem 2.1rem; font-size: .95rem; }
+
+  /* Utilities */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem;
+  }
+  .red-eyebrow { background: var(--red-soft); color: var(--red); }
+  .green-eyebrow { background: var(--green-soft); color: var(--green-mid); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: .5rem; color: var(--charcoal);
+  }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 640px; margin: 0 auto; line-height: 1.65; }
+  .divider-center { width: 56px; height: 3px; background: linear-gradient(90deg, var(--red), var(--green)); border-radius: 3px; margin: .75rem auto 1.25rem; }
+  .green-div { background: linear-gradient(90deg, var(--green), #7cffa4); }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green-mid); }
+
+  /* Framing */
+  .frame-section { padding: 4rem 0; }
+  .frame-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3.5rem; align-items: start; }
+  .frame-quote {
+    background: var(--charcoal); border-radius: 24px; padding: 2.5rem 2rem;
+    border-left: 4px solid var(--red);
+  }
+  .frame-qi { color: var(--green-lt); font-size: 2rem; opacity: .4; margin-bottom: 1rem; display: block; }
+  blockquote { font-family: "Outfit", sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--green-lt); line-height: 1.4; margin-bottom: 1rem; font-style: normal; }
+  cite { font-size: .75rem; color: rgba(255,255,255,.45); font-style: normal; display: block; }
+  .frame-facts .eyebrow { display: inline-flex; }
+  .frame-facts p { font-size: .9rem; color: var(--gray-md); line-height: 1.78; margin-bottom: .9rem; }
+
+  /* Graduation */
+  .graduation-section { padding: 3.5rem 0; }
+  .graduation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .grad-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); display: flex; flex-direction: column;
+    position: relative; transition: var(--ease);
+  }
+  .grad-card:hover { transform: translateY(-5px); box-shadow: var(--sh-md); }
+  .grad-red { border-top: 3px solid var(--red); }
+  .grad-green { border-top: 3px solid var(--green); }
+  .grad-phase-num { font-size: .68rem; font-weight: 700; color: var(--gray-md); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2px; }
+  .grad-phase-label { font-family: "Outfit", sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--charcoal); line-height: 1; margin-bottom: 1rem; }
+  .grad-red .grad-phase-label { color: var(--red); }
+  .grad-green .grad-phase-label { color: var(--green-mid); }
+  .grad-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: .85rem; }
+  .grad-red .grad-icon { background: var(--red-soft); color: var(--red); }
+  .grad-green .grad-icon { background: var(--green-soft); color: var(--green-mid); }
+  .grad-card h3 { font-size: .88rem; font-weight: 700; color: var(--charcoal); margin-bottom: .75rem; }
+  .grad-items { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; margin-bottom: 1.25rem; }
+  .grad-items li { font-size: .78rem; color: var(--gray-md); line-height: 1.5; display: flex; align-items: flex-start; gap: 7px; }
+  .grad-items li i { color: var(--green-mid); font-size: .65rem; flex-shrink: 0; margin-top: 3px; }
+  .grad-link { font-size: .75rem; font-weight: 700; color: var(--red); text-decoration: none; display: flex; align-items: center; gap: 4px; margin-top: auto; }
+  .grad-link:hover { text-decoration: underline; }
+
+  /* Programs */
+  .programs-section { padding: 3.5rem 2rem; background: var(--gray-sf); border-radius: 32px; margin: 1.5rem 0; }
+  .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .program-card {
+    background: white; border-radius: 16px; padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border); text-decoration: none; color: inherit;
+    display: flex; gap: 1rem; align-items: flex-start; transition: var(--ease);
+  }
+  .program-card:hover { border-color: var(--green); box-shadow: var(--sh-md); transform: translateX(4px); }
+  .pc-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .pc-body h3 { font-size: .9rem; font-weight: 700; color: var(--charcoal); margin-bottom: .3rem; }
+  .pc-body p { font-size: .8rem; color: var(--gray-md); line-height: 1.6; margin-bottom: .5rem; }
+  .pc-link { font-size: .75rem; font-weight: 700; color: var(--green-mid); display: inline-flex; align-items: center; gap: 4px; }
+
+  /* Testimonials */
+  .testi-section { padding: 3.5rem 0; }
+  .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .testi-card { background: white; border-radius: 24px; padding: 2rem; border: 1px solid var(--border); transition: var(--ease); }
+  .testi-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: var(--sh-md); }
+  .tq-icon { color: var(--green); font-size: 1.8rem; opacity: .35; margin-bottom: .75rem; }
+  .tq-text { font-size: .92rem; color: var(--charcoal); line-height: 1.72; font-style: italic; margin-bottom: .9rem; }
+  .tq-badge { display: inline-block; background: var(--red-soft); color: var(--red); font-size: .7rem; font-weight: 700; padding: .2rem .75rem; border-radius: 20px; margin-bottom: 1.25rem; }
+  .tq-author { display: flex; align-items: center; gap: .85rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .tq-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+  .tq-name { font-weight: 700; font-size: .87rem; color: var(--charcoal); }
+  .tq-role { font-size: .72rem; color: var(--gray-md); margin-top: 2px; }
+
+  /* Related */
+  .related-section { padding: 3.5rem 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .related-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); border-top: 3px solid var(--red);
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: var(--ease);
+  }
+  .related-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+  .rcard-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; margin-bottom: .85rem; }
+  .related-card h3 { font-size: .95rem; font-weight: 700; color: var(--charcoal); margin-bottom: .4rem; }
+  .related-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+  .rcard-link { font-size: .78rem; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 5px; }
+
+  /* MEARL strip */
+  .mearl-strip {
+    background: var(--green-soft); border: 1px solid rgba(39,238,49,.25); border-left: 4px solid var(--green);
+    border-radius: 16px; padding: 1.25rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;
+  }
+  .mearl-strip > i { color: var(--green-mid); font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+  .mearl-strip > div { flex: 1; }
+  .mearl-strip strong { font-size: .9rem; color: var(--charcoal); display: block; margin-bottom: 4px; }
+  .mearl-strip p { font-size: .82rem; color: var(--gray-md); line-height: 1.6; }
+  .mearl-link { display: inline-flex; align-items: center; gap: 5px; color: var(--green-mid); font-weight: 700; font-size: .82rem; text-decoration: none; white-space: nowrap; flex-shrink: 0; align-self: center; }
+  .mearl-link:hover { text-decoration: underline; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    border-radius: 28px; margin: 2rem 0; padding: 4rem 3rem; text-align: center;
+  }
+  .cta-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); color: var(--green-lt); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .cta-inner h2 { font-family: "Outfit", sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--green-lt); max-width: 580px; margin: 0 auto 1rem; line-height: 1.2; }
+  .cta-inner p { color: rgba(255,255,255,.82); font-size: .95rem; max-width: 500px; margin: 0 auto 2rem; line-height: 1.72; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .frame-inner { grid-template-columns: 1fr; }
+    .graduation-grid { grid-template-columns: repeat(2, 1fr); }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.6rem; }
+    .hero-inner { padding: 2.5rem 1.25rem 4rem; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .graduation-grid, .programs-grid, .testi-grid, .related-grid { grid-template-columns: 1fr; }
+    .program-card { flex-direction: column; }
+    .cta-section { padding: 2.5rem 1.5rem; }
+    .cta-inner h2 { font-size: 1.75rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .mearl-strip { flex-direction: column; }
+  }
+</style>

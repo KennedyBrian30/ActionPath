@@ -1,0 +1,336 @@
+---
+// /services/training/life-skills.astro
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Life Skills Training | ActionPath Africa";
+const pageDescription = "Life skills are the foundation upon which all our training rests. Equipping young people to navigate uncertainty, make sound decisions, build healthy relationships, and manage their emotions and resources.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="cluster-hero">
+      <div class="cluster-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <a href="/services/training">Training Areas</a> <i class="fas fa-chevron-right"></i>
+          <span>Life Skills</span>
+        </div>
+        <div class="cluster-icon-large">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h1><span class="accent-red">Life Skills</span></h1>
+        <p class="cluster-subhead">Life skills are the foundation upon which all our training rests. At ActionPath Africa, life skills training equips young people to navigate uncertainty, make sound decisions, build healthy relationships, and manage their emotions and resources—especially critical in contexts marked by poverty, limited formal support systems, and rapid change.</p>
+        <div class="cluster-ctas">
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Enquire Now</a>
+          <a href="/services/training" class="btn-outline"><i class="fas fa-arrow-left"></i> All Training Areas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training Methods -->
+    <section class="cluster-methods">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-chalkboard-user"></i> How We Train</div>
+          <h2>Delivery <span class="accent-red">Methods</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="methods-grid">
+          <div class="method-item">Storytelling & Case Studies</div>
+          <div class="method-item">Role-Plays</div>
+          <div class="method-item">Journals & Reflection</div>
+          <div class="method-item">Group Discussions</div>
+          <div class="method-item">Games & Icebreakers</div>
+          <div class="method-item">Mentoring & Buddy Systems</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Focus Areas -->
+    <section class="cluster-focus">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-bullseye"></i> Training Focus</div>
+          <h2>Life Skills <span class="accent-red">Areas</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-item">Self-Awareness & Identity</div>
+          <div class="focus-item">Emotional Regulation & Stress Management</div>
+          <div class="focus-item">Decision-Making & Problem-Solving</div>
+          <div class="focus-item">Effective Communication & Interpersonal Skills</div>
+          <div class="focus-item">Goal Setting & Planning</div>
+          <div class="focus-item">Time Management & Prioritization</div>
+          <div class="focus-item">Financial Life Skills (Personal, Not Business)</div>
+          <div class="focus-item">Healthy Relationships & Social Boundaries</div>
+          <div class="focus-item">Resilience & Coping with Adversity</div>
+          <div class="focus-item">Basic Health & Wellbeing</div>
+          <div class="focus-item">Digital Life Skills & Online Safety</div>
+          <div class="focus-item">Civic & Community Life Skills</div>
+        </div>
+
+        <div class="focus-note">
+          <i class="fas fa-quote-left"></i>
+          <p>These foundational skills prepare young people for success in every other training area — from entrepreneurship to agriculture to employability.</p>
+        </div>
+
+        <div class="focus-cta">
+          <a href="/contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Join a Life Skills Workshop</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Programs -->
+    <section class="cluster-related">
+      <div class="cluster-container">
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="fas fa-users"></i>
+            <h3>Youth Employability Skills</h3>
+            <p>Build workplace readiness on top of your life skills foundation.</p>
+            <a href="/services/training/youth-employability">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-seedling"></i>
+            <h3>Climate-Smart Agriculture</h3>
+            <p>Apply life skills to build resilient farming livelihoods.</p>
+            <a href="/services/training/climate-agriculture">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .cluster-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 4rem 0;
+    color: white;
+  }
+  .cluster-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .cluster-breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+  .cluster-breadcrumb a {
+    color: var(--green-lt);
+    text-decoration: none;
+  }
+  .cluster-breadcrumb i {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+  }
+  .cluster-icon-large {
+    font-size: 4rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .cluster-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .accent-red { color: var(--red); }
+  .cluster-subhead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 900px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .cluster-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--green);
+    background: rgba(39,238,49,0.1);
+  }
+  .cluster-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.4rem 1.3rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+  .cluster-methods, .cluster-focus {
+    padding: 4rem 0;
+    background: white;
+  }
+  .cluster-focus {
+    background: var(--gray-sf);
+  }
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .method-item {
+    background: var(--gray-sf);
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .method-item:hover {
+    background: var(--red-soft);
+    border-color: var(--red);
+  }
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .focus-item {
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    border-left: 3px solid var(--red);
+  }
+  .focus-note {
+    background: var(--red-soft);
+    padding: 1.2rem 1.8rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+  }
+  .focus-note i {
+    color: var(--red);
+    font-size: 1.5rem;
+  }
+  .focus-note p {
+    margin: 0;
+    color: var(--gray-dk);
+    font-style: italic;
+  }
+  .focus-cta {
+    text-align: center;
+  }
+  .cluster-related {
+    padding: 3rem 0 5rem;
+    background: var(--gray-sf);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .related-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .related-card i {
+    font-size: 2rem;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+  .related-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  .related-card p {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    margin-bottom: 1rem;
+  }
+  .related-card a {
+    color: var(--red);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.85rem;
+  }
+  .related-card a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .focus-grid { grid-template-columns: 1fr; }
+    .methods-grid { grid-template-columns: repeat(2, 1fr); }
+    .cluster-hero h1 { font-size: 2rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    .section-header h2 { font-size: 1.5rem; }
+    .focus-note { flex-direction: column; text-align: center; }
+  }
+</style>

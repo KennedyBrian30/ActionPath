@@ -1,0 +1,1405 @@
+---
+// services.astro - Services Pillar Page
+import Layout from "../layouts/Layout.astro";
+
+// Hero Gallery Images
+const heroImages = [
+  "/consultancy-cbo.webp",
+  "/consultancy-me.webp", 
+  "/hero-training-3.webp",
+];
+
+// Training Areas with full list (matching main navigation)
+const trainingAreas = {
+  entrepreneurship: {
+    title: "Entrepreneurship & Climate Resilient Practices",
+    items: [
+      { name: "Design Drive Entrepreneurship", link: "/services/training/entrepreneurship" },
+      { name: "Youth employability skills & how to start a business", link: "/services/training/youth-employability" },
+      { name: "Climate Smart Agriculture", link: "/services/training/climate-agriculture" },
+      { name: "Financial management", link: "/services/training/financial-management" },
+      { name: "Project planning & Management", link: "/services/training/project-management" },
+      { name: "Risk Analysis & Sustainability", link: "/services/training/risk-sustainability" }
+    ],
+    icon: "fas fa-seedling",
+    color: "#27ee31"
+  },
+  lifeSkills: {
+    title: "Life Skills & Employability",
+    items: [
+      { name: "Life skills", link: "/services/training/life-skills" },
+      { name: "Team Building", link: "/services/training/team-building" },
+      { name: "Facilitation Skills", link: "/services/training/facilitation-skills" },
+      { name: "Facilitation Skills & ToT", link: "/services/training/tot" },
+      { name: "Organisational Documentation", link: "/services/training/documentation" },
+      { name: "Effective Communication", link: "/services/training/communication" },
+      { name: "Effective Customer Service", link: "/services/training/customer-service" },
+      { name: "Negotiation and Conflict Management", link: "/services/training/conflict-management" },
+      { name: "Report Writing", link: "/services/training/report-writing" }
+    ],
+    icon: "fas fa-users",
+    color: "#c0392b"
+  },
+  empowerment: {
+    title: "Youth & Women Empowerment",
+    items: [
+      { name: "How to establish a CBO", link: "/services/training/establish-cbo" },
+      { name: "Gender & Social Inclusion", link: "/services/training/gender-inclusion" },
+      { name: "Human Based Approach to Development (HRBA)", link: "/services/training/hrba" },
+      { name: "Grants & Proposal Writing", link: "/services/training/proposal-writing" }
+    ],
+    icon: "fas fa-female",
+    color: "#e67e22"
+  },
+  communityDevelopment: {
+    title: "Community Development & Governance",
+    items: [
+      { name: "Community Mobilization Strategies", link: "/services/training/community-mobilization" },
+      { name: "Governance & Accountability", link: "/services/training/governance" },
+      { name: "Stakeholder Engagement", link: "/services/training/stakeholder-engagement" },
+      { name: "Advocacy & Lobbying Skills", link: "/services/training/advocacy" }
+    ],
+    icon: "fas fa-building",
+    color: "#3498db"
+  }
+};
+
+// Consultancy Services (with individual links)
+const consultancyServices = [
+  {
+    title: "Monitoring & Evaluation",
+    description: "Comprehensive M&E frameworks, data collection systems, and impact assessment for development programs. We help organizations track progress, measure outcomes, and demonstrate impact to stakeholders.",
+    icon: "fas fa-chart-line",
+    features: ["Baseline & Endline Surveys", "Data Management Systems", "Impact Evaluation", "Capacity Building in M&E"],
+    image: "/mearl.webp",
+    link: "/services/consultancy/monitoring-evaluation"
+  },
+  {
+    title: "Curriculum Development",
+    description: "Design of contextualized, competency-based training curricula aligned to market needs and national standards. Our curricula are participatory, learner-centered, and tailored to specific community contexts.",
+    icon: "fas fa-book-open",
+    features: ["Competency-Based Design", "Training Materials Development", "Trainer Guides & Manuals", "Assessment Tools"],
+    image: "/vocational-skills.webp",
+    link: "/services/consultancy/curriculum-development"
+  },
+  {
+    title: "Psychosocial Education and Support",
+    description: "Trauma-informed approaches, mental health first aid, and resilience-building programs for vulnerable populations. We integrate psychosocial support into livelihood programming for holistic wellbeing.",
+    icon: "fas fa-heart",
+    features: ["Mental Health First Aid", "Trauma-Informed Care", "Resilience Building", "Community Counseling Support"],
+    image: "/psychosocial.webp",
+    link: "/services/consultancy/psychosocial-support"
+  }
+];
+
+// Livelihood Toolkit (from PDF document)
+const livelihoodToolkit = [
+  {
+    title: "Self-Awareness & Psychosocial Readiness",
+    description: "Participants gain clarity on strengths, blind spots, and personal growth areas before engaging in economic activities.",
+    tools: ["Johari Window", "Wheel of Life", "Personal SWOT Analysis", "Emotional Intelligence Assessment"]
+  },
+  {
+    title: "Vocational & Technical Skills",
+    description: "Market-ready skills with recognized credentials for sustainable employment and entrepreneurship.",
+    tools: ["Tailoring & Fashion Design", "Eco-Friendly Crafts", "Carpentry & Woodwork", "Machine Operation"]
+  },
+  {
+    title: "Entrepreneurship & Financial Literacy",
+    description: "Participants can start and sustain small enterprises with sound financial practices.",
+    tools: ["Business Planning", "Savings Culture & SACCOs", "Microfinance Access", "Financial Management"]
+  },
+  {
+    title: "Youth Digital Empowerment",
+    description: "Youth leverage technology for income generation and global market access.",
+    tools: ["Digital Literacy", "E-Commerce Platforms", "Social Media Marketing", "Freelancing Skills"]
+  }
+];
+
+// Partners (duplicated from homepage)
+const partners = [
+  { name: "ActionAid", logo: "/logos/actionaid.png", href: "https://www.actionaid.org" },
+  { name: "Kenya Government", logo: "/logos/kenya-government.png", href: "https://www.kenya.go.ke" },
+  { name: "UNHCR", logo: "/logos/unhcr.png", href: "https://www.unhcr.org" },
+  { name: "Mercy Corps", logo: "/logos/mercy-corps.png", href: "https://www.mercycorps.org" },
+  { name: "Safaricom Foundation", logo: "/logos/safaricom-foundation.png", href: "https://www.safaricomfoundation.org" },
+  { name: "TVETA", logo: "/logos/tveta.png", href: "https://www.tveta.go.ke" },
+  { name: "VSO International", logo: "/logos/vso.png", href: "https://www.vsointernational.org" },
+  { name: "Challenge Fund for Youth Employment", logo: "/logos/cfye.png", href: "https://www.challengefundyouth.org" },
+  { name: "Tanzania Ministry of Education", logo: "/logos/tanzania-moe.png", href: "https://www.moe.go.tz" },
+  { name: "Ace Africa", logo: "/logos/ace-africa.png", href: "https://www.ace-africa.org" },
+  { name: "East Africa Civil Societies Forum", logo: "/logos/eacso.png", href: "https://www.easco.org" },
+];
+
+// Delivery Approach
+const deliveryApproach = [
+  { icon: "fas fa-chalkboard-user", title: "Community-Based Training", description: "On-the-ground programs delivered within communities, respecting local contexts and cultural norms." },
+  { icon: "fas fa-laptop", title: "Remote & Hybrid Learning", description: "Accessible digital platforms reaching remote communities with limited infrastructure." },
+  { icon: "fas fa-users", title: "Train-the-Trainer Model", description: "Building local capacity for sustainable, community-led knowledge transfer." },
+  { icon: "fas fa-handshake", title: "Partnership Delivery", description: "Collaborative implementation with local organizations for greater reach and sustainability." }
+];
+---
+
+<Layout title="ActionPath Africa | Our Services - Training & Consultancy for Community Development" description="ActionPath Africa offers comprehensive training programs and consultancy services in entrepreneurship, life skills, youth empowerment, community development, M&E, curriculum development, and psychosocial support.">
+
+  <!-- ══════════════════════════════════════════ HERO SECTION with Gallery ══════════════════════════════════════════ -->
+  <section class="services-hero full-width">
+    <div class="hero-gallery" id="heroGallery">
+      {heroImages.map((img, idx) => (
+        <div class={`hero-slide${idx === 0 ? " is-active" : ""}`} style={`background-image: url('${img}');`} key={idx}></div>
+      ))}
+      <div class="hero-wipe" id="heroWipe"></div>
+      <div class="hero-wipe-edge" id="heroWipeEdge"></div>
+    </div>
+    <div class="services-hero-overlay"></div>
+    <div class="services-hero-content">
+      <div class="services-hero-badge">Our Services</div>
+      <h1 class="services-hero-title">Comprehensive <span class="highlight-red">Capacity Building</span> <span class="highlight-green">Solutions</span></h1>
+      <p class="services-hero-desc">ActionPath Africa delivers transformative training and expert consultancy services designed to empower communities, strengthen organizations, and drive sustainable development across Africa.</p>
+      <div class="services-hero-buttons">
+        <a href="#training-areas" class="btn-primary"><i class="fas fa-chalkboard-user"></i> Explore Training</a>
+        <a href="#consultancy" class="btn-outline"><i class="fas fa-briefcase"></i> Consultancy Services</a>
+      </div>
+    </div>
+    <div class="services-hero-stats">
+      <div class="hero-stat"><span class="hero-stat-number">15,000+</span><span class="hero-stat-label">Trained</span></div>
+      <div class="hero-stat"><span class="hero-stat-number">28+</span><span class="hero-stat-label">Communities</span></div>
+      <div class="hero-stat"><span class="hero-stat-number">50+</span><span class="hero-stat-label">Programs</span></div>
+      <div class="hero-stat"><span class="hero-stat-number">12+</span><span class="hero-stat-label">Partners</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ TRAINING AREAS SECTION ══════════════════════════════════════════ -->
+  <section id="training-areas" class="training-areas-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-chalkboard-user"></i> What We Offer</div>
+        <h2>Our <span class="accent-red">Training Areas</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Comprehensive, competency-based training programs designed for real-world impact</p>
+      </div>
+
+      <div class="training-categories">
+        {Object.entries(trainingAreas).map(([key, area]) => (
+          <div class="training-category-card" key={key}>
+            <div class="category-header-icon">
+              <i class={area.icon} style={`color: ${area.color}`}></i>
+            </div>
+            <h3 class="category-title">{area.title}</h3>
+            <div class="category-items">
+              {area.items.map(item => (
+                <a href={item.link} class="category-item" key={item.name}>
+                  <i class="fas fa-check-circle"></i>
+                  <span>{item.name}</span>
+                  <i class="fas fa-arrow-right item-arrow"></i>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="training-cta">
+        <a href="/contact" class="btn-primary btn-large"><i class="fas fa-calendar-alt"></i> Request Training</a>
+        <a href="/services/training-catalog" class="btn-outline-dark btn-large"><i class="fas fa-download"></i> Download Training Catalog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ CONSULTANCY SERVICES SECTION ══════════════════════════════════════════ -->
+  <section id="consultancy" class="consultancy-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-briefcase"></i> Expert Guidance</div>
+        <h2>Our <span class="accent-red">Consultancy Services</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Strategic advisory and technical assistance for development organizations, governments, and social enterprises</p>
+      </div>
+
+      <div class="consultancy-grid">
+        {consultancyServices.map((service, idx) => (
+          <a href={service.link} class="consultancy-service-card" key={service.title}>
+            <div class="service-image-wrap">
+              <img src={service.image} alt={service.title} class="service-image" loading="lazy" />
+              <div class="service-icon-overlay">
+                <i class={service.icon}></i>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3 class="service-title">{service.title}</h3>
+              <p class="service-description">{service.description}</p>
+              <div class="service-features">
+                {service.features.map(feature => (
+                  <span class="service-feature" key={feature}><i class="fas fa-check"></i> {feature}</span>
+                ))}
+              </div>
+              <span class="service-link">Learn more <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ LIVELIHOOD TOOLKIT SECTION (from PDF) ══════════════════════════════════════════ -->
+  <section class="toolkit-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-toolbox"></i> Our Methodology</div>
+        <h2>Livelihood Training <span class="accent-red">Toolkit</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Integrating psychosocial support with practical skills training for holistic empowerment</p>
+      </div>
+      <div class="toolkit-grid">
+        {livelihoodToolkit.map((toolkit, idx) => (
+          <div class="toolkit-card" key={toolkit.title}>
+            <div class="toolkit-icon"><i class="fas fa-cogs"></i></div>
+            <h3 class="toolkit-title">{toolkit.title}</h3>
+            <p class="toolkit-desc">{toolkit.description}</p>
+            <div class="toolkit-tools">
+              {toolkit.tools.map(tool => (
+                <span class="toolkit-tool" key={tool}><i class="fas fa-wrench"></i> {tool}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ OUR APPROACH SECTION ══════════════════════════════════════════ -->
+  <section class="approach-section full-width">
+    <div class="section-inner">
+      <div class="approach-grid">
+        <div class="approach-text">
+          <div class="section-eyebrow"><i class="fas fa-compass"></i> Our Methodology</div>
+          <h2>How We <span class="accent-red">Deliver Impact</span></h2>
+          <div class="section-divider left"></div>
+          <p>Our training and consultancy services are grounded in participatory, learner-centered methodologies that respect local knowledge while introducing best practices from around the world.</p>
+          <div class="approach-stats">
+            <div class="approach-stat"><span class="approach-stat-number">95%</span><span class="approach-stat-label">Satisfaction Rate</span></div>
+            <div class="approach-stat"><span class="approach-stat-number">87%</span><span class="approach-stat-label">Skills Applied</span></div>
+            <div class="approach-stat"><span class="approach-stat-number">100+</span><span class="approach-stat-label">Trainings</span></div>
+          </div>
+        </div>
+        <div class="approach-methods">
+          {deliveryApproach.map(method => (
+            <div class="method-card" key={method.title}>
+              <div class="method-icon"><i class={method.icon}></i></div>
+              <h4 class="method-title">{method.title}</h4>
+              <p class="method-desc">{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ PARTNERS SECTION (Duplicated from homepage) ══════════════════════════════════════════ -->
+  <section class="partners-section full-width">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow"><i class="fas fa-handshake"></i> Our Network</div>
+        <h2>Trusted by <span class="accent-red">Global Partners</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">Collaborating with leading organizations to amplify impact across Africa</p>
+      </div>
+      <div class="partner-grid">
+        {partners.map((partner) => (
+          <a href={partner.href} class="partner-card" key={partner.name} target="_blank" rel="noopener noreferrer">
+            <img src={partner.logo} alt={partner.name} class="partner-logo-fullcolor" loading="lazy" />
+          </a>
+        ))}
+      </div>
+      <div class="partners-cta">
+        <a href="/contact" class="btn-outline-dark"><i class="fas fa-handshake"></i> Become a Partner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════ CTA SECTION (Fixed visibility) ══════════════════════════════════════════ -->
+  <section class="services-cta-section full-width">
+    <div class="cta-container">
+      <div class="cta-content">
+        <div class="cta-eyebrow">Ready to Transform?</div>
+        <h2>Let's Build <span class="cta-highlight">Sustainable Capacity</span> Together</h2>
+        <p>Whether you need training for your community or expert consultancy for your organization, ActionPath Africa is here to help.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-cta-primary"><i class="fas fa-envelope"></i> Contact Our Team</a>
+          <a href="/services/request-quote" class="btn-cta-secondary"><i class="fas fa-file-signature"></i> Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #5a6e8a;
+    --gray-sf: #f5f7fa;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  .full-width { width: 100%; margin: 0; padding: 0; }
+  .section-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ══════════════════════════════════════════ HERO GALLERY ══════════════════════════════════════════ */
+  .services-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .hero-gallery {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  
+  .hero-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .hero-slide.is-incoming {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: inset(0 var(--wipe-right, 100%) 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hero-wipe {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    clip-path: inset(0 0 0 100%);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+  }
+  
+  .hero-wipe-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(39,238,49,0.6) 30%, var(--green) 50%, rgba(39,238,49,0.6) 70%, transparent 100%);
+    box-shadow: 0 0 12px 4px rgba(39,238,49,0.6);
+    border-radius: 2px;
+    transition: left 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+  }
+  
+  .services-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+  }
+  
+  .services-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    padding: 2rem;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .services-hero-badge {
+    display: inline-block;
+    background: rgba(39, 238, 49, 0.15);
+    backdrop-filter: blur(4px);
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(39, 238, 49, 0.3);
+  }
+  
+  .services-hero-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .services-hero-title .highlight-red {
+    color: var(--red);
+  }
+  
+  .services-hero-title .highlight-green {
+    color: var(--green);
+  }
+  
+  .services-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    max-width: 650px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+  
+  .services-hero-buttons {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .services-hero-stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 1.5rem 2.5rem;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .hero-stat {
+    text-align: center;
+  }
+  
+  .hero-stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+  
+  .hero-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ══════════════════════════════════════════ TRAINING AREAS SECTION ══════════════════════════════════════════ */
+  .training-areas-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #fff 0%, var(--gray-sf) 100%);
+  }
+  
+  .training-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .training-category-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpCard 0.6s ease forwards;
+  }
+  
+  .training-category-card:nth-child(1) { animation-delay: 0.1s; }
+  .training-category-card:nth-child(2) { animation-delay: 0.2s; }
+  .training-category-card:nth-child(3) { animation-delay: 0.3s; }
+  .training-category-card:nth-child(4) { animation-delay: 0.4s; }
+  
+  @keyframes fadeUpCard { to { opacity: 1; transform: translateY(0); } }
+  
+  .training-category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--green);
+  }
+  
+  .category-header-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--red-soft), rgba(39,238,49,0.08));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .training-category-card:hover .category-header-icon {
+    transform: scale(1.05) rotate(5deg);
+  }
+  
+  .category-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+  
+  .category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .category-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: var(--gray-dk);
+    padding: 0.4rem 0;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+  
+  .category-item i:first-child {
+    color: var(--green);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  
+  .category-item .item-arrow {
+    margin-left: auto;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.2s ease;
+    font-size: 0.7rem;
+    color: var(--red);
+  }
+  
+  .category-item:hover {
+    background: var(--red-soft);
+    padding-left: 8px;
+    color: var(--red);
+  }
+  
+  .category-item:hover i:first-child {
+    color: var(--red);
+  }
+  
+  .category-item:hover .item-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .training-cta {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* ══════════════════════════════════════════ CONSULTANCY SECTION ══════════════════════════════════════════ */
+  .consultancy-section {
+    padding: 5rem 0;
+    background: var(--white);
+  }
+  
+  .consultancy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .consultancy-service-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background: var(--gray-sf);
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.6s ease forwards;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .consultancy-service-card:nth-child(2) { animation-delay: 0.15s; }
+  .consultancy-service-card:nth-child(3) { animation-delay: 0.3s; }
+  
+  @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+  
+  .consultancy-service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--red);
+  }
+  
+  .service-image-wrap {
+    position: relative;
+    height: 100%;
+    min-height: 280px;
+    overflow: hidden;
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  
+  .consultancy-service-card:hover .service-image {
+    transform: scale(1.05);
+  }
+  
+  .service-icon-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .service-content {
+    padding: 2rem;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  
+  .service-description {
+    color: var(--gray-md);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  
+  .service-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .service-feature {
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .service-feature i {
+    font-size: 0.7rem;
+  }
+  
+  .service-link {
+    color: var(--red);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .consultancy-service-card:hover .service-link {
+    gap: 12px;
+  }
+
+  /* ══════════════════════════════════════════ TOOLKIT SECTION ══════════════════════════════════════════ */
+  .toolkit-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+  }
+  
+  .toolkit-section .section-header h2,
+  .toolkit-section .section-subtitle {
+    color: white;
+  }
+  
+  .toolkit-section .section-eyebrow {
+    background: rgba(39,238,49,0.15);
+    color: var(--green);
+  }
+  
+  .toolkit-section .section-divider {
+    background: linear-gradient(90deg, var(--green), var(--red));
+  }
+  
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .toolkit-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .toolkit-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.12);
+    border-color: var(--green);
+  }
+  
+  .toolkit-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(39,238,49,0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--green);
+    font-size: 1.3rem;
+  }
+  
+  .toolkit-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  .toolkit-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  .toolkit-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .toolkit-tool {
+    background: rgba(255,255,255,0.1);
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.8);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .toolkit-tool i {
+    font-size: 0.55rem;
+    color: var(--green);
+  }
+
+  /* ══════════════════════════════════════════ APPROACH SECTION ══════════════════════════════════════════ */
+  .approach-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--gray-sf) 0%, #fff 100%);
+  }
+  
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .approach-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+  }
+  
+  .approach-text p {
+    color: var(--gray-md);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .approach-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  .approach-stat {
+    text-align: center;
+  }
+  
+  .approach-stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--red);
+  }
+  
+  .approach-stat-label {
+    font-size: 0.7rem;
+    color: var(--gray-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .approach-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .method-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .method-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--green);
+  }
+  
+  .method-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--red-soft);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .method-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  
+  .method-desc {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    line-height: 1.5;
+  }
+
+  /* ══════════════════════════════════════════ PARTNERS SECTION ══════════════════════════════════════════ */
+  .partners-section {
+    padding: 5rem 0;
+    text-align: center;
+    background: white;
+  }
+  
+  .partner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .partner-card {
+    background: transparent;
+    padding: 0.75rem;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    width: auto;
+    min-width: 120px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: rollIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .partner-card:nth-child(1) { animation-delay: 0.05s; }
+  .partner-card:nth-child(2) { animation-delay: 0.1s; }
+  .partner-card:nth-child(3) { animation-delay: 0.15s; }
+  .partner-card:nth-child(4) { animation-delay: 0.2s; }
+  .partner-card:nth-child(5) { animation-delay: 0.25s; }
+  .partner-card:nth-child(6) { animation-delay: 0.3s; }
+  .partner-card:nth-child(7) { animation-delay: 0.35s; }
+  .partner-card:nth-child(8) { animation-delay: 0.4s; }
+  .partner-card:nth-child(9) { animation-delay: 0.45s; }
+  .partner-card:nth-child(10) { animation-delay: 0.5s; }
+  .partner-card:nth-child(11) { animation-delay: 0.55s; }
+  
+  @keyframes rollIn {
+    0% { opacity: 0; transform: translateX(-30px) rotate(-120deg); }
+    100% { opacity: 1; transform: translateX(0) rotate(0); }
+  }
+  
+  .partner-card:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .partner-logo-fullcolor {
+    max-width: 130px;
+    max-height: 65px;
+    object-fit: contain;
+    filter: none !important;
+    opacity: 1 !important;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  
+  .partner-card:hover .partner-logo-fullcolor {
+    transform: scale(1.08);
+  }
+  
+  .partners-cta {
+    margin-top: 2rem;
+  }
+
+  /* ══════════════════════════════════════════ CTA SECTION (Fixed visibility) ══════════════════════════════════════════ */
+  .services-cta-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .services-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(192,57,43,0.15), transparent);
+    pointer-events: none;
+  }
+  
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cta-eyebrow {
+    display: inline-block;
+    background: rgba(39, 238, 49, 0.15);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(39,238,49,0.3);
+  }
+  
+  .cta-content h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-highlight {
+    color: var(--green);
+  }
+  
+  .cta-content p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-cta-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(192,57,43,0.3);
+  }
+  
+  .btn-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+  }
+  
+  .btn-cta-secondary {
+    background: white;
+    color: var(--charcoal);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  .btn-cta-secondary:hover {
+    transform: translateY(-3px);
+    background: var(--green);
+    color: var(--charcoal);
+    box-shadow: 0 8px 25px rgba(39,238,49,0.3);
+  }
+
+  /* ══════════════════════════════════════════ SHARED UTILITIES ══════════════════════════════════════════ */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+  
+  .btn-outline {
+    border: 2px solid var(--green);
+    color: var(--green);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  }
+  
+  .btn-outline:hover {
+    background: var(--green);
+    color: var(--charcoal);
+    transform: translateY(-3px);
+  }
+  
+  .btn-outline-dark {
+    border: 2px solid var(--charcoal);
+    color: var(--charcoal);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline-dark:hover {
+    background: var(--charcoal);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+  
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.3rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+  }
+  
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 1rem auto 1.5rem;
+    border-radius: 2px;
+  }
+  
+  .section-divider.left {
+    margin: 0.75rem 0 1.5rem;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 3px;
+  }
+  
+  .section-subtitle {
+    color: var(--gray-md);
+    font-size: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
+  .accent-red {
+    color: var(--red);
+  }
+
+  /* ══════════════════════════════════════════ RESPONSIVE ══════════════════════════════════════════ */
+  @media (max-width: 1200px) {
+    .training-categories { grid-template-columns: repeat(2, 1fr); }
+    .toolkit-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 1024px) {
+    .services-hero-title { font-size: 2.8rem; }
+    .approach-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .consultancy-service-card { grid-template-columns: 1fr; }
+    .service-image-wrap { min-height: 220px; }
+    .section-inner { padding: 0 1.5rem; }
+  }
+  
+  @media (max-width: 768px) {
+    .services-hero-title { font-size: 2rem; }
+    .services-hero-desc { font-size: 0.9rem; }
+    .services-hero-stats { gap: 1.5rem; padding: 1rem 1.5rem; }
+    .hero-stat-number { font-size: 1.2rem; }
+    .training-categories { grid-template-columns: 1fr; }
+    .toolkit-grid { grid-template-columns: 1fr; }
+    .approach-methods { grid-template-columns: 1fr; }
+    .approach-stats { flex-direction: column; align-items: center; gap: 1rem; }
+    .training-cta { flex-direction: column; align-items: center; }
+    .training-cta .btn-primary, .training-cta .btn-outline-dark { width: 100%; justify-content: center; }
+    .cta-content h2 { font-size: 1.5rem; }
+    .section-inner { padding: 0 1rem; }
+    .partner-grid { gap: 1rem; }
+    .partner-card { min-width: 100px; }
+    .partner-logo-fullcolor { max-width: 80px; max-height: 45px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .btn-cta-primary, .btn-cta-secondary { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  // Hero wipe transition
+  (function() {
+    const HOLD_MS = 5000;
+    const WIPE_DURATION = 1200;
+    function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2; }
+    const gallery = document.getElementById("heroGallery");
+    const wipe = document.getElementById("heroWipe");
+    const edge = document.getElementById("heroWipeEdge");
+    const slides = Array.from(gallery ? gallery.querySelectorAll(".hero-slide") : []);
+    if (!slides.length || !wipe || !edge) return;
+    let current = 0, animating = false;
+    function scheduleNext() { setTimeout(runWipe, HOLD_MS); }
+    function runWipe() {
+      if (animating) return;
+      animating = true;
+      const outgoing = slides[current];
+      const next = (current + 1) % slides.length;
+      const incoming = slides[next];
+      incoming.style.setProperty("--wipe-right", "100%");
+      incoming.classList.add("is-incoming");
+      wipe.style.transition = "none";
+      wipe.style.clipPath = "inset(0 0 0 100%)";
+      wipe.style.opacity = "1";
+      edge.style.transition = "none";
+      edge.style.left = "100%";
+      edge.style.opacity = "1";
+      let startTime = null;
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        const raw = Math.min((ts - startTime) / WIPE_DURATION, 1);
+        const t = easeInOutCubic(raw);
+        const closedPct = t * 100;
+        const openLeft = 100 - closedPct;
+        const edgePct = 100 - closedPct;
+        wipe.style.clipPath = `inset(0 0 0 ${openLeft}%)`;
+        incoming.style.setProperty("--wipe-right", `${openLeft}%`);
+        edge.style.left = `calc(${edgePct}% - 2px)`;
+        if (raw < 1) { requestAnimationFrame(step); }
+        else {
+          outgoing.classList.remove("is-active");
+          incoming.classList.remove("is-incoming");
+          incoming.classList.add("is-active");
+          incoming.style.removeProperty("--wipe-right");
+          wipe.style.transition = "opacity 0.2s";
+          wipe.style.opacity = "0";
+          edge.style.transition = "opacity 0.2s";
+          edge.style.opacity = "0";
+          setTimeout(() => { wipe.style.transition = "none"; wipe.style.clipPath = "inset(0 0 0 100%)"; edge.style.transition = "none"; }, 250);
+          current = next;
+          animating = false;
+          scheduleNext();
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    slides[current].classList.add("is-active");
+    scheduleNext();
+  })();
+
+  // Intersection Observer for scroll animations
+  (function() {
+    const animatedElements = document.querySelectorAll('.training-category-card, .consultancy-service-card, .method-card, .toolkit-card, .partner-card');
+    if (animatedElements.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      animatedElements.forEach(el => { 
+        el.style.animationPlayState = 'paused'; 
+        observer.observe(el); 
+      });
+    }
+  })();
+
+  // Staggered count animation for stats
+  (function() {
+    const statNumbers = document.querySelectorAll('.hero-stat-number, .approach-stat-number');
+    if (statNumbers.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.innerText;
+            const target = parseInt(text.replace(/[^0-9]/g, ''));
+            if (!isNaN(target) && target > 0) {
+              let current = 0;
+              const increment = target / 50;
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  el.innerText = target + (text.includes('+') ? '+' : '%');
+                  clearInterval(timer);
+                } else {
+                  el.innerText = Math.floor(current) + (text.includes('+') ? '+' : '%');
+                }
+              }, 30);
+            }
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      statNumbers.forEach(el => observer.observe(el));
+    }
+  })();
+</script>

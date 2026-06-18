@@ -1,0 +1,273 @@
+---
+// /testimonials.astro
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Testimonials | ActionPath Africa";
+const pageDescription = "Real stories from the communities we serve. Hear from Charles Lopir, a refugee from South Sudan living in Kakuma Refugee Camp, Kenya, about how our training transformed his work.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="testimonials-hero">
+      <div class="testimonials-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <span>Testimonials</span>
+        </div>
+        <div class="hero-icon">
+          <i class="fas fa-quote-left"></i>
+        </div>
+        <h1 class="all-red">Testimonials</h1>
+        <p class="hero-subhead">Real stories from the communities we serve across Africa.</p>
+      </div>
+    </section>
+
+    <!-- Testimony Section -->
+    <section class="testimony-section">
+      <div class="testimony-container">
+        <div class="testimony-card">
+          <div class="testimony-quote-icon">
+            <i class="fas fa-quote-right"></i>
+          </div>
+          <div class="testimony-text">
+            <p>“Before joining ActionPath Africa's training, I often struggled to manage community disputes and express our challenges clearly in reports. The Conflict Resolution and Report Writing Skills training completely transformed my approach. I learned how to listen actively, mediate fairly, and document issues in a way that promotes understanding and accountability. Today, I can help my community resolve conflicts peacefully and prepare reports that attract support from partners. ActionPath Africa didn't just train me; they empowered me to become a bridge-builder and a voice for my people.”</p>
+          </div>
+          <div class="testimony-author">
+            <div class="author-avatar">
+              <img src="/testimonials/charles-lopir.jpg" alt="Charles Lopir" class="author-image" loading="lazy" />
+            </div>
+            <div class="author-info">
+              <h3 class="author-name">Charles Lopir</h3>
+              <p class="author-title">Employee at the Danish Refugee Council</p>
+              <p class="author-location">Kakuma Refugee Camp, Kenya</p>
+              <div class="author-badge">
+                <i class="fas fa-map-marker-alt"></i> Refugee from South Sudan
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="testimonials-cta">
+      <div class="testimonials-cta-inner">
+        <h2>Share Your <span class="accent-red">Story</span></h2>
+        <p>Have you been impacted by our training? We would love to hear your story.</p>
+        <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Share Your Testimonial</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .testimonials-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 4rem 0 3rem;
+    color: white;
+    text-align: center;
+  }
+  .testimonials-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .cluster-breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+  .cluster-breadcrumb a {
+    color: var(--green-lt);
+    text-decoration: none;
+  }
+  .cluster-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .cluster-breadcrumb i {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+  }
+  .hero-icon {
+    font-size: 3rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .testimonials-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .all-red {
+    color: var(--red);
+  }
+  .hero-subhead {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .testimony-section {
+    padding: 5rem 0;
+    background: var(--gray-sf);
+  }
+  .testimony-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .testimony-card {
+    background: white;
+    border-radius: 28px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    border: 1px solid var(--border);
+  }
+  .testimony-quote-icon {
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    background: var(--red);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+  .testimony-text {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  .testimony-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    font-style: italic;
+  }
+  .testimony-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+  .author-avatar {
+    flex-shrink: 0;
+  }
+  .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--green);
+  }
+  .author-info h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 0.2rem;
+  }
+  .author-title {
+    font-size: 0.85rem;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  .author-location {
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    margin-bottom: 0.3rem;
+  }
+  .author-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red-soft);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--red);
+    width: fit-content;
+  }
+  .author-badge i {
+    font-size: 0.65rem;
+  }
+
+  .testimonials-cta {
+    padding: 4rem 0;
+    background: white;
+    text-align: center;
+  }
+  .testimonials-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .testimonials-cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+  }
+  .accent-red {
+    color: var(--red);
+  }
+  .testimonials-cta p {
+    color: var(--gray-md);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-hero h1 {
+      font-size: 2rem;
+    }
+    .testimony-card {
+      padding: 1.8rem;
+    }
+    .testimony-quote-icon {
+      top: -15px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+    .testimony-text p {
+      font-size: 0.95rem;
+    }
+    .testimony-author {
+      flex-direction: column;
+      text-align: center;
+    }
+    .author-badge {
+      margin: 0 auto;
+    }
+    .testimonials-cta h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

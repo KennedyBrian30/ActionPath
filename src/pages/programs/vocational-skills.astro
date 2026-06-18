@@ -1,0 +1,485 @@
+---
+// programs/vocational-skills.astro
+import Layout from "../../layouts/Layout.astro";
+
+const trades = [
+  { icon: "fas fa-cut", title: "Tailoring and Garment Production", desc: "Master industrial sewing, pattern making, and garment finishing. Graduates secure school uniform contracts, open tailoring shops, or sell through online fashion markets.", color: "#c0392b" },
+  { icon: "fas fa-hammer", title: "Carpentry and Furniture Making", desc: "Learn hand tool and machine carpentry, furniture design, and eco friendly bamboo production. Demand is high for local and export markets.", color: "#c0392b" },
+  { icon: "fas fa-bolt", title: "Solar Installation and Electrical", desc: "Hands on training in solar panel installation, wiring, and maintenance. This is one of Africa's fastest growing technical sectors with chronic skills shortages.", color: "#27ee31" },
+  { icon: "fas fa-recycle", title: "Eco Friendly Production", desc: "Produce reusable bags, recycled material crafts, and sustainable packaging. Tap into the rapidly growing demand for green products across Africa.", color: "#27ee31" },
+  { icon: "fas fa-wrench", title: "Machine Operation and Repair", desc: "Train on industrial sewing machines, agricultural equipment, and basic automotive mechanics. This track leads directly to formal employment.", color: "#c0392b" },
+  { icon: "fas fa-hard-hat", title: "Construction and Masonry", desc: "Master brick laying, plastering, tiling, and construction project basics. The building sector is booming and certified masons are in high demand.", color: "#c0392b" },
+];
+
+const outcomes = [
+  { icon: "fas fa-certificate", stat: "94%", label: "Certification rate", desc: "Nearly all graduates leave with nationally recognized vocational certificates from accredited partner institutions. This credential opens doors." },
+  { icon: "fas fa-briefcase", stat: "78%", label: "Employed within 6 months", desc: "Three quarters of graduates secure formal employment or launch self employment within half a year of certification. Your skill pays." },
+  { icon: "fas fa-tools", stat: "250+", label: "Shared workspace users", desc: "Graduates retain access to ActionPath production workspaces with industrial tools for their first 18 months. Keep practicing. Keep earning." },
+  { icon: "fas fa-female", stat: "58%", label: "Women graduates", desc: "More than half of vocational training graduates are women. We are directly addressing gender gaps in technical employment, one workshop at a time." },
+];
+
+const testimonials = [
+  {
+    quote: "I learned carpentry through ActionPath. Within three months of graduating I had my first furniture contract with a local school. Today I run my own workshop with two employees. This program changed my life.",
+    name: "Joseph Otieno",
+    role: "Furniture Workshop Owner",
+    location: "Kisumu, Kenya 🇰🇪",
+    challenge: "Urban Youth Unemployment",
+  },
+  {
+    quote: "As a woman in a male dominated trade, ActionPath gave me both the skills and the confidence. I now install solar panels for households in three counties. Nobody doubts my work anymore. I am proof that women belong in every trade.",
+    name: "Priscilla Acheampong",
+    role: "Solar Technician",
+    location: "Kumasi, Ghana 🇬🇭",
+    challenge: "Gender and Technical Employment Barriers",
+  },
+];
+
+const process = [
+  { step: "01", title: "Trade and Market Assessment", desc: "We identify which trades have genuine local demand before training begins. No hypothetical jobs. No wasted effort. We train for markets that actually exist.", icon: "fas fa-search" },
+  { step: "02", title: "Accredited Partner Enrollment", desc: "Participants enroll at accredited TVET institutions where ActionPath subsidizes fees and provides psychosocial support alongside technical training.", icon: "fas fa-school" },
+  { step: "03", title: "Practical Workshops", desc: "Hands on production in ActionPath shared workspaces equipped with industrial tools. This bridges the gap between classroom knowledge and real work.", icon: "fas fa-tools" },
+  { step: "04", title: "Business and Employability Skills", desc: "Alongside the trade, participants learn CV writing, basic bookkeeping, customer service, and workplace communication. We produce complete professionals.", icon: "fas fa-briefcase" },
+  { step: "05", title: "Market Showcase and Job Linking", desc: "A graduation showcase where local employers, buyers, and community leaders see participants' work and make direct hiring or purchase commitments.", icon: "fas fa-store" },
+  { step: "06", title: "Post Graduation Support", desc: "Shared workspace access, peer networks, and quarterly check ins for 18 months after graduation. We stay with you until you are earning.", icon: "fas fa-users" },
+];
+
+const partners = [
+  { icon: "fas fa-school", label: "TVET Institutions", desc: "Nationally accredited technical vocational colleges delivering certified curriculum that employers trust." },
+  { icon: "fas fa-industry", label: "Local Employers", desc: "Manufacturing, construction, and service sector companies that are actively hiring trained graduates." },
+  { icon: "fas fa-store", label: "Buyer Networks", desc: "Tailoring cooperatives, furniture buyers, and eco product distributors purchasing graduate output at fair prices." },
+  { icon: "fas fa-tools", label: "Tool Suppliers", desc: "Equipment partners providing machines, tools, and shared production workspace infrastructure." },
+];
+
+const relatedPrograms = [
+  { title: "Entrepreneurship and SME Development", desc: "Turn your certified trade into a structured, market linked enterprise that grows.", icon: "fas fa-chart-line", href: "/programs/entrepreneurship", color: "#c0392b" },
+  { title: "Women and Youth Empowerment", desc: "Targeted vocational pathways removing barriers for women and youth in technical fields.", icon: "fas fa-female", href: "/programs/women-youth", color: "#c0392b" },
+  { title: "Livelihood Diversification", desc: "Use your trade skill as one of several income streams for resilience against shocks.", icon: "fas fa-exchange-alt", href: "/programs/livelihood-diversification", color: "#27ee31" },
+];
+
+const focusAreas = [
+  { label: "Extreme Poverty", href: "/focus-areas/extreme-poverty", icon: "fas fa-hands-holding-child" },
+  { label: "Conflict and Displacement", href: "/focus-areas/conflict-displacement", icon: "fas fa-people-arrows" },
+  { label: "HIV/AIDS and Health", href: "/focus-areas/hiv-aids", icon: "fas fa-ribbon" },
+];
+---
+
+<Layout
+  title="Vocational and Technical Skills | ActionPath Africa"
+  description="Market driven trades training from solar installation to tailoring. Create sustainable employment and self employment in underserved communities across Africa."
+>
+
+  <section class="hero">
+    <div class="heroBg">
+      <img src="/vocational-skills.webp" alt="Participants in hands on vocational training workshop" />
+      <div class="heroOverlay"></div>
+    </div>
+    <div class="heroInner">
+      <div class="breadcrumb">
+        <a href="/">Home</a><i class="fas fa-chevron-right"></i>
+        <a href="/programs">Livelihood Programs</a><i class="fas fa-chevron-right"></i>
+        <span>Vocational and Technical Skills</span>
+      </div>
+      <div class="heroBadge"><i class="fas fa-tools"></i> Program 04 · Skills Development</div>
+      <h1>Vocational and<br /><span class="heroGreen">Technical Skills</span></h1>
+      <p class="heroDesc">Market ready trades that open doors. Hands on, certified trade training in sectors with genuine local demand. We create sustainable employment and self employment pathways in communities that have been left behind.</p>
+      <div class="heroActions">
+        <a href="/contact" class="btnPrimary"><i class="fas fa-handshake"></i> Partner With Us</a>
+        <a href="#programDetails" class="btnOutlineHero"><i class="fas fa-arrow-down"></i> Explore the Program</a>
+      </div>
+    </div>
+    <div class="heroStats">
+      <div class="heroStat"><i class="fas fa-certificate"></i><span class="hsVal">94%</span><span class="hsLbl">Certification Rate</span></div>
+      <div class="heroStat"><i class="fas fa-briefcase"></i><span class="hsVal">78%</span><span class="hsLbl">Employed in 6 Months</span></div>
+      <div class="heroStat"><i class="fas fa-female"></i><span class="hsVal">58%</span><span class="hsLbl">Women Graduates</span></div>
+    </div>
+  </section>
+
+  <section id="programDetails" class="introSection">
+    <div class="introGrid">
+      <div class="introText">
+        <div class="eyebrow"><i class="fas fa-compass"></i> The Challenge</div>
+        <h2>A certified skill is one of the most reliable pathways out of <span class="redText">poverty</span></h2>
+        <div class="dividerLeft"></div>
+        <p class="introLead">Across Africa's most vulnerable communities, unemployment is not a talent problem. It is a certification problem. The trades exist. The demand exists. What is missing is structured, market aligned training with credentials that employers and buyers recognize and trust.</p>
+        <p>For youth exiting <a href="/focus-areas/conflict-displacement" class="inlineLink">conflict zones</a>, for people living with <a href="/focus-areas/hiv-aids" class="inlineLink">HIV/AIDS</a> seeking dignified work, and for households trapped in <a href="/focus-areas/extreme-poverty" class="inlineLink">extreme poverty</a>, a nationally recognized vocational certificate is transformative. It signals competence. It unlocks employment. It provides the foundation for self employment.</p>
+        <p>We do not just teach a trade. We certify it. We connect it to real markets. We equip graduates with the business and employability skills to sustain income from it for years. This is not charity. This is capability building.</p>
+        <div class="focusTags">
+          <span class="ftag">TVET Certification</span>
+          <span class="ftag">Market Linked Training</span>
+          <span class="ftag">Youth Employment</span>
+          <span class="ftag">Women in Trades</span>
+        </div>
+      </div>
+      <div class="introImage">
+        <img src="/women-youth.webp" alt="Youth in vocational training" loading="lazy" />
+        <div class="imgBadge"><i class="fas fa-map-marker-alt"></i> Active in Kenya, Ghana, Uganda and Tanzania</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tradesSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-tools"></i> What We Teach</div>
+      <h2>Six Market Driven <span class="redText">Trade Tracks</span></h2>
+      <div class="dividerCenter"></div>
+      <p class="sectionSub">Every trade track is selected based on local market demand analysis. We train for jobs and contracts that actually exist in your community. No guesswork. No dead ends.</p>
+    </div>
+    <div class="tradesGrid">
+      {trades.map((t) => (
+        <div class="tradeCard" key={t.title}>
+          <div class="tradeIcon" style={`background:rgba(192,57,43,.12);color:${t.color === "#27ee31" ? "#27ee31" : "#c0392b"}`}><i class={t.icon}></i></div>
+          <h3>{t.title}</h3>
+          <p>{t.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="workspaceSection">
+    <div class="workspaceInner">
+      <div class="wsText">
+        <div class="eyebrow"><i class="fas fa-industry"></i> Shared Production Workspaces</div>
+        <h2>Training on real tools, in real <span class="greenText">production environments</span></h2>
+        <p class="wsLead">One of the biggest barriers to vocational skills uptake is that graduates leave training with knowledge but no access to equipment. ActionPath Africa solves this by establishing shared production workspaces equipped with industrial tools, machines, and materials. You learn on the same machines you will use to earn.</p>
+        <div class="wsFeatures">
+          <div class="wsf"><i class="fas fa-cut"></i><span>Industrial sewing machines for tailoring graduates ready for production volume</span></div>
+          <div class="wsf"><i class="fas fa-hammer"></i><span>Woodworking benches and power tools for carpenters to build real furniture</span></div>
+          <div class="wsf"><i class="fas fa-solar-panel"></i><span>Solar installation demo kits and practice arrays for hands on electrical training</span></div>
+          <div class="wsf"><i class="fas fa-clock"></i><span>18 months post graduation shared access. Graduates pay only a nominal usage fee.</span></div>
+        </div>
+      </div>
+      <div class="wsStatCol">
+        <div class="wsStat"><span class="wsNum">250+</span><span class="wsLbl">Active workspace users</span></div>
+        <div class="wsStat"><span class="wsNum">6</span><span class="wsLbl">Workshop locations</span></div>
+        <div class="wsStat"><span class="wsNum">18mo</span><span class="wsLbl">Post graduation access period</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="processSection">
+    <div class="sectionHeader lightHeader">
+      <div class="eyebrow light"><i class="fas fa-route"></i> Our Approach</div>
+      <h2>From Raw Potential to <span class="greenText">Certified Professional</span></h2>
+      <div class="dividerCenter greenDiv"></div>
+      <p class="sectionSub lightSub">A six stage pathway that transforms community members into credentialed, market connected tradespeople. Each step builds on the last until you are ready to earn.</p>
+    </div>
+    <div class="processGrid">
+      {process.map((step) => (
+        <div class="processCard" key={step.step}>
+          <div class="procNum">{step.step}</div>
+          <div class="procIcon"><i class={step.icon}></i></div>
+          <h3>{step.title}</h3>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="partnersSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-handshake"></i> Partnership Ecosystem</div>
+      <h2>Built on a <span class="redText">Four Partner Model</span></h2>
+      <div class="dividerCenter"></div>
+      <p class="sectionSub">Successful vocational training requires more than a classroom. Our four partner model connects training to certification, employment, markets, and infrastructure. No single organization can do this alone.</p>
+    </div>
+    <div class="partnersGrid">
+      {partners.map((p) => (
+        <div class="partnerCard" key={p.label}>
+          <div class="partnerIcon"><i class={p.icon}></i></div>
+          <h3>{p.label}</h3>
+          <p>{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="outcomesSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-chart-line"></i> Proven Impact</div>
+      <h2>Outcomes That <span class="redText">Open Doors</span></h2>
+      <div class="dividerCenter"></div>
+    </div>
+    <div class="outcomesGrid">
+      {outcomes.map((o) => (
+        <div class="outcomeCard" key={o.label}>
+          <div class="ocIcon"><i class={o.icon}></i></div>
+          <div class="ocStat">{o.stat}</div>
+          <div class="ocLabel">{o.label}</div>
+          <p class="ocDesc">{o.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mearlCallout">
+      <i class="fas fa-chart-bar"></i>
+      <div>
+        <strong>Employment Tracking via MEARL</strong>
+        <p>We track graduate employment status, income levels, and enterprise formation at 3, 6, and 12 months post graduation. This ensures accountability to both participants and program funders. We measure what matters.</p>
+      </div>
+      <a href="/services/monitoring-evaluation" class="btnMearl">Learn About Our M&E →</a>
+    </div>
+  </section>
+
+  <section class="testimonialsSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-quote-left"></i> Community Voices</div>
+      <h2>Stories of <span class="greenText">Skill and Independence</span></h2>
+      <div class="dividerCenter"></div>
+    </div>
+    <div class="testiGrid">
+      {testimonials.map((t) => (
+        <div class="testiCard" key={t.name}>
+          <div class="testiQuoteIcon"><i class="fas fa-quote-left"></i></div>
+          <p class="testiText">"{t.quote}"</p>
+          <div class="testiBadge">{t.challenge}</div>
+          <div class="testiAuthor">
+            <div class="testiAvatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="testiName">{t.name}</div>
+              <div class="testiRole">{t.role} · {t.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="focusSection">
+    <div class="focusInner">
+      <div class="focusText">
+        <div class="eyebrow light"><i class="fas fa-map-marker-alt"></i> Where We Work</div>
+        <h2>Designed for communities where <span class="greenText">employment barriers are highest</span></h2>
+        <p>Vocational training is most transformative in communities where structural barriers (conflict, disease, poverty) have made formal employment or self employment feel out of reach. We go where the need is greatest and the opportunities are real.</p>
+        <div class="focusLinks">
+          {focusAreas.map((fa) => (
+            <a href={fa.href} class="focusLink" key={fa.label}>
+              <i class={fa.icon}></i> {fa.label} <i class="fas fa-arrow-right"></i>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="focusImg">
+        <img src="/entrepreneurship.webp" alt="Vocational graduates at work" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="relatedSection">
+    <div class="sectionHeader">
+      <div class="eyebrow"><i class="fas fa-th-large"></i> Continue Exploring</div>
+      <h2>Related <span class="redText">Programs</span></h2>
+      <div class="dividerCenter"></div>
+      <p class="sectionSub">A trade skill is most powerful when combined with entrepreneurship training, diversification strategies, and targeted youth and women support. Build a complete livelihood strategy.</p>
+    </div>
+    <div class="relatedGrid">
+      {relatedPrograms.map((p) => (
+        <a href={p.href} class="relatedCard" key={p.title} style={`--rcolor:${p.color}`}>
+          <div class="relIcon" style={`background:rgba(192,57,43,.12);color:${p.color === "#27ee31" ? "#27ee31" : "#c0392b"}`}><i class={p.icon}></i></div>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="relLink" style={`color:${p.color === "#27ee31" ? "#27ee31" : "#c0392b"}`}>Explore <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+    <div class="allProgramsRow">
+      <a href="/programs" class="btnOutlineDark"><i class="fas fa-th-large"></i> View All Seven Programs</a>
+    </div>
+  </section>
+
+  <section class="ctaSection">
+    <div class="ctaInner">
+      <div class="ctaEyebrow"><i class="fas fa-bolt"></i> Take Action</div>
+      <h2>Ready to build a skilled, employed community?</h2>
+      <p>Partner with us to design and deliver vocational training programs tailored to your communities' needs and local market realities. Let us create pathways that actually lead to work.</p>
+      <div class="ctaButtons">
+        <a href="/contact" class="btnPrimary btnLg"><i class="fas fa-envelope"></i> Partner With Us</a>
+        <a href="/services/feasibility-research" class="btnOutlineLight btnLg"><i class="fas fa-search-dollar"></i> Market and Feasibility Research</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b;
+    --redDark: #a93226;
+    --redSoft: rgba(192,57,43,.12);
+    --green: #27ee31;
+    --greenLt: #27f731;
+    --greenSoft: rgba(39,238,49,.1);
+    --charcoal: #1e293b;
+    --black: #0f1115;
+    --grayDk: #334155;
+    --grayMd: #64748b;
+    --graySf: #f1f5f9;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --shSm: 0 4px 12px rgba(0,0,0,.05);
+    --shMd: 0 8px 24px rgba(0,0,0,.08);
+    --shLg: 0 20px 40px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  .hero { position:relative; min-height:88vh; display:flex; flex-direction:column; justify-content:center; margin:-2.5rem -2rem 0; overflow:hidden; }
+  .heroBg { position:absolute; inset:0; z-index:0; }
+  .heroBg img { width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+  .heroOverlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(15,17,21,.93) 0%,rgba(15,17,21,.78) 55%,rgba(192,57,43,.45) 100%); }
+  .heroInner { position:relative; z-index:2; padding:4rem 2rem 6rem; max-width:720px; }
+  .breadcrumb { display:flex; align-items:center; gap:8px; font-size:.75rem; color:var(--grayMd); margin-bottom:1.5rem; }
+  .breadcrumb a { color:var(--grayMd); text-decoration:none; } .breadcrumb a:hover { color:var(--green); } .breadcrumb i { font-size:.55rem; }
+  .heroBadge { display:inline-flex; align-items:center; gap:8px; background:rgba(39,238,49,.12); border:1px solid rgba(39,238,49,.3); color:var(--greenLt); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.4rem 1rem; border-radius:40px; margin-bottom:1.5rem; }
+  .hero h1 { font-family:"Outfit",sans-serif; font-size:3.6rem; font-weight:900; line-height:1.06; letter-spacing:-.03em; color:var(--white); margin-bottom:1.25rem; }
+  .heroGreen { color:var(--greenLt); }
+  .heroDesc { font-size:1.05rem; color:#cbd5e1; line-height:1.72; max-width:540px; margin-bottom:2rem; }
+  .heroActions { display:flex; gap:1rem; flex-wrap:wrap; }
+  .heroStats { position:relative; z-index:2; display:flex; gap:1px; background:rgba(0,0,0,.5); backdrop-filter:blur(12px); border-top:1px solid rgba(255,255,255,.1); }
+  .heroStat { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; padding:1.25rem 1rem; border-right:1px solid rgba(255,255,255,.1); text-align:center; }
+  .heroStat:last-child { border-right:none; }
+  .heroStat i { color:var(--greenLt); font-size:1.2rem; margin-bottom:4px; }
+  .hsVal { font-family:"Outfit",sans-serif; font-size:1.6rem; font-weight:900; color:var(--white); line-height:1; }
+  .hsLbl { font-size:.72rem; color:rgba(255,255,255,.6); font-weight:500; }
+
+  .btnPrimary { display:inline-flex; align-items:center; gap:8px; background:var(--red); color:var(--white); padding:.72rem 1.75rem; border-radius:40px; font-weight:700; font-size:.9rem; text-decoration:none; transition:var(--ease); }
+  .btnPrimary:hover { background:var(--redDark); transform:translateY(-2px); box-shadow:0 8px 20px rgba(192,57,43,.35); }
+  .btnOutlineHero { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--green); color:var(--green); padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:var(--ease); background:transparent; }
+  .btnOutlineHero:hover { background:rgba(39,238,49,.1); border-color:var(--greenLt); color:var(--greenLt); transform:translateY(-2px); }
+  .btnOutlineDark { display:inline-flex; align-items:center; gap:8px; border:2px solid var(--charcoal); color:var(--charcoal); padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:var(--ease); background:transparent; }
+  .btnOutlineDark:hover { background:var(--charcoal); color:var(--white); transform:translateY(-2px); }
+  .btnOutlineLight { display:inline-flex; align-items:center; gap:8px; border:2px solid rgba(255,255,255,.4); color:var(--white); padding:.72rem 1.75rem; border-radius:40px; font-weight:700; text-decoration:none; transition:var(--ease); background:transparent; }
+  .btnOutlineLight:hover { background:rgba(255,255,255,.12); border-color:var(--white); }
+  .btnLg { padding:.85rem 2rem; font-size:.95rem; }
+  .btnMearl { display:inline-block; white-space:nowrap; color:var(--red); font-weight:700; font-size:.82rem; text-decoration:none; flex-shrink:0; }
+  .btnMearl:hover { text-decoration:underline; }
+
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--redSoft); color:var(--red); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.35rem 1rem; border-radius:40px; margin-bottom:1rem; }
+  .eyebrow.light { background:rgba(255,255,255,.12); color:var(--greenLt); border:1px solid rgba(255,255,255,.15); }
+  .sectionHeader, .lightHeader { text-align:center; margin-bottom:3rem; }
+  .sectionHeader h2, .lightHeader h2 { font-family:"Outfit",sans-serif; font-size:2rem; font-weight:800; letter-spacing:-.02em; margin-bottom:.5rem; color:var(--charcoal); }
+  .lightHeader h2 { color:var(--white); }
+  .sectionSub { font-size:.93rem; color:var(--grayMd); max-width:620px; margin:0 auto; line-height:1.65; }
+  .lightSub { color:rgba(255,255,255,.7); }
+  .dividerCenter { width:56px; height:3px; background:linear-gradient(90deg,var(--red),var(--green)); border-radius:3px; margin:.75rem auto 1.25rem; }
+  .greenDiv { background:linear-gradient(90deg,var(--green),var(--red)); }
+  .dividerLeft { width:56px; height:3px; background:linear-gradient(90deg,var(--red),var(--green)); border-radius:3px; margin:.75rem 0 1.25rem; }
+  .redText { color:var(--red); } .greenText { color:var(--greenLt); }
+  .inlineLink { color:var(--red); font-weight:600; text-decoration:none; } .inlineLink:hover { text-decoration:underline; }
+
+  .introSection { padding:4rem 0; }
+  .introGrid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center; }
+  .introText h2 { font-family:"Outfit",sans-serif; font-size:2rem; font-weight:800; letter-spacing:-.02em; line-height:1.2; margin-bottom:.5rem; color:var(--charcoal); }
+  .introLead { font-size:1rem; font-weight:600; color:var(--red); line-height:1.72; margin-bottom:1rem; }
+  .introText p { font-size:.9rem; color:var(--grayDk); line-height:1.75; margin-bottom:1rem; }
+  .focusTags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.25rem; }
+  .ftag { background:var(--redSoft); color:var(--red); font-size:.72rem; font-weight:700; padding:.25rem .75rem; border-radius:20px; border:1px solid rgba(192,57,43,.2); }
+  .introImage { position:relative; border-radius:24px; overflow:hidden; box-shadow:var(--shLg); }
+  .introImage img { width:100%; height:420px; object-fit:cover; display:block; }
+  .imgBadge { position:absolute; bottom:16px; left:16px; right:16px; background:rgba(0,0,0,.72); backdrop-filter:blur(8px); color:var(--white); font-size:.75rem; font-weight:600; padding:.6rem 1rem; border-radius:40px; text-align:center; }
+  .imgBadge i { color:var(--greenLt); margin-right:6px; }
+
+  .tradesSection { padding:3.5rem 0; background:var(--graySf); border-radius:32px; margin:1.5rem 0; }
+  .tradesGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .tradeCard { background:var(--white); border-radius:20px; padding:1.5rem; border:1px solid var(--border); transition:var(--ease); }
+  .tradeCard:hover { transform:translateY(-4px); box-shadow:var(--shMd); border-color:var(--red); }
+  .tradeIcon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:1rem; }
+  .tradeCard h3 { font-size:.95rem; font-weight:700; margin-bottom:.5rem; color:var(--charcoal); }
+  .tradeCard p { font-size:.82rem; color:var(--grayMd); line-height:1.6; }
+
+  .workspaceSection { background:var(--white); border:1px solid var(--border); border-radius:28px; margin:2rem 0; }
+  .workspaceInner { display:grid; grid-template-columns:1fr 260px; gap:3rem; align-items:center; padding:3rem; }
+  .wsText h2 { font-family:"Outfit",sans-serif; font-size:1.85rem; font-weight:800; letter-spacing:-.02em; margin-bottom:.5rem; color:var(--charcoal); }
+  .wsLead { font-size:.92rem; color:var(--grayDk); line-height:1.72; margin-bottom:1.25rem; }
+  .wsFeatures { display:flex; flex-direction:column; gap:.65rem; }
+  .wsf { display:flex; align-items:center; gap:.75rem; font-size:.85rem; color:var(--charcoal); }
+  .wsf i { color:var(--red); font-size:.9rem; flex-shrink:0; width:24px; }
+  .wsStatCol { display:flex; flex-direction:column; gap:1rem; }
+  .wsStat { background:var(--redSoft); border-radius:20px; padding:1.25rem; text-align:center; border:1px solid rgba(192,57,43,.15); }
+  .wsNum { font-family:"Outfit",sans-serif; font-size:2rem; font-weight:900; color:var(--red); display:block; line-height:1; }
+  .wsLbl { font-size:.75rem; color:var(--grayDk); font-weight:600; display:block; margin-top:4px; }
+
+  .processSection { background:var(--charcoal); border-radius:32px; margin:2rem 0; padding:3.5rem 2rem; }
+  .processGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .processCard { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:1.5rem; transition:var(--ease); }
+  .processCard:hover { background:rgba(192,57,43,.1); border-color:rgba(192,57,43,.3); transform:translateY(-3px); }
+  .procNum { font-family:"Outfit",sans-serif; font-size:2.5rem; font-weight:900; color:rgba(192,57,43,.3); line-height:1; margin-bottom:.5rem; }
+  .procIcon { width:40px; height:40px; background:rgba(192,57,43,.15); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--greenLt); font-size:.95rem; margin-bottom:.85rem; }
+  .processCard h3 { font-size:.9rem; font-weight:700; color:var(--white); margin-bottom:.4rem; }
+  .processCard p { font-size:.8rem; color:rgba(255,255,255,.6); line-height:1.6; }
+
+  .partnersSection { padding:3.5rem 0; }
+  .partnersGrid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+  .partnerCard { background:var(--white); border-radius:20px; padding:1.5rem; border:1px solid var(--border); text-align:center; transition:var(--ease); }
+  .partnerCard:hover { transform:translateY(-4px); border-color:var(--red); box-shadow:var(--shMd); }
+  .partnerIcon { width:56px; height:56px; border-radius:16px; background:var(--redSoft); color:var(--red); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin:0 auto 1rem; }
+  .partnerCard h3 { font-size:.9rem; font-weight:700; margin-bottom:.4rem; color:var(--charcoal); }
+  .partnerCard p { font-size:.78rem; color:var(--grayMd); line-height:1.55; }
+
+  .outcomesSection { padding:3.5rem 0; }
+  .outcomesGrid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-bottom:2rem; }
+  .outcomeCard { background:var(--white); border-radius:20px; padding:1.75rem; border:1px solid var(--border); text-align:center; transition:var(--ease); }
+  .outcomeCard:hover { transform:translateY(-4px); border-color:var(--red); box-shadow:var(--shMd); }
+  .ocIcon { font-size:1.75rem; color:var(--red); margin-bottom:.75rem; }
+  .ocStat { font-family:"Outfit",sans-serif; font-size:2.5rem; font-weight:900; color:var(--charcoal); line-height:1; }
+  .ocLabel { font-size:.8rem; font-weight:700; color:var(--red); margin:.35rem 0 .75rem; }
+  .ocDesc { font-size:.78rem; color:var(--grayMd); line-height:1.55; }
+  .mearlCallout { background:var(--redSoft); border:1px solid rgba(192,57,43,.2); border-left:4px solid var(--red); border-radius:16px; padding:1.25rem 1.5rem; display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap; }
+  .mearlCallout > i { color:var(--red); font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .mearlCallout > div { flex:1; }
+  .mearlCallout strong { font-size:.9rem; color:var(--charcoal); display:block; margin-bottom:4px; }
+  .mearlCallout p { font-size:.82rem; color:var(--grayDk); line-height:1.6; }
+
+  .testimonialsSection { padding:3.5rem 0; }
+  .testiGrid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.75rem; }
+  .testiCard { background:var(--white); border-radius:24px; padding:2rem; border:1px solid var(--border); transition:var(--ease); }
+  .testiCard:hover { transform:translateY(-4px); border-color:var(--red); box-shadow:var(--shMd); }
+  .testiQuoteIcon { color:var(--red); font-size:2rem; opacity:.25; margin-bottom:.75rem; }
+  .testiText { font-size:.92rem; color:var(--charcoal); line-height:1.7; font-style:italic; margin-bottom:1rem; }
+  .testiBadge { display:inline-block; background:var(--redSoft); color:var(--red); font-size:.7rem; font-weight:700; padding:.2rem .75rem; border-radius:20px; margin-bottom:1.25rem; }
+  .testiAuthor { display:flex; align-items:center; gap:.85rem; border-top:1px solid var(--border); padding-top:1rem; }
+  .testiAvatar { width:42px; height:42px; border-radius:50%; background:var(--redSoft); color:var(--red); display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
+  .testiName { font-weight:700; font-size:.87rem; color:var(--charcoal); }
+  .testiRole { font-size:.72rem; color:var(--grayMd); margin-top:2px; }
+
+  .focusSection { background:var(--charcoal); border-radius:28px; margin:2rem 0; overflow:hidden; }
+  .focusInner { display:grid; grid-template-columns:1fr 1fr; align-items:stretch; }
+  .focusText { padding:3rem; }
+  .focusText h2 { font-family:"Outfit",sans-serif; font-size:1.85rem; font-weight:800; color:var(--white); line-height:1.2; margin-bottom:1rem; }
+  .focusText p { font-size:.9rem; color:rgba(255,255,255,.7); line-height:1.72; margin-bottom:1.5rem; }
+  .focusLinks { display:flex; flex-direction:column; gap:.6rem; }
+  .focusLink { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.85); font-size:.85rem; font-weight:600; padding:.65rem 1.1rem; border-radius:12px; text-decoration:none; transition:all .2s; }
+  .focusLink:hover { background:rgba(192,57,43,.15); border-color:rgba(192,57,43,.35); color:var(--greenLt); }
+  .focusLink i:first-child { color:var(--greenLt); } .focusLink i:last-child { margin-left:auto; font-size:.7rem; }
+  .focusImg { overflow:hidden; }
+  .focusImg img { width:100%; height:100%; min-height:300px; object-fit:cover; display:block; }
+
+  .relatedSection { padding:3.5rem 0; }
+  .relatedGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .relatedCard { background:var(--white); border-radius:20px; padding:1.5rem; border:1px solid var(--border); text-decoration:none; color:inherit; transition:var(--ease); display:flex; flex-direction:column; border-top:3px solid var(--rcolor); }
+  .relatedCard:hover { transform:translateY(-4px); box-shadow:var(--shMd); }
+  .relIcon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:.85rem; }
+  .relatedCard h3 { font-size:.95rem; font-weight:700; margin-bottom:.4rem; color:var(--charcoal); }
+  .relatedCard p { font-size:.82rem; color:var(--grayMd); line-height:1.55; flex:1; margin-bottom:1rem; }
+  .relLink { font-size:.78rem; font-weight:700; display:flex; align-items:center; gap:5px; }
+  .allProgramsRow { text-align:center; margin-top:2.5rem; }
+
+  .ctaSection { background:linear-gradient(135deg, var(--red) 0%, var(--charcoal) 100%); border-radius:28px; margin:2rem 0; padding:4rem 3rem; text-align:center; }
+  .ctaEyebrow { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); color:var(--greenLt); font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.35rem 1rem; border-radius:40px; margin-bottom:1rem; }
+  .ctaInner h2 { font-family:"Outfit",sans-serif; font-size:2.25rem; font-weight:900; color:var(--white); max-width:600px; margin:0 auto 1rem; line-height:1.2; }
+  .ctaInner p { color:rgba(255,255,255,.78); font-size:.95rem; max-width:520px; margin:0 auto 2rem; line-height:1.7; }
+  .ctaButtons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+  @media (max-width:1024px) {
+    .introGrid, .focusInner, .workspaceInner { grid-template-columns:1fr; }
+    .focusImg, .wsStatCol { display:none; }
+    .tradesGrid, .processGrid { grid-template-columns:repeat(2,1fr); }
+    .outcomesGrid, .partnersGrid { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:640px) {
+    .hero h1 { font-size:2.2rem; } .heroInner { padding:2.5rem 1.25rem 4rem; }
+    .heroStats { flex-direction:column; } .heroStat { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); } .heroStat:last-child { border-bottom:none; }
+    .tradesGrid, .processGrid, .outcomesGrid, .partnersGrid, .testiGrid, .relatedGrid { grid-template-columns:1fr; }
+    .ctaSection { padding:2.5rem 1.5rem; } .ctaInner h2 { font-size:1.75rem; }
+    .ctaButtons { flex-direction:column; align-items:center; }
+    .mearlCallout { flex-direction:column; }
+  }
+</style>

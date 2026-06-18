@@ -1,0 +1,719 @@
+---
+// about/team.astro - ActionPath Africa Team Page
+import Layout from "../../layouts/Layout.astro";
+
+const team = [
+  {
+    name: "George Omondi Awuor",
+    role: "Founder & CEO, ActionPath Africa",
+    initials: "GO",
+    tagline: "Building learning experiences that create real impact.",
+    image: "/team/george-omondi-awuor.jpg",
+    bio: [
+      "George Omondi Awuor has spent over a decade designing and implementing training programs across East Africa. He has worked alongside organisations including VSO International, ActionAid, Mercy Corps, Tiko Africa, ACE Africa, Jobortunity, and Sibusiso Foundation, building a body of work that spans some of the most complex livelihood contexts on the continent.",
+      "He specialises in curriculum development, youth empowerment, facilitation, behaviour change, community engagement, and workforce readiness training. His work has supported thousands of youth, women, facilitators, and health workers in Kenya, Uganda, Tanzania, and Kakuma Refugee Camp to build practical skills, confidence, and opportunity.",
+      "As the lead at ActionPath Africa, George champions community-driven learning approaches that help NGOs, CBOs, social enterprises, and institutions create sustainable impact in underserved communities.",
+    ],
+    specialisms: [
+      "Youth Empowerment",
+      "Curriculum Development",
+      "Behaviour Change",
+      "Community Engagement",
+      "Workforce Readiness",
+    ],
+    geographies: ["Kenya", "Uganda", "Tanzania", "Kakuma Refugee Camp"],
+    icon: "fas fa-chalkboard-teacher",
+    color: "red",
+  },
+  {
+    name: "Jane Mutave Munyalo",
+    role: "Partners and Programs Lead",
+    initials: "JM",
+    tagline: "Connecting people, organisations, and purpose.",
+    image: "/team/jane-mutave-munyalo.jpg",
+    bio: [
+      "Jane is a dedicated professional passionate about innovation, collaboration, and meaningful social impact. She brings valuable experience in relationship building, stakeholder engagement, and supporting organisational growth through professionalism, integrity, and people-centred approaches.",
+      "At ActionPath Africa, Jane contributes to building strategic partnerships, strengthening client relationships, and supporting programs that empower communities and create sustainable opportunities for growth and transformation.",
+    ],
+    specialisms: [
+      "Strategic Partnerships",
+      "Stakeholder Engagement",
+      "Relationship Building",
+      "Organisational Growth",
+      "Program Support",
+    ],
+    geographies: ["Kenya", "East Africa"],
+    icon: "fas fa-handshake",
+    color: "green",
+  },
+  {
+    name: "Adams Arkippo",
+    role: "Livelihoods Expert",
+    initials: "AA",
+    tagline: "Empowering ASAL communities through diversified, climate-smart livelihoods.",
+    image: "/team/adams-arkippo.jpg",
+    bio: [
+      "Adams Arkippo is a dedicated livelihoods expert with extensive experience working in arid and semi-arid lands (ASALs) across Kenya, including Tana River, Homa Bay, Migori, and Baringo counties, as well as in Tanzania's Tarime and Sirari areas.",
+      "He has supported the development and implementation of training curricula on dairy management, poultry production, beekeeping, and shoat rearing, empowering vulnerable communities to diversify their income sources and reduce dependence on a single livelihood activity.",
+      "Adams has also facilitated market linkages for farmers, enabling them to access reliable markets for their produce while reducing post-harvest losses through the adoption of climate-smart technologies. These interventions include the use of solar-powered storage facilities, promotion of fast-growing forage varieties, and improved livestock breeds to enhance productivity and resilience.",
+      "Through these efforts, farmers have achieved better prices for their products, strengthened their bargaining power, and reduced exploitation by middlemen, resulting in improved household incomes and livelihoods.",
+    ],
+    specialisms: [
+      "Livelihoods Diversification",
+      "Curriculum Development",
+      "Market Linkages",
+      "Climate-Smart Agriculture",
+      "ASAL Community Development",
+      "Value Chain Strengthening",
+    ],
+    geographies: ["Kenya (ASAL counties)", "Tanzania", "East Africa"],
+    icon: "fas fa-tractor",
+    color: "red",
+  },
+];
+
+// Core Values (updated)
+const coreValues = [
+  {
+    icon: "fas fa-rocket",
+    title: "Empowerment",
+    desc: "We focus on equipping trainees with practical skills, confidence, and self-reliance so they can sustainably improve their livelihoods. This means our work has a lasting impact beyond training.",
+  },
+  {
+    icon: "fas fa-shield-alt",
+    title: "Integrity",
+    desc: "We uphold honesty, transparency, and ethical practices in all engagements. This means we build trust with trainees, partners, and communities, ensuring our work is credible and dependable.",
+  },
+  {
+    icon: "fas fa-hands-helping",
+    title: "Inclusivity",
+    desc: "We design and deliver training programs that are accessible to diverse groups, including marginalized communities, women, and youth. This ensures equal opportunity and broadens the reach of our impact.",
+  },
+];
+
+// Supervisory Board
+const supervisoryBoard = [
+  {
+    name: "George Omondi Awuor",
+    title: "Secretary to the Board",
+    image: "/team/george-omondi-awuor1.jpg",
+    initials: "GO",
+  },
+];
+---
+
+<Layout
+  title="Meet the Team | ActionPath Africa"
+  description="The people behind ActionPath Africa's livelihood training and community empowerment programs across East Africa."
+>
+
+  <div class="team-page-container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <a href="/about">About Us</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Our Team</span>
+        </div>
+        <div class="hero-badge">
+          <i class="fas fa-users"></i> The People Behind the Work
+        </div>
+        <h1>
+          <span class="h1-red">Meet</span>
+          <span class="h1-black"> the </span>
+          <span class="h1-green">Team</span>
+        </h1>
+        <p class="hero-desc">
+          ActionPath Africa is built on lived experience, deep relationships, and a genuine
+          commitment to communities that are too often underserved. Here are the people who
+          make the work possible.
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSION & VISION SECTION -->
+    <section class="mission-vision-section">
+      <div class="mission-vision-grid">
+        <div class="mission-card">
+          <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p>To empower individuals with practical skills and knowledge that foster sustainable livelihoods, uphold integrity in every engagement, and champion inclusivity by creating opportunities for all, especially marginalized communities.</p>
+        </div>
+        <div class="vision-card">
+          <div class="mv-icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To be a leading consultancy that transforms lives by building resilient, self-reliant communities where empowerment, integrity, and inclusivity drive lasting social and economic progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM MEMBERS -->
+    <section class="team-section">
+      <div class="team-intro">
+        <div class="eyebrow red-eyebrow"><i class="fas fa-user-group"></i> Our People</div>
+        <h2>A small team with <span class="red-text">deep reach</span></h2>
+        <div class="divider-left"></div>
+        <p>
+          ActionPath Africa operates as a lean, experienced team that punches well above its
+          size. Each member brings a distinct set of skills and relationships that combine to
+          deliver programs in some of the most complex livelihood environments in East Africa.
+          We work with a network of associates, community facilitators, and partner organisations
+          to extend our reach without losing the quality and care that define our approach.
+        </p>
+      </div>
+
+      <div class="team-list">
+        {team.map((member, idx) => (
+          <article class={`member-card ${idx % 2 === 1 ? "member-card--alt" : ""}`} key={member.name}>
+
+            <!-- Avatar panel with image -->
+            <div class={`member-avatar-panel ${member.color === "green" ? "panel-green" : "panel-red"}`}>
+              <div class="avatar-image">
+                <img src={member.image} alt={member.name} class="avatar-img" />
+              </div>
+              <div class="avatar-icon">
+                <i class={member.icon}></i>
+              </div>
+              <div class="member-specialisms">
+                <p class="spec-label">Specialisms</p>
+                <ul>
+                  {member.specialisms.map((s) => (
+                    <li key={s}><i class="fas fa-check"></i> {s}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="member-geo">
+                <p class="spec-label">Works in</p>
+                <div class="geo-tags">
+                  {member.geographies.map((g) => (
+                    <span class="geo-tag" key={g}>{g}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Bio panel -->
+            <div class="member-bio-panel">
+              <div class="member-header">
+                <h2 class="member-name">{member.name}</h2>
+                <p class="member-role">{member.role}</p>
+                <p class="member-tagline">"{member.tagline}"</p>
+              </div>
+              <div class="divider-left"></div>
+              <div class="member-bio">
+                {member.bio.map((para) => (
+                  <p key={para}>{para}</p>
+                ))}
+              </div>
+            </div>
+
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- CORE VALUES SECTION -->
+    <section class="values-section">
+      <div class="section-header">
+        <div class="eyebrow red-eyebrow"><i class="fas fa-star"></i> What We Believe</div>
+        <h2>Our <span class="red-text">Core Values</span></h2>
+        <div class="divider-center"></div>
+        <p class="section-sub">
+          These principles guide everything we do at ActionPath Africa.
+        </p>
+      </div>
+      <div class="values-grid">
+        {coreValues.map((v) => (
+          <div class="value-card" key={v.title}>
+            <div class="vc-icon"><i class={v.icon}></i></div>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SUPERVISORY BOARD SECTION -->
+    <section class="board-section">
+      <div class="section-header">
+        <div class="eyebrow red-eyebrow"><i class="fas fa-building"></i> Leadership</div>
+        <h2>Supervisory <span class="red-text">Board</span></h2>
+        <div class="divider-center"></div>
+        <p class="section-sub">
+          Providing strategic oversight and guidance to ensure we fulfill our mission.
+        </p>
+      </div>
+      <div class="board-grid">
+        {supervisoryBoard.map((member) => (
+          <div class="board-card" key={member.name}>
+            <div class="board-image">
+              <img src={member.image} alt={member.name} class="board-img" />
+            </div>
+            <h3 class="board-name">{member.name}</h3>
+            <p class="board-title">{member.title}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- JOIN / PARTNER STRIP - Updated with Layout items -->
+    <section class="join-section">
+      <div class="join-inner">
+        <div class="join-text">
+          <div class="eyebrow green-eyebrow"><i class="fas fa-handshake"></i> Work With Us</div>
+          <h2>We are always looking for <span class="green-text">the right people</span></h2>
+          <p>
+            ActionPath Africa grows through relationships. Whether you are a facilitator,
+            researcher, program officer, or community leader with something meaningful to
+            contribute, we want to hear from you.
+          </p>
+          <div class="join-actions">
+            <a href="/contact" class="btn-primary">
+              <i class="fas fa-envelope"></i> Get in Touch
+            </a>
+            <a href="/about" class="btn-outline-dark">
+              <i class="fas fa-info-circle"></i> About ActionPath Africa
+            </a>
+          </div>
+        </div>
+        <div class="join-links">
+          <p class="join-links-label">Explore what we do</p>
+          <a href="/services/training/entrepreneurship" class="jlink">
+            <i class="fas fa-seedling"></i> Entrepreneurship & Climate <i class="fas fa-arrow-right jl-arrow"></i>
+          </a>
+          <a href="/services/training/life-skills" class="jlink">
+            <i class="fas fa-users"></i> Life Skills & Employability <i class="fas fa-arrow-right jl-arrow"></i>
+          </a>
+          <a href="/services/training/empowerment" class="jlink">
+            <i class="fas fa-female"></i> Youth & Women Empowerment <i class="fas fa-arrow-right jl-arrow"></i>
+          </a>
+          <a href="/services/training/community-development" class="jlink">
+            <i class="fas fa-building"></i> Community Development <i class="fas fa-arrow-right jl-arrow"></i>
+          </a>
+          <a href="/services/consultancy" class="jlink jlink-all">
+            <i class="fas fa-briefcase"></i> Consultancy Services <i class="fas fa-arrow-right jl-arrow"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</Layout>
+
+<style is:global>
+  .team-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --green-mid: #1a8c1f;
+    --green-soft: rgba(39, 238, 49, 0.12);
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #64748b;
+    --gray-sf: #f1f5f9;
+    --border: #e2e8f0;
+    --sh-md: 0 8px 24px rgba(0,0,0,.08);
+    --sh-lg: 0 20px 50px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* ── Hero ────────────────────────────────── */
+  .hero {
+    position: relative;
+    background: var(--charcoal);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    padding: 4rem 3rem 3.5rem;
+    border-bottom: 4px solid var(--red);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(192,57,43,.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 680px; }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.45); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(39,238,49,.12); border: 1px solid rgba(39,238,49,.25);
+    color: var(--green-lt); font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 40px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.5rem; font-weight: 900;
+    line-height: 1.06; letter-spacing: -.04em;
+    margin-bottom: 1.25rem;
+  }
+  .h1-red { color: var(--red); }
+  .h1-black { color: rgba(255,255,255,.25); }
+  .h1-green { color: var(--green-lt); }
+  .hero-desc {
+    font-size: 1rem; color: rgba(255,255,255,.72);
+    line-height: 1.75; max-width: 560px;
+  }
+
+  /* ── Mission & Vision ──────────────────────── */
+  .mission-vision-section {
+    margin-bottom: 4rem;
+  }
+  .mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .mission-card, .vision-card {
+    background: linear-gradient(135deg, var(--gray-sf) 0%, #fff 100%);
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: var(--ease);
+  }
+  .mission-card:hover, .vision-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-md);
+    border-color: var(--green);
+  }
+  .mv-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    color: white;
+    font-size: 1.8rem;
+  }
+  .mission-card h3, .vision-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+  }
+  .mission-card p, .vision-card p {
+    color: var(--gray-md);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  /* ── Shared utilities ─────────────────────── */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem;
+  }
+  .red-eyebrow { background: var(--red-soft); color: var(--red); }
+  .green-eyebrow { background: var(--green-soft); color: var(--green-mid); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: .5rem; color: var(--charcoal);
+  }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .divider-center {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 3px; margin: .75rem auto 1.25rem;
+  }
+  .divider-left {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 3px; margin: .75rem 0 1.25rem;
+  }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green-mid); }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: none; cursor: pointer; transition: var(--ease);
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,.35); }
+  .btn-outline-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid var(--charcoal); color: var(--charcoal);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-outline-dark:hover { background: var(--charcoal); color: white; transform: translateY(-2px); }
+
+  /* ── Team intro ───────────────────────────── */
+  .team-section { padding: 0 0 4rem; }
+  .team-intro { max-width: 720px; margin-bottom: 3.5rem; }
+  .team-intro h2 { font-family: "Outfit", sans-serif; font-size: 1.95rem; font-weight: 800; letter-spacing: -.02em; color: var(--charcoal); margin-bottom: .4rem; }
+  .team-intro p { font-size: .92rem; color: var(--gray-md); line-height: 1.78; }
+
+  /* ── Member cards ─────────────────────────── */
+  .team-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  .member-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--sh-md);
+    transition: var(--ease);
+  }
+  .member-card:hover { box-shadow: var(--sh-lg); transform: translateY(-3px); }
+
+  /* Alternate layout flips avatar to right */
+  .member-card--alt {
+    grid-template-columns: 1fr 280px;
+  }
+  .member-card--alt .member-avatar-panel {
+    order: 2;
+  }
+  .member-card--alt .member-bio-panel {
+    order: 1;
+  }
+
+  /* Avatar panel with image */
+  .member-avatar-panel {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 2.5rem 1.5rem;
+    gap: 1.25rem;
+  }
+  .panel-red { background: var(--charcoal); }
+  .panel-green { background: linear-gradient(160deg, #0f2318 0%, var(--charcoal) 100%); }
+
+  .avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,.2);
+  }
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .panel-red .avatar-image { border-color: var(--red); }
+  .panel-green .avatar-image { border-color: var(--green); }
+
+  .avatar-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .panel-red .avatar-icon { background: rgba(192,57,43,.2); color: var(--red); }
+  .panel-green .avatar-icon { background: rgba(39,238,49,.12); color: var(--green-lt); }
+
+  .member-specialisms { width: 100%; }
+  .spec-label {
+    font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: rgba(255,255,255,.35);
+    margin-bottom: .5rem;
+  }
+  .member-specialisms ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .member-specialisms ul li {
+    font-size: .75rem; color: rgba(255,255,255,.7);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .panel-red .member-specialisms ul li i { color: var(--red); font-size: .6rem; }
+  .panel-green .member-specialisms ul li i { color: var(--green-lt); font-size: .6rem; }
+
+  .member-geo { width: 100%; }
+  .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .5rem; }
+  .geo-tag {
+    font-size: .65rem; font-weight: 600;
+    padding: .18rem .55rem; border-radius: 20px;
+  }
+  .panel-red .geo-tag { background: rgba(192,57,43,.2); color: rgba(255,255,255,.65); }
+  .panel-green .geo-tag { background: rgba(39,238,49,.12); color: rgba(255,255,255,.65); }
+
+  /* Bio panel */
+  .member-bio-panel {
+    background: white;
+    padding: 2.5rem;
+    display: flex; flex-direction: column;
+  }
+  .member-header { margin-bottom: .25rem; }
+  .member-name {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.65rem; font-weight: 900;
+    letter-spacing: -.02em; color: var(--charcoal);
+    margin-bottom: .25rem;
+  }
+  .member-role {
+    font-size: .82rem; font-weight: 700;
+    color: var(--red); text-transform: uppercase;
+    letter-spacing: .05em; margin-bottom: .6rem;
+  }
+  .member-tagline {
+    font-size: .95rem; color: var(--gray-md);
+    font-style: italic; line-height: 1.5;
+  }
+  .member-bio { display: flex; flex-direction: column; gap: .85rem; }
+  .member-bio p { font-size: .88rem; color: var(--gray-dk); line-height: 1.78; }
+
+  /* ── Core Values ───────────────────────────────── */
+  .values-section {
+    padding: 3.5rem 2rem;
+    background: var(--gray-sf);
+    border-radius: 32px;
+    margin: 1.5rem 0;
+  }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .value-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); transition: var(--ease);
+  }
+  .value-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); border-color: var(--green); }
+  .vc-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .value-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--charcoal); margin-bottom: .75rem; }
+  .value-card p { font-size: .85rem; color: var(--gray-md); line-height: 1.6; }
+
+  /* ── Supervisory Board Section ─────────────────── */
+  .board-section {
+    padding: 3rem 0;
+    margin: 1.5rem 0;
+  }
+  .board-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .board-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: var(--ease);
+    width: 280px;
+  }
+  .board-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-md);
+    border-color: var(--red);
+  }
+  .board-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.25rem;
+    border: 3px solid var(--red);
+  }
+  .board-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .board-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+  .board-title {
+    font-size: 0.8rem;
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  /* ── Join section ─────────────────────────── */
+  .join-section {
+    background: var(--charcoal); border-radius: 28px;
+    margin: 2rem 0; overflow: hidden;
+  }
+  .join-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
+  }
+  .join-text { padding: 3.5rem; }
+  .join-text h2 {
+    font-family: "Outfit", sans-serif; font-size: 1.9rem; font-weight: 900;
+    color: var(--green-lt); line-height: 1.2; letter-spacing: -.02em; margin-bottom: .85rem;
+  }
+  .join-text p { font-size: .9rem; color: rgba(255,255,255,.68); line-height: 1.75; margin-bottom: 2rem; max-width: 420px; }
+  .join-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .join-links {
+    background: rgba(255,255,255,.04); border-left: 1px solid rgba(255,255,255,.08);
+    padding: 3rem 2.5rem; display: flex; flex-direction: column; gap: .5rem;
+  }
+  .join-links-label {
+    font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: .75rem;
+  }
+  .jlink {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.78); font-size: .84rem; font-weight: 600;
+    padding: .6rem 1rem; border-radius: 10px;
+    text-decoration: none; transition: var(--ease);
+  }
+  .jlink:hover { background: rgba(39,238,49,.1); border-color: rgba(39,238,49,.3); color: var(--green-lt); }
+  .jlink i:first-child { color: var(--green-lt); width: 20px; text-align: center; font-size: .85rem; }
+  .jl-arrow { margin-left: auto; font-size: .65rem; opacity: .5; }
+  .jlink-all { border-color: rgba(192,57,43,.3); margin-top: .25rem; }
+  .jlink-all:hover { background: rgba(192,57,43,.1); border-color: rgba(192,57,43,.5); color: #f4a59a; }
+  .jlink-all i:first-child { color: var(--red); }
+
+  /* ── Responsive ───────────────────────────── */
+  @media (max-width: 1024px) {
+    .member-card,
+    .member-card--alt { grid-template-columns: 1fr; }
+    .member-card--alt .member-avatar-panel,
+    .member-card--alt .member-bio-panel { order: unset; }
+    .member-avatar-panel { flex-direction: row; flex-wrap: wrap; gap: 1.25rem; padding: 1.75rem; align-items: flex-start; }
+    .avatar-image { width: 80px; height: 80px; }
+    .member-specialisms, .member-geo { flex: 1; min-width: 160px; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .join-inner { grid-template-columns: 1fr; }
+    .join-links { border-left: none; border-top: 1px solid rgba(255,255,255,.08); }
+    .hero { padding: 3rem 2rem; }
+    .team-page-container { padding: 1rem; }
+    .mission-vision-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.4rem; }
+    .hero { padding: 2.5rem 1.5rem; }
+    .team-intro, .member-bio-panel { padding: 1.5rem; }
+    .member-avatar-panel { padding: 1.5rem; }
+    .join-text { padding: 2rem 1.5rem; }
+    .join-links { padding: 1.5rem; }
+    .join-actions { flex-direction: column; }
+    .join-actions a { justify-content: center; }
+    .team-page-container { padding: 0.5rem; }
+    .mission-card, .vision-card { padding: 1.5rem; }
+  }
+</style>

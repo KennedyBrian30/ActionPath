@@ -1,0 +1,1584 @@
+---
+// about.astro — About Us page for ActionPath Africa
+import Layout from "../layouts/Layout.astro";
+
+const values = [
+  {
+    icon: "fas fa-heart",
+    title: "Community First",
+    description:
+      "Every decision we make is filtered through one question: does this serve the community? We center the voices, needs, and dignity of the people we work with above all else.",
+  },
+  {
+    icon: "fas fa-seedling",
+    title: "Holistic Transformation",
+    description:
+      "We address poverty not as a single problem but as an ecosystem of challenges — economic, social, psychological, and environmental — and respond with equally integrated solutions.",
+  },
+  {
+    icon: "fas fa-handshake",
+    title: "Collaborative Partnerships",
+    description:
+      "We believe lasting change is built together. We co-design programs with communities, governments, NGOs, and the private sector to ensure relevance, ownership, and sustainability.",
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Evidence & Accountability",
+    description:
+      "Impact must be measurable. We invest in rigorous monitoring, evaluation, and learning systems to ensure every shilling of resources translates to real, documented change.",
+  },
+  {
+    icon: "fas fa-shield-alt",
+    title: "Dignity & Inclusion",
+    description:
+      "We design with and for the most marginalized — women, youth, people living with HIV/AIDS, displaced communities — ensuring no one is left behind in the path to prosperity.",
+  },
+  {
+    icon: "fas fa-lightbulb",
+    title: "Contextual Innovation",
+    description:
+      "Africa's challenges demand Africa-shaped solutions. We adapt global best practices to local realities, continuously learning and evolving our approaches based on what works on the ground.",
+  },
+];
+
+const milestones = [
+  {
+    year: "2015",
+    title: "ActionPath Africa Founded",
+    description:
+      "Established in Nairobi by a team of development practitioners committed to redefining livelihood training in East Africa.",
+  },
+  {
+    year: "2017",
+    title: "First Regional Expansion",
+    description:
+      "Launched operations in Rwanda and Ethiopia, extending our reach to post-conflict and drought-affected communities.",
+  },
+  {
+    year: "2019",
+    title: "10,000 Beneficiaries Milestone",
+    description:
+      "Crossed the landmark of 10,000 lives directly impacted through livelihood programs, vocational training, and economic empowerment.",
+  },
+  {
+    year: "2021",
+    title: "Strategic Partnership with UNDP",
+    description:
+      "Formalized a multi-year partnership with UNDP Africa to deliver climate-resilient agriculture programs across six counties in Kenya.",
+  },
+  {
+    year: "2023",
+    title: "Accra Office Opened",
+    description:
+      "Expanded into West Africa with a new office in Accra, Ghana, broadening our continental footprint and delivery capacity.",
+  },
+  {
+    year: "2025",
+    title: "15,000+ Lives Transformed",
+    description:
+      "Reached our most ambitious milestone yet — over 15,000 individuals transformed, 250+ projects delivered, and 28 communities served across Africa.",
+  },
+];
+
+const team = [
+  {
+    name: "Dr. Amara Osei",
+    role: "Executive Director",
+    bio: "20+ years in international development. Former UNDP programme specialist with deep expertise in livelihoods and community resilience across Sub-Saharan Africa.",
+    image: "/team-amara.webp",
+    linkedin: "#",
+    flag: "🇬🇭",
+  },
+  {
+    name: "Faith Njoroge",
+    role: "Director of Programs",
+    bio: "Specialist in gender-responsive livelihood design and climate adaptation. Led programs reaching 50,000+ smallholder farmers across Kenya and Tanzania.",
+    image: "/team-faith.webp",
+    linkedin: "#",
+    flag: "🇰🇪",
+  },
+  {
+    name: "Jean-Pierre Habimana",
+    role: "Head of Consultancy",
+    bio: "Expert in M&E, organizational capacity building, and post-conflict reconstruction. Formerly with the African Development Bank and GIZ Rwanda.",
+    image: "/team-jean.webp",
+    linkedin: "#",
+    flag: "🇷🇼",
+  },
+  {
+    name: "Amina Warsame",
+    role: "Director of Partnerships",
+    bio: "Drives institutional relationships with INGOs, UN agencies, and the private sector. 15 years mobilizing resources for East and Horn of Africa initiatives.",
+    image: "/team-amina.webp",
+    linkedin: "#",
+    flag: "🇸🇴",
+  },
+  {
+    name: "Kofi Mensah",
+    role: "Head of Corporate Services",
+    bio: "Certified PMP and organizational development specialist. Leads our growing portfolio of corporate training and CSR impact measurement services.",
+    image: "/team-kofi.webp",
+    linkedin: "#",
+    flag: "🇬🇭",
+  },
+  {
+    name: "Dr. Beatrice Auma",
+    role: "Head of Research & Learning",
+    bio: "Leads our evidence and learning agenda. PhD in Development Economics; published researcher on youth entrepreneurship and economic graduation models.",
+    image: "/team-beatrice.webp",
+    linkedin: "#",
+    flag: "🇺🇬",
+  },
+];
+
+const clients = [
+  { name: "UNDP Africa", logo: "🌍", category: "UN Agency" },
+  { name: "African Union", logo: "⭐", category: "Continental Body" },
+  { name: "Mastercard Foundation", logo: "💳", category: "Foundation" },
+  { name: "USAID", logo: "🇺🇸", category: "Bilateral Donor" },
+  { name: "World Bank Group", logo: "🏦", category: "Multilateral" },
+  {
+    name: "African Development Bank",
+    logo: "🌱",
+    category: "Development Bank",
+  },
+  { name: "GIZ", logo: "🇩🇪", category: "Technical Cooperation" },
+  { name: "Oxfam Africa", logo: "🤝", category: "INGO" },
+];
+
+const stats = [
+  { value: "15,000+", label: "Lives Transformed", icon: "fas fa-heart" },
+  { value: "28", label: "Communities Reached", icon: "fas fa-globe-africa" },
+  { value: "87%", label: "Avg. Income Improvement", icon: "fas fa-chart-line" },
+  { value: "250+", label: "Projects Delivered", icon: "fas fa-hands-helping" },
+  { value: "10", label: "Years of Impact", icon: "fas fa-calendar-check" },
+  { value: "6", label: "Countries Active", icon: "fas fa-map-marked-alt" },
+];
+---
+
+<Layout
+  title="About Us | ActionPath Africa"
+  description="Learn about ActionPath Africa's mission, story, values, team, and decade of transformative impact across communities affected by conflict, drought, poverty, and disease."
+>
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="about-hero-bg">
+      <img src="/about-hero.webp" alt="ActionPath Africa team in the field" />
+      <div class="about-hero-overlay"></div>
+    </div>
+    <div class="about-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>About Us</span>
+      </div>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Our Story
+      </div>
+      <h1>
+        A decade of<br />
+        <span class="hero-accent">designing change</span><br />
+        across Africa
+      </h1>
+      <p>
+        Founded in 2015, ActionPath Africa has grown from a small Nairobi-based
+        training organisation into a continent-spanning force for livelihood
+        transformation — reaching over 15,000 lives across 28 communities in 6
+        countries.
+      </p>
+      <div class="hero-scroll-hint">
+        <i class="fas fa-arrow-down"></i>
+        <span>Scroll to discover our story</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       IMPACT STATS BAR
+  ══════════════════════════════════════════════ -->
+  <section class="about-stats">
+    {
+      stats.map((s) => (
+        <div class="astat-item">
+          <i class={s.icon} />
+          <div class="astat-val">{s.value}</div>
+          <div class="astat-lbl">{s.label}</div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       WHO WE ARE
+  ══════════════════════════════════════════════ -->
+  <section class="who-section">
+    <div class="who-grid">
+      <div class="who-images">
+        <div class="who-img-main">
+          <img
+            src="/about-field-1.webp"
+            alt="ActionPath team working with community"
+            loading="lazy"
+          />
+        </div>
+        <div class="who-img-secondary">
+          <img
+            src="/about-field-2.webp"
+            alt="Training session in progress"
+            loading="lazy"
+          />
+          <div class="who-badge">
+            <i class="fas fa-award"></i>
+            <span>10 Years of Impact</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="who-text">
+        <div class="section-eyebrow">
+          <i class="fas fa-compass"></i> Who We Are
+        </div>
+        <h2>
+          More than training — <span class="accent-red"
+            >a movement for change</span>
+        </h2>
+        <div class="divider-line"></div>
+        <p class="who-lead">
+          ActionPath Africa is a Pan-African livelihood training, consultancy,
+          and capacity building organisation committed to transforming the
+          trajectories of communities living at the intersection of poverty,
+          climate vulnerability, conflict, and disease.
+        </p>
+        <p>
+          We work where others struggle to — in post-conflict zones,
+          drought-stricken landscapes, urban slums, and HIV-affected households
+          — delivering practical, context-specific programs that give
+          individuals not just skills, but agency, dignity, and economic
+          pathways.
+        </p>
+        <p>
+          Our model is built on three pillars: <strong
+            >rigorous curriculum design</strong
+          >,
+          <strong>participatory community engagement</strong>, and
+          <strong>sustainable institutional partnerships</strong>. Together
+          these pillars ensure our programs outlast donor funding, embed within
+          local systems, and create ripple effects across entire communities.
+        </p>
+        <div class="who-highlights">
+          <div class="who-hl">
+            <i class="fas fa-check-circle"></i>
+            <span>Community-owned, market-linked livelihood programs</span>
+          </div>
+          <div class="who-hl">
+            <i class="fas fa-check-circle"></i>
+            <span
+              >Accredited training aligned to national qualifications frameworks</span
+            >
+          </div>
+          <div class="who-hl">
+            <i class="fas fa-check-circle"></i>
+            <span>Psychosocial support integrated into all programs</span>
+          </div>
+          <div class="who-hl">
+            <i class="fas fa-check-circle"></i>
+            <span>Gender-responsive and youth-inclusive by design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       MISSION / VISION / APPROACH
+  ══════════════════════════════════════════════ -->
+  <section class="mvp-section">
+    <div class="mvp-grid">
+      <div class="mvp-card mvp-mission">
+        <div class="mvp-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Our Mission</h3>
+        <p>
+          To empower marginalized communities across Africa through innovative,
+          context-specific livelihood training and strategic capacity building —
+          creating sustainable pathways out of poverty, vulnerability, and
+          exclusion.
+        </p>
+      </div>
+
+      <div class="mvp-card mvp-vision">
+        <div class="mvp-icon"><i class="fas fa-eye"></i></div>
+        <h3>Our Vision</h3>
+        <p>
+          A resilient, equitable Africa where every individual — regardless of
+          geography, gender, health status, or circumstance — has access to
+          dignified economic opportunity and the tools to build a
+          self-determined future.
+        </p>
+      </div>
+
+      <div class="mvp-card mvp-approach">
+        <div class="mvp-icon"><i class="fas fa-route"></i></div>
+        <h3>Our Approach</h3>
+        <p>
+          Holistic, evidence-based, and rooted in community realities. We
+          combine practical skills training with entrepreneurial development,
+          psychosocial support, and systemic institutional partnerships —
+          ensuring impact that lasts beyond donor cycles.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       OUR VALUES
+  ══════════════════════════════════════════════ -->
+  <section class="values-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-star"></i> What Guides Us
+      </div>
+      <h2>Our Core <span class="accent-red">Values</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        Six principles that shape every program, partnership, and decision we
+        make.
+      </p>
+    </div>
+    <div class="values-grid">
+      {
+        values.map((v, i) => (
+          <div class="value-card" style={`animation-delay: ${i * 0.08}s`}>
+            <div class="value-num">{String(i + 1).padStart(2, "0")}</div>
+            <div class="value-icon">
+              <i class={v.icon} />
+            </div>
+            <h3>{v.title}</h3>
+            <p>{v.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       TIMELINE / MILESTONES
+  ══════════════════════════════════════════════ -->
+  <section class="timeline-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-history"></i> Our Journey
+      </div>
+      <h2>A Decade of <span class="accent-red">Milestones</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        From a bold idea in Nairobi to a continental force for change.
+      </p>
+    </div>
+
+    <div class="timeline">
+      {
+        milestones.map((m, i) => (
+          <div
+            class={`timeline-item ${i % 2 === 0 ? "tl-left" : "tl-right"}`}
+            key={m.year}
+          >
+            <div class="tl-content">
+              <div class="tl-year">{m.year}</div>
+              <h3 class="tl-title">{m.title}</h3>
+              <p class="tl-desc">{m.description}</p>
+            </div>
+            <div class="tl-dot">
+              <i class="fas fa-circle-dot" />
+            </div>
+          </div>
+        ))
+      }
+      <div class="timeline-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       LEADERSHIP TEAM
+  ══════════════════════════════════════════════ -->
+  <section class="team-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-users"></i> Leadership</div>
+      <h2>Meet the <span class="accent-red">Team</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        Passionate practitioners, researchers, and development leaders driving
+        our mission forward.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      {
+        team.map((member) => (
+          <div class="team-card" key={member.name}>
+            <div class="team-img-wrap">
+              <img src={member.image} alt={member.name} loading="lazy" />
+              <div class="team-flag">{member.flag}</div>
+              <div class="team-overlay">
+                <a
+                  href={member.linkedin}
+                  class="team-li"
+                  aria-label={`${member.name} on LinkedIn`}
+                >
+                  <i class="fab fa-linkedin-in" />
+                </a>
+              </div>
+            </div>
+            <div class="team-body">
+              <h3 class="team-name">{member.name}</h3>
+              <div class="team-role">{member.role}</div>
+              <p class="team-bio">{member.bio}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="team-cta-row">
+      <a href="/about/team" class="btn-outline-dark">
+        <i class="fas fa-users"></i> View Full Team
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CLIENTS & PARTNERS
+  ══════════════════════════════════════════════ -->
+  <section class="clients-section">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-handshake"></i> Who We Work With
+      </div>
+      <h2>Trusted by <span class="accent-red">Leading Partners</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-subtitle">
+        We collaborate with UN agencies, bilateral donors, foundations, INGOs,
+        and the private sector to amplify our reach and deepen our impact.
+      </p>
+    </div>
+
+    <div class="clients-grid">
+      {
+        clients.map((c) => (
+          <div class="client-card" key={c.name}>
+            <div class="client-logo">{c.logo}</div>
+            <div class="client-name">{c.name}</div>
+            <div class="client-category">{c.category}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="clients-cta">
+      <a href="/about/clients" class="btn-outline-dark">
+        <i class="fas fa-briefcase"></i> View All Clients & Portfolio
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FINAL CTA
+  ══════════════════════════════════════════════ -->
+  <section class="about-cta">
+    <div class="about-cta-inner">
+      <div class="about-cta-bg">
+        <img
+          src="/about-cta-bg.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+        />
+        <div class="about-cta-overlay"></div>
+      </div>
+      <div class="about-cta-content">
+        <div class="section-eyebrow light">
+          <i class="fas fa-bolt"></i> Get Involved
+        </div>
+        <h2>Ready to <span class="cta-green">build change</span> together?</h2>
+        <p>
+          Whether you're an NGO, government agency, donor, or community leader —
+          there's a role for you in ActionPath Africa's ecosystem of
+          transformation.
+        </p>
+        <div class="about-cta-buttons">
+          <a href="/contact" class="btn-white">
+            <i class="fas fa-envelope"></i> Partner With Us
+          </a>
+          <a href="/programs" class="btn-outline-white">
+            <i class="fas fa-seedling"></i> Explore Our Programs
+          </a>
+          <a href="/impact-report" class="btn-outline-white">
+            <i class="fas fa-download"></i> Download Impact Report
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ══════════════════════════════════════════════
+     ABOUT PAGE STYLES
+  ══════════════════════════════════════════════ */
+
+  /* ── Hero ──────────────────────────────────── */
+  .about-hero {
+    position: relative;
+    min-height: 72vh;
+    display: flex;
+    align-items: flex-end;
+    margin: -2.5rem -2rem 0;
+    overflow: hidden;
+  }
+
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .about-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(15, 23, 42, 0.92) 0%,
+      rgba(15, 23, 42, 0.6) 40%,
+      rgba(15, 23, 42, 0.25) 100%
+    );
+  }
+
+  .about-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 2rem 3.5rem;
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.65);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--accent-green-light);
+  }
+
+  .breadcrumb i {
+    font-size: 0.6rem;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: var(--accent-green-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.3);
+    }
+  }
+
+  .about-hero-content h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, var(--accent-green-light), #7fffb8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .about-hero-content p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+  }
+
+  .hero-scroll-hint i {
+    animation: bounceY 2s infinite;
+    color: var(--accent-green);
+  }
+
+  @keyframes bounceY {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+  }
+
+  /* ── Stats Bar ─────────────────────────────── */
+  .about-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--dark-charcoal);
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .astat-item {
+    text-align: center;
+    color: white;
+  }
+
+  .astat-item i {
+    font-size: 1.5rem;
+    color: var(--accent-green-light);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .astat-val {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: white;
+  }
+
+  .astat-lbl {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ── Who We Are ────────────────────────────── */
+  .who-section {
+    padding: 3.5rem 0;
+  }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .who-images {
+    position: relative;
+  }
+
+  .who-img-main {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.14);
+  }
+
+  .who-img-main img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .who-img-secondary {
+    position: absolute;
+    bottom: -40px;
+    right: -30px;
+    width: 52%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+    border: 4px solid white;
+  }
+
+  .who-img-secondary img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .who-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-red);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 1rem;
+    border-radius: 40px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .who-text {
+    padding-bottom: 2rem;
+  }
+
+  .who-text h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .divider-line {
+    width: 56px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    border-radius: 3px;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .who-lead {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-red);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .who-text p {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
+  }
+
+  .who-highlights {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .who-hl {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.86rem;
+    color: var(--dark-charcoal);
+    font-weight: 500;
+  }
+
+  .who-hl i {
+    color: var(--accent-green);
+    font-size: 0.9rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── Mission / Vision / Approach ──────────── */
+  .mvp-section {
+    padding: 3rem 0;
+  }
+
+  .mvp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .mvp-card {
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .mvp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .mvp-mission {
+    background: var(--dark-charcoal);
+    color: white;
+  }
+
+  .mvp-vision {
+    background: var(--primary-red);
+    color: white;
+  }
+
+  .mvp-approach {
+    background: var(--accent-green-soft);
+    border: 2px solid var(--accent-green);
+    color: var(--dark-charcoal);
+  }
+
+  .mvp-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mvp-mission .mvp-icon {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent-green-light);
+  }
+
+  .mvp-vision .mvp-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .mvp-approach .mvp-icon {
+    background: var(--accent-green);
+    color: var(--dark-charcoal);
+  }
+
+  .mvp-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .mvp-mission h3,
+  .mvp-vision h3 {
+    color: white;
+  }
+
+  .mvp-card p {
+    font-size: 0.875rem;
+    line-height: 1.72;
+  }
+
+  .mvp-mission p,
+  .mvp-vision p {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .mvp-approach p {
+    color: var(--gray-dark);
+  }
+
+  /* decorative corner graphic */
+  .mvp-card::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0.07;
+    background: white;
+  }
+
+  /* ── Values ────────────────────────────────── */
+  .values-section {
+    padding: 3.5rem 0;
+    background: var(--gray-soft);
+    border-radius: 32px;
+    margin: 2rem -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.75rem;
+    border: 1px solid var(--border-light);
+    position: relative;
+    transition: all 0.25s;
+    overflow: hidden;
+  }
+
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09);
+    border-color: var(--accent-green);
+  }
+
+  .value-num {
+    font-family: "Outfit", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-red);
+    opacity: 0.07;
+    line-height: 1;
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    letter-spacing: -0.04em;
+  }
+
+  .value-icon {
+    width: 46px;
+    height: 46px;
+    background: var(--primary-red-soft);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-red);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .value-card h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--dark-charcoal);
+  }
+
+  .value-card p {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    line-height: 1.68;
+  }
+
+  /* ── Timeline ──────────────────────────────── */
+  .timeline-section {
+    padding: 3.5rem 0;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--primary-red),
+      var(--accent-green)
+    );
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-left {
+    flex-direction: row;
+  }
+  .tl-right {
+    flex-direction: row-reverse;
+  }
+
+  .tl-content {
+    width: calc(50% - 36px);
+    background: white;
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s;
+  }
+
+  .tl-content:hover {
+    border-color: var(--accent-green);
+    transform: scale(1.02);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
+  }
+
+  .tl-year {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary-red);
+    background: var(--primary-red-soft);
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tl-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--dark-charcoal);
+  }
+
+  .tl-desc {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+  }
+
+  .tl-dot {
+    width: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--primary-red);
+    flex-shrink: 0;
+  }
+
+  /* ── Team ──────────────────────────────────── */
+  .team-section {
+    padding: 3.5rem 0;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .team-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-green);
+  }
+
+  .team-img-wrap {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: var(--gray-soft);
+  }
+
+  .team-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .team-card:hover .team-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .team-flag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 1.6rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .team-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .team-card:hover .team-overlay {
+    opacity: 1;
+  }
+
+  .team-li {
+    width: 46px;
+    height: 46px;
+    background: #0a66c2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .team-li:hover {
+    transform: scale(1.1);
+  }
+
+  .team-body {
+    padding: 1.25rem;
+  }
+
+  .team-name {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: var(--dark-charcoal);
+  }
+
+  .team-role {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .team-bio {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    line-height: 1.65;
+  }
+
+  .team-cta-row {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ── Clients ───────────────────────────────── */
+  .clients-section {
+    padding: 3.5rem 0;
+    background: var(--gray-soft);
+    border-radius: 32px;
+    margin: 2rem -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .client-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 1px solid var(--border-light);
+    transition: all 0.25s;
+  }
+
+  .client-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-green);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .client-logo {
+    font-size: 2.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .client-name {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--dark-charcoal);
+    margin-bottom: 4px;
+  }
+
+  .client-category {
+    font-size: 0.7rem;
+    color: var(--gray-mid);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .clients-cta {
+    text-align: center;
+  }
+
+  /* ── Final CTA ─────────────────────────────── */
+  .about-cta {
+    margin: 2.5rem 0;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+
+  .about-cta-inner {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+  }
+
+  .about-cta-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .about-cta-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.92) 0%,
+      rgba(192, 57, 43, 0.75) 100%
+    );
+  }
+
+  .about-cta-content {
+    position: relative;
+    z-index: 2;
+    padding: 3.5rem;
+    color: white;
+    max-width: 680px;
+  }
+
+  .about-cta-content h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+
+  .cta-green {
+    color: var(--accent-green-light);
+  }
+
+  .about-cta-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 500px;
+  }
+
+  .about-cta-buttons {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── Shared Utilities ──────────────────────── */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 0.85rem;
+  }
+
+  .section-eyebrow.light {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--accent-green-light);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.75rem;
+  }
+
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    color: var(--dark-charcoal);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    color: var(--gray-mid);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .accent-red {
+    color: var(--primary-red);
+  }
+
+  .divider-center {
+    width: 56px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    border-radius: 3px;
+    margin: 0.75rem auto 1.25rem;
+  }
+
+  /* ── Buttons ───────────────────────────────── */
+  .btn-white {
+    background: white;
+    color: var(--primary-red);
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-white:hover {
+    background: var(--accent-green-light);
+    color: var(--dark-charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-outline-white {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-white:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-dark {
+    border: 2px solid var(--dark-charcoal);
+    color: var(--dark-charcoal);
+    padding: 0.72rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-outline-dark:hover {
+    background: var(--dark-charcoal);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  /* ── CSS Variables (inherits from Layout) ─── */
+  :root {
+    --primary-red: #c0392b;
+    --primary-red-soft: rgba(192, 57, 43, 0.1);
+    --accent-green: #27ee31;
+    --accent-green-light: #27f731;
+    --accent-green-soft: rgba(39, 238, 49, 0.12);
+    --dark-charcoal: #1e293b;
+    --gray-dark: #334155;
+    --gray-mid: #64748b;
+    --gray-soft: #f1f5f9;
+    --light-bg: #fefcf8;
+    --card-white: #ffffff;
+    --border-light: #e2e8f0;
+  }
+
+  /* ── Responsive ────────────────────────────── */
+  @media (max-width: 1024px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+      gap: 5rem;
+    }
+    .who-img-secondary {
+      right: 0;
+      bottom: -50px;
+    }
+    .mvp-grid {
+      grid-template-columns: 1fr;
+    }
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .clients-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-line {
+      left: 24px;
+    }
+    .timeline-item {
+      flex-direction: row !important;
+    }
+    .tl-content {
+      width: calc(100% - 72px);
+    }
+    .tl-dot {
+      width: 48px;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-hero {
+      margin: -2.5rem -1.25rem 0;
+      min-height: 60vh;
+    }
+    .about-hero-content h1 {
+      font-size: 2.2rem;
+    }
+    .about-hero-content {
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .about-stats {
+      padding: 1.5rem 1rem;
+      gap: 1rem;
+    }
+    .astat-val {
+      font-size: 1.6rem;
+    }
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .clients-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .about-cta-content {
+      padding: 2rem 1.5rem;
+    }
+    .about-cta-content h2 {
+      font-size: 1.8rem;
+    }
+    .about-cta-buttons {
+      flex-direction: column;
+    }
+    .who-img-secondary {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .who-badge {
+      top: -12px;
+    }
+  }
+</style>

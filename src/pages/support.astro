@@ -1,0 +1,390 @@
+---
+// /support.astro
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Support Our Work | ActionPath Africa";
+const pageDescription =
+  "Support our work means investing in empowerment, resilience, and transformation. Join a movement that empowers youth, women, and recovery groups to build resilient futures.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="support-hero">
+      <div class="support-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Support Our Work</span>
+        </div>
+        <div class="hero-icon">
+          <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <h1 class="all-red">Support Our Work</h1>
+        <p class="hero-subhead">
+          We thrive on collaboration, shared responsibility, and the belief that
+          communities can transform themselves when given the right tools.
+          Supporting our work is not just about contributing resources — it is
+          about joining a movement that empowers youth, women, and recovery
+          groups to build resilient futures.
+        </p>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="support-intro">
+      <div class="support-container">
+        <div class="intro-card">
+          <p>
+            Supporting our work means investing in empowerment, resilience, and
+            transformation. Each contribution, whether financial, intellectual,
+            or relational, strengthens the bridge between communities and
+            opportunities. Together, we can ensure that youth, women, and
+            recovery groups not only survive but thrive, becoming leaders of
+            change in their own right.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ways to Support Section -->
+    <section class="support-ways">
+      <div class="support-container">
+        <div class="section-header">
+          <div class="section-eyebrow">
+            <i class="fas fa-hands-helping"></i> Get Involved
+          </div>
+          <h2>Ways to <span class="accent-red">Support</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="ways-grid">
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-coins"></i></div>
+            <h3>Financial Contributions</h3>
+            <p>
+              Direct donations provide the backbone of our programs because they
+              allow us to expand training modules, deliver digital toolkits, and
+              sustain recovery initiatives. Even modest contributions help us
+              reach more communities with psychosocial support, financial
+              literacy, and livelihood skills.
+            </p>
+          </div>
+
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-box-open"></i></div>
+            <h3>Resource Sharing</h3>
+            <p>
+              You can donate training materials, digital tools, and practical
+              guides to our facilitator workbooks and session plans. By sharing
+              knowledge, you help us strengthen our curriculum and ensure
+              consistent delivery across diverse contexts.
+            </p>
+          </div>
+
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-handshake"></i></div>
+            <h3>Partnership</h3>
+            <p>
+              We amplify our reach through collaborative partnerships with NGOs,
+              government agencies, and private sector players. You can partner
+              with us to co-design training programs, sponsor community-based
+              organizations (CBOs), or provide mentorship opportunities for
+              youth and women entrepreneurs.
+            </p>
+          </div>
+
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-chalkboard-user"></i></div>
+            <h3>Volunteering & Mentorship</h3>
+            <p>
+              As a volunteer and mentor, you bring invaluable expertise. Whether
+              guiding recovery clients through financial management, coaching
+              young leaders in entrepreneurship, or supporting facilitators in
+              psychosocial integration, personal involvement accelerates
+              transformation.
+            </p>
+          </div>
+
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-bullhorn"></i></div>
+            <h3>Advocacy & Awareness</h3>
+            <p>
+              Every voice that champions ActionPath Africa helps us secure
+              recognition and resources for marginalized groups. You can help us
+              raise visibility and attract new supporters by sharing our mission
+              through social media, community forums, and professional networks.
+            </p>
+          </div>
+
+          <div class="way-card">
+            <div class="way-icon"><i class="fas fa-building"></i></div>
+            <h3>Institutional Support</h3>
+            <p>
+              You can sponsor training cohorts, provide scholarships, or fund
+              innovation hubs for design-focused entrepreneurship. Corporate
+              sponsorships and institutional backing enable us to scale programs
+              sustainably.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="support-cta">
+      <div class="support-cta-inner">
+        <h2>Ready to <span class="accent-green">Make an Impact?</span></h2>
+        <p>
+          Please reach out via our website or contact our partnerships team
+          directly to discuss the best fit for your time, resources, or budget.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-primary"
+            ><i class="fas fa-envelope"></i> Contact Partnerships Team</a
+          >
+          <a href="https://wa.me/254112916920" class="btn-outline-dark"
+            ><i class="fab fa-whatsapp"></i> WhatsApp Us</a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .support-hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 4rem 0 3rem;
+    color: white;
+    text-align: center;
+  }
+  .support-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .cluster-breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2rem;
+  }
+  .cluster-breadcrumb a {
+    color: var(--green-lt);
+    text-decoration: none;
+  }
+  .cluster-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .cluster-breadcrumb i {
+    font-size: 0.7rem;
+    margin: 0 0.5rem;
+  }
+  .hero-icon {
+    font-size: 3.5rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .support-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .all-red {
+    color: var(--red);
+  }
+  .hero-subhead {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  .support-intro {
+    padding: 3rem 0;
+    background: white;
+  }
+  .support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .intro-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--gray-sf);
+    padding: 2rem;
+    border-radius: 24px;
+    text-align: center;
+    border-left: 4px solid var(--green);
+  }
+  .intro-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0;
+  }
+
+  .support-ways {
+    padding: 4rem 0;
+    background: var(--gray-sf);
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.4rem 1.3rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+  }
+  .accent-red {
+    color: var(--red);
+  }
+  .section-divider {
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+
+  .ways-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .way-card {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .way-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--green);
+  }
+  .way-icon {
+    font-size: 2.5rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .way-card h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--charcoal);
+  }
+  .way-card p {
+    font-size: 0.85rem;
+    color: var(--gray-md);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .support-cta {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+    text-align: center;
+  }
+  .support-cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .support-cta h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  .accent-green {
+    color: var(--green-lt);
+  }
+  .support-cta p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.4);
+  }
+  .btn-outline-dark {
+    border: 2px solid var(--green);
+    background: transparent;
+    color: var(--green);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  .btn-outline-dark:hover {
+    background: var(--green);
+    color: var(--charcoal);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .ways-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .support-hero h1 {
+      font-size: 2rem;
+    }
+    .hero-subhead {
+      font-size: 1rem;
+    }
+    .ways-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-header h2 {
+      font-size: 1.5rem;
+    }
+    .support-cta h2 {
+      font-size: 1.5rem;
+    }
+    .intro-card p {
+      font-size: 0.95rem;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+// /services/training/conflict-management.astro
+import Layout from "../../../layouts/Layout.astro";
+
+const pageTitle = "Negotiation & Conflict Management Training | ActionPath Africa";
+const pageDescription = "Equipping youth to get fair deals, resolve disputes peacefully, preserve relationships, and walk away when necessary, whether with employers, donors, teammates, family, or community members.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main>
+    <!-- Hero Section -->
+    <section class="cluster-hero">
+      <div class="cluster-hero-inner">
+        <div class="cluster-breadcrumb">
+          <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+          <a href="/services/training">Training Areas</a> <i class="fas fa-chevron-right"></i>
+          <span>Negotiation & Conflict Management</span>
+        </div>
+        <div class="cluster-icon-large">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h1 class="all-red">Negotiation & Conflict Management Skills</h1>
+        <p class="cluster-subhead">At ActionPath Africa, training youth in negotiation and conflict management means equipping them to get fair deals, resolve disputes peacefully, preserve relationships, and walk away when necessary, whether with employers, donors, teammates, family, or community members.</p>
+        <div class="cluster-ctas">
+          <a href="/contact" class="btn-primary"><i class="fas fa-envelope"></i> Inquire About Training</a>
+          <a href="/services/training" class="btn-outline"><i class="fas fa-arrow-left"></i> All Training Areas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Negotiation Section -->
+    <section class="cluster-focus">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-handshake"></i> Negotiation</div>
+          <h2>What Your Team Will <span class="accent-red">Learn</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid negotiation-grid">
+          <div class="focus-item">What Is Negotiation?</div>
+          <div class="focus-item">The Types of Negotiation</div>
+          <div class="focus-item">Preparation: The Most Important Step (Before You Speak)</div>
+          <div class="focus-item">The Negotiation Process (Step by Step)</div>
+          <div class="focus-item">Key Negotiation Tactics (And How to Respond)</div>
+          <div class="focus-item">Negotiation Language (What to Say and What Not to Say)</div>
+          <div class="focus-item">Common Negotiation Mistakes</div>
+          <div class="focus-item">Negotiation Role-Play Scenarios for Training</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conflict Management Section -->
+    <section class="cluster-focus conflict-section">
+      <div class="cluster-container">
+        <div class="section-header">
+          <div class="section-eyebrow"><i class="fas fa-heart"></i> Conflict Management</div>
+          <h2>Conflict <span class="accent-red">Resolution</span></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="focus-grid">
+          <div class="focus-item">What Is Conflict? (And Why It's Not Always Bad)</div>
+          <div class="focus-item">The 5 Conflict Styles (Thomas-Kilmann Model)</div>
+          <div class="focus-item">The Conflict Resolution Process</div>
+          <div class="focus-item">Interests vs. Positions</div>
+          <div class="focus-item">De-escalation Techniques</div>
+          <div class="focus-item">Mediating Conflict Between Others</div>
+          <div class="focus-item">When to Walk Away (Conflict That Cannot Be Resolved)</div>
+          <div class="focus-item">Self-Care After Conflict</div>
+        </div>
+
+        <div class="focus-cta">
+          <a href="/contact" class="btn-primary"><i class="fas fa-calendar-alt"></i> Book a Training Session</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Programs -->
+    <section class="cluster-related">
+      <div class="cluster-container">
+        <div class="related-grid">
+          <div class="related-card">
+            <i class="fas fa-comments"></i>
+            <h3>Effective Communication Skills</h3>
+            <p>Build the communication foundation for negotiation.</p>
+            <a href="/services/training/communication">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-users"></i>
+            <h3>Team Building</h3>
+            <p>Resolve conflicts within your team effectively.</p>
+            <a href="/services/training/team-building">Learn more →</a>
+          </div>
+          <div class="related-card">
+            <i class="fas fa-headset"></i>
+            <h3>Effective Customer Service</h3>
+            <p>Handle difficult customer interactions professionally.</p>
+            <a href="/services/training/customer-service">Learn more →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .conflict-section {
+    background: var(--gray-sf);
+  }
+  .negotiation-grid .focus-item, .conflict-section .focus-item {
+    background: white;
+  }
+  .conflict-section .focus-grid .focus-item {
+    background: white;
+  }
+  @media (max-width: 768px) {
+    .negotiation-grid .focus-item, .conflict-section .focus-item {
+      background: var(--gray-sf);
+    }
+  }
+</style>

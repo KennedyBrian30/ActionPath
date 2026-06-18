@@ -1,0 +1,1047 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts.map((post) => ({
+    params: {
+      slug: post.id,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+// IMPORTANT: use props, NOT re-fetch
+const { post } = Astro.props;
+
+// safety check
+if (!post) {
+  throw new Error('Post not found');
+}
+
+// render directly — Astro v5/v6 Content Layer API
+const { Content } = await render(post);
+
+const {
+  title,
+  description,
+  pubDate,
+  author,
+  authorImage,
+  image,
+  category,
+  categoryIcon,
+  readTime
+} = post.data;
+
+// format date
+const formatDate = (date) => {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+// related posts (SAFE - reuse from props collection)
+const allPosts = await getCollection('blog');
+
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id && p.data.category === category)
+  .slice(0, 3);
+---
+
+<Layout 
+  title={`${title} | ActionPath Africa Blog`} 
+  description={description || `Read "${title}" on ActionPath Africa's blog. Stories of transformation, empowerment, and impact from communities across Africa.`}
+>
+
+  <!-- ══════════════════════════════════════════ ARTICLE HEADER ══════════════════════════════════════════ -->
+  <article class="blog-post">
+    <div class="blog-post-header">
+      <div class="blog-post-header-bg">
+        {image && <img src={image} alt={title} class="header-bg-image" />}
+        <div class="header-overlay"></div>
+      </div>
+      <div class="blog-post-header-content">
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <a href="/blog">Blog</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>{title.length > 50 ? title.substring(0, 50) + '...' : title}</span>
+        </div>
+        
+        {category && (
+          <div class="post-category">
+            {categoryIcon && <i class={categoryIcon}></i>}
+            <span>{category}</span>
+          </div>
+        )}
+        
+        <h1 class="post-title">{title}</h1>
+        
+        <div class="post-meta-large">
+          {author && (
+            <div class="post-author">
+              {authorImage && <img src={authorImage} alt={author} class="author-avatar-large" />}
+              <div class="author-info">
+                <span class="author-label">Written by</span>
+                <span class="author-name">{author}</span>
+              </div>
+            </div>
+          )}
+          
+          <div class="post-date">
+            <i class="fas fa-calendar-alt"></i>
+            <span>{formatDate(pubDate)}</span>
+          </div>
+          
+          {readTime && (
+            <div class="post-read-time">
+              <i class="fas fa-clock"></i>
+              <span>{readTime}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ ARTICLE CONTENT ══════════════════════════════════════════ -->
+    <div class="blog-post-container">
+      <div class="blog-post-grid">
+        <!-- Main Content -->
+        <div class="blog-post-content">
+          <div class="content-wrapper">
+            <Content />
+          </div>
+          
+          <!-- Author Bio Section -->
+          {author && (
+            <div class="author-bio-section">
+              <div class="author-bio-card">
+                {authorImage && <img src={authorImage} alt={author} class="author-bio-image" />}
+                <div class="author-bio-info">
+                  <h3>About {author}</h3>
+                  <p>
+                    {author === "George Omondi Awuor" && "George is the Founder & CEO of ActionPath Africa, with over a decade of experience designing livelihood programs across East Africa. He specializes in youth empowerment, facilitation, and community engagement."}
+                    {author === "Jane Mutave Munyalo" && "Jane is our Partnerships and Programs lead, passionate about innovation, collaboration, and meaningful social impact across Africa."}
+                    {author !== "George Omondi Awuor" && author !== "Jane Mutave Munyalo" && "ActionPath Africa team member dedicated to empowering communities through transformative livelihood training and capacity building."}
+                  </p>
+                  <div class="author-bio-social">
+                    <a href="/about/team" class="btn-view-profile">
+                      <i class="fas fa-user"></i> View Full Profile
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <!-- Share Section -->
+          <div class="share-section">
+            <h4>Share this article</h4>
+            <div class="share-buttons">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`} 
+                 class="share-btn facebook" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url.href)}`} 
+                 class="share-btn twitter" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-x-twitter"></i> Twitter
+              </a>
+              <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.href)}&title=${encodeURIComponent(title)}`} 
+                 class="share-btn linkedin" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+              <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`Check out this article: ${Astro.url.href}`)}`} 
+                 class="share-btn email">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+          
+          <!-- Navigation between posts -->
+          <div class="post-navigation">
+            <a href="/blog" class="nav-back">
+              <i class="fas fa-arrow-left"></i> Back to all posts
+            </a>
+          </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="blog-post-sidebar">
+          <!-- About ActionPath Africa Widget -->
+          <div class="sidebar-widget about-widget">
+            <div class="widget-icon">
+              <i class="fas fa-globe-africa"></i>
+            </div>
+            <h3>About ActionPath Africa</h3>
+            <p>We design and deliver transformative livelihood training programs that empower youth, women, and marginalized communities across Africa.</p>
+            <a href="/about" class="widget-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          
+          <!-- Related Posts Widget -->
+          {relatedPosts.length > 0 && (
+            <div class="sidebar-widget related-widget">
+              <h3><i class="fas fa-newspaper"></i> Related Posts</h3>
+              <div class="related-posts">
+                {relatedPosts.map(related => (
+                  <a href={`/blog/${related.id}`} class="related-post" key={related.id}>
+                    {related.data.image && (
+                      <img src={related.data.image} alt={related.data.title} class="related-image" />
+                    )}
+                    <div class="related-info">
+                      <h4>{related.data.title}</h4>
+                      <span class="related-date">{formatDate(related.data.pubDate)}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          <!-- Categories Widget -->
+          <div class="sidebar-widget categories-widget">
+            <h3><i class="fas fa-tags"></i> Categories</h3>
+            <div class="categories-list">
+              <a href="/blog?category=Agriculture" class="category-tag">
+                <i class="fas fa-seedling"></i> Agriculture
+              </a>
+              <a href="/blog?category=Entrepreneurship" class="category-tag">
+                <i class="fas fa-chart-line"></i> Entrepreneurship
+              </a>
+              <a href="/blog?category=Empowerment" class="category-tag">
+                <i class="fas fa-female"></i> Empowerment
+              </a>
+              <a href="/blog?category=Youth" class="category-tag">
+                <i class="fas fa-users"></i> Youth
+              </a>
+              <a href="/blog?category=Community" class="category-tag">
+                <i class="fas fa-handshake"></i> Community
+              </a>
+              <a href="/blog?category=Impact" class="category-tag">
+                <i class="fas fa-chart-bar"></i> Impact
+              </a>
+            </div>
+          </div>
+          
+          <!-- Newsletter Widget -->
+          <div class="sidebar-widget newsletter-widget">
+            <i class="fas fa-envelope-open-text widget-icon-large"></i>
+            <h3>Stay Updated</h3>
+            <p>Get the latest stories and impact updates delivered to your inbox.</p>
+            <form class="sidebar-newsletter" action="/newsletter" method="POST">
+              <input type="email" name="email" placeholder="Your email address" required />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════════════════════ CTA SECTION ══════════════════════════════════════════ -->
+  <section class="post-cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <div class="cta-eyebrow">Ready to Make an Impact?</div>
+        <h2>Join Us in <span class="cta-highlight">Transforming Lives</span></h2>
+        <p>Partner with ActionPath Africa to create sustainable livelihoods and resilient communities across Africa.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-cta-primary">
+            <i class="fas fa-envelope"></i> Partner With Us
+          </a>
+          <a href="/services" class="btn-cta-secondary">
+            <i class="fas fa-seedling"></i> Explore Our Programs
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style is:global>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #5a6e8a;
+    --gray-sf: #f5f7fa;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 30px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ══════════════════════════════════════════ BLOG POST HEADER ══════════════════════════════════════════ */
+  .blog-post-header {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .blog-post-header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .header-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .header-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30,41,59,0.85) 0%, rgba(0,0,0,0.7) 100%);
+  }
+  
+  .blog-post-header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.65);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    color: var(--green-lt);
+  }
+  
+  .breadcrumb i {
+    font-size: 0.6rem;
+  }
+  
+  .post-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(39, 238, 49, 0.15);
+    backdrop-filter: blur(8px);
+    padding: 0.4rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(39, 238, 49, 0.3);
+  }
+  
+  .post-category i {
+    color: var(--green);
+  }
+  
+  .post-title {
+    font-family: "Outfit", sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-meta-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .post-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .author-avatar-large {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--green);
+  }
+  
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .author-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .author-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .post-date, .post-read-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .post-date i, .post-read-time i {
+    color: var(--green);
+  }
+
+  /* ══════════════════════════════════════════ BLOG POST CONTENT ══════════════════════════════════════════ */
+  .blog-post-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  
+  .blog-post-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+  
+  .content-wrapper {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Prose styling for markdown content */
+  .content-wrapper :global(h1),
+  .content-wrapper :global(h2),
+  .content-wrapper :global(h3),
+  .content-wrapper :global(h4) {
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+  }
+  
+  .content-wrapper :global(h1) {
+    font-size: 2rem;
+  }
+  
+  .content-wrapper :global(h2) {
+    font-size: 1.5rem;
+    color: var(--red);
+  }
+  
+  .content-wrapper :global(h3) {
+    font-size: 1.25rem;
+  }
+  
+  .content-wrapper :global(p) {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--gray-dk);
+    margin-bottom: 1.25em;
+  }
+  
+  .content-wrapper :global(a) {
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  .content-wrapper :global(a:hover) {
+    border-bottom-color: var(--red);
+  }
+  
+  .content-wrapper :global(ul), 
+  .content-wrapper :global(ol) {
+    margin: 1em 0;
+    padding-left: 1.5em;
+  }
+  
+  .content-wrapper :global(li) {
+    margin: 0.5em 0;
+    line-height: 1.7;
+    color: var(--gray-dk);
+  }
+  
+  .content-wrapper :global(blockquote) {
+    border-left: 4px solid var(--green);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--gray-md);
+  }
+  
+  .content-wrapper :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+  }
+  
+  .content-wrapper :global(figure) {
+    margin: 1.5rem 0;
+  }
+  
+  .content-wrapper :global(figcaption) {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray-md);
+    margin-top: 0.5rem;
+  }
+  
+  .content-wrapper :global(code) {
+    background: var(--gray-sf);
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.85em;
+  }
+  
+  .content-wrapper :global(pre) {
+    background: var(--charcoal);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  
+  .content-wrapper :global(pre code) {
+    background: none;
+    color: white;
+  }
+
+  /* ══════════════════════════════════════════ AUTHOR BIO SECTION ══════════════════════════════════════════ */
+  .author-bio-section {
+    margin-top: 3rem;
+  }
+  
+  .author-bio-card {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--gray-sf);
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+  }
+  
+  .author-bio-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .author-bio-info h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+  }
+  
+  .author-bio-info p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gray-md);
+    margin-bottom: 1rem;
+  }
+  
+  .btn-view-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-view-profile:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+  }
+
+  /* ══════════════════════════════════════════ SHARE SECTION ══════════════════════════════════════════ */
+  .share-section {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .share-section h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-md);
+    margin-bottom: 1rem;
+  }
+  
+  .share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .share-btn.facebook {
+    background: #1877f2;
+    color: white;
+  }
+  
+  .share-btn.twitter {
+    background: #000000;
+    color: white;
+  }
+  
+  .share-btn.linkedin {
+    background: #0077b5;
+    color: white;
+  }
+  
+  .share-btn.email {
+    background: var(--gray-dk);
+    color: white;
+  }
+  
+  .share-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+
+  /* ══════════════════════════════════════════ POST NAVIGATION ══════════════════════════════════════════ */
+  .post-navigation {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red);
+    font-weight: 600;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  
+  .nav-back:hover {
+    gap: 12px;
+  }
+
+  /* ══════════════════════════════════════════ SIDEBAR WIDGETS ══════════════════════════════════════════ */
+  .sidebar-widget {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-widget:hover {
+    box-shadow: var(--shadow-md);
+  }
+  
+  .about-widget {
+    text-align: center;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+    color: white;
+  }
+  
+  .widget-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(39, 238, 49, 0.15);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  
+  .widget-icon i {
+    font-size: 1.5rem;
+    color: var(--green);
+  }
+  
+  .about-widget h3 {
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  
+  .about-widget p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .widget-link {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  
+  .widget-link:hover {
+    gap: 10px;
+  }
+  
+  .sidebar-widget h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .sidebar-widget h3 i {
+    color: var(--red);
+  }
+  
+  .related-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .related-post {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  
+  .related-post:hover {
+    transform: translateX(4px);
+  }
+  
+  .related-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .related-info h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  
+  .related-date {
+    font-size: 0.7rem;
+    color: var(--gray-md);
+  }
+  
+  .categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  
+  .category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.4rem 0.9rem;
+    background: var(--gray-sf);
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray-dk);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .category-tag:hover {
+    background: var(--red);
+    color: white;
+  }
+  
+  .category-tag i {
+    font-size: 0.7rem;
+  }
+  
+  .newsletter-widget {
+    text-align: center;
+    background: linear-gradient(135deg, var(--red-soft), var(--green-soft));
+  }
+  
+  .widget-icon-large {
+    font-size: 2rem;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+  }
+  
+  .newsletter-widget p {
+    font-size: 0.8rem;
+    color: var(--gray-dk);
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .sidebar-newsletter input {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .sidebar-newsletter input:focus {
+    border-color: var(--green);
+  }
+  
+  .sidebar-newsletter button {
+    background: var(--red);
+    color: white;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-newsletter button:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+  }
+
+  /* ══════════════════════════════════════════ POST CTA SECTION ══════════════════════════════════════════ */
+  .post-cta-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #0f172a 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .post-cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(192,57,43,0.15), transparent);
+    pointer-events: none;
+  }
+  
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cta-eyebrow {
+    display: inline-block;
+    background: rgba(39, 238, 49, 0.15);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(39,238,49,0.3);
+  }
+  
+  .cta-container h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-highlight {
+    color: var(--green);
+  }
+  
+  .cta-container p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-cta-primary {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+  }
+  
+  .btn-cta-secondary {
+    border: 2px solid white;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  
+  .btn-cta-secondary:hover {
+    background: white;
+    color: var(--charcoal);
+    transform: translateY(-3px);
+  }
+
+  /* ══════════════════════════════════════════ RESPONSIVE ══════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .blog-post-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .post-title {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .blog-post-header-content {
+      padding: 4rem 1.5rem;
+    }
+    
+    .post-title {
+      font-size: 1.8rem;
+    }
+    
+    .post-meta-large {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .post-author {
+      width: 100%;
+    }
+    
+    .blog-post-container {
+      padding: 2rem 1rem;
+    }
+    
+    .content-wrapper {
+      padding: 1.5rem;
+    }
+    
+    .author-bio-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .share-buttons {
+      gap: 0.5rem;
+    }
+    
+    .share-btn span {
+      display: none;
+    }
+    
+    .share-btn {
+      padding: 0.5rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn-cta-primary,
+    .btn-cta-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

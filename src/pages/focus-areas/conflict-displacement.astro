@@ -1,0 +1,590 @@
+---
+// focus-areas/conflict-displacement.astro
+import Layout from "../../layouts/Layout.astro";
+
+const stats = [
+  { val: "43M+", label: "Internally displaced people in Africa", icon: "fas fa-people-arrows" },
+  { val: "72%", label: "Of displaced are women and children", icon: "fas fa-child" },
+  { val: "3-5 yrs", label: "Average displacement duration", icon: "fas fa-clock" },
+  { val: "90%", label: "Of displaced remain within Africa", icon: "fas fa-globe-africa" },
+];
+
+const programs = [
+  {
+    title: "Psychosocial Support and Resilience",
+    desc: "Displacement is traumatic. Before any business or farming skill can take root, people need to feel safe, heard, and capable. Our psychosocial tools including the Johari Window and Wheel of Life create the inner stability from which economic recovery grows.",
+    icon: "fas fa-heart",
+    href: "/programs/psychosocial-support",
+    highlight: "First response",
+  },
+  {
+    title: "Vocational and Technical Skills",
+    desc: "Skills travel with you. We train displaced people in tailoring, carpentry, machine operation, and other portable trades that generate income wherever they settle, without requiring land or prior business history.",
+    icon: "fas fa-tools",
+    href: "/programs/vocational-skills",
+    highlight: "Core intervention",
+  },
+  {
+    title: "Entrepreneurship and Small Business Development",
+    desc: "Many displaced people carried marketable knowledge with them. We help them formalise, fund, and scale small enterprises in their new communities, turning survival into self-sufficiency.",
+    icon: "fas fa-chart-line",
+    href: "/programs/entrepreneurship",
+    highlight: "Core intervention",
+  },
+  {
+    title: "Youth and Women Empowerment",
+    desc: "Young men recruited into armed groups and women facing exploitation in displacement camps are among the most urgent priorities. Empowerment programming gives them alternatives, agency, and voice.",
+    icon: "fas fa-female",
+    href: "/programs/women-youth-empowerment",
+    highlight: "Priority group",
+  },
+  {
+    title: "Financial Literacy and Livelihood Diversification",
+    desc: "Displaced households often have no savings and no credit history. We establish savings groups and introduce digital financial services that help families rebuild economic foundations from scratch.",
+    icon: "fas fa-piggy-bank",
+    href: "/programs/financial-literacy",
+    highlight: "Supporting",
+  },
+  {
+    title: "Agriculture and Climate-Resilient Practices",
+    desc: "Where displaced communities have access to land, agriculture becomes a pathway back to food security. We adapt our farming training to post-conflict soil conditions and disrupted knowledge systems.",
+    icon: "fas fa-tractor",
+    href: "/programs/agriculture-climate",
+    highlight: "Where applicable",
+  },
+  {
+    title: "MEARL",
+    desc: "In post-conflict settings, tracking outcomes requires community-owned monitoring tools. Our participatory MEARL framework ensures programs adapt quickly to rapidly changing conditions on the ground.",
+    icon: "fas fa-chart-bar",
+    href: "/programs/mearl",
+    highlight: "Cross-cutting",
+  },
+];
+
+const realities = [
+  {
+    icon: "fas fa-home",
+    title: "Loss of productive assets",
+    desc: "Displacement means losing land, tools, livestock, and stored crops. The economic infrastructure built over a lifetime disappears in days.",
+  },
+  {
+    icon: "fas fa-brain",
+    title: "Psychological trauma",
+    desc: "Witnessing violence, losing family members, and the chronic stress of insecurity creates deep psychological wounds that block economic recovery.",
+  },
+  {
+    icon: "fas fa-users-slash",
+    title: "Broken social networks",
+    desc: "Livelihoods depend on trust, community, and informal credit systems. Displacement severs these networks and drops people into unfamiliar communities without social capital.",
+  },
+  {
+    icon: "fas fa-file-slash",
+    title: "Loss of identity documents",
+    desc: "Without identity papers, accessing formal financial services, enrolling children in school, or registering a business becomes nearly impossible.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "After conflict displaced my family, I had nothing. The vocational training gave me tailoring skills. Today I employ 5 women from my community, some living with HIV.",
+    name: "Marie Uwimana",
+    role: "Tailoring Business Owner",
+    location: "Kigali, Rwanda",
+    challenge: "Post-Conflict Recovery",
+  },
+  {
+    quote: "The youth empowerment program transformed me from street hawker to agri-preneur. I now run a vegetable farm supplying local schools. I never thought that was possible for someone like me.",
+    name: "Ahmed Hassan",
+    role: "Youth Agri-Entrepreneur",
+    location: "Addis Ababa, Ethiopia",
+    challenge: "Displacement and Urban Poverty",
+  },
+];
+
+const relatedFocus = [
+  {
+    title: "Drought and Hunger",
+    desc: "Conflict destroys farming systems and blocks humanitarian supply routes, triggering acute food crises in already drought-stressed regions.",
+    icon: "fas fa-cloud-sun-rain",
+    href: "/focus-areas/drought-hunger",
+  },
+  {
+    title: "Extreme Poverty",
+    desc: "Displacement is one of the fastest routes into extreme poverty. Households that were economically stable can lose everything within weeks of forced movement.",
+    icon: "fas fa-hands-holding-child",
+    href: "/focus-areas/extreme-poverty",
+  },
+  {
+    title: "HIV/AIDS and Health",
+    desc: "Displacement camps are high-risk environments for HIV transmission. Disrupted treatment access means people already living with HIV face deteriorating health in addition to economic collapse.",
+    icon: "fas fa-ribbon",
+    href: "/focus-areas/hiv-aids",
+  },
+];
+---
+
+<Layout
+  title="Conflict and Displacement | ActionPath Africa Focus Areas"
+  description="ActionPath Africa restores dignified livelihoods for communities displaced by conflict across Africa, combining psychosocial support with practical skills that travel and survive."
+>
+
+  <!-- HERO: full-bleed, dramatic, image-led -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/conflict-displacement.webp" alt="Displaced community members rebuilding livelihoods" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/#programs">Focus Areas</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Conflict and Displacement</span>
+      </div>
+      <div class="hero-badge">
+        <i class="fas fa-people-arrows"></i> Focus Area
+      </div>
+      <h1>
+        <span class="h1-block h1-green">Conflict</span>
+        <span class="h1-block h1-dim">and</span>
+        <span class="h1-block h1-red">Displacement</span>
+      </h1>
+      <p class="hero-desc">
+        Conflict strips communities of everything they built. Land, tools, savings, and
+        social networks vanish almost overnight. ActionPath Africa walks alongside displaced
+        communities as they rebuild, starting with healing and ending with economic
+        independence.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary">
+          <i class="fas fa-handshake"></i> Partner With Us
+        </a>
+        <a href="#what-displacement-means" class="btn-ghost">
+          <i class="fas fa-arrow-down"></i> Read More
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      {stats.map((s) => (
+        <div class="hero-stat" key={s.label}>
+          <i class={s.icon}></i>
+          <span class="hs-val">{s.val}</span>
+          <span class="hs-lbl">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- NARRATIVE SECTION: the reality of displacement -->
+  <section class="narrative-section" id="what-displacement-means">
+    <div class="narrative-inner">
+      <div class="nar-eyebrow"><div class="eyebrow red-eyebrow"><i class="fas fa-compass"></i> The Reality</div></div>
+      <h2>Displacement does not just move people. <span class="red-text">It erases their economic life.</span></h2>
+      <div class="divider-center"></div>
+      <div class="narrative-text">
+        <p class="lead-text">
+          Africa is home to more than 43 million internally displaced people, the largest displaced
+          population of any region on earth. Behind that number are farmers who lost their fields,
+          traders who lost their stock, mothers who watched everything they saved disappear.
+        </p>
+        <p>
+          Economic recovery after conflict is not simply a matter of access to capital or skills.
+          Before anyone can run a business or farm productively, they need to feel safe enough to
+          plan for tomorrow. They need to trust people around them. They need to believe that
+          effort leads somewhere. Psychosocial recovery is not a soft add-on to our programs.
+          It is the foundation everything else is built on.
+        </p>
+        <p>
+          ActionPath Africa has worked in post-conflict settings across East and Central Africa.
+          We know that people who have experienced violence and loss do not need pity. They need
+          a structured pathway back to agency, income, and dignity, delivered by people who
+          understand their context deeply.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT DISPLACEMENT ACTUALLY DESTROYS: icon grid -->
+  <section class="realities-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-list"></i> What Displacement Takes</div>
+      <h2>Four things displaced communities <span class="red-text">lose that money cannot replace</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Understanding what displacement actually destroys shapes the design of every program we run
+        in post-conflict communities.
+      </p>
+    </div>
+    <div class="realities-grid">
+      {realities.map((r) => (
+        <div class="reality-card" key={r.title}>
+          <div class="rc-icon"><i class={r.icon}></i></div>
+          <h3>{r.title}</h3>
+          <p>{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROGRAMS: timeline-style layout -->
+  <section class="programs-section">
+    <div class="section-header">
+      <div class="eyebrow green-eyebrow"><i class="fas fa-seedling"></i> Our Response</div>
+      <h2>Programs ordered by <span class="green-text">recovery sequence</span></h2>
+      <div class="divider-center green-div"></div>
+      <p class="section-sub">
+        We deploy these programs in stages that match where communities actually are in their
+        recovery journey, not where we wish they were.
+      </p>
+    </div>
+    <div class="programs-timeline">
+      {programs.map((p, idx) => (
+        <a href={p.href} class="timeline-item" key={p.title}>
+          <div class="ti-number">{String(idx + 1).padStart(2, "0")}</div>
+          <div class="ti-connector"></div>
+          <div class="ti-card">
+            <div class="ti-top">
+              <div class="ti-icon"><i class={p.icon}></i></div>
+              <span class="ti-highlight">{p.highlight}</span>
+            </div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <span class="ti-link">Explore program <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-quote-left"></i> Voices of Recovery</div>
+      <h2>From displacement <span class="red-text">to self-reliance</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="testi-grid">
+      {testimonials.map((t) => (
+        <div class="testi-card" key={t.name}>
+          <div class="tc-quote"><i class="fas fa-quote-left"></i></div>
+          <p class="tc-text">"{t.quote}"</p>
+          <span class="tc-challenge">{t.challenge}</span>
+          <div class="tc-author">
+            <div class="tc-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="tc-name">{t.name}</div>
+              <div class="tc-role">{t.role} · {t.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- RELATED FOCUS AREAS -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-link"></i> Intersecting Crises</div>
+      <h2>Conflict rarely exists <span class="red-text">in isolation</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        The communities we serve rarely face just one crisis. Conflict triggers hunger,
+        accelerates poverty, and creates conditions for disease to spread.
+      </p>
+    </div>
+    <div class="related-grid">
+      {relatedFocus.map((r) => (
+        <a href={r.href} class="related-card" key={r.title}>
+          <div class="rcard-icon"><i class={r.icon}></i></div>
+          <h3>{r.title}</h3>
+          <p>{r.desc}</p>
+          <span class="rcard-link">Explore <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-left">
+      <div class="cta-eyebrow"><i class="fas fa-bolt"></i> Take Action</div>
+      <h2>Bring post-conflict livelihoods programs to your community</h2>
+      <p>
+        We partner with NGOs, UN agencies, government ministries, and community leaders
+        to design programs that fit the specific stage and context of each community's
+        recovery.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn-primary btn-lg">
+          <i class="fas fa-envelope"></i> Contact Us
+        </a>
+        <a href="/programs/psychosocial-support" class="btn-outline-dark btn-lg">
+          <i class="fas fa-heart"></i> Psychosocial Program
+        </a>
+      </div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-stat">
+        <span class="cs-val">7</span>
+        <span class="cs-label">Integrated programs for post-conflict communities</span>
+      </div>
+      <div class="cta-stat">
+        <span class="cs-val">28</span>
+        <span class="cs-label">Communities reached across East and Central Africa</span>
+      </div>
+      <div class="cta-stat">
+        <span class="cs-val">15,000+</span>
+        <span class="cs-label">Lives transformed through our livelihood programs</span>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --green-mid: #1a8c1f;
+    --green-soft: rgba(39, 238, 49, 0.12);
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #64748b;
+    --gray-sf: #f1f5f9;
+    --border: #e2e8f0;
+    --sh-md: 0 8px 24px rgba(0,0,0,.08);
+    --sh-lg: 0 20px 50px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 90vh;
+    display: flex; flex-direction: column; justify-content: center;
+    margin: -2.5rem -2rem 0; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(150deg, rgba(10,14,23,.97) 0%, rgba(30,41,59,.80) 55%, rgba(192,57,43,.25) 100%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 4.5rem 2rem 5rem; max-width: 700px; }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.45); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.7); font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 40px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 4.2rem; font-weight: 900;
+    line-height: .98; letter-spacing: -.04em;
+    margin-bottom: 1.5rem;
+  }
+  .h1-block { display: block; }
+  .h1-green { color: var(--green-lt); }
+  .h1-dim { color: rgba(255,255,255,.2); font-size: 2rem; letter-spacing: 0; margin: .1rem 0; }
+  .h1-red { color: var(--red); }
+  .hero-desc {
+    font-size: 1rem; color: rgba(255,255,255,.78);
+    line-height: 1.75; max-width: 560px; margin-bottom: 2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-stats {
+    position: relative; z-index: 2; display: flex;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .hero-stat {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; padding: 1.2rem 1rem;
+    border-right: 1px solid rgba(255,255,255,.07); text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat i { color: var(--green-lt); font-size: 1.1rem; margin-bottom: 3px; }
+  .hs-val { font-family: "Outfit", sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--green-lt); line-height: 1; }
+  .hs-lbl { font-size: .68rem; color: rgba(255,255,255,.5); font-weight: 500; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: none; cursor: pointer; transition: var(--ease);
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,.35); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.3); color: rgba(255,255,255,.8);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.55); }
+  .btn-outline-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid var(--charcoal); color: var(--charcoal);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; text-decoration: none; background: white; transition: var(--ease);
+  }
+  .btn-outline-dark:hover { background: var(--charcoal); color: white; transform: translateY(-2px); }
+  .btn-lg { padding: .85rem 2.1rem; font-size: .95rem; }
+
+  /* Utilities */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem;
+  }
+  .red-eyebrow { background: var(--red-soft); color: var(--red); }
+  .green-eyebrow { background: var(--green-soft); color: var(--green-mid); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: .5rem; color: var(--charcoal);
+  }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .divider-center { width: 56px; height: 3px; background: linear-gradient(90deg, var(--red), var(--green)); border-radius: 3px; margin: .75rem auto 1.25rem; }
+  .green-div { background: linear-gradient(90deg, var(--green), #7cffa4); }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green-mid); }
+
+  /* Narrative */
+  .narrative-section { padding: 4.5rem 0; background: var(--charcoal); border-radius: 28px; margin: 0 0 2rem; }
+  .narrative-inner { max-width: 780px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+  .nar-eyebrow { display: flex; justify-content: center; }
+  .narrative-inner h2 {
+    font-family: "Outfit", sans-serif; font-size: 2.1rem; font-weight: 800;
+    color: var(--green-lt); line-height: 1.2; letter-spacing: -.02em; margin-bottom: .5rem;
+  }
+  .narrative-inner .red-text { color: #f4a59a; }
+  .narrative-text { text-align: left; margin-top: 1.5rem; }
+  .lead-text { font-size: 1.05rem; font-weight: 600; color: rgba(255,255,255,.85); line-height: 1.72; margin-bottom: 1rem; }
+  .narrative-text p { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.8; margin-bottom: .9rem; }
+
+  /* Realities */
+  .realities-section { padding: 3.5rem 0; }
+  .realities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .reality-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 1.1rem;
+    transition: var(--ease);
+  }
+  .reality-card:hover { border-color: var(--red); box-shadow: var(--sh-md); transform: translateX(4px); }
+  .rc-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    background: var(--red-soft); color: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .reality-card h3 { font-size: .95rem; font-weight: 700; color: var(--charcoal); margin-bottom: .35rem; }
+  .reality-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.6; }
+
+  /* Programs timeline */
+  .programs-section { padding: 3.5rem 2rem; background: var(--gray-sf); border-radius: 32px; margin: 1.5rem 0; }
+  .programs-timeline { display: flex; flex-direction: column; gap: .75rem; }
+  .timeline-item {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    text-decoration: none; color: inherit;
+  }
+  .ti-number {
+    font-family: "Outfit", sans-serif; font-size: 1rem; font-weight: 900;
+    color: var(--red); width: 36px; flex-shrink: 0;
+    padding-top: 1.4rem; text-align: right;
+  }
+  .ti-connector {
+    width: 2px; background: var(--border); flex-shrink: 0;
+    margin-top: 1.8rem; min-height: calc(100% + .75rem);
+    align-self: stretch;
+  }
+  .timeline-item:last-child .ti-connector { display: none; }
+  .ti-card {
+    flex: 1; background: white; border-radius: 16px; padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border); margin-bottom: 0; transition: var(--ease);
+  }
+  .timeline-item:hover .ti-card { border-color: var(--green); box-shadow: var(--sh-md); transform: translateX(4px); }
+  .ti-top { display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+  .ti-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--green-soft); color: var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: .9rem; }
+  .ti-highlight { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; background: var(--red-soft); color: var(--red); padding: .15rem .55rem; border-radius: 20px; }
+  .ti-card h3 { font-size: .92rem; font-weight: 700; color: var(--charcoal); margin-bottom: .35rem; }
+  .ti-card p { font-size: .8rem; color: var(--gray-md); line-height: 1.6; margin-bottom: .6rem; }
+  .ti-link { font-size: .75rem; font-weight: 700; color: var(--green-mid); display: inline-flex; align-items: center; gap: 4px; }
+
+  /* Testimonials */
+  .testi-section { padding: 3.5rem 0; }
+  .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .testi-card { background: white; border-radius: 24px; padding: 2rem; border: 1px solid var(--border); transition: var(--ease); }
+  .testi-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: var(--sh-md); }
+  .tc-quote { color: var(--green); font-size: 1.8rem; opacity: .35; margin-bottom: .75rem; }
+  .tc-text { font-size: .92rem; color: var(--charcoal); line-height: 1.72; font-style: italic; margin-bottom: .9rem; }
+  .tc-challenge { display: inline-block; background: var(--red-soft); color: var(--red); font-size: .7rem; font-weight: 700; padding: .2rem .75rem; border-radius: 20px; margin-bottom: 1.25rem; }
+  .tc-author { display: flex; align-items: center; gap: .85rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .tc-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+  .tc-name { font-weight: 700; font-size: .87rem; color: var(--charcoal); }
+  .tc-role { font-size: .72rem; color: var(--gray-md); margin-top: 2px; }
+
+  /* Related */
+  .related-section { padding: 3.5rem 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .related-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); border-top: 3px solid var(--red);
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: var(--ease);
+  }
+  .related-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+  .rcard-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; margin-bottom: .85rem; }
+  .related-card h3 { font-size: .95rem; font-weight: 700; color: var(--charcoal); margin-bottom: .4rem; }
+  .related-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+  .rcard-link { font-size: .78rem; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 5px; }
+
+  /* CTA: split layout */
+  .cta-section {
+    background: var(--charcoal); border-radius: 28px; margin: 2rem 0;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; overflow: hidden;
+  }
+  .cta-left { padding: 3.5rem 3rem; }
+  .cta-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(39,238,49,.15); color: var(--green-lt); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .cta-left h2 { font-family: "Outfit", sans-serif; font-size: 2rem; font-weight: 900; color: var(--green-lt); line-height: 1.2; margin-bottom: .85rem; }
+  .cta-left p { color: rgba(255,255,255,.7); font-size: .9rem; line-height: 1.72; margin-bottom: 2rem; max-width: 420px; }
+  .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .cta-right {
+    background: rgba(255,255,255,.04); border-left: 1px solid rgba(255,255,255,.08);
+    padding: 3.5rem 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2rem;
+  }
+  .cta-stat {}
+  .cs-val { font-family: "Outfit", sans-serif; font-size: 2.8rem; font-weight: 900; color: var(--red); display: block; line-height: 1; margin-bottom: .35rem; }
+  .cs-label { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .realities-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-right { border-left: none; border-top: 1px solid rgba(255,255,255,.08); flex-direction: row; flex-wrap: wrap; gap: 1.5rem; padding: 2rem 3rem; }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.8rem; }
+    .h1-dim { font-size: 1.5rem; }
+    .hero-inner { padding: 2.5rem 1.25rem 4rem; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .narrative-section { border-radius: 16px; padding: 2.5rem 1.25rem; }
+    .testi-grid, .related-grid { grid-template-columns: 1fr; }
+    .cta-left { padding: 2.5rem 1.5rem; }
+    .cta-right { padding: 1.5rem; }
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+  }
+</style>

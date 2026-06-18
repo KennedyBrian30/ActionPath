@@ -1,0 +1,589 @@
+---
+// focus-areas/drought-hunger.astro
+import Layout from "../../layouts/Layout.astro";
+
+const stats = [
+  { val: "278M", label: "People food insecure in Africa", icon: "fas fa-utensils" },
+  { val: "40%", label: "Of African farmers rely on rainfed agriculture", icon: "fas fa-cloud-rain" },
+  { val: "68%", label: "Income improvement in our programs", icon: "fas fa-chart-line" },
+  { val: "87%", label: "Drought resilience among our graduates", icon: "fas fa-shield-alt" },
+];
+
+const programs = [
+  {
+    title: "Agriculture and Climate-Resilient Practices",
+    desc: "The cornerstone response to drought. We train farmers in climate-smart cropping, water conservation, agroforestry, and drought-resistant seed systems that keep households fed through every dry season.",
+    icon: "fas fa-tractor",
+    href: "/programs/agriculture-climate",
+    primary: true,
+  },
+  {
+    title: "Financial Literacy and Livelihood Diversification",
+    desc: "When rains fail, families with only one income source collapse fastest. We help households build savings buffers, join SACCOs, and develop non-farm income streams before the next crisis hits.",
+    icon: "fas fa-piggy-bank",
+    href: "/programs/financial-literacy",
+    primary: false,
+  },
+  {
+    title: "Entrepreneurship and Small Business Development",
+    desc: "Drought-proofing livelihoods means not depending entirely on the land. We build market-linked enterprises that generate income through the dry months when farm output drops.",
+    icon: "fas fa-chart-line",
+    href: "/programs/entrepreneurship",
+    primary: false,
+  },
+  {
+    title: "Psychosocial Support and Resilience",
+    desc: "Repeated harvest failure is psychologically devastating. Our resilience tools including the Wheel of Life and group counselling sessions help families rebuild hope and confidence alongside practical skills.",
+    icon: "fas fa-heart",
+    href: "/programs/psychosocial-support",
+    primary: false,
+  },
+  {
+    title: "MEARL",
+    desc: "We measure drought resilience outcomes through community scorecards and baseline surveys, tracking whether families are genuinely better equipped for the next dry season.",
+    icon: "fas fa-chart-bar",
+    href: "/programs/mearl",
+    primary: false,
+  },
+];
+
+const stories = [
+  {
+    quote: "ActionPath Africa taught me climate-smart farming. Now my family eats three meals a day even during drought season. I have trained 50 other farmers in my village.",
+    name: "Jane Akinyi",
+    role: "Smallholder Farmer",
+    location: "Siaya County, Kenya",
+  },
+  {
+    quote: "Before this program, I lost every crop during the dry months. Now I use solar drip irrigation and grow vegetables year-round. My children no longer miss school because of hunger.",
+    name: "Omar Abdullahi",
+    role: "Agripreneur",
+    location: "Garissa County, Kenya",
+  },
+];
+
+const relatedFocus = [
+  {
+    title: "Conflict and Displacement",
+    desc: "Drought and conflict feed each other. Communities displaced by violence lose access to farmland and water sources, deepening food insecurity across borders.",
+    icon: "fas fa-people-arrows",
+    href: "/focus-areas/conflict-displacement",
+  },
+  {
+    title: "Extreme Poverty",
+    desc: "Chronic drought is one of the most powerful drivers of extreme poverty in sub-Saharan Africa. Breaking the hunger cycle is central to any poverty graduation strategy.",
+    icon: "fas fa-hands-holding-child",
+    href: "/focus-areas/extreme-poverty",
+  },
+  {
+    title: "HIV/AIDS and Health",
+    desc: "Malnutrition caused by food insecurity weakens immune systems and accelerates disease progression for people living with HIV, making food security a health issue too.",
+    icon: "fas fa-ribbon",
+    href: "/focus-areas/hiv-aids",
+  },
+];
+
+const approaches = [
+  {
+    icon: "fas fa-seedling",
+    title: "Before the drought",
+    desc: "We build capacity during stable seasons, training farmers in water harvesting, seed banking, and diversified cropping before crisis strikes.",
+  },
+  {
+    icon: "fas fa-hands-helping",
+    title: "During the crisis",
+    desc: "We provide immediate livelihood support, connecting affected households to food systems, emergency savings groups, and psychosocial care.",
+  },
+  {
+    icon: "fas fa-arrow-trend-up",
+    title: "After recovery",
+    desc: "We link graduates to market networks and savings cooperatives, ensuring the next dry season finds them more resilient than the last.",
+  },
+];
+---
+
+<Layout
+  title="Drought and Hunger | ActionPath Africa Focus Areas"
+  description="ActionPath Africa works with communities facing chronic drought and food insecurity across Africa, building climate-resilient livelihoods that survive and recover from repeated dry seasons."
+>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/drought-hunger.webp" alt="Dry cracked earth alongside a community farm in East Africa" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="/#programs">Focus Areas</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Drought and Hunger</span>
+      </div>
+      <div class="hero-badge">
+        <i class="fas fa-cloud-sun-rain"></i> Focus Area
+      </div>
+      <h1>
+        <span class="h1-red">Drought</span>
+        <span class="h1-amp"> and </span>
+        <span class="h1-green">Hunger</span>
+      </h1>
+      <p class="hero-desc">
+        Erratic rainfall and prolonged dry seasons push millions of African families into
+        food insecurity every year. ActionPath Africa builds the skills, assets, and
+        community networks that help households survive the next drought and thrive beyond it.
+      </p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary">
+          <i class="fas fa-handshake"></i> Work With Us
+        </a>
+        <a href="#our-response" class="btn-ghost">
+          <i class="fas fa-arrow-down"></i> See Our Response
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      {stats.map((s) => (
+        <div class="hero-stat" key={s.label}>
+          <i class={s.icon}></i>
+          <span class="hs-val">{s.val}</span>
+          <span class="hs-lbl">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="context-section" id="our-response">
+    <div class="context-grid">
+      <div class="context-text">
+        <div class="eyebrow red-eyebrow"><i class="fas fa-compass"></i> Understanding the Crisis</div>
+        <h2>Hunger in Africa is not a shortage of land. It is a <span class="red-text">failure of resilience.</span></h2>
+        <div class="divider-left"></div>
+        <p class="lead-text">
+          Sub-Saharan Africa holds some of the most fertile land on earth, yet 278 million people
+          go to bed hungry every night. The primary driver is not scarcity. It is vulnerability to
+          shocks that farmers have no tools to absorb.
+        </p>
+        <p>
+          When the rains arrive two months late, a family with no seed diversity, no water
+          harvesting structure, and no savings group has no buffer. One failed season can pull
+          children out of school, push families into debt bondage, and reverse years of slow
+          progress in a matter of weeks.
+        </p>
+        <p>
+          Climate change is accelerating these shocks. Droughts that once arrived every ten
+          years now hit every three. Rainfall patterns that smallholder farmers read by
+          memory no longer hold. The knowledge passed from parent to child across generations
+          is becoming unreliable, and most farming communities have not yet built the new
+          knowledge systems to replace it.
+        </p>
+        <p>
+          This is where ActionPath Africa works. We do not deliver food aid. We build the
+          capacity, assets, and community structures that allow households to feed themselves
+          through every season, however harsh.
+        </p>
+        <div class="context-tags">
+          <span class="ctag">East Africa</span>
+          <span class="ctag">Horn of Africa</span>
+          <span class="ctag">Sahel Region</span>
+          <span class="ctag">SDG 2: Zero Hunger</span>
+          <span class="ctag">SDG 13: Climate Action</span>
+        </div>
+      </div>
+      <div class="context-img">
+        <img src="/welcome-community.webp" alt="Farmer working irrigated land" loading="lazy" />
+        <div class="img-caption">
+          <i class="fas fa-map-marker-alt"></i> Kenya · Ethiopia · Somalia · Uganda
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE RESPOND: THREE PHASES -->
+  <section class="phases-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-route"></i> Our Approach</div>
+      <h2>A response built for <span class="red-text">every phase</span> of drought</h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Drought resilience cannot be built during the emergency. Our programs prepare
+        communities before crisis, support them through it, and strengthen them after.
+      </p>
+    </div>
+    <div class="phases-grid">
+      {approaches.map((a, idx) => (
+        <div class="phase-card" key={a.title}>
+          <div class="phase-num">0{idx + 1}</div>
+          <div class="phase-icon"><i class={a.icon}></i></div>
+          <h3>{a.title}</h3>
+          <p>{a.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="programs-section">
+    <div class="section-header">
+      <div class="eyebrow green-eyebrow"><i class="fas fa-seedling"></i> Training Programs</div>
+      <h2>Programs we deploy in <span class="green-text">drought-affected communities</span></h2>
+      <div class="divider-center green-div"></div>
+      <p class="section-sub">
+        Each program below is tailored for communities where food insecurity is a
+        constant reality, not a distant risk.
+      </p>
+    </div>
+
+    <div class="programs-primary">
+      {programs.filter(p => p.primary).map((p) => (
+        <a href={p.href} class="program-featured" key={p.title}>
+          <div class="pf-icon"><i class={p.icon}></i></div>
+          <div class="pf-body">
+            <span class="pf-tag">Primary Intervention</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <span class="pf-link">Explore this program <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="programs-supporting">
+      <p class="supporting-label"><i class="fas fa-layer-group"></i> Supporting interventions</p>
+      <div class="programs-grid">
+        {programs.filter(p => !p.primary).map((p) => (
+          <a href={p.href} class="program-card" key={p.title}>
+            <div class="pc-icon"><i class={p.icon}></i></div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <span class="pc-link">Learn more <i class="fas fa-arrow-right"></i></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY VOICES -->
+  <section class="stories-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-quote-left"></i> Community Voices</div>
+      <h2>What drought resilience looks like <span class="red-text">in real life</span></h2>
+      <div class="divider-center"></div>
+    </div>
+    <div class="stories-grid">
+      {stories.map((s) => (
+        <div class="story-card" key={s.name}>
+          <div class="story-quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p class="story-text">"{s.quote}"</p>
+          <div class="story-author">
+            <div class="story-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="story-name">{s.name}</div>
+              <div class="story-role">{s.role} · {s.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- INTERCONNECTED FOCUS AREAS -->
+  <section class="related-section">
+    <div class="section-header">
+      <div class="eyebrow red-eyebrow"><i class="fas fa-link"></i> Connected Crises</div>
+      <h2>Drought rarely arrives <span class="red-text">alone</span></h2>
+      <div class="divider-center"></div>
+      <p class="section-sub">
+        Food insecurity intersects with conflict, poverty, and disease in ways that
+        multiply suffering and demand an integrated response.
+      </p>
+    </div>
+    <div class="related-grid">
+      {relatedFocus.map((r) => (
+        <a href={r.href} class="related-card" key={r.title}>
+          <div class="rc-icon"><i class={r.icon}></i></div>
+          <h3>{r.title}</h3>
+          <p>{r.desc}</p>
+          <span class="rc-link">Explore focus area <i class="fas fa-arrow-right"></i></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-text">
+      <div class="cta-eyebrow"><i class="fas fa-bolt"></i> Take Action</div>
+      <h2>Help us build drought resilience in your community</h2>
+      <p>
+        We work with NGOs, government agencies, community leaders, and donors to co-design
+        livelihood programs that address food insecurity at its roots.
+      </p>
+      <div class="cta-buttons">
+        <a href="/contact" class="btn-primary btn-lg">
+          <i class="fas fa-envelope"></i> Partner With Us
+        </a>
+        <a href="/programs/agriculture-climate" class="btn-outline-light btn-lg">
+          <i class="fas fa-tractor"></i> Agriculture Program
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  :root {
+    --red: #c0392b;
+    --red-dark: #a93226;
+    --red-soft: rgba(192, 57, 43, 0.1);
+    --green: #27ee31;
+    --green-lt: #27f731;
+    --green-mid: #1a8c1f;
+    --green-soft: rgba(39, 238, 49, 0.12);
+    --charcoal: #1e293b;
+    --gray-dk: #334155;
+    --gray-md: #64748b;
+    --gray-sf: #f1f5f9;
+    --border: #e2e8f0;
+    --sh-md: 0 8px 24px rgba(0,0,0,.08);
+    --sh-lg: 0 20px 50px rgba(0,0,0,.12);
+    --ease: all 0.25s ease;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 86vh;
+    display: flex; flex-direction: column; justify-content: center;
+    margin: -2.5rem -2rem 0; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(30,41,59,.96) 0%, rgba(30,41,59,.78) 50%, rgba(192,57,43,.35) 100%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 4rem 2rem 5rem; max-width: 740px; }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: rgba(255,255,255,.45); margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.5); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--green-lt); }
+  .breadcrumb i { font-size: .55rem; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(192,57,43,.2); border: 1px solid rgba(192,57,43,.4);
+    color: #f4a59a; font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 40px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: 4rem; font-weight: 900;
+    line-height: 1.05; letter-spacing: -.04em;
+    margin-bottom: 1.25rem;
+  }
+  .h1-red { color: var(--red); display: block; }
+  .h1-amp { color: rgba(255,255,255,.4); font-size: 2.5rem; }
+  .h1-green { color: var(--green-lt); display: block; }
+  .hero-desc {
+    font-size: 1.05rem; color: rgba(255,255,255,.8);
+    line-height: 1.75; max-width: 580px; margin-bottom: 2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-stats {
+    position: relative; z-index: 2; display: flex;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .hero-stat {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; padding: 1.2rem 1rem;
+    border-right: 1px solid rgba(255,255,255,.08); text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat i { color: var(--green-lt); font-size: 1.1rem; margin-bottom: 3px; }
+  .hs-val { font-family: "Outfit", sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--green-lt); line-height: 1; }
+  .hs-lbl { font-size: .68rem; color: rgba(255,255,255,.55); font-weight: 500; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem;
+    text-decoration: none; border: none; cursor: pointer; transition: var(--ease);
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(192,57,43,.35); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85);
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; font-size: .9rem; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+  .btn-outline-light {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.35); color: white;
+    padding: .72rem 1.75rem; border-radius: 40px;
+    font-weight: 700; text-decoration: none; background: transparent; transition: var(--ease);
+  }
+  .btn-outline-light:hover { background: rgba(255,255,255,.1); border-color: white; }
+  .btn-lg { padding: .85rem 2.1rem; font-size: .95rem; }
+
+  /* Utilities */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem;
+  }
+  .red-eyebrow { background: var(--red-soft); color: var(--red); }
+  .green-eyebrow { background: var(--green-soft); color: var(--green-mid); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 2rem; font-weight: 800; letter-spacing: -.02em;
+    margin-bottom: .5rem; color: var(--charcoal);
+  }
+  .section-sub { font-size: .93rem; color: var(--gray-md); max-width: 620px; margin: 0 auto; line-height: 1.65; }
+  .divider-center {
+    width: 56px; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 3px; margin: .75rem auto 1.25rem;
+  }
+  .green-div { background: linear-gradient(90deg, var(--green), #7cffa4); }
+  .divider-left { width: 56px; height: 3px; background: linear-gradient(90deg, var(--red), var(--green)); border-radius: 3px; margin: .75rem 0 1.25rem; }
+  .red-text { color: var(--red); }
+  .green-text { color: var(--green-mid); }
+
+  /* Context */
+  .context-section { padding: 4rem 0; }
+  .context-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; align-items: center; }
+  .context-text h2 {
+    font-family: "Outfit", sans-serif; font-size: 1.95rem; font-weight: 800;
+    line-height: 1.22; letter-spacing: -.02em; color: var(--charcoal); margin-bottom: .5rem;
+  }
+  .lead-text { font-size: 1rem; font-weight: 600; color: var(--red); line-height: 1.72; margin-bottom: 1rem; }
+  .context-text p { font-size: .9rem; color: var(--gray-md); line-height: 1.78; margin-bottom: .9rem; }
+  .context-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+  .ctag { background: var(--red-soft); color: var(--red); font-size: .72rem; font-weight: 700; padding: .25rem .75rem; border-radius: 20px; border: 1px solid rgba(192,57,43,.2); }
+  .context-img { position: relative; border-radius: 24px; overflow: hidden; box-shadow: var(--sh-lg); }
+  .context-img img { width: 100%; height: 430px; object-fit: cover; display: block; }
+  .img-caption {
+    position: absolute; bottom: 16px; left: 16px; right: 16px;
+    background: rgba(0,0,0,.72); backdrop-filter: blur(8px);
+    color: white; font-size: .75rem; font-weight: 600;
+    padding: .6rem 1rem; border-radius: 40px; text-align: center;
+  }
+  .img-caption i { color: var(--green-lt); margin-right: 6px; }
+
+  /* Phases */
+  .phases-section { padding: 3rem 0 3.5rem; }
+  .phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .phase-card {
+    background: white; border-radius: 20px; padding: 1.75rem;
+    border: 1px solid var(--border); border-top: 3px solid var(--red);
+    transition: var(--ease);
+  }
+  .phase-card:hover { transform: translateY(-5px); box-shadow: var(--sh-md); }
+  .phase-num { font-family: "Outfit", sans-serif; font-size: 2.8rem; font-weight: 900; color: var(--red-soft); line-height: 1; margin-bottom: .5rem; }
+  .phase-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    background: var(--green-soft); color: var(--green-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 1rem;
+  }
+  .phase-card h3 { font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: .5rem; }
+  .phase-card p { font-size: .84rem; color: var(--gray-md); line-height: 1.62; }
+
+  /* Programs */
+  .programs-section { padding: 3.5rem 0; background: var(--gray-sf); border-radius: 32px; padding: 3.5rem 2rem; margin: 1.5rem 0; }
+  .programs-primary { margin-bottom: 2rem; }
+  .program-featured {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    background: white; border-radius: 20px; padding: 1.75rem;
+    border: 2px solid var(--red); text-decoration: none; color: inherit;
+    transition: var(--ease);
+  }
+  .program-featured:hover { box-shadow: var(--sh-md); transform: translateY(-3px); }
+  .pf-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: var(--red-soft); color: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; flex-shrink: 0;
+  }
+  .pf-body { flex: 1; }
+  .pf-tag { display: inline-block; background: var(--red); color: white; font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 20px; margin-bottom: .6rem; }
+  .pf-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-bottom: .4rem; }
+  .pf-body p { font-size: .85rem; color: var(--gray-md); line-height: 1.65; margin-bottom: .75rem; }
+  .pf-link { font-size: .82rem; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 5px; }
+  .supporting-label { font-size: .78rem; font-weight: 700; color: var(--gray-md); text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 7px; margin-bottom: 1rem; }
+  .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .program-card {
+    background: white; border-radius: 16px; padding: 1.25rem 1.4rem;
+    border: 1px solid var(--border); text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; transition: var(--ease);
+  }
+  .program-card:hover { border-color: var(--green); box-shadow: var(--sh-md); transform: translateY(-3px); }
+  .pc-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green-soft); color: var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: .95rem; margin-bottom: .75rem; }
+  .program-card h3 { font-size: .9rem; font-weight: 700; color: var(--charcoal); margin-bottom: .35rem; }
+  .program-card p { font-size: .8rem; color: var(--gray-md); line-height: 1.6; flex: 1; margin-bottom: .75rem; }
+  .pc-link { font-size: .75rem; font-weight: 700; color: var(--green-mid); display: flex; align-items: center; gap: 4px; }
+
+  /* Stories */
+  .stories-section { padding: 3.5rem 0; }
+  .stories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .story-card { background: white; border-radius: 24px; padding: 2rem; border: 1px solid var(--border); transition: var(--ease); }
+  .story-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: var(--sh-md); }
+  .story-quote-icon { color: var(--green); font-size: 1.8rem; opacity: .35; margin-bottom: .75rem; }
+  .story-text { font-size: .92rem; color: var(--charcoal); line-height: 1.72; font-style: italic; margin-bottom: 1.25rem; }
+  .story-author { display: flex; align-items: center; gap: .85rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .story-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+  .story-name { font-weight: 700; font-size: .87rem; color: var(--charcoal); }
+  .story-role { font-size: .72rem; color: var(--gray-md); margin-top: 2px; }
+
+  /* Related */
+  .related-section { padding: 3.5rem 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .related-card {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    border: 1px solid var(--border); border-top: 3px solid var(--green);
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    transition: var(--ease);
+  }
+  .related-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+  .rc-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--green-soft); color: var(--green-mid); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; margin-bottom: .85rem; }
+  .related-card h3 { font-size: .95rem; font-weight: 700; color: var(--charcoal); margin-bottom: .4rem; }
+  .related-card p { font-size: .82rem; color: var(--gray-md); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+  .rc-link { font-size: .78rem; font-weight: 700; color: var(--green-mid); display: flex; align-items: center; gap: 5px; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #2d3748 100%);
+    border-radius: 28px; margin: 2rem 0; padding: 4rem 3rem; text-align: center;
+  }
+  .cta-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(39,238,49,.15); color: var(--green-lt); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .35rem 1rem; border-radius: 40px; margin-bottom: 1rem; }
+  .cta-section h2 { font-family: "Outfit", sans-serif; font-size: 2.25rem; font-weight: 900; color: var(--green-lt); max-width: 580px; margin: 0 auto 1rem; line-height: 1.2; }
+  .cta-section p { color: rgba(255,255,255,.78); font-size: .95rem; max-width: 500px; margin: 0 auto 2rem; line-height: 1.72; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .context-grid { grid-template-columns: 1fr; }
+    .phases-grid, .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.6rem; }
+    .hero-inner { padding: 2.5rem 1.25rem 4rem; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .phases-grid, .programs-grid, .stories-grid, .related-grid { grid-template-columns: 1fr; }
+    .program-featured { flex-direction: column; }
+    .cta-section { padding: 2.5rem 1.5rem; }
+    .cta-section h2 { font-size: 1.75rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>

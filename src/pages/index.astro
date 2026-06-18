@@ -1,0 +1,1770 @@
+---
+// index.astro - Redesigned Homepage for ActionPath Africa
+import Layout from "../layouts/Layout.astro";
+
+const heroImages = [
+  "/hero-community-1.webp",
+  "/hero-livelihood-2.webp",
+  "/hero-training-3.webp",
+  "/hero-empowerment-4.webp",
+  "/hero-resilience-5.webp",
+];
+
+const partners = [
+  { name: "UNDP Africa", logo: "🌍" },
+  { name: "African Union", logo: "⭐" },
+  { name: "Mastercard Foundation", logo: "💳" },
+  { name: "USAID", logo: "🇺🇸" },
+  { name: "World Bank Group", logo: "🏦" },
+  { name: "African Development Bank", logo: "🌱" },
+];
+
+const stats = [
+  { value: "15,000+", label: "Lives Transformed", icon: "fas fa-heart" },
+  { value: "28", label: "Communities Reached", icon: "fas fa-globe-africa" },
+  { value: "87%", label: "Income Improvement", icon: "fas fa-chart-line" },
+  { value: "250+", label: "Livelihood Projects", icon: "fas fa-hands-helping" },
+];
+
+const livelihoodPrograms = [
+  {
+    title: "Agriculture & Climate Resilient Practices",
+    description: "Empowering farmers with drought-resistant crops, climate-smart agriculture, and sustainable land management to combat food insecurity.",
+    image: "/agriculture-climate.webp",
+    icon: "fas fa-seedling",
+    tag: "Climate Action",
+    href: "/programs/agriculture-climate",
+  },
+  {
+    title: "Entrepreneurship & SME Development",
+    description: "Building business acumen, access to micro-finance, and market linkages for community-owned enterprises in conflict-affected regions.",
+    image: "/entrepreneurship.webp",
+    icon: "fas fa-chart-line",
+    tag: "Economic Empowerment",
+    href: "/programs/entrepreneurship",
+  },
+  {
+    title: "Livelihood Diversification",
+    description: "Helping vulnerable households develop multiple income streams to build resilience against economic shocks and climate variability.",
+    image: "/diversification.webp",
+    icon: "fas fa-exchange-alt",
+    tag: "Resilience Building",
+    href: "/programs/livelihood-diversification",
+  },
+  {
+    title: "Vocational & Technical Skills",
+    description: "Market-driven trades training — from solar installation to tailoring — creating sustainable employment in underserved communities.",
+    image: "/vocational-skills.webp",
+    icon: "fas fa-tools",
+    tag: "Skills Development",
+    href: "/programs/vocational-skills",
+  },
+  {
+    title: "Women & Youth Empowerment",
+    description: "Targeted programs addressing unique barriers faced by women and youth, including HIV-affected households and conflict-displaced persons.",
+    image: "/women-youth.webp",
+    icon: "fas fa-female",
+    tag: "Inclusive Growth",
+    href: "/programs/women-youth",
+  },
+];
+
+const consultancyServices = [
+  {
+    title: "CBO Support & Capacity Building",
+    description: "Strengthening community-based organizations with governance, financial management, and program design skills.",
+    icon: "fas fa-hand-holding-heart",
+    image: "/consultancy-cbo.webp",
+    href: "/services/cbo-capacity-building",
+  },
+  {
+    title: "Monitoring & Evaluation Services",
+    description: "Impact assessment, data-driven decision making, and outcome tracking for livelihood programs.",
+    icon: "fas fa-chart-bar",
+    image: "/consultancy-me.webp",
+    href: "/services/monitoring-evaluation",
+  },
+  {
+    title: "Strategic Planning & Management",
+    description: "Helping organizations design sustainable strategies for community development.",
+    icon: "fas fa-project-diagram",
+    image: "/consultancy-strategy.webp",
+    href: "/services/strategic-planning",
+  },
+  {
+    title: "Feasibility & Market Research",
+    description: "Understanding local economies, value chains, and opportunities for livelihood interventions.",
+    icon: "fas fa-file-alt",
+    image: "/consultancy-research.webp",
+    href: "/services/feasibility-research",
+  },
+];
+
+const corporateServices = [
+  {
+    title: "Project Management Training",
+    description: "Certified PMP and agile methodologies for development sector professionals.",
+    icon: "fas fa-tasks",
+    image: "/corporate-pmp.webp",
+    href: "/services/project-management",
+  },
+  {
+    title: "Monitoring & Evaluation for Corporates",
+    description: "CSR impact measurement and social return on investment frameworks.",
+    icon: "fas fa-chart-simple",
+    image: "/corporate-me.webp",
+    href: "/services/corporate-me",
+  },
+  {
+    title: "Human Resource Management",
+    description: "Talent development, performance management, and organizational culture.",
+    icon: "fas fa-users",
+    image: "/corporate-hr.webp",
+    href: "/services/human-resources",
+  },
+  {
+    title: "Customer Experience Excellence",
+    description: "Service delivery standards for community-facing programs.",
+    icon: "fas fa-headset",
+    image: "/corporate-cx.webp",
+    href: "/services/customer-experience",
+  },
+  {
+    title: "Corporate Governance Training",
+    description: "Board leadership, ethics, and compliance for NGOs and social enterprises.",
+    icon: "fas fa-gavel",
+    image: "/corporate-governance.webp",
+    href: "/services/corporate-governance",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "ActionPath Africa taught me climate-smart farming. Now my family eats three meals a day even during drought season. I've trained 50 other farmers in my village.",
+    name: "Jane Akinyi",
+    role: "Smallholder Farmer, Siaya County",
+    location: "🇰🇪 Kenya",
+    challenge: "Drought & Food Insecurity",
+  },
+  {
+    quote: "After conflict displaced my family, I had nothing. The vocational training gave me tailoring skills. Today I employ 5 women from my community, some living with HIV.",
+    name: "Marie Uwimana",
+    role: "Tailoring Business Owner",
+    location: "🇷🇼 Rwanda",
+    challenge: "Post-Conflict Recovery",
+  },
+  {
+    quote: "The youth empowerment program transformed me from street hawker to agri-preneur. I now run a vegetable farm supplying local schools.",
+    name: "Ahmed Hassan",
+    role: "Youth Agri-Entrepreneur",
+    location: "🇪🇹 Ethiopia",
+    challenge: "Urban Poverty & Unemployment",
+  },
+  {
+    quote: "Living with HIV, I struggled to find dignified work. ActionPath's livelihood diversification training changed everything. I now run a successful poultry business.",
+    name: "Beatrice Mwangi",
+    role: "Poultry Farmer",
+    location: "🇰🇪 Kenya",
+    challenge: "HIV/AIDS & Stigma",
+  },
+];
+
+const blogPosts = [
+  {
+    title: "Climate-Smart Agriculture: How Smallholder Farmers in Siaya Are Beating the Drought",
+    excerpt: "In Siaya County, Kenya, erratic rainfall once meant failed harvests and hungry families. Discover how ActionPath Africa's climate-resilient farming program is rewriting that story — one farmer at a time.",
+    image: "/blog-climate-farming.webp",
+    category: "Agriculture",
+    categoryIcon: "fas fa-seedling",
+    date: "June 12, 2025",
+    readTime: "5 min read",
+    author: "ActionPath Editorial",
+    href: "/blog/climate-smart-agriculture-siaya",
+  },
+  {
+    title: "From Conflict to Commerce: Youth Entrepreneurs Rebuilding Communities in Post-Conflict Zones",
+    excerpt: "Three years after displacement, a cohort of young entrepreneurs in Rwanda and Ethiopia are not just surviving — they are building businesses that anchor their communities. Here is their journey.",
+    image: "/blog-youth-enterprise.webp",
+    category: "Entrepreneurship",
+    categoryIcon: "fas fa-chart-line",
+    date: "May 28, 2025",
+    readTime: "7 min read",
+    author: "ActionPath Editorial",
+    href: "/blog/youth-entrepreneurs-post-conflict",
+  },
+  {
+    title: "Breaking the Stigma: Dignified Livelihoods for HIV-Affected Households",
+    excerpt: "Stigma is often a bigger barrier than the disease itself. ActionPath Africa's holistic livelihood model is proving that with the right support, HIV-affected households can achieve lasting economic independence.",
+    image: "/blog-hiv-livelihoods.webp",
+    category: "Health & Livelihoods",
+    categoryIcon: "fas fa-heart",
+    date: "April 15, 2025",
+    readTime: "6 min read",
+    author: "ActionPath Editorial",
+    href: "/blog/dignified-livelihoods-hiv-households",
+  },
+];
+
+const challenges = [
+  {
+    icon: "🌾",
+    title: "Drought & Hunger",
+    description: "Climate-resilient agriculture, food security programs, and drought adaptation strategies.",
+    href: "/focus-areas/drought-hunger",
+  },
+  {
+    icon: "⚔️",
+    title: "Conflict & Displacement",
+    description: "Post-conflict recovery, livelihood restoration, and trauma-informed economic empowerment.",
+    href: "/focus-areas/conflict-displacement",
+  },
+  {
+    icon: "🏚️",
+    title: "Extreme Poverty",
+    description: "Graduation approach programs combining asset transfer, skills training, and savings groups.",
+    href: "/focus-areas/extreme-poverty",
+  },
+  {
+    icon: "🩺",
+    title: "HIV/AIDS & Health Vulnerabilities",
+    description: "Dignified livelihoods for affected households, reducing stigma and building economic security.",
+    href: "/focus-areas/hiv-aids",
+  },
+];
+---
+
+<Layout
+  title="ActionPath Africa | Livelihood Transformation for Resilient Communities"
+  description="Empowering communities affected by conflict, drought, poverty, and disease through sustainable livelihood training and capacity building across Africa."
+>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- HERO SECTION                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-gallery">
+      {heroImages.map((img, idx) => (
+        <div
+          class="hero-slide"
+          style={`background-image: url('${img}'); animation-delay: ${idx * 3}s;`}
+        ></div>
+      ))}
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Transforming Lives Across Africa
+      </div>
+      <h1>
+        <span class="hero-highlight">Building resilient</span><br />
+        livelihoods for<br />
+        <span class="hero-sub">communities in crisis</span>
+      </h1>
+      <p class="hero-desc">
+        ActionPath Africa empowers communities affected by conflict, drought, hunger, poverty, and
+        HIV/AIDS through sustainable livelihood training, economic opportunities, and psychosocial
+        support.
+      </p>
+      <div class="hero-buttons">
+        <a href="#programs" class="btn-primary">
+          <i class="fas fa-hands-helping"></i> Our Livelihood Programs
+        </a>
+        <a href="/contact" class="btn-outline">
+          <i class="fas fa-handshake"></i> Partner With Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- IMPACT STATS                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="stats-strip">
+    {
+      stats.map((stat) => (
+        <div class="stat-item" key={stat.label}>
+          <i class={stat.icon} />
+          <div class="stat-number">{stat.value}</div>
+          <div class="stat-label">{stat.label}</div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- WELCOME SECTION (condensed)             -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="welcome-section">
+    <div class="welcome-grid">
+      <div class="welcome-text">
+        <div class="section-eyebrow"><i class="fas fa-compass"></i> Our Purpose</div>
+        <h2>Welcome to <span class="accent-text">ActionPath Africa</span></h2>
+        <div class="section-divider left"></div>
+        <p class="welcome-intro">
+          ActionPath Africa designs and delivers transformative livelihood training programs that
+          equip youth, women, and marginalized communities with practical skills, entrepreneurial
+          confidence, and the psychosocial resilience to break cycles of poverty — whether caused by
+          conflict, drought, disease, or displacement.
+        </p>
+        <p>
+          Our approach is holistic and context-specific: from climate-smart agriculture and
+          vocational trades to SME development and trauma-informed counseling, every program is
+          built in partnership with communities and aligned to national development strategies —
+          ensuring impact that lasts well beyond donor cycles.
+        </p>
+        <a href="/about" class="btn-primary btn-about">
+          <i class="fas fa-arrow-right"></i> Learn More About Us
+        </a>
+      </div>
+      <div class="welcome-image">
+        <img
+          src="/welcome-community.webp"
+          alt="Empowered community members in training session"
+          loading="lazy"
+        />
+        <div class="welcome-img-caption">
+          <i class="fas fa-users"></i> 15,000+ lives transformed across Africa
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- LIVELIHOOD PROGRAMS                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="programs" class="programs-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-seedling"></i> Livelihood Training</div>
+      <h2>Our <span class="accent-text">Programs</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Context-specific livelihood interventions designed for communities facing conflict, drought,
+        poverty, and disease.
+      </p>
+    </div>
+
+    <div class="programs-grid">
+      {
+        livelihoodPrograms.map((program) => (
+          <a href={program.href} class="program-card" key={program.title}>
+            <div class="program-img-wrap">
+              <img
+                src={program.image}
+                alt={program.title}
+                class="program-img"
+                loading="lazy"
+              />
+              <div class="program-tag">{program.tag}</div>
+              <div class="program-overlay">
+                <span class="program-explore">
+                  Learn More <i class="fas fa-arrow-right" />
+                </span>
+              </div>
+            </div>
+            <div class="program-body">
+              <div class="program-icon-wrap">
+                <i class={program.icon} />
+              </div>
+              <h3 class="program-title">{program.title}</h3>
+              <p class="program-desc">{program.description}</p>
+              <div class="program-meta">
+                <span>
+                  <i class="fas fa-graduation-cap" /> Livelihood Track
+                </span>
+                <span class="program-link">
+                  Explore <i class="fas fa-chevron-right" />
+                </span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="section-cta-row">
+      <a href="/programs" class="btn-outline-dark">
+        <i class="fas fa-th-large"></i> View All Programs
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- COMMUNITY CHALLENGES WE ADDRESS         -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="challenges-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-hand-holding-heart"></i> Where We Work</div>
+      <h2>Addressing <span class="accent-text">Critical Challenges</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Our interventions are designed specifically for communities facing multiple, intersecting
+        vulnerabilities.
+      </p>
+    </div>
+    <div class="challenges-grid">
+      {
+        challenges.map((c) => (
+          <a href={c.href} class="challenge-card" key={c.title}>
+            <div class="challenge-icon">{c.icon}</div>
+            <h3>{c.title}</h3>
+            <p>{c.description}</p>
+            <span class="challenge-link">
+              Learn more <i class="fas fa-arrow-right" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- CONSULTANCY & CORPORATE SERVICES        -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="services-section">
+    <div class="services-header">
+      <div class="section-eyebrow">
+        <i class="fas fa-chalkboard-teacher"></i> Capacity Building
+      </div>
+      <h2>Consultancy & <span class="accent-text">Corporate Services</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Strengthening organizations to better serve vulnerable communities through expert guidance
+        and training.
+      </p>
+    </div>
+
+    <div class="services-two-columns">
+      <!-- General Consultancy -->
+      <div class="service-category">
+        <h3><i class="fas fa-hand-holding-heart"></i> General Consultancy</h3>
+        <div class="service-cards-grid">
+          {
+            consultancyServices.map((service) => (
+              <a href={service.href} class="service-card" key={service.title}>
+                <div class="service-card-img-wrap">
+                  <img src={service.image} alt={service.title} loading="lazy" />
+                  <div class="service-card-icon">
+                    <i class={service.icon} />
+                  </div>
+                </div>
+                <div class="service-card-body">
+                  <strong>{service.title}</strong>
+                  <p>{service.description}</p>
+                  <span class="service-card-link">
+                    Explore <i class="fas fa-arrow-right" />
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Corporate Services -->
+      <div class="service-category">
+        <h3><i class="fas fa-building"></i> Corporate Services</h3>
+        <div class="service-cards-grid">
+          {
+            corporateServices.map((service) => (
+              <a href={service.href} class="service-card" key={service.title}>
+                <div class="service-card-img-wrap">
+                  <img src={service.image} alt={service.title} loading="lazy" />
+                  <div class="service-card-icon">
+                    <i class={service.icon} />
+                  </div>
+                </div>
+                <div class="service-card-body">
+                  <strong>{service.title}</strong>
+                  <p>{service.description}</p>
+                  <span class="service-card-link">
+                    Explore <i class="fas fa-arrow-right" />
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="section-cta-row">
+      <a href="/services" class="btn-outline-dark">
+        <i class="fas fa-briefcase"></i> View All Services
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- TESTIMONIALS                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-quote-left"></i> Community Voices</div>
+      <h2>Stories of <span class="accent-text">Transformation</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Real impact from the communities we serve across Africa</p>
+    </div>
+    <div class="testimonials-grid">
+      {
+        testimonials.map((t) => (
+          <div class="testimonial-card" key={t.name}>
+            <div class="testi-quote-icon">
+              <i class="fas fa-quote-left" />
+            </div>
+            <p class="testi-text">"{t.quote}"</p>
+            <div class="testi-challenge">
+              <span class="challenge-badge">{t.challenge}</span>
+            </div>
+            <div class="testi-author">
+              <div class="testi-flag">{t.location}</div>
+              <div>
+                <div class="testi-name">{t.name}</div>
+                <div class="testi-role">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BLOG SECTION                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="blog-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-newspaper"></i> Latest Insights</div>
+      <h2>From the <span class="accent-text">Field</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Stories, research, and lessons from our work across Africa's most vulnerable communities.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+      {
+        blogPosts.map((post, idx) => (
+          <a href={post.href} class={`blog-card ${idx === 0 ? "blog-card--featured" : ""}`} key={post.title}>
+            <div class="blog-img-wrap">
+              <img src={post.image} alt={post.title} loading="lazy" />
+              <div class="blog-category">
+                <i class={post.categoryIcon} />
+                {post.category}
+              </div>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fas fa-calendar-alt" /> {post.date}</span>
+                <span><i class="fas fa-clock" /> {post.readTime}</span>
+              </div>
+              <h3 class="blog-title">{post.title}</h3>
+              <p class="blog-excerpt">{post.excerpt}</p>
+              <div class="blog-footer">
+                <span class="blog-author">
+                  <i class="fas fa-pen" /> {post.author}
+                </span>
+                <span class="blog-read-link">
+                  Read more <i class="fas fa-arrow-right" />
+                </span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="section-cta-row">
+      <a href="/blog" class="btn-outline-dark">
+        <i class="fas fa-newspaper"></i> View All Articles
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTNERS                                -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="partners-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-handshake"></i> Our Network</div>
+      <h2>Trusted by <span class="accent-text">Global Partners</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Collaborating with leading organizations to amplify impact</p>
+    </div>
+    <div class="partner-grid">
+      {
+        partners.map((partner) => (
+          <div class="partner-card" key={partner.name}>
+            <span class="partner-emoji">{partner.logo}</span>
+            <span>{partner.name}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="partner-cta">
+      <i class="fas fa-plus-circle"></i> Join us in building resilient communities
+      <a href="/contact" class="partner-link">Become a partner →</a>
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DELIVERY MODES                          -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="modes-section">
+    <div class="section-header">
+      <div class="section-eyebrow"><i class="fas fa-sliders-h"></i> How We Deliver</div>
+      <h2>Flexible <span class="accent-text">Approaches</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="modes-grid">
+      <a href="/delivery/community-training" class="mode-card">
+        <div class="mode-icon-big"><i class="fas fa-chalkboard-user"></i></div>
+        <div class="mode-body">
+          <h3>Community-Based Training</h3>
+          <p>On-the-ground programs delivered within communities, respecting local contexts and cultural norms.</p>
+          <span class="mode-link">Learn more <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/delivery/remote-learning" class="mode-card">
+        <div class="mode-icon-big"><i class="fas fa-laptop"></i></div>
+        <div class="mode-body">
+          <h3>Remote & Hybrid Learning</h3>
+          <p>Accessible digital platforms reaching remote communities with limited infrastructure.</p>
+          <span class="mode-link">Learn more <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/delivery/train-the-trainer" class="mode-card">
+        <div class="mode-icon-big"><i class="fas fa-users"></i></div>
+        <div class="mode-body">
+          <h3>Train-the-Trainer Model</h3>
+          <p>Building local capacity for sustainable, community-led knowledge transfer.</p>
+          <span class="mode-link">Learn more <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/delivery/partnerships" class="mode-card">
+        <div class="mode-icon-big"><i class="fas fa-building"></i></div>
+        <div class="mode-body">
+          <h3>Organizational Partnerships</h3>
+          <p>Tailored programs for NGOs, government agencies, and private sector partners.</p>
+          <span class="mode-link">Learn more <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- NEWSLETTER SIGNUP                       -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <div class="section-eyebrow light"><i class="fas fa-envelope-open-text"></i> Stay Connected</div>
+        <h2>Get impact stories <span class="accent-green-text">straight to your inbox</span></h2>
+        <p>Monthly updates on our programs, community voices, and opportunities to get involved.</p>
+      </div>
+      <form class="newsletter-form" action="/newsletter" method="POST">
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          class="newsletter-input"
+        />
+        <button type="submit" class="btn-primary newsletter-btn">
+          <i class="fas fa-paper-plane"></i> Subscribe
+        </button>
+      </form>
+      <p class="newsletter-note">
+        <i class="fas fa-shield-alt"></i> We respect your privacy. Unsubscribe anytime.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- FINAL CTA                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="section-eyebrow light"><i class="fas fa-bolt"></i> Take Action</div>
+        <h2>Ready to <span class="cta-highlight">transform lives</span>?</h2>
+        <p>Partner with us to build sustainable livelihoods and resilient communities across Africa.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-primary btn-large">
+            <i class="fas fa-envelope"></i> Partner With Us
+          </a>
+          <a href="/impact-report" class="btn-outline-light btn-large">
+            <i class="fas fa-download"></i> Download Impact Report
+          </a>
+        </div>
+      </div>
+      <div class="cta-img-wrap">
+        <img src="/cta-community.webp" alt="Empowered community members" class="cta-img" />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  /* ─────────────────────────────────────────────────────────────
+     THEME: Red, Green (#27ee31) & Charcoal
+     Primary Red: #c0392b | Accent Green: #27ee31
+     ───────────────────────────────────────────────────────────── */
+
+  :root {
+    --primary-red: #c0392b;
+    --primary-red-dark: #a93226;
+    --primary-red-soft: rgba(192, 57, 43, 0.12);
+    --accent-green: #27ee31;
+    --accent-green-light: #27f731;
+    --accent-green-soft: rgba(39, 238, 49, 0.12);
+    --dark-charcoal: #1e293b;
+    --gray-dark: #334155;
+    --gray-mid: #5a6e8a;
+    --gray-soft: #f1f5f9;
+    --border-light: #e2e8f0;
+    --card-white: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.12);
+    --transition-default: all 0.25s ease;
+  }
+
+  /* ─── Hero ──────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-gallery {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  .hero-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: heroFade 15s infinite;
+  }
+
+  @keyframes heroFade {
+    0%, 16% { opacity: 1; }
+    20%, 100% { opacity: 0; }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.7) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    padding: 4rem 0;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    color: var(--accent-green-light);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .5rem 1.2rem;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 8px; height: 8px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(1.2); }
+  }
+
+  .hero h1 {
+    font-size: 3.8rem;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -.03em;
+    color: white;
+  }
+
+  .hero-highlight {
+    background: linear-gradient(135deg, #fff, var(--accent-green-light));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-sub { color: var(--accent-green-light); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,.85);
+    max-width: 520px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  /* ─── Stats Strip ───────────────────────────────────────────── */
+  .stats-strip {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    background: var(--dark-charcoal);
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+  }
+
+  .stat-item { text-align: center; color: white; }
+
+  .stat-item i {
+    font-size: 2rem;
+    color: var(--accent-green-light);
+    margin-bottom: .75rem;
+    display: block;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: .8rem;
+    color: rgba(255,255,255,.7);
+    margin-top: .25rem;
+    font-weight: 500;
+  }
+
+  /* ─── Welcome Section ───────────────────────────────────────── */
+  .welcome-section { padding: 4rem 0; }
+
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .welcome-text h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: .5rem;
+  }
+
+  .section-divider.left {
+    margin: .75rem 0 1.25rem;
+  }
+
+  .welcome-intro {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-red);
+    margin: 1rem 0;
+    line-height: 1.7;
+  }
+
+  .welcome-text p {
+    color: var(--gray-mid);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .btn-about { margin-top: .5rem; }
+
+  .welcome-image {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .welcome-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .welcome-img-caption {
+    position: absolute;
+    bottom: 20px; left: 20px; right: 20px;
+    background: rgba(0,0,0,.7);
+    backdrop-filter: blur(8px);
+    padding: .75rem 1rem;
+    border-radius: 40px;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .welcome-img-caption i {
+    color: var(--accent-green-light);
+    margin-right: 8px;
+  }
+
+  /* ─── Programs Section ──────────────────────────────────────── */
+  .programs-section { padding: 3rem 0; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .program-card {
+    background: var(--card-white);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: all .3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-green);
+  }
+
+  .program-img-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+  }
+
+  .program-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .program-card:hover .program-img { transform: scale(1.05); }
+
+  .program-tag {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--accent-green);
+    color: var(--dark-charcoal);
+    font-size: .7rem;
+    font-weight: 700;
+    padding: .25rem .75rem;
+    border-radius: 20px;
+  }
+
+  .program-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30,41,59,.85) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .program-card:hover .program-overlay { opacity: 1; }
+
+  .program-explore {
+    color: white;
+    font-size: .85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .program-body { padding: 1.25rem; flex: 1; }
+
+  .program-icon-wrap {
+    width: 40px; height: 40px;
+    background: var(--accent-green-soft);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .75rem;
+    color: var(--accent-green);
+    font-size: 1rem;
+  }
+
+  .program-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+
+  .program-desc {
+    font-size: .85rem;
+    color: var(--gray-mid);
+    line-height: 1.55;
+  }
+
+  .program-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: .75rem;
+    border-top: 1px solid var(--border-light);
+    font-size: .75rem;
+    color: var(--gray-mid);
+    font-weight: 600;
+  }
+
+  .program-link { color: var(--primary-red); font-weight: 700; }
+
+  /* ─── Challenges Section ────────────────────────────────────── */
+  .challenges-section { padding: 3rem 0; }
+
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .challenge-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--border-light);
+    transition: all .25s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .challenge-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-green);
+    box-shadow: var(--shadow-md);
+  }
+
+  .challenge-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+  .challenge-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+  }
+
+  .challenge-card p {
+    font-size: .85rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .challenge-link {
+    margin-top: 1rem;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ─── Services Section ──────────────────────────────────────── */
+  .services-section {
+    padding: 4rem 0;
+    background: var(--gray-soft);
+    border-radius: 32px;
+    margin: 2rem 0;
+  }
+
+  .services-header { text-align: center; margin-bottom: 2.5rem; }
+
+  .services-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .service-category h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    transition: all .25s;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent-green);
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+  }
+
+  .service-card-img-wrap {
+    width: 90px;
+    min-width: 90px;
+    position: relative;
+    overflow: hidden;
+    background: var(--gray-soft);
+  }
+
+  .service-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-card-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.35);
+    color: white;
+    font-size: 1.4rem;
+  }
+
+  .service-card-body {
+    padding: .85rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .service-card-body strong {
+    font-size: .85rem;
+    color: var(--dark-charcoal);
+    line-height: 1.3;
+  }
+
+  .service-card-body p {
+    font-size: .72rem;
+    color: var(--gray-mid);
+    line-height: 1.4;
+  }
+
+  .service-card-link {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: auto;
+  }
+
+  /* ─── Testimonials ──────────────────────────────────────────── */
+  .testimonials-section { padding: 3rem 0; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .testimonial-card {
+    background: var(--card-white);
+    border-radius: 24px;
+    padding: 1.75rem;
+    border: 1px solid var(--border-light);
+    transition: all .25s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-green);
+  }
+
+  .testi-quote-icon {
+    color: var(--accent-green);
+    font-size: 2rem;
+    opacity: .3;
+    margin-bottom: .75rem;
+  }
+
+  .testi-text {
+    font-size: .9rem;
+    color: var(--dark-charcoal);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .testi-challenge { margin-bottom: 1rem; }
+
+  .challenge-badge {
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    font-size: .7rem;
+    font-weight: 700;
+    padding: .2rem .7rem;
+    border-radius: 20px;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+  }
+
+  .testi-flag { font-size: 1.8rem; }
+  .testi-name { font-weight: 700; font-size: .85rem; }
+  .testi-role { font-size: .7rem; color: var(--gray-mid); margin-top: 2px; }
+
+  /* ─── Blog Section ──────────────────────────────────────────── */
+  .blog-section { padding: 3rem 0; }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .blog-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    transition: all .3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-green);
+  }
+
+  .blog-card--featured {
+    /* first post is standard, but still card-styled */
+  }
+
+  .blog-img-wrap {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .blog-card:hover .blog-img-wrap img { transform: scale(1.05); }
+
+  .blog-category {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--primary-red);
+    color: white;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: .25rem .75rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .blog-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: .72rem;
+    color: var(--gray-mid);
+    margin-bottom: .75rem;
+  }
+
+  .blog-meta i { margin-right: 4px; color: var(--accent-green); }
+
+  .blog-title {
+    font-size: .98rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: .6rem;
+    color: var(--dark-charcoal);
+  }
+
+  .blog-excerpt {
+    font-size: .82rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .75rem;
+    border-top: 1px solid var(--border-light);
+    font-size: .75rem;
+  }
+
+  .blog-author { color: var(--gray-mid); }
+  .blog-author i { margin-right: 4px; color: var(--accent-green); }
+
+  .blog-read-link {
+    color: var(--primary-red);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ─── Newsletter Section ────────────────────────────────────── */
+  .newsletter-section {
+    background: linear-gradient(135deg, var(--primary-red) 0%, #922b21 100%);
+    border-radius: 28px;
+    padding: 3rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .newsletter-inner { max-width: 580px; margin: 0 auto; }
+
+  .newsletter-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: .75rem;
+  }
+
+  .accent-green-text { color: var(--accent-green-light); }
+
+  .newsletter-text p {
+    color: rgba(255,255,255,.8);
+    margin-bottom: 1.75rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: .75rem;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: .75rem 1.25rem;
+    border-radius: 40px;
+    border: 2px solid rgba(255,255,255,.3);
+    background: rgba(255,255,255,.15);
+    color: white;
+    font-size: .95rem;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .newsletter-input::placeholder { color: rgba(255,255,255,.65); }
+
+  .newsletter-input:focus { border-color: var(--accent-green); }
+
+  .newsletter-btn {
+    background: white;
+    color: var(--primary-red);
+    white-space: nowrap;
+  }
+
+  .newsletter-btn:hover {
+    background: var(--accent-green);
+    color: var(--dark-charcoal);
+  }
+
+  .newsletter-note {
+    font-size: .75rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .newsletter-note i { margin-right: 5px; }
+
+  /* ─── Partners Section ──────────────────────────────────────── */
+  .partners-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 28px;
+    margin: 2rem 0;
+    text-align: center;
+    border: 1px solid var(--border-light);
+  }
+
+  .partner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .partner-card {
+    background: var(--gray-soft);
+    padding: .7rem 1.6rem;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-weight: 600;
+    font-size: .85rem;
+    transition: all .25s;
+  }
+
+  .partner-card:hover {
+    background: var(--accent-green-soft);
+    transform: translateY(-2px);
+  }
+
+  .partner-emoji { font-size: 1.3rem; }
+
+  .partner-cta { font-size: .85rem; color: var(--gray-mid); }
+
+  .partner-link {
+    color: var(--primary-red);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 6px;
+  }
+
+  .partner-link:hover { text-decoration: underline; }
+
+  /* ─── Delivery Modes ────────────────────────────────────────── */
+  .modes-section { padding: 3rem 0; }
+
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .mode-card {
+    background: var(--card-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--border-light);
+    transition: all .25s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mode-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-green);
+    box-shadow: var(--shadow-md);
+  }
+
+  .mode-icon-big {
+    font-size: 2rem;
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+  }
+
+  .mode-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+
+  .mode-body p {
+    font-size: .8rem;
+    color: var(--gray-mid);
+    line-height: 1.55;
+  }
+
+  .mode-link {
+    margin-top: 1rem;
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ─── CTA Section ───────────────────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--dark-charcoal) 0%, #2d3748 100%);
+    border-radius: 28px;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .cta-text { padding: 3rem; color: white; }
+
+  .cta-text h2 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+
+  .cta-highlight { color: var(--accent-green-light); }
+
+  .cta-text p {
+    color: rgba(255,255,255,.7);
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+
+  .cta-img-wrap { height: 100%; }
+
+  .cta-img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── Shared Utilities ──────────────────────────────────────── */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-red-soft);
+    color: var(--primary-red);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .35rem 1rem;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+
+  .section-eyebrow.light {
+    background: rgba(255,255,255,.15);
+    color: var(--accent-green-light);
+  }
+
+  .section-header { text-align: center; margin-bottom: 3rem; }
+
+  .section-header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: .5rem;
+  }
+
+  .accent-text { color: var(--primary-red); }
+
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-green));
+    margin: .75rem auto 1.25rem;
+    border-radius: 3px;
+  }
+
+  .section-subtitle {
+    color: var(--gray-mid);
+    font-size: 1rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .section-cta-row {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  /* ─── Buttons ───────────────────────────────────────────────── */
+  .btn-primary {
+    background: var(--primary-red);
+    color: white;
+    padding: .7rem 1.8rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all .25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(192,57,43,.35);
+  }
+
+  .btn-outline {
+    border: 2px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: .7rem 1.8rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all .25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background: var(--accent-green);
+    color: var(--dark-charcoal);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-dark {
+    border: 2px solid var(--dark-charcoal);
+    color: var(--dark-charcoal);
+    padding: .7rem 1.8rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all .25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .btn-outline-dark:hover {
+    background: var(--dark-charcoal);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-light {
+    border: 2px solid rgba(255,255,255,.4);
+    color: white;
+    padding: .7rem 1.8rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all .25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .btn-outline-light:hover {
+    background: rgba(255,255,255,.1);
+    border-color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-large { padding: .9rem 2.2rem; font-size: .95rem; }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Responsive ────────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .hero h1 { font-size: 2.5rem; }
+
+    .welcome-grid,
+    .services-two-columns,
+    .cta-inner { grid-template-columns: 1fr; }
+
+    .cta-img-wrap { display: none; }
+
+    .cta-text { text-align: center; }
+
+    .cta-text p { margin-left: auto; margin-right: auto; }
+
+    .cta-buttons { justify-content: center; }
+
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.8rem; }
+
+    .hero-desc { font-size: .95rem; }
+
+    .stats-strip { gap: 1.25rem; padding: 1.75rem; }
+
+    .stat-number { font-size: 1.5rem; }
+
+    .programs-grid,
+    .testimonials-grid,
+    .challenges-grid,
+    .modes-grid,
+    .blog-grid { grid-template-columns: 1fr; }
+
+    .section-header h2,
+    .welcome-text h2 { font-size: 1.75rem; }
+
+    .services-two-columns { padding: 0 1rem; }
+
+    .newsletter-form { flex-direction: column; }
+
+    .newsletter-btn { width: 100%; justify-content: center; }
+  }
+</style>
